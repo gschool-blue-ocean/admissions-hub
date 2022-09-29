@@ -9,7 +9,7 @@ const Dashboard = () => {
       style={{
         position: "absolute",
         right: "2%",
-        width: "400px",
+        width: "560px",
         border: "2px solid black",
         padding: "10px",
       }}
