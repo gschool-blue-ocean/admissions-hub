@@ -7,7 +7,7 @@ function Body() {
     <div className={styles.body}>
       <div>Body here</div>
       <InterviewDash />
-      {/* <Dashboard /> */}
+      <Dashboard />
     </div>
   );
 }

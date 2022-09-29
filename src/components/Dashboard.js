@@ -12,6 +12,8 @@ const Dashboard = () => {
         width: "560px",
         border: "2px solid black",
         padding: "10px",
+        backgroundColor: "#DCDCDC",
+        borderRadius: 10,
       }}
     >
       Dashboard

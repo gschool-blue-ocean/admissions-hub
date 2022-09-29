@@ -1,5 +1,6 @@
 import React from "react";
 import * as BsIcons from "react-icons/bs";
+import * as BiIcons from "react-icons/bi";
 import { useState } from "react";
 
 const StudentInfo = () => {
@@ -78,12 +79,21 @@ const StudentInfo = () => {
           padding: 10,
         }}
       >
-        <input
-          placeholder="Search by name or email"
-          onChange={handleChange}
-          value={search}
-          type="text"
-        ></input>
+        <div
+          style={{
+            display: "flex",
+          }}
+        >
+          <input
+            placeholder="Search by name or email"
+            onChange={handleChange}
+            value={search}
+            type="text"
+          ></input>
+          <div>
+            <BiIcons.BiSearchAlt size={28} />
+          </div>
+        </div>
         <div
           style={{
             display: "flex",
@@ -95,14 +105,18 @@ const StudentInfo = () => {
               paddingRight: 20,
             }}
           >
-            <button>View Notes</button>
+            <button style={{ color: "white", backgroundColor: "orange" }}>
+              View Notes
+            </button>
           </div>
           <div
             style={{
               paddingRight: 20,
             }}
           >
-            <button>Launch Interview</button>
+            <button style={{ color: "white", backgroundColor: "orange" }}>
+              Launch Interview
+            </button>
           </div>
         </div>
       </div>
@@ -169,7 +183,13 @@ const StudentInfo = () => {
             <span style={{ paddingLeft: 5 }}>add student</span>
           </div>
           <div>
-            <button style={{ borderRadius: 10, backgroundColor: "gray" }}>
+            <button
+              style={{
+                borderRadius: 10,
+                backgroundColor: "gray",
+                color: "white",
+              }}
+            >
               export .csv
             </button>
           </div>

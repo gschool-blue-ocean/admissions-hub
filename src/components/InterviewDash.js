@@ -5,7 +5,7 @@ import StudentInfo from "./StudentInfo";
 
 const InterviewDash = () => {
   return (
-    <div style={{ width: 730 }}>
+    <div style={{ width: 730, marginLeft: 50 }}>
       InterviewDash
       <AllRatings />
       <StudentInfo />
