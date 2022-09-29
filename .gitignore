@@ -1,7 +1,3 @@
-node_modules
-
-.next
-
 # dependencies
 /node_modules
 /.pnp
