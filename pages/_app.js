@@ -3,6 +3,7 @@ import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import { useEffect } from "react";
 import "../styles/globals.css";
 import Head from "next/head";
+import { AppWrapper } from "../src/components/GlobalContext";
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
@@ -19,7 +20,9 @@ function MyApp({ Component, pageProps }) {
           rel="stylesheet"
         />
       </Head>
-      <Component {...pageProps} />
+      <AppWrapper>
+        <Component {...pageProps} />
+      </AppWrapper>
     </div>
   );
 }
