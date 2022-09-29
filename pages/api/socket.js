@@ -9,8 +9,12 @@ const SocketHandler = (req,res) => {
         res.socket.server.io = io
 
         io.on('connection', socket => {
-            socket.on('input-change', msg => {
-                socket.broadcast.emit('update-input', msg)
+            socket.on('join-room', id => {
+                console.log(`user ${id} joined`)
+                socket.join(id)
+            })
+            socket.on('input-change', (msg, id) => {
+                socket.broadcast.to(id).emit('update-input', msg)
             })
             
         })

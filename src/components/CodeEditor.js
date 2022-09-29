@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import Editor from "@monaco-editor/react";
+import { useRouter } from "next/router"
+
 import io, { Socket } from 'Socket.IO-client'
 let socket;
 
 
-export default function CodeEditor({ id }) {
+export default function CodeEditor({ sessionId }) {
 
     const [input, setInput] = useState('')
     const onChangeHandler = (e) => {
         setInput(e)
-        socket.emit('input-change', e, id)
+        socket.emit('input-change', e, sessionId)
     }
 
     useEffect(() => {
+        console.log('internal sessionID:', sessionId)
         socketInitializer()
     }, [])
 
@@ -21,9 +24,9 @@ export default function CodeEditor({ id }) {
         await fetch('/api/socket')
         socket = io()
 
-        socket.emit('join-room', id)
+        socket.emit('join-room', sessionId)
         socket.on('connect', () => {
-            console.log(`connected with user ${id}`)
+            console.log(`connected with user ${sessionId}`)
             
         })
 
@@ -33,7 +36,7 @@ export default function CodeEditor({ id }) {
     }
     return (
       <>
-      <p>Your interview id is {id}</p>
+      <p>Your interview ID is {sessionId}</p>
       <Editor
         height="90vh"
         width="50vw"
