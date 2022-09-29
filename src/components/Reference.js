@@ -7,6 +7,12 @@ const Reference = () => {
   const [conditionals, setConditionals] = useState(false);
   const [loops, setLoops] = useState(false);
   const [accumulator, setAccumulator] = useState(false);
+  const [extraResources, setExtraResources] = useState("");
+
+  const handleChange = (event) => {
+    setExtraResources(event.target.value);
+    console.log(extraResources);
+  };
 
   const variablesLink =
     "https://learn-2.galvanize.com/cohorts/1346/blocks/1615/content_files/08-variables/00-section-overview.md";
@@ -116,6 +122,15 @@ const Reference = () => {
             <span classname={styles.checkmark}></span>
           </label>
         </div>
+      </div>
+      <div>
+        <span style={{ fontSize: 14 }}>External Link</span>
+        <input
+          onChange={handleChange}
+          value={extraResources}
+          type="text"
+          style={{ width: 400 }}
+        ></input>
       </div>
     </div>
   );

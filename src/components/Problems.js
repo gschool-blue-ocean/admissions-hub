@@ -58,42 +58,114 @@ const Problems = () => {
           paddingTop: 5,
         }}
       >
-        <button
-          onClick={() => {
-            if (seeProblem1 === false) {
-              setSeeProblem1(!seeProblem1);
-              setSeeProblem2(false);
-              setSeeProblem3(false);
-            }
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            width: 100,
+            backgroundColor: "green",
           }}
         >
-          Problem 1
-        </button>
-        <button
-          onClick={() => {
-            if (seeProblem2 === false) {
-              setSeeProblem2(!seeProblem2);
-              setSeeProblem1(false);
-              setSeeProblem3(false);
-            }
+          {seeProblem1 ? (
+            <button
+              style={{ backgroundColor: "green" }}
+              onClick={() => {
+                if (seeProblem1 === false) {
+                  setSeeProblem1(!seeProblem1);
+                  setSeeProblem2(false);
+                  setSeeProblem3(false);
+                }
+              }}
+            >
+              Problem 1
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                if (seeProblem1 === false) {
+                  setSeeProblem1(!seeProblem1);
+                  setSeeProblem2(false);
+                  setSeeProblem3(false);
+                }
+              }}
+            >
+              Problem 1
+            </button>
+          )}
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            width: 100,
+            backgroundColor: "blue",
           }}
         >
-          Problem 2
-        </button>
-        <button
-          onClick={() => {
-            if (seeProblem3 === false) {
-              setSeeProblem3(!seeProblem3);
-              setSeeProblem1(false);
-              setSeeProblem2(false);
-            }
+          {seeProblem2 ? (
+            <button
+              style={{ backgroundColor: "blue" }}
+              onClick={() => {
+                if (seeProblem2 === false) {
+                  setSeeProblem2(!seeProblem2);
+                  setSeeProblem1(false);
+                  setSeeProblem3(false);
+                }
+              }}
+            >
+              Problem 2
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                if (seeProblem2 === false) {
+                  setSeeProblem2(!seeProblem2);
+                  setSeeProblem1(false);
+                  setSeeProblem3(false);
+                }
+              }}
+            >
+              Problem 2
+            </button>
+          )}
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            width: 100,
+            backgroundColor: "purple",
           }}
         >
-          Problem 3
-        </button>
+          {seeProblem3 ? (
+            <button
+              style={{ backgroundColor: "purple" }}
+              onClick={() => {
+                if (seeProblem3 === false) {
+                  setSeeProblem3(!seeProblem3);
+                  setSeeProblem1(false);
+                  setSeeProblem2(false);
+                }
+              }}
+            >
+              Problem 3
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                if (seeProblem3 === false) {
+                  setSeeProblem3(!seeProblem3);
+                  setSeeProblem1(false);
+                  setSeeProblem2(false);
+                }
+              }}
+            >
+              Problem 3
+            </button>
+          )}
+        </div>
       </div>
       {seeProblem1 ? (
-        <div>
+        <div style={{ backgroundColor: "green" }}>
           <div style={{ paddingBottom: 10 }}>
             <strong>Question 1:</strong> Working with Strings and Functions
             Complete the logger function that takes in a function and a string
@@ -114,7 +186,7 @@ const Problems = () => {
         </div>
       ) : null}
       {seeProblem2 ? (
-        <div>
+        <div style={{ backgroundColor: "blue" }}>
           <div style={{ paddingBottom: 10 }}>
             <strong>Question 2:</strong> Working with Arrays and Functions
             Complete the createNewArray function that takes in an array and
@@ -135,7 +207,7 @@ const Problems = () => {
         </div>
       ) : null}
       {seeProblem3 ? (
-        <div>
+        <div style={{ backgroundColor: "purple" }}>
           <div style={{ paddingBottom: 10 }}>
             <strong>Question 3:</strong> Working with Objects Given two objects
             as parameters "obj1" and "obj2", complete the addPropertiesToObject
