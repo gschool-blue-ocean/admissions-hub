@@ -1,16 +1,19 @@
 import Link from "next/link";
-import { useEffect, useRef } from 'react'
+import uuid from 'react-uuid'
 
 function Host() {
-    const inputRef = useRef('')
-    const roomID = inputRef.current.value;
-    useEffect(() => {
-        console.log(inputRef.current.value)
-    })
+
+    let roomId;
+
+    const handleNewRoom = () => {
+        roomId = uuid()
+
+    }
+
     return(
         <>
-        <input type='text' placeholder="Enter a room id" ref={inputRef}/>
-        <Link href={`./${roomID}`}>
+        <button onClick={handleNewRoom}>Generate a new room</button>
+        <Link href={`./${uuid()}`}>
             Begin a new interview
         </Link>
         </>
