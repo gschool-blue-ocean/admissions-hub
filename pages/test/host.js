@@ -12,10 +12,10 @@ function Host() {
 
     return(
         <>
-        <button onClick={handleNewRoom}>Generate a new room</button>
-        <Link href={`./${uuid()}`}>
+        <button onClick={handleNewRoom}><Link href={`../interview/${uuid()}`}>
             Begin a new interview
-        </Link>
+        </Link></button>
+        
         </>
     )
 }

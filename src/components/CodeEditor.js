@@ -15,6 +15,7 @@ export default function CodeEditor({ id }) {
     useEffect(() => {
         socketInitializer()
     }, [])
+
     
     const socketInitializer = async () => {
         await fetch('/api/socket')
@@ -34,12 +35,12 @@ export default function CodeEditor({ id }) {
       <>
       <p>Your interview id is {id}</p>
       <Editor
-     height="90vh"
-     width="50vw"
-     defaultLanguage="javascript"
-     theme="vs-dark"
-     value={input}
-     onChange={(e) => onChangeHandler(e)}
+        height="90vh"
+        width="50vw"
+        defaultLanguage="javascript"
+        theme="vs-dark"
+        value={input}
+        onChange={(e) => onChangeHandler(e)}
    />
    </>
     )
