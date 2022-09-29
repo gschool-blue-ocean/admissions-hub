@@ -174,7 +174,7 @@ const Ratings = () => {
         </div>
       </div>
       <meter
-        style={{ width: 400 }}
+        style={{ width: 380 }}
         min="0"
         low="4"
         optimum="10"

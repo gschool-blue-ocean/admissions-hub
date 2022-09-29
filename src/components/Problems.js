@@ -181,7 +181,7 @@ const Problems = () => {
           <textarea
             value={problem1Notes}
             onChange={handleProblem1NotesChange}
-            style={{ width: 400, height: 100, paddingTop: 10 }}
+            style={{ width: 380, height: 100, paddingTop: 10 }}
           ></textarea>
         </div>
       ) : null}
@@ -202,7 +202,7 @@ const Problems = () => {
           <textarea
             value={problem2Notes}
             onChange={handleProblem2NotesChange}
-            style={{ width: 400, height: 100, resize: "none" }}
+            style={{ width: 380, height: 100, resize: "none" }}
           ></textarea>
         </div>
       ) : null}
@@ -223,7 +223,7 @@ const Problems = () => {
           <textarea
             value={problem3Notes}
             onChange={handleProblem3NotesChange}
-            style={{ width: 400, height: 100 }}
+            style={{ width: 380, height: 100 }}
           ></textarea>
         </div>
       ) : null}
