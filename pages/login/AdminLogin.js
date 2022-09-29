@@ -11,9 +11,9 @@ export default function AdminLogin() {
   };
   return (
     <div>
-      <Card style={{ width: "50%" }}>
+      <Card style={{ width: "25%" }}>
         <Card.Img
-          className="w-50 h-50 "
+          className=""
           variant="top"
           src="https://cdn-icons-png.flaticon.com/512/2503/2503732.png"
         />
