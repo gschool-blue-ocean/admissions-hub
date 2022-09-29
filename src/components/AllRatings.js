@@ -18,7 +18,7 @@ const AllRatings = () => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          paddingRight: 40,
+
           borderRight: "solid gray",
         }}
       >
@@ -52,11 +52,9 @@ const AllRatings = () => {
             </text>
           </svg>
         </div>
-        <div>
-          <span style={{ fontSize: 15, paddingRight: 40 }}>
-            Total Interviews: 65
-          </span>
-          <span style={{ fontSize: 15 }}>Passing Interviews: 69</span>
+        <div style={{ display: "flex", paddingRight: 30 }}>
+          <div style={{ fontSize: 15 }}>Total Interviews: 65</div>
+          <div style={{ fontSize: 15 }}>Passing Interviews: 69</div>
         </div>
       </div>
     );
@@ -77,7 +75,6 @@ const AllRatings = () => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          paddingLeft: 40,
         }}
       >
         <span style={{ fontSize: 20 }}>Fiscal Year</span>
@@ -110,20 +107,31 @@ const AllRatings = () => {
             </text>
           </svg>
         </div>
-        <div>
-          <span style={{ fontSize: 15, paddingRight: 40 }}>
+        <div style={{ display: "flex" }}>
+          <div style={{ fontSize: 15, paddingRight: 30 }}>
             Total Interviews: 65
-          </span>
-          <span style={{ fontSize: 15 }}>Passing Interviews: 69</span>
+          </div>
+          <div style={{ fontSize: 15 }}>Passing Interviews: 69</div>
         </div>
       </div>
     );
   };
 
   return (
-    <div style={{ display: "flex" }}>
-      <Qtr />
-      <Year />
+    <div
+      style={{
+        display: "flex",
+        backgroundColor: "#DCDCDC",
+        borderRadius: 10,
+        marginBottom: 10,
+      }}
+    >
+      <div style={{ width: 365 }}>
+        <Qtr />
+      </div>
+      <div style={{ width: 365 }}>
+        <Year />
+      </div>
     </div>
   );
 };
