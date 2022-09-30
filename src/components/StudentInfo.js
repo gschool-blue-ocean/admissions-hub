@@ -4,6 +4,8 @@ import * as BiIcons from "react-icons/bi";
 import * as AiIcons from "react-icons/ai";
 import { useState } from "react";
 import NewStudent from "./NewStudent";
+import Link from "next/link";
+import uuid from 'react-uuid'
 
 const StudentInfo = () => {
   const [search, setSearch] = useState("");
@@ -183,7 +185,9 @@ const StudentInfo = () => {
                 width: 150,
               }}
             >
-              Launch Interview
+              <Link href={{pathname: '/interview', query: {id: uuid()}}}>
+            Launch Interview
+            </Link>
             </button>
           </div>
         </div>

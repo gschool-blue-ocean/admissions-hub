@@ -4,25 +4,28 @@ import io, { Socket } from 'Socket.IO-client'
 let socket;
 
 
-export default function CodeEditor({ id }) {
+export default function CodeEditor({ sessionId }) {
 
     const [input, setInput] = useState('')
     const onChangeHandler = (e) => {
         setInput(e)
-        socket.emit('input-change', e, id)
+        socket.emit('input-change', e, sessionId)
     }
 
     useEffect(() => {
+        
+        console.log('internal sessionID:', sessionId)
         socketInitializer()
     }, [])
+
     
     const socketInitializer = async () => {
         await fetch('/api/socket')
         socket = io()
 
-        socket.emit('join-room', id)
+        socket.emit('join-room', sessionId)
         socket.on('connect', () => {
-            console.log(`connected with user ${id}`)
+            console.log(`connected with user ${sessionId}`)
             
         })
 
@@ -30,17 +33,18 @@ export default function CodeEditor({ id }) {
             setInput(msg)
         })
     }
+
     return (
-      <>
-      <p>Your interview id is {id}</p>
-      <Editor
-     height="90vh"
-     width="50vw"
-     defaultLanguage="javascript"
-     theme="vs-dark"
-     value={input}
-     onChange={(e) => onChangeHandler(e)}
-   />
-   </>
+      <div style={{position: "absolute", left: '5%', top: "6rem", height: '600px'}}>
+        <p>Your interview ID is {sessionId}</p>
+        <Editor
+            width="600px"
+            defaultLanguage="javascript"
+            defaultValue='//start typing code here'
+            theme="vs-dark"
+            value={input}
+            onChange={(e) => onChangeHandler(e)}
+        />
+      </div>
     )
-    }
+}
