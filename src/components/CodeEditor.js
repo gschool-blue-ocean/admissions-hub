@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Editor from "@monaco-editor/react";
-import { useRouter } from "next/router"
-
 import io, { Socket } from 'Socket.IO-client'
 let socket;
 
@@ -9,7 +7,6 @@ let socket;
 export default function CodeEditor({ sessionId }) {
 
     const [input, setInput] = useState('')
-    const [outputCode, setOutputCode] = useState('')
     const onChangeHandler = (e) => {
         setInput(e)
         socket.emit('input-change', e, sessionId)
@@ -37,23 +34,18 @@ export default function CodeEditor({ sessionId }) {
         })
     }
 
-    const handleCode = () => {
-
-    }
     return (
-      <>
-      <p>Your interview ID is {sessionId}</p>
-      
-      <Editor
-        height="90vh"
-        width="50vw"
-        defaultLanguage="javascript"
-        theme="vs-dark"
-        value={input}
-        onChange={(e) => onChangeHandler(e)}
-   />
-   <button onClick={handleCode}>Run</button>
-    <input type={'text'} placeholder='console' value={outputCode} />
-   </>
+      <div style={{position: "absolute", left: '5%', top: "6rem", height: '600px'}}>
+        <p>Your interview ID is {sessionId}</p>
+        <Editor
+            // height="600"
+            width="600px"
+            defaultLanguage="javascript"
+            defaultValue='//start typing code here'
+            theme="vs-dark"
+            value={input}
+            onChange={(e) => onChangeHandler(e)}
+        />
+      </div>
     )
-    }
+}

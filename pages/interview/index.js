@@ -7,10 +7,8 @@ function id({ id }) {
     return (
         <>
         <Header />
-        <div className="flex">
-            <CodeEditor sessionId={id} />
-            <Dashboard />
-        </div>
+        <CodeEditor sessionId={id} />
+        <Dashboard />
         <Footer />
         </>       
 
