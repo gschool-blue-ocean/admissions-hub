@@ -50,8 +50,8 @@ const AllRatings = () => {
             />
             <text
               x="50%"
-              y="58%"
-              text-anchor="middle"
+              y="52%"
+              textAnchor="middle"
               stroke="orange"
               strokeWidth="1px"
             >
@@ -114,8 +114,8 @@ const AllRatings = () => {
             />
             <text
               x="50%"
-              y="58%"
-              text-anchor="middle"
+              y="52%"
+              textAnchor="middle"
               stroke="orange"
               strokeWidth="1px"
             >
