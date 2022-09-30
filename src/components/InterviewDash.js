@@ -2,7 +2,6 @@ import React from "react";
 import AllRatings from "./AllRatings";
 import InterviewerReport from "./InterviewerReport";
 import StudentInfo from "./StudentInfo";
-import BtnInterviewHost from "./BtnInterviewHost"
 
 const InterviewDash = () => {
   return (
@@ -10,7 +9,6 @@ const InterviewDash = () => {
       <AllRatings />
       <StudentInfo />
       <InterviewerReport />
-      <BtnInterviewHost />
     </div>
   );
 };

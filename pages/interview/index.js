@@ -7,8 +7,8 @@ function id({ id }) {
     return (
         <>
         <Header />
-        {/* <CodeEditor sessionId={id} /> */}
-        {/* <Dashboard /> */}
+        <CodeEditor sessionId={id} />
+        <Dashboard />
         <Footer />
         <h1>testing</h1>
         </>       
@@ -18,7 +18,7 @@ function id({ id }) {
   
 export default id
 
-export async function getServerSideProps({ query }) {
-    let { id } = query
-    return {props: {id}}
-}
+// export async function getServerSideProps({ query }) {
+//     let { id } = query
+//     return {props: {id}}
+// }

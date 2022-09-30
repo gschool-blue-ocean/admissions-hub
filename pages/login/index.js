@@ -1,23 +1,37 @@
-import styles from "./LoginPageStyle.module.css";
+
 import AdminLogin from "./AdminLogin";
-import CandidateLogin from "./CandidateLogin";
-import Container from "react-bootstrap/Container";
-import Header from "../../src/components/Header";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import { useAppContext } from "../../src/components/GlobalContext";
+// import { useAppContext } from "../../src/components/GlobalContext";
+import LoginNavbar from "./LoginNavbar";
+import {
+  MDBFooter
+} from "mdb-react-ui-kit";
+
 
 export default function Login() {
-  const { dummyData } = useAppContext();
-  console.log(dummyData);
+  // const { dummyData } = useAppContext();
+  // console.log(dummyData);
   return (
-    <Container>
-      <Row>
-        <Col>
-          {/* <Header /> */}
-          <AdminLogin />
-        </Col>
-      </Row>
-    </Container>
+    <>
+      <div>
+        <LoginNavbar />
+      </div>
+      <div
+        className="position-absolute container"
+        style={{ top: "34.5%", left: "33%", width: 600 }}
+      >
+        <AdminLogin />
+      </div>
+      <MDBFooter
+        bgColor="light"
+        className="text-center text-lg-start text-muted"
+      >
+        <div
+          class="fixed-bottom text-center p-4"
+          style={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
+        >
+          © 2022 Copyright: Team A+
+        </div>
+      </MDBFooter>
+    </>
   );
 }

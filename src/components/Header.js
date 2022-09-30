@@ -5,7 +5,6 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useRouter } from "next/router";
-import BtnInterviewer from "./BtnInterviewer";
 import BtnLogin from './BtnLogin';
 
 
@@ -51,10 +50,9 @@ function Header() {
       // console.log()
       if (event.target.name === 'dashboard') {
           router.push('../dashboard')
-      } else if (event.target.name === 'interviewer') {
-          router.push('../interviewer')
       }
   }
+
   return (
     <>
       <div className={styles.header}>
@@ -62,7 +60,7 @@ function Header() {
         <button
         className={styles.logo}
         onClick={goLink}
-        name='interviewer'
+        name='dashboard'
         >
         </button>
         
