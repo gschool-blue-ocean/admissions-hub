@@ -29,7 +29,6 @@ const AllRatings = () => {
               stroke="#ffd8a7"
               fill="none"
               strokeWidth={stroke}
-              stroke-width={stroke}
               r={normalizedRadius}
               cx={radius}
               cy={radius}
@@ -45,7 +44,6 @@ const AllRatings = () => {
                 transform: "rotate(-90deg)",
                 transformOrigin: "50% 50%",
               }}
-              stroke-width={stroke}
               r={normalizedRadius}
               cx={radius}
               cy={radius}
@@ -95,7 +93,6 @@ const AllRatings = () => {
               stroke="#ffd8a7"
               fill="none"
               strokeWidth={stroke2}
-              stroke-width={stroke2}
               r={normalizedRadius2}
               cx={radius2}
               cy={radius2}
@@ -111,7 +108,6 @@ const AllRatings = () => {
                 transform: "rotate(-90deg)",
                 transformOrigin: "50% 50%",
               }}
-              stroke-width={stroke2}
               r={normalizedRadius2}
               cx={radius2}
               cy={radius2}
