@@ -5,7 +5,7 @@ import * as AiIcons from "react-icons/ai";
 import { useState } from "react";
 import NewStudent from "./NewStudent";
 import Link from "next/link";
-import uuid from 'react-uuid'
+import uuid from "react-uuid";
 
 const StudentInfo = () => {
   const [search, setSearch] = useState("");
@@ -185,9 +185,9 @@ const StudentInfo = () => {
                 width: 150,
               }}
             >
-              <Link href={{pathname: '/interview', query: {id: uuid()}}}>
-            Launch Interview
-            </Link>
+              <Link href={{ pathname: "/interview", query: { id: uuid() } }}>
+                Launch Interview
+              </Link>
             </button>
           </div>
         </div>
@@ -311,10 +311,11 @@ const StudentInfo = () => {
           <div>
             <button
               style={{
-                borderRadius: 10,
+                borderRadius: 5,
                 backgroundColor: "gray",
                 color: "white",
                 border: "none",
+                width: 80,
               }}
             >
               export .csv
