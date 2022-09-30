@@ -30,20 +30,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/dashboard.js"
     ],
-    "/interview": [
+    "/test/[id]": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/interview.js"
-    ],
-    "/interviewer": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/interviewer.js"
-    ],
-    "/login": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/login.js"
+      "static/chunks/pages/test/[id].js"
     ],
     "/test/host": [
       "static/chunks/webpack.js",

@@ -7,9 +7,10 @@ function id({ id }) {
     return (
         <>
         <Header />
-        <CodeEditor sessionId={id} />
-        <Dashboard />
+        {/* <CodeEditor sessionId={id} /> */}
+        {/* <Dashboard /> */}
         <Footer />
+        <h1>testing</h1>
         </>       
 
     )

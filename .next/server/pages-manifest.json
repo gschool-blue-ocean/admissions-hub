@@ -2,9 +2,8 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/interviewer": "pages/interviewer.js",
-  "/login": "pages/login.js",
   "/dashboard": "pages/dashboard.js",
   "/test/host": "pages/test/host.js",
-  "/interview": "pages/interview.js"
+  "/test/[id]": "pages/test/[id].js",
+  "/api/socket": "pages/api/socket.js"
 }
