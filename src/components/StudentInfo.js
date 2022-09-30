@@ -4,6 +4,8 @@ import * as BiIcons from "react-icons/bi";
 import * as AiIcons from "react-icons/ai";
 import { useState } from "react";
 import NewStudent from "./NewStudent";
+import Link from "next/link";
+import uuid from 'react-uuid'
 
 const StudentInfo = () => {
   const [search, setSearch] = useState("");
@@ -157,7 +159,15 @@ const StudentInfo = () => {
               paddingRight: 20,
             }}
           >
-            <button style={{ color: "white", backgroundColor: "orange" }}>
+            <button
+              style={{
+                color: "white",
+                backgroundColor: "orange",
+                border: "none",
+                height: 40,
+                width: 100,
+              }}
+            >
               View Notes
             </button>
           </div>
@@ -166,8 +176,18 @@ const StudentInfo = () => {
               paddingRight: 20,
             }}
           >
-            <button style={{ color: "white", backgroundColor: "orange" }}>
-              Launch Interview
+            <button
+              style={{
+                color: "white",
+                backgroundColor: "orange",
+                border: "none",
+                height: 40,
+                width: 150,
+              }}
+            >
+              <Link href={{pathname: '/interview', query: {id: uuid()}}}>
+            Launch Interview
+            </Link>
             </button>
           </div>
         </div>
@@ -294,6 +314,7 @@ const StudentInfo = () => {
                 borderRadius: 10,
                 backgroundColor: "gray",
                 color: "white",
+                border: "none",
               }}
             >
               export .csv
