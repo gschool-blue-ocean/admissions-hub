@@ -129,7 +129,7 @@ const Reference = () => {
           onChange={handleChange}
           value={extraResources}
           type="text"
-          style={{ width: 400 }}
+          style={{ width: 530, fontSize: 14 }}
         ></input>
       </div>
     </div>
