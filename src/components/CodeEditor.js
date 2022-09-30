@@ -38,7 +38,6 @@ export default function CodeEditor({ sessionId }) {
       <div style={{position: "absolute", left: '5%', top: "6rem", height: '600px'}}>
         <p>Your interview ID is {sessionId}</p>
         <Editor
-            // height="600"
             width="600px"
             defaultLanguage="javascript"
             defaultValue='//start typing code here'
