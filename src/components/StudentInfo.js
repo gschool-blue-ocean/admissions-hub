@@ -159,7 +159,15 @@ const StudentInfo = () => {
               paddingRight: 20,
             }}
           >
-            <button style={{ color: "white", backgroundColor: "orange" }}>
+            <button
+              style={{
+                color: "white",
+                backgroundColor: "orange",
+                border: "none",
+                height: 40,
+                width: 100,
+              }}
+            >
               View Notes
             </button>
           </div>
@@ -168,9 +176,19 @@ const StudentInfo = () => {
               paddingRight: 20,
             }}
           >
-            <button><Link href={{pathname: '/interview', query: {id: uuid()}}}>
+            <button
+              style={{
+                color: "white",
+                backgroundColor: "orange",
+                border: "none",
+                height: 40,
+                width: 150,
+              }}
+            >
+              <Link href={{pathname: '/interview', query: {id: uuid()}}}>
             Launch Interview
-            </Link></button>
+            </Link>
+            </button>
           </div>
         </div>
       </div>
@@ -296,6 +314,7 @@ const StudentInfo = () => {
                 borderRadius: 10,
                 backgroundColor: "gray",
                 color: "white",
+                border: "none",
               }}
             >
               export .csv
