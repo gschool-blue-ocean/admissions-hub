@@ -79,7 +79,20 @@ const Ratings = () => {
           >
             <div style={{ paddingRight: 30 }}>Problem 1</div>
             <div style={{ display: "flex" }}>
-              <div onClick={() => setProblem1a(!problem1a)}>
+              <div
+                onClick={() => {
+                  setProblem1a(!problem1a);
+                  if (problem1b) {
+                    setProblem1b(!problem1b);
+                  }
+                  if (problem1c) {
+                    setProblem1c(!problem1c);
+                  }
+                  if (problem1d) {
+                    setProblem1d(!problem1d);
+                  }
+                }}
+              >
                 {problem1a ? (
                   <ImIcons.ImStarFull style={{ color: "orange" }} />
                 ) : (
@@ -90,6 +103,12 @@ const Ratings = () => {
                 onClick={() => {
                   if (!problem1a) {
                     setProblem1a(!problem1a);
+                  }
+                  if (problem1c) {
+                    setProblem1c(!problem1c);
+                  }
+                  if (problem1d) {
+                    setProblem1d(!problem1d);
                   }
                   setProblem1b(!problem1b);
                 }}
@@ -107,6 +126,9 @@ const Ratings = () => {
                   }
                   if (!problem1b) {
                     setProblem1b(!problem1b);
+                  }
+                  if (problem1d) {
+                    setProblem1d(!problem1d);
                   }
                   setProblem1c(!problem1c);
                 }}
@@ -146,7 +168,20 @@ const Ratings = () => {
           >
             <div style={{ paddingRight: 30 }}>Problem 2</div>
             <div style={{ display: "flex" }}>
-              <div onClick={() => setProblem2a(!problem2a)}>
+              <div
+                onClick={() => {
+                  setProblem2a(!problem2a);
+                  if (problem2b) {
+                    setProblem2b(!problem2b);
+                  }
+                  if (problem2c) {
+                    setProblem2c(!problem2c);
+                  }
+                  if (problem2d) {
+                    setProblem2d(!problem2d);
+                  }
+                }}
+              >
                 {problem2a ? (
                   <ImIcons.ImStarFull style={{ color: "orange" }} />
                 ) : (
@@ -157,6 +192,12 @@ const Ratings = () => {
                 onClick={() => {
                   if (!problem2a) {
                     setProblem2a(!problem2a);
+                  }
+                  if (problem2c) {
+                    setProblem2c(!problem2c);
+                  }
+                  if (problem2d) {
+                    setProblem2d(!problem2d);
                   }
                   setProblem2b(!problem2b);
                 }}
@@ -174,6 +215,9 @@ const Ratings = () => {
                   }
                   if (!problem2b) {
                     setProblem2b(!problem2b);
+                  }
+                  if (problem2d) {
+                    setProblem2d(!problem2d);
                   }
                   setProblem2c(!problem2c);
                 }}
@@ -213,7 +257,20 @@ const Ratings = () => {
           >
             <div style={{ paddingRight: 30 }}>Problem 3</div>
             <div style={{ display: "flex" }}>
-              <div onClick={() => setProblem3a(!problem3a)}>
+              <div
+                onClick={() => {
+                  setProblem3a(!problem3a);
+                  if (problem3b) {
+                    setProblem3b(!problem3b);
+                  }
+                  if (problem3c) {
+                    setProblem3c(!problem3c);
+                  }
+                  if (problem3d) {
+                    setProblem3d(!problem3d);
+                  }
+                }}
+              >
                 {problem3a ? (
                   <ImIcons.ImStarFull style={{ color: "orange" }} />
                 ) : (
@@ -224,6 +281,12 @@ const Ratings = () => {
                 onClick={() => {
                   if (!problem3a) {
                     setProblem3a(!problem3a);
+                  }
+                  if (problem3c) {
+                    setProblem3c(!problem3c);
+                  }
+                  if (problem3d) {
+                    setProblem3d(!problem3d);
                   }
                   setProblem3b(!problem3b);
                 }}
@@ -241,6 +304,9 @@ const Ratings = () => {
                   }
                   if (!problem3b) {
                     setProblem3b(!problem3b);
+                  }
+                  if (problem3d) {
+                    setProblem3d(!problem3d);
                   }
                   setProblem3c(!problem3c);
                 }}
@@ -277,6 +343,15 @@ const Ratings = () => {
         <div>
           <svg height={radius * 2} width={radius * 2}>
             <circle
+              stroke="#ffd8a7"
+              fill="none"
+              strokeWidth={stroke}
+              stroke-width={stroke}
+              r={normalizedRadius}
+              cx={radius}
+              cy={radius}
+            />
+            <circle
               stroke="orange"
               fill="transparent"
               strokeWidth={stroke}
@@ -291,10 +366,10 @@ const Ratings = () => {
               r={normalizedRadius}
               cx={radius}
               cy={radius}
-            ></circle>
+            />
             <text
               x="50%"
-              y="55%"
+              y="58%"
               text-anchor="middle"
               stroke="orange"
               strokeWidth="1px"
@@ -309,15 +384,3 @@ const Ratings = () => {
 };
 
 export default Ratings;
-
-{
-  /* <meter
-        style={{ width: 530 }}
-        min="0"
-        low="4"
-        optimum="10"
-        high="9"
-        max="12"
-        value={value}
-      ></meter> */
-}

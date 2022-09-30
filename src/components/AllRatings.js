@@ -26,6 +26,15 @@ const AllRatings = () => {
         <div>
           <svg height={radius * 2} width={radius * 2}>
             <circle
+              stroke="#ffd8a7"
+              fill="none"
+              strokeWidth={stroke}
+              stroke-width={stroke}
+              r={normalizedRadius}
+              cx={radius}
+              cy={radius}
+            />
+            <circle
               stroke="orange"
               fill="transparent"
               strokeWidth={stroke}
@@ -40,10 +49,10 @@ const AllRatings = () => {
               r={normalizedRadius}
               cx={radius}
               cy={radius}
-            ></circle>
+            />
             <text
               x="50%"
-              y="55%"
+              y="58%"
               text-anchor="middle"
               stroke="orange"
               strokeWidth="1px"
@@ -53,7 +62,9 @@ const AllRatings = () => {
           </svg>
         </div>
         <div style={{ display: "flex", paddingRight: 30 }}>
-          <div style={{ fontSize: 15 }}>Total Interviews: 65</div>
+          <div style={{ fontSize: 15, paddingRight: 30 }}>
+            Total Interviews: 65
+          </div>
           <div style={{ fontSize: 15 }}>Passing Interviews: 69</div>
         </div>
       </div>
@@ -81,6 +92,15 @@ const AllRatings = () => {
         <div>
           <svg height={radius2 * 2} width={radius2 * 2}>
             <circle
+              stroke="#ffd8a7"
+              fill="none"
+              strokeWidth={stroke2}
+              stroke-width={stroke2}
+              r={normalizedRadius2}
+              cx={radius2}
+              cy={radius2}
+            />
+            <circle
               stroke="orange"
               fill="transparent"
               strokeWidth={stroke2}
@@ -95,10 +115,10 @@ const AllRatings = () => {
               r={normalizedRadius2}
               cx={radius2}
               cy={radius2}
-            ></circle>
+            />
             <text
               x="50%"
-              y="55%"
+              y="58%"
               text-anchor="middle"
               stroke="orange"
               strokeWidth="1px"
