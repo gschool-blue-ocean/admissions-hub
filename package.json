@@ -11,6 +11,7 @@
   "dependencies": {
     "@codesandbox/sandpack-react": "^1.8.7",
     "@monaco-editor/react": "^4.4.6",
+    "@prisma/client": "^4.4.0",
     "axios": "^0.27.2",
     "bootstrap": "^5.2.1",
     "mdb-react-ui-kit": "^4.2.0",
@@ -31,6 +32,8 @@
     "eslint": "8.24.0",
     "eslint-config-next": "12.3.1",
     "postcss": "^8.4.16",
-    "tailwindcss": "^3.1.8"
+    "tailwindcss": "^3.1.8",
+    "nodemon": "^2.0.20",
+    "prisma": "^4.4.0"
   }
 }
