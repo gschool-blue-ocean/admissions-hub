@@ -71,7 +71,9 @@ function Header() {
           <div className={styles.innerPara}>{currentPage}</div>
         </div>
         <div className={styles.para2}>{today}</div>
-        <div className={styles.para3}>{currentUser}</div>
+        <div className={styles.para3}>{currentUser}
+        <BtnLogin />
+        </div>
       </div>
     </>
   );

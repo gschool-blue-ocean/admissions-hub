@@ -1,6 +1,5 @@
 import React from "react";
 import AllRatings from "./AllRatings";
-import BtnDashboard from "./BtnDashboard";
 import InterviewerReport from "./InterviewerReport";
 import StudentInfo from "./StudentInfo";
 import BtnInterviewHost from "./BtnInterviewHost"
@@ -11,7 +10,6 @@ const InterviewDash = () => {
       <AllRatings />
       <StudentInfo />
       <InterviewerReport />
-      <BtnDashboard />
       <BtnInterviewHost />
     </div>
   );
