@@ -9,6 +9,7 @@ let socket;
 export default function CodeEditor({ sessionId }) {
 
     const [input, setInput] = useState('')
+    const [outputCode, setOutputCode] = useState('')
     const onChangeHandler = (e) => {
         setInput(e)
         socket.emit('input-change', e, sessionId)
@@ -35,9 +36,14 @@ export default function CodeEditor({ sessionId }) {
             setInput(msg)
         })
     }
+
+    const handleCode = () => {
+
+    }
     return (
       <>
       <p>Your interview ID is {sessionId}</p>
+      
       <Editor
         height="90vh"
         width="50vw"
@@ -46,6 +52,8 @@ export default function CodeEditor({ sessionId }) {
         value={input}
         onChange={(e) => onChangeHandler(e)}
    />
+   <button onClick={handleCode}>Run</button>
+    <input type={'text'} placeholder='console' value={outputCode} />
    </>
     )
     }

@@ -9,7 +9,7 @@ function Host() {
     return(
         <>
         <button><Link href={{pathname: '/interview', query: {id: uuid()}}}>
-            Begin a new interview
+            Launch Interview
         </Link></button>
         
         

@@ -16,7 +16,6 @@ const SocketHandler = (req,res) => {
             socket.on('input-change', (msg, id) => {
                 socket.broadcast.to(id).emit('update-input', msg)
             })
-            
         })
     }
     res.end()
