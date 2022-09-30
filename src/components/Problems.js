@@ -52,7 +52,12 @@ newStr +=  func(str[i]) }
 return newStr;
 }`;
   return (
-    <div style={{ fontSize: 13, border: "1px solid #DD8D43" }}>
+    <div
+      style={{
+        fontSize: 13,
+        border: "1px solid #DD8D43",
+      }}
+    >
       <div
         style={{
           display: "flex",
@@ -72,6 +77,8 @@ return newStr;
               borderTop: "1px solid #DD8D43",
               borderLeft: "1px solid #DD8D43",
               borderRight: "1px solid #DD8D43",
+              borderTopLeftRadius: "10px 10px",
+              borderTopRightRadius: "10px 10px",
             }}
             onClick={() => {
               if (seeProblem1 === false) {
@@ -91,6 +98,8 @@ return newStr;
               width: 180,
               backgroundColor: "#FFE8D3",
               border: "1px solid #DD8D43",
+              borderTopLeftRadius: "10px 10px",
+              borderTopRightRadius: "10px 10px",
             }}
             onClick={() => {
               if (seeProblem1 === false) {
@@ -114,6 +123,8 @@ return newStr;
               borderTop: "1px solid #DD8D43",
               borderLeft: "1px solid #DD8D43",
               borderRight: "1px solid #DD8D43",
+              // borderTopLeftRadius: "10px 10px",
+              // borderTopRightRadius: "10px 10px",
             }}
             onClick={() => {
               if (seeProblem2 === false) {
@@ -133,6 +144,8 @@ return newStr;
               width: 180,
               backgroundColor: "#FFE8D3",
               border: "1px solid #DD8D43",
+              // borderTopLeftRadius: "10px 10px",
+              // borderTopRightRadius: "10px 10px",
             }}
             onClick={() => {
               if (seeProblem2 === false) {
@@ -156,6 +169,8 @@ return newStr;
               borderTop: "1px solid #DD8D43",
               borderLeft: "1px solid #DD8D43",
               borderRight: "1px solid #DD8D43",
+              // borderTopLeftRadius: "10px 10px",
+              // borderTopRightRadius: "10px 10px",
             }}
             onClick={() => {
               if (seeProblem3 === false) {
@@ -175,6 +190,8 @@ return newStr;
               width: 180,
               backgroundColor: "#FFE8D3",
               border: "1px solid #DD8D43",
+              // borderTopLeftRadius: "10px 10px",
+              // borderTopRightRadius: "10px 10px",
             }}
             onClick={() => {
               if (seeProblem3 === false) {
