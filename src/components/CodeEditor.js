@@ -15,6 +15,7 @@ export default function CodeEditor({ sessionId }) {
     }
 
     useEffect(() => {
+        
         console.log('internal sessionID:', sessionId)
         socketInitializer()
     }, [])
