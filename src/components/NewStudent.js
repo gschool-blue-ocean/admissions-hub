@@ -22,6 +22,7 @@ const NewStudent = ({ setAddStudent, addStudent }) => {
 
   const handleCohortChange = (event) => {
     setCohort(event.target.value);
+    console.log(cohort);
   };
 
   return (
@@ -45,7 +46,7 @@ const NewStudent = ({ setAddStudent, addStudent }) => {
           borderRadius: 10,
           border: "1px solid",
           boxShadow: "0px 0px 10px 5px #888888",
-          height: 270,
+          height: "auto",
           width: 250,
           margin: "15% auto",
         }}
@@ -122,6 +123,21 @@ const NewStudent = ({ setAddStudent, addStudent }) => {
               type="text"
             ></input>
           </div>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            paddingBottom: 10,
+          }}
+        >
+          <select onChange={handleCohortChange}>
+            <option> MCSP-11 </option>
+            <option> MCSP-12 </option>
+            <option> MCSP-13 </option>
+            <option> MCSP-14 </option>
+            <option> MCSP-15 </option>
+          </select>
         </div>
         <div
           style={{
