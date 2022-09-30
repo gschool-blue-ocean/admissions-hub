@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as ImIcons from "react-icons/im";
 
-const Ratings = () => {
+const Ratings = ({ value, setValue }) => {
   const [problem1a, setProblem1a] = useState(false);
   const [problem1b, setProblem1b] = useState(false);
   const [problem1c, setProblem1c] = useState(false);
@@ -17,43 +17,43 @@ const Ratings = () => {
   const [problem3c, setProblem3c] = useState(false);
   const [problem3d, setProblem3d] = useState(false);
 
-  let value = 0;
+  let rating = 0;
 
   if (problem1a === true) {
-    value++;
+    rating++;
   }
   if (problem1b === true) {
-    value++;
+    rating++;
   }
   if (problem1c === true) {
-    value++;
+    rating++;
   }
   if (problem1d === true) {
-    value++;
+    rating++;
   }
   if (problem2a === true) {
-    value++;
+    rating++;
   }
   if (problem2b === true) {
-    value++;
+    rating++;
   }
   if (problem2c === true) {
-    value++;
+    rating++;
   }
   if (problem2d === true) {
-    value++;
+    rating++;
   }
   if (problem3a === true) {
-    value++;
+    rating++;
   }
   if (problem3b === true) {
-    value++;
+    rating++;
   }
   if (problem3c === true) {
-    value++;
+    rating++;
   }
   if (problem3d === true) {
-    value++;
+    rating++;
   }
 
   ///////////CIRCLE///////////////
@@ -63,7 +63,10 @@ const Ratings = () => {
   let normalizedRadius = radius - stroke * 2;
   let circumference = normalizedRadius * 2 * Math.PI;
 
-  const strokeDashoffset = circumference - (value / 12) * circumference;
+  useEffect(() => {
+    setValue(rating);
+  }, [rating]);
+  const strokeDashoffset = circumference - (rating / 12) * circumference;
 
   ///////////CIRCLE///////////////
 
@@ -374,7 +377,7 @@ const Ratings = () => {
               stroke="orange"
               strokeWidth="1px"
             >
-              {((value / 12) * 100).toFixed(0)}%
+              {((rating / 12) * 100).toFixed(0)}%
             </text>
           </svg>
         </div>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Editor from "@monaco-editor/react";
+import { BiBorderLeft } from "react-icons/bi";
 
 const Problems = () => {
   const [seeProblem1, setSeeProblem1] = useState(true);
@@ -55,16 +56,15 @@ return newStr;
     <div
       style={{
         fontSize: 13,
-        border: "1px solid #DD8D43",
+        borderTopLeftRadius: "10px 10px",
+        borderTopRightRadius: "10px 10px",
       }}
     >
       <div
         style={{
           display: "flex",
           justifyContent: "space-around",
-          paddingBottom: 10,
-          // paddingTop: 5,
-          backgroundColor: "#FFE8D3",
+          backgroundColor: "#DCDCDC;",
         }}
       >
         {seeProblem1 ? (
@@ -79,6 +79,8 @@ return newStr;
               borderRight: "1px solid #DD8D43",
               borderTopLeftRadius: "10px 10px",
               borderTopRightRadius: "10px 10px",
+              paddingBottom: 5,
+              paddingTop: 5,
             }}
             onClick={() => {
               if (seeProblem1 === false) {
@@ -100,6 +102,8 @@ return newStr;
               border: "1px solid #DD8D43",
               borderTopLeftRadius: "10px 10px",
               borderTopRightRadius: "10px 10px",
+              paddingBottom: 5,
+              paddingTop: 5,
             }}
             onClick={() => {
               if (seeProblem1 === false) {
@@ -123,8 +127,10 @@ return newStr;
               borderTop: "1px solid #DD8D43",
               borderLeft: "1px solid #DD8D43",
               borderRight: "1px solid #DD8D43",
-              // borderTopLeftRadius: "10px 10px",
-              // borderTopRightRadius: "10px 10px",
+              borderTopLeftRadius: "10px 10px",
+              borderTopRightRadius: "10px 10px",
+              paddingBottom: 5,
+              paddingTop: 5,
             }}
             onClick={() => {
               if (seeProblem2 === false) {
@@ -144,8 +150,10 @@ return newStr;
               width: 180,
               backgroundColor: "#FFE8D3",
               border: "1px solid #DD8D43",
-              // borderTopLeftRadius: "10px 10px",
-              // borderTopRightRadius: "10px 10px",
+              borderTopLeftRadius: "10px 10px",
+              borderTopRightRadius: "10px 10px",
+              paddingBottom: 5,
+              paddingTop: 5,
             }}
             onClick={() => {
               if (seeProblem2 === false) {
@@ -169,8 +177,10 @@ return newStr;
               borderTop: "1px solid #DD8D43",
               borderLeft: "1px solid #DD8D43",
               borderRight: "1px solid #DD8D43",
-              // borderTopLeftRadius: "10px 10px",
-              // borderTopRightRadius: "10px 10px",
+              borderTopLeftRadius: "10px 10px",
+              borderTopRightRadius: "10px 10px",
+              paddingBottom: 5,
+              paddingTop: 5,
             }}
             onClick={() => {
               if (seeProblem3 === false) {
@@ -190,8 +200,10 @@ return newStr;
               width: 180,
               backgroundColor: "#FFE8D3",
               border: "1px solid #DD8D43",
-              // borderTopLeftRadius: "10px 10px",
-              // borderTopRightRadius: "10px 10px",
+              borderTopLeftRadius: "10px 10px",
+              borderTopRightRadius: "10px 10px",
+              paddingBottom: 5,
+              paddingTop: 5,
             }}
             onClick={() => {
               if (seeProblem3 === false) {
@@ -206,7 +218,15 @@ return newStr;
         )}
       </div>
       {seeProblem1 ? (
-        <div style={{ backgroundColor: "#FFE8D3" }}>
+        <div
+          style={{
+            backgroundColor: "#FFE8D3",
+            borderLeft: "1px solid #DD8D43",
+            borderRight: "1px solid #DD8D43",
+            borderBottom: "1px solid #DD8D43",
+            padding: 10,
+          }}
+        >
           <div style={{ paddingBottom: 10 }}>
             <strong>Question 1:</strong> Working with Strings and Functions
             Complete the logger function that takes in a function and a string
@@ -226,12 +246,20 @@ return newStr;
           <textarea
             value={problem1Notes}
             onChange={handleProblem1NotesChange}
-            style={{ width: 530, height: 100, paddingTop: 10, resize: "none" }}
+            style={{ width: 515, height: 100, paddingTop: 10, resize: "none" }}
           ></textarea>
         </div>
       ) : null}
       {seeProblem2 ? (
-        <div style={{ backgroundColor: "#FFE8D3" }}>
+        <div
+          style={{
+            backgroundColor: "#FFE8D3",
+            borderLeft: "1px solid #DD8D43",
+            borderRight: "1px solid #DD8D43",
+            borderBottom: "1px solid #DD8D43",
+            padding: 10,
+          }}
+        >
           <div style={{ paddingBottom: 10 }}>
             <strong>Question 2:</strong> Working with Arrays and Functions
             Complete the createNewArray function that takes in an array and
@@ -251,12 +279,20 @@ return newStr;
           <textarea
             value={problem2Notes}
             onChange={handleProblem2NotesChange}
-            style={{ width: 530, height: 100, resize: "none" }}
+            style={{ width: 515, height: 100, resize: "none" }}
           ></textarea>
         </div>
       ) : null}
       {seeProblem3 ? (
-        <div style={{ backgroundColor: "#FFE8D3" }}>
+        <div
+          style={{
+            backgroundColor: "#FFE8D3",
+            borderLeft: "1px solid #DD8D43",
+            borderRight: "1px solid #DD8D43",
+            borderBottom: "1px solid #DD8D43",
+            padding: 10,
+          }}
+        >
           <div style={{ paddingBottom: 10 }}>
             <strong>Question 3:</strong> Working with Objects Given two objects
             as parameters "obj1" and "obj2", complete the addPropertiesToObject
@@ -276,7 +312,7 @@ return newStr;
           <textarea
             value={problem3Notes}
             onChange={handleProblem3NotesChange}
-            style={{ width: 530, height: 100, resize: "none" }}
+            style={{ width: 515, height: 100, resize: "none" }}
           ></textarea>
         </div>
       ) : null}

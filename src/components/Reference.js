@@ -1,3 +1,5 @@
+import { Button } from "bootstrap";
+import { NodeNextRequest } from "next/dist/server/base-http/node";
 import React, { useState } from "react";
 import styles from "./Reference.module.css";
 const Reference = () => {
@@ -30,97 +32,114 @@ const Reference = () => {
   return (
     <div>
       <span style={{ fontSize: 15 }}>Suggested Study Material</span>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <div className={styles.referenceGrid}>
+          <div>
+            <label classname={styles.container}>
+              <input
+                onClick={() => {
+                  setVariables(!variables);
+                  if (variables) {
+                    console.log(variablesLink);
+                  }
+                }}
+                type="checkbox"
+              ></input>
 
-      <div className={styles.referenceGrid}>
-        <div>
-          <label classname={styles.container}>
-            <input
-              onClick={() => {
-                setVariables(!variables);
-                if (variables) {
-                  console.log(variablesLink);
-                }
-              }}
-              type="checkbox"
-            ></input>
-            Variables
-            <span classname={styles.checkmark}></span>
-          </label>
-        </div>
-        <div>
-          <label classname={styles.container}>
-            <input
-              onClick={() => {
-                setArrays(!arrays);
-                if (arrays) {
-                  console.log(arraysLink);
-                }
-              }}
-              type="checkbox"
-            ></input>
-            Arrays & Objects
-            <span classname={styles.checkmark}></span>
-          </label>
-        </div>
-        <div>
-          <label classname={styles.container}>
-            <input
-              onClick={() => {
-                setOperators(!operators);
-                if (operators) {
-                  console.log(operatorsLink);
-                }
-              }}
-              type="checkbox"
-            ></input>
-            Operators And Methods
-            <span classname={styles.checkmark}></span>
-          </label>
-        </div>
-        <div>
-          <label classname={styles.container}>
-            <input
-              onClick={() => {
-                setConditionals(!conditionals);
-                if (conditionals) {
-                  console.log(conditionalsLink);
-                }
-              }}
-              type="checkbox"
-            ></input>
-            Conditionals
-            <span classname={styles.checkmark}></span>
-          </label>
-        </div>
-        <div>
-          <label classname={styles.container}>
-            <input
-              onClick={() => {
-                setLoops(!loops);
-                if (loops) {
-                  console.log(loopsLink);
-                }
-              }}
-              type="checkbox"
-            ></input>
-            Loops
-            <span classname={styles.checkmark}></span>
-          </label>
-        </div>
-        <div>
-          <label classname={styles.container}>
-            <input
-              onClick={() => {
-                setAccumulator(!accumulator);
-                if (accumulator) {
-                  console.log(accumulatorLink);
-                }
-              }}
-              type="checkbox"
-            ></input>
-            Accumulator Pattern
-            <span classname={styles.checkmark}></span>
-          </label>
+              <span style={{ paddingLeft: 5 }} classname={styles.checkmark}>
+                {" "}
+                Variables
+              </span>
+            </label>
+          </div>
+          <div>
+            <label classname={styles.container}>
+              <input
+                onClick={() => {
+                  setArrays(!arrays);
+                  if (arrays) {
+                    console.log(arraysLink);
+                  }
+                }}
+                type="checkbox"
+              ></input>
+
+              <span style={{ paddingLeft: 5 }} classname={styles.checkmark}>
+                {" "}
+                Arrays & Objects
+              </span>
+            </label>
+          </div>
+          <div>
+            <label classname={styles.container}>
+              <input
+                onClick={() => {
+                  setOperators(!operators);
+                  if (operators) {
+                    console.log(operatorsLink);
+                  }
+                }}
+                type="checkbox"
+              ></input>
+
+              <span style={{ paddingLeft: 5 }} classname={styles.checkmark}>
+                {" "}
+                Operators And Methods
+              </span>
+            </label>
+          </div>
+          <div>
+            <label classname={styles.container}>
+              <input
+                onClick={() => {
+                  setConditionals(!conditionals);
+                  if (conditionals) {
+                    console.log(conditionalsLink);
+                  }
+                }}
+                type="checkbox"
+              ></input>
+
+              <span style={{ paddingLeft: 5 }} classname={styles.checkmark}>
+                {" "}
+                Conditionals
+              </span>
+            </label>
+          </div>
+          <div>
+            <label classname={styles.container}>
+              <input
+                onClick={() => {
+                  setLoops(!loops);
+                  if (loops) {
+                    console.log(loopsLink);
+                  }
+                }}
+                type="checkbox"
+              ></input>
+
+              <span style={{ paddingLeft: 5 }} classname={styles.checkmark}>
+                {" "}
+                Loops
+              </span>
+            </label>
+          </div>
+          <div>
+            <label classname={styles.container}>
+              <input
+                onClick={() => {
+                  setAccumulator(!accumulator);
+                  if (accumulator) {
+                    console.log(accumulatorLink);
+                  }
+                }}
+                type="checkbox"
+              ></input>
+              <span style={{ paddingLeft: 10 }} classname={styles.checkmark}>
+                Accumulator Pattern
+              </span>
+            </label>
+          </div>
         </div>
       </div>
       <div>

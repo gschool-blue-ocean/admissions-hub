@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Reference from "./Reference";
 import Ratings from "./Ratings";
 import Problems from "./Problems";
+import Complete from "./Complete";
 
 const Dashboard = () => {
+  const [value, setValue] = useState(0);
   return (
     <div
       style={{
@@ -16,10 +18,10 @@ const Dashboard = () => {
         borderRadius: 10,
       }}
     >
-      Dashboard
       <Problems />
-      <Ratings />
+      <Ratings value={value} setValue={setValue} />
       <Reference />
+      <Complete value={value} />
     </div>
   );
 };
