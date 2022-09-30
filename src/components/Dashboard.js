@@ -8,10 +8,12 @@ const Dashboard = () => {
     <div
       style={{
         position: "absolute",
-        right: "1%",
-        width: "400px",
+        right: "2%",
+        width: "560px",
         border: "2px solid black",
         padding: "10px",
+        backgroundColor: "#DCDCDC",
+        borderRadius: 10,
       }}
     >
       Dashboard
