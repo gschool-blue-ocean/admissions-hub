@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Editor from "@monaco-editor/react";
 
 const Problems = () => {
   const [seeProblem1, setSeeProblem1] = useState(true);
@@ -25,29 +26,31 @@ const Problems = () => {
   };
 
   const problem1 = `function addPropertiesToObject(obj1, obj2) {
-    // Must combine all properties of obj1 to obj2
-    Object.assign(obj2, obj1); // Use Object.assign to combine obj1 to obj2.
-    // Must return obj2
-    return obj2;
-  } `;
+// Must combine all properties of obj1 to obj2
+// Use Object.assign to combine obj1 to obj2.
+Object.assign(obj2, obj1);
+// Must return obj2
+return obj2;
+} `;
 
   const problem2 = `function createNewArray(arr, func) {
-  // create new array
-  var newArr = Array.from(arr, func); //Use Array.from to create a new array that has the given array and function
-  //Return new array
-  return newArr;
+// create new array
+//Create a new array with array and function
+var newArr = Array.from(arr, func); 
+//Return new array
+return newArr;
 }`;
 
   const problem3 = `function logger(func, str) {
-    var newStr = '';// create new empty string
-    // Use a for loop in order to go through each letter of the string
-    for (var i = 0; i < str.length;i++) {
-    // assign each letter that has gone through the function to the new string
-    newStr +=  func(str[i])
-    }
-    // return new string
-    return newStr;
-    }`;
+// create new empty string
+var newStr = '';
+//For loop to go through each letter of the string
+for (var i = 0; i < str.length;i++) {
+//Put letters from function to the new string
+newStr +=  func(str[i]) }
+// return new string
+return newStr;
+}`;
   return (
     <div style={{ fontSize: 13 }}>
       <div
@@ -56,6 +59,7 @@ const Problems = () => {
           justifyContent: "space-around",
           paddingBottom: 10,
           paddingTop: 5,
+          backgroundColor: "orange",
         }}
       >
         <div
@@ -63,12 +67,12 @@ const Problems = () => {
             display: "flex",
             justifyContent: "center",
             width: 100,
-            backgroundColor: "green",
+            backgroundColor: "orange",
           }}
         >
           {seeProblem1 ? (
             <button
-              style={{ backgroundColor: "green" }}
+              style={{ backgroundColor: "orange", borderRadius: 15 }}
               onClick={() => {
                 if (seeProblem1 === false) {
                   setSeeProblem1(!seeProblem1);
@@ -81,6 +85,7 @@ const Problems = () => {
             </button>
           ) : (
             <button
+              style={{ borderRadius: 15 }}
               onClick={() => {
                 if (seeProblem1 === false) {
                   setSeeProblem1(!seeProblem1);
@@ -98,12 +103,12 @@ const Problems = () => {
             display: "flex",
             justifyContent: "center",
             width: 100,
-            backgroundColor: "blue",
+            backgroundColor: "orange",
           }}
         >
           {seeProblem2 ? (
             <button
-              style={{ backgroundColor: "blue" }}
+              style={{ backgroundColor: "orange", borderRadius: 15 }}
               onClick={() => {
                 if (seeProblem2 === false) {
                   setSeeProblem2(!seeProblem2);
@@ -116,6 +121,7 @@ const Problems = () => {
             </button>
           ) : (
             <button
+              style={{ borderRadius: 15 }}
               onClick={() => {
                 if (seeProblem2 === false) {
                   setSeeProblem2(!seeProblem2);
@@ -133,12 +139,12 @@ const Problems = () => {
             display: "flex",
             justifyContent: "center",
             width: 100,
-            backgroundColor: "purple",
+            backgroundColor: "orange",
           }}
         >
           {seeProblem3 ? (
             <button
-              style={{ backgroundColor: "purple" }}
+              style={{ backgroundColor: "orange", borderRadius: 15 }}
               onClick={() => {
                 if (seeProblem3 === false) {
                   setSeeProblem3(!seeProblem3);
@@ -151,6 +157,7 @@ const Problems = () => {
             </button>
           ) : (
             <button
+              style={{ borderRadius: 15 }}
               onClick={() => {
                 if (seeProblem3 === false) {
                   setSeeProblem3(!seeProblem3);
@@ -165,65 +172,77 @@ const Problems = () => {
         </div>
       </div>
       {seeProblem1 ? (
-        <div style={{ backgroundColor: "green" }}>
+        <div style={{ backgroundColor: "orange" }}>
           <div style={{ paddingBottom: 10 }}>
             <strong>Question 1:</strong> Working with Strings and Functions
             Complete the logger function that takes in a function and a string
             and returns the result of calling the function on each letter in the
             string
           </div>
-          <div style={{ backgroundColor: "black" }}>
-            <code style={{ color: "white" }}>{problem1}</code>
-          </div>
+          <Editor
+            height="150px"
+            width="520px"
+            defaultLanguage="javascript"
+            theme="vs-dark"
+            value={problem1}
+          />
           <div style={{ paddingTop: 20 }}>
             <strong>Notes:</strong>
           </div>
           <textarea
             value={problem1Notes}
             onChange={handleProblem1NotesChange}
-            style={{ width: 400, height: 100, paddingTop: 10 }}
+            style={{ width: 530, height: 100, paddingTop: 10, resize: "none" }}
           ></textarea>
         </div>
       ) : null}
       {seeProblem2 ? (
-        <div style={{ backgroundColor: "blue" }}>
+        <div style={{ backgroundColor: "orange" }}>
           <div style={{ paddingBottom: 10 }}>
             <strong>Question 2:</strong> Working with Arrays and Functions
             Complete the createNewArray function that takes in an array and
             another function, then returns a new array containing the results of
             calling the input function on each element in the array.
           </div>
-          <div style={{ backgroundColor: "black" }}>
-            <code style={{ color: "white" }}>{problem2}</code>
-          </div>
+          <Editor
+            height="150px"
+            width="520px"
+            defaultLanguage="javascript"
+            theme="vs-dark"
+            value={problem2}
+          />
           <div style={{ paddingTop: 20 }}>
             <strong>Notes:</strong>
           </div>
           <textarea
             value={problem2Notes}
             onChange={handleProblem2NotesChange}
-            style={{ width: 400, height: 100, resize: "none" }}
+            style={{ width: 530, height: 100, resize: "none" }}
           ></textarea>
         </div>
       ) : null}
       {seeProblem3 ? (
-        <div style={{ backgroundColor: "purple" }}>
+        <div style={{ backgroundColor: "orange" }}>
           <div style={{ paddingBottom: 10 }}>
             <strong>Question 3:</strong> Working with Objects Given two objects
             as parameters "obj1" and "obj2", complete the addPropertiesToObject
             function that adds all properties of the first object to the second
             object and returns the second object.
           </div>
-          <div style={{ backgroundColor: "black" }}>
-            <code style={{ color: "white" }}>{problem3}</code>
-          </div>
+          <Editor
+            height="150px"
+            width="520px"
+            defaultLanguage="javascript"
+            theme="vs-dark"
+            value={problem3}
+          />
           <div style={{ paddingTop: 20 }}>
             <strong>Notes:</strong>
           </div>
           <textarea
             value={problem3Notes}
             onChange={handleProblem3NotesChange}
-            style={{ width: 400, height: 100 }}
+            style={{ width: 530, height: 100, resize: "none" }}
           ></textarea>
         </div>
       ) : null}

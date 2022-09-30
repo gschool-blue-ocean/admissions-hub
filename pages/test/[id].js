@@ -4,7 +4,9 @@ function test() {
     const router = useRouter()
     const { id }  = router.query
     return (
+      <div>
         <CodeEditor id={id} />
+      </div>  
     )
   }
   
