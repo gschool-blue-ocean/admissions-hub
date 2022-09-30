@@ -132,8 +132,8 @@ const NewStudent = ({ setAddStudent, addStudent }) => {
           }}
         >
           <select onChange={handleCohortChange}>
-            <option> MCSP-11 </option>
-            <option> MCSP-12 </option>
+            <option disabled> MCSP-11 </option>
+            <option disabled> MCSP-12 </option>
             <option> MCSP-13 </option>
             <option> MCSP-14 </option>
             <option> MCSP-15 </option>
@@ -147,7 +147,16 @@ const NewStudent = ({ setAddStudent, addStudent }) => {
             paddingBottom: 10,
           }}
         >
-          <button onClick={() => setAddStudent(!addStudent)}>Create</button>
+          <button
+            style={{
+              color: "white",
+              backgroundColor: "orange",
+              border: "none",
+            }}
+            onClick={() => setAddStudent(!addStudent)}
+          >
+            Create
+          </button>
         </div>
       </div>
     </div>

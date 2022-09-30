@@ -52,127 +52,144 @@ newStr +=  func(str[i]) }
 return newStr;
 }`;
   return (
-    <div style={{ fontSize: 13 }}>
+    <div style={{ fontSize: 13, border: "1px solid #DD8D43" }}>
       <div
         style={{
           display: "flex",
           justifyContent: "space-around",
           paddingBottom: 10,
-          paddingTop: 5,
-          backgroundColor: "orange",
+          // paddingTop: 5,
+          backgroundColor: "#FFE8D3",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            width: 100,
-            backgroundColor: "orange",
-          }}
-        >
-          {seeProblem1 ? (
-            <button
-              style={{ backgroundColor: "orange", borderRadius: 15 }}
-              onClick={() => {
-                if (seeProblem1 === false) {
-                  setSeeProblem1(!seeProblem1);
-                  setSeeProblem2(false);
-                  setSeeProblem3(false);
-                }
-              }}
-            >
-              Problem 1
-            </button>
-          ) : (
-            <button
-              style={{ borderRadius: 15 }}
-              onClick={() => {
-                if (seeProblem1 === false) {
-                  setSeeProblem1(!seeProblem1);
-                  setSeeProblem2(false);
-                  setSeeProblem3(false);
-                }
-              }}
-            >
-              Problem 1
-            </button>
-          )}
-        </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            width: 100,
-            backgroundColor: "orange",
-          }}
-        >
-          {seeProblem2 ? (
-            <button
-              style={{ backgroundColor: "orange", borderRadius: 15 }}
-              onClick={() => {
-                if (seeProblem2 === false) {
-                  setSeeProblem2(!seeProblem2);
-                  setSeeProblem1(false);
-                  setSeeProblem3(false);
-                }
-              }}
-            >
-              Problem 2
-            </button>
-          ) : (
-            <button
-              style={{ borderRadius: 15 }}
-              onClick={() => {
-                if (seeProblem2 === false) {
-                  setSeeProblem2(!seeProblem2);
-                  setSeeProblem1(false);
-                  setSeeProblem3(false);
-                }
-              }}
-            >
-              Problem 2
-            </button>
-          )}
-        </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            width: 100,
-            backgroundColor: "orange",
-          }}
-        >
-          {seeProblem3 ? (
-            <button
-              style={{ backgroundColor: "orange", borderRadius: 15 }}
-              onClick={() => {
-                if (seeProblem3 === false) {
-                  setSeeProblem3(!seeProblem3);
-                  setSeeProblem1(false);
-                  setSeeProblem2(false);
-                }
-              }}
-            >
-              Problem 3
-            </button>
-          ) : (
-            <button
-              style={{ borderRadius: 15 }}
-              onClick={() => {
-                if (seeProblem3 === false) {
-                  setSeeProblem3(!seeProblem3);
-                  setSeeProblem1(false);
-                  setSeeProblem2(false);
-                }
-              }}
-            >
-              Problem 3
-            </button>
-          )}
-        </div>
+        {seeProblem1 ? (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              width: 180,
+              backgroundColor: "#FFE8D3",
+              borderTop: "1px solid #DD8D43",
+              borderLeft: "1px solid #DD8D43",
+              borderRight: "1px solid #DD8D43",
+            }}
+            onClick={() => {
+              if (seeProblem1 === false) {
+                setSeeProblem1(!seeProblem1);
+                setSeeProblem2(false);
+                setSeeProblem3(false);
+              }
+            }}
+          >
+            Problem 1
+          </div>
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              width: 180,
+              backgroundColor: "#FFE8D3",
+              border: "1px solid #DD8D43",
+            }}
+            onClick={() => {
+              if (seeProblem1 === false) {
+                setSeeProblem1(!seeProblem1);
+                setSeeProblem2(false);
+                setSeeProblem3(false);
+              }
+            }}
+          >
+            Problem 1
+          </div>
+        )}
+
+        {seeProblem2 ? (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              width: 180,
+              backgroundColor: "#FFE8D3",
+              borderTop: "1px solid #DD8D43",
+              borderLeft: "1px solid #DD8D43",
+              borderRight: "1px solid #DD8D43",
+            }}
+            onClick={() => {
+              if (seeProblem2 === false) {
+                setSeeProblem2(!seeProblem2);
+                setSeeProblem1(false);
+                setSeeProblem3(false);
+              }
+            }}
+          >
+            Problem 2
+          </div>
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              width: 180,
+              backgroundColor: "#FFE8D3",
+              border: "1px solid #DD8D43",
+            }}
+            onClick={() => {
+              if (seeProblem2 === false) {
+                setSeeProblem2(!seeProblem2);
+                setSeeProblem1(false);
+                setSeeProblem3(false);
+              }
+            }}
+          >
+            Problem 2
+          </div>
+        )}
+
+        {seeProblem3 ? (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              width: 180,
+              backgroundColor: "#FFE8D3",
+              borderTop: "1px solid #DD8D43",
+              borderLeft: "1px solid #DD8D43",
+              borderRight: "1px solid #DD8D43",
+            }}
+            onClick={() => {
+              if (seeProblem3 === false) {
+                setSeeProblem3(!seeProblem3);
+                setSeeProblem1(false);
+                setSeeProblem2(false);
+              }
+            }}
+          >
+            Problem 3
+          </div>
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              width: 180,
+              backgroundColor: "#FFE8D3",
+              border: "1px solid #DD8D43",
+            }}
+            onClick={() => {
+              if (seeProblem3 === false) {
+                setSeeProblem3(!seeProblem3);
+                setSeeProblem1(false);
+                setSeeProblem2(false);
+              }
+            }}
+          >
+            Problem 3
+          </div>
+        )}
       </div>
       {seeProblem1 ? (
-        <div style={{ backgroundColor: "orange" }}>
+        <div style={{ backgroundColor: "#FFE8D3" }}>
           <div style={{ paddingBottom: 10 }}>
             <strong>Question 1:</strong> Working with Strings and Functions
             Complete the logger function that takes in a function and a string
@@ -197,7 +214,7 @@ return newStr;
         </div>
       ) : null}
       {seeProblem2 ? (
-        <div style={{ backgroundColor: "orange" }}>
+        <div style={{ backgroundColor: "#FFE8D3" }}>
           <div style={{ paddingBottom: 10 }}>
             <strong>Question 2:</strong> Working with Arrays and Functions
             Complete the createNewArray function that takes in an array and
@@ -222,7 +239,7 @@ return newStr;
         </div>
       ) : null}
       {seeProblem3 ? (
-        <div style={{ backgroundColor: "orange" }}>
+        <div style={{ backgroundColor: "#FFE8D3" }}>
           <div style={{ paddingBottom: 10 }}>
             <strong>Question 3:</strong> Working with Objects Given two objects
             as parameters "obj1" and "obj2", complete the addPropertiesToObject
