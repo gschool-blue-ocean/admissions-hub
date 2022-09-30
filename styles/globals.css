@@ -1,3 +1,4 @@
-.mdx{
-    color: blue;
+.form-control:focus {
+    border-color: #DD8D43;
+    box-shadow: 0 0 0 0.1rem #DD8D43;
 }
