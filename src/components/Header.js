@@ -48,9 +48,11 @@ function Header() {
       <div className={styles.header}>
         <div className={styles.logo}></div>
 
-        <p className={styles.para}>{currentPage}</p>
-        <p className={styles.para2}>{today}</p>
-        <p className={styles.para3}>{currentUser}</p>
+        <div className={styles.para}>
+          <div className={styles.innerPara}>{currentPage}</div>
+        </div>
+        <div className={styles.para2}>{today}</div>
+        <div className={styles.para3}>{currentUser}</div>
       </div>
     </>
   );
