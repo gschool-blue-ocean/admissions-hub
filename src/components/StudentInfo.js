@@ -14,7 +14,7 @@ const StudentInfo = ({ setStudents, students }) => {
   const [showAddStudent, setShowAddStudent] = useState(false);
   const [info, setInfo] = useState([]);
   const [seeNotes, setSeeNotes] = useState(false);
-
+  console.log(info);
   const handleChange = (event) => {
     setSearch(event.target.value);
   };
@@ -76,6 +76,15 @@ const StudentInfo = ({ setStudents, students }) => {
                 backgroundColor: "#DCDCDC",
               }}
             >
+              <div style={{ display: "flex" }}>
+                {Object.values(info).map((info) => {
+                  return (
+                    <div style={{ paddingRight: 10 }}>
+                      <span>{info}</span>
+                    </div>
+                  );
+                })}
+              </div>
               <Problems />
               <Ratings setValue={setValue} />
             </div>

@@ -5,7 +5,7 @@ const AllRatings = () => {
 
   const Qtr = () => {
     let radius = 100;
-    let stroke = 11;
+    let stroke = 15;
     let value = 65;
     let normalizedRadius = radius - stroke * 2;
     let circumference = normalizedRadius * 2 * Math.PI;
@@ -50,10 +50,11 @@ const AllRatings = () => {
             />
             <text
               x="50%"
-              y="52%"
+              y="53%"
               textAnchor="middle"
               stroke="orange"
               strokeWidth="1px"
+              fontSize={20}
             >
               {((value / 69) * 100).toFixed(0)}%
             </text>
@@ -71,7 +72,7 @@ const AllRatings = () => {
 
   const Year = () => {
     let radius2 = 100;
-    let stroke2 = 11;
+    let stroke2 = 15;
     let value2 = 65;
     let normalizedRadius2 = radius2 - stroke2 * 2;
     let circumference2 = normalizedRadius2 * 2 * Math.PI;
@@ -114,10 +115,11 @@ const AllRatings = () => {
             />
             <text
               x="50%"
-              y="52%"
+              y="53%"
               textAnchor="middle"
               stroke="orange"
               strokeWidth="1px"
+              fontSize={20}
             >
               {((value2 / 69) * 100).toFixed(0)}%
             </text>
