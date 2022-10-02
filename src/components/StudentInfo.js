@@ -76,7 +76,7 @@ const StudentInfo = ({ setStudents, students }) => {
                 backgroundColor: "#DCDCDC",
               }}
             >
-              <div style={{ display: "flex" }}>
+              <div style={{ display: "flex", paddingBottom: 10 }}>
                 {Object.values(info).map((info) => {
                   return (
                     <div style={{ paddingRight: 10 }}>
