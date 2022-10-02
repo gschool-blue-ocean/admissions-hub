@@ -1,119 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import * as BsIcons from "react-icons/bs";
 import * as BiIcons from "react-icons/bi";
 import * as AiIcons from "react-icons/ai";
-import { useState } from "react";
 import NewStudent from "./NewStudent";
 import Link from "next/link";
 import uuid from "react-uuid";
+import Problems from "./Problems";
+import Ratings from "./Ratings";
 
-const StudentInfo = () => {
+const StudentInfo = ({ setStudents, students }) => {
   const [search, setSearch] = useState("");
-
-  const [addStudent, setAddStudent] = useState(false);
-
-  const test = [
-    {
-      name: "Reaves, Kevin",
-      email: "Reaveskev@gmail.com",
-      cohort: "MCSP-13",
-      date: "27-JUN-22",
-      attempt: 99,
-      pass: true,
-    },
-    {
-      name: "Linder, Jeremy",
-      email: "jeremylinder2@gmail",
-      cohort: "MCSP-13",
-      date: "27-JUN-22",
-      attempt: 99,
-      pass: false,
-    },
-    {
-      name: "Jones, Kyle",
-      email: "jones.kyle2893@gmail.com",
-      cohort: "MCSP-13",
-      date: "27-JUN-22",
-      attempt: 99,
-      pass: false,
-    },
-    {
-      name: "Le, Thanh",
-      email: "huybenpro@gmail.com",
-      cohort: "MCSP-13",
-      date: "27-JUN-22",
-      attempt: 99,
-      pass: false,
-    },
-    {
-      name: "Rust, Matthew",
-      email: "matthewrust21@gmail.com",
-      cohort: "MCSP-13",
-      date: "27-JUN-22",
-      attempt: 99,
-      pass: true,
-    },
-    {
-      name: "Nguyen, Hung",
-      email: "hungnguyen1693@gmail.com",
-      cohort: "MCSP-13",
-      date: "27-JUN-22",
-      attempt: 99,
-      pass: true,
-    },
-    {
-      name: "Reaves, Kevin",
-      email: "Reaveskev@gmail.com",
-      cohort: "MCSP-13",
-      date: "27-JUN-22",
-      attempt: 99,
-      pass: true,
-    },
-    {
-      name: "Linder, Jeremy",
-      email: "jeremylinder2@gmail",
-      cohort: "MCSP-13",
-      date: "27-JUN-22",
-      attempt: 99,
-      pass: false,
-    },
-    {
-      name: "Jones, Kyle",
-      email: "jones.kyle2893@gmail.com",
-      cohort: "MCSP-13",
-      date: "27-JUN-22",
-      attempt: 99,
-      pass: false,
-    },
-    {
-      name: "Le, Thanh",
-      email: "huybenpro@gmail.com",
-      cohort: "MCSP-13",
-      date: "27-JUN-22",
-      attempt: 99,
-      pass: false,
-    },
-    {
-      name: "Rust, Matthew",
-      email: "matthewrust21@gmail.com",
-      cohort: "MCSP-13",
-      date: "27-JUN-22",
-      attempt: 99,
-      pass: true,
-    },
-    {
-      name: "Nguyen, Hung",
-      email: "hungnguyen1693@gmail.com",
-      cohort: "MCSP-13",
-      date: "27-JUN-22",
-      attempt: 99,
-      pass: true,
-    },
-  ];
+  const [value, setValue] = useState(0);
+  const [showAddStudent, setShowAddStudent] = useState(false);
+  const [info, setInfo] = useState([]);
+  const [seeNotes, setSeeNotes] = useState(false);
 
   const handleChange = (event) => {
     setSearch(event.target.value);
-    console.log(search);
   };
 
   return (
@@ -126,6 +29,59 @@ const StudentInfo = () => {
         marginBottom: 10,
       }}
     >
+      {seeNotes ? (
+        <div
+          style={{
+            position: "fixed",
+            zIndex: "1",
+            left: "0",
+            top: "0",
+            width: "100%",
+            height: "100%",
+            overflow: "auto",
+            backgroundColor: "rgb(0,0,0)",
+            backgroundColor: "rgba(0,0,0,0.4)",
+          }}
+        >
+          <div
+            style={{
+              fontSize: 14,
+              backgroundColor: "#DCDCDC",
+              borderRadius: 10,
+              border: "1px solid",
+              boxShadow: "0px 0px 10px 5px #888888",
+              margin: "15% auto",
+              width: 600,
+              height: 650,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <div
+              onClick={() => {
+                setSeeNotes(!seeNotes);
+              }}
+              style={{
+                padding: 10,
+                paddingLeft: 515,
+              }}
+            >
+              <AiIcons.AiOutlineClose size={25} />
+            </div>
+            <div
+              style={{
+                width: 540,
+                height: 600,
+                backgroundColor: "#DCDCDC",
+              }}
+            >
+              <Problems />
+              <Ratings setValue={setValue} />
+            </div>
+          </div>
+        </div>
+      ) : null}
       <div
         style={{
           display: "flex",
@@ -142,9 +98,13 @@ const StudentInfo = () => {
             placeholder="Search by name or email"
             onChange={handleChange}
             value={search}
+            style={{ height: 30, width: 220 }}
             type="text"
           ></input>
-          <div style={{ cursor: "pointer" }}>
+          <div
+            style={{ cursor: "pointer" }}
+            onClick={() => console.log(search)}
+          >
             <BiIcons.BiSearchAlt size={28} />
           </div>
         </div>
@@ -159,17 +119,35 @@ const StudentInfo = () => {
               paddingRight: 20,
             }}
           >
-            <button
-              style={{
-                color: "white",
-                backgroundColor: "orange",
-                border: "none",
-                height: 40,
-                width: 100,
-              }}
-            >
-              View Notes
-            </button>
+            {info.length !== 0 ? (
+              <button
+                style={{
+                  color: "white",
+                  backgroundColor: "orange",
+                  border: "none",
+                  height: 40,
+                  width: 100,
+                }}
+                onClick={() => {
+                  setSeeNotes(!seeNotes);
+                }}
+              >
+                View Notes
+              </button>
+            ) : (
+              <button
+                style={{
+                  color: "#bdb6b6",
+                  backgroundColor: "#ab7512",
+                  border: "none",
+                  height: 40,
+                  width: 100,
+                }}
+                disabled
+              >
+                View Notes
+              </button>
+            )}
           </div>
           <div
             style={{
@@ -249,7 +227,7 @@ const StudentInfo = () => {
             paddingTop: 10,
           }}
         >
-          {test.map((student) => {
+          {students.map((student) => {
             return (
               <div
                 style={{
@@ -259,15 +237,24 @@ const StudentInfo = () => {
                   paddingTop: 5,
                   paddingLeft: 10,
                   borderBottom: "solid 1px black",
+                  backgroundColor:
+                    info.email === student.email ? "orange" : "none",
                 }}
-                key={student.name}
+                key={uuid()}
+                onClick={() => {
+                  if (info.email === student.email) {
+                    setInfo([]);
+                  } else {
+                    setInfo(student);
+                  }
+                }}
               >
                 <span
                   style={{
                     minWidth: 120,
                   }}
                 >
-                  {student.name}
+                  {`${student.lastName}, ${student.firstName}`}
                 </span>
                 <span style={{ minWidth: 186 }}>{student.email}</span>
                 <span style={{ minWidth: 70 }}>{student.cohort}</span>
@@ -279,12 +266,13 @@ const StudentInfo = () => {
                   <div style={{ minWidth: 15 }}>
                     <AiIcons.AiOutlineCheck color="green" />
                   </div>
-                ) : (
+                ) : student.pass === false ? (
                   <div style={{ minWidth: 15 }}>
                     <AiIcons.AiOutlineClose color="red" />
                   </div>
+                ) : (
+                  <span style={{ minWidth: 15 }}>{student.pass}</span>
                 )}
-                <span>{student.pass}</span>
               </div>
             );
           })}
@@ -298,15 +286,20 @@ const StudentInfo = () => {
           }}
         >
           <div
-            onClick={() => setAddStudent(!addStudent)}
+            onClick={() => setShowAddStudent(!showAddStudent)}
             style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
           >
             <BsIcons.BsPlusLg color="orange" />
 
             <span style={{ paddingLeft: 5 }}>add student</span>
           </div>
-          {addStudent ? (
-            <NewStudent addStudent={addStudent} setAddStudent={setAddStudent} />
+          {showAddStudent ? (
+            <NewStudent
+              students={students}
+              showAddStudent={showAddStudent}
+              setShowAddStudent={setShowAddStudent}
+              setStudents={setStudents}
+            />
           ) : null}
           <div>
             <button
@@ -316,6 +309,50 @@ const StudentInfo = () => {
                 color: "white",
                 border: "none",
                 width: 80,
+              }}
+              onClick={() => {
+                ////"Borrowed Code"/////
+                let csv;
+
+                // Loop the array of objects
+                for (let row = 0; row < students.length; row++) {
+                  let keysAmount = Object.keys(students[row]).length;
+                  let keysCounter = 0;
+
+                  // If this is the first row, generate the headings
+                  if (row === 0) {
+                    // Loop each property of the object
+                    for (let key in students[row]) {
+                      // This is to not add a comma at the last cell
+                      // The '\r\n' adds a new line
+                      csv +=
+                        key + (keysCounter + 1 < keysAmount ? "," : "\r\n");
+                      keysCounter++;
+                    }
+                  } else {
+                    for (let key in students[row]) {
+                      csv +=
+                        students[row][key] +
+                        (keysCounter + 1 < keysAmount ? "," : "\r\n");
+                      keysCounter++;
+                    }
+                  }
+
+                  keysCounter = 0;
+                }
+
+                // Once we are done looping, download the .csv by creating a link
+                let link = document.createElement("a");
+                link.id = "download-csv";
+                link.setAttribute(
+                  "href",
+                  "data:text/plain;charset=utf-8," + encodeURIComponent(csv)
+                );
+                link.setAttribute("download", "StudentsInfo.csv");
+                document.body.appendChild(link);
+                document.querySelector("#download-csv").click();
+
+                ////"Borrowed Code"/////
               }}
             >
               export .csv
