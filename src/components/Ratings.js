@@ -84,6 +84,7 @@ const Ratings = ({ setValue }) => {
           <div
             style={{
               display: "flex",
+              paddingTop: 5,
             }}
           >
             <div style={{ paddingRight: 30 }}>Problem 1</div>

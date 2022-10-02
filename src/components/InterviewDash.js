@@ -62,7 +62,7 @@ const InterviewDash = () => {
     {
       firstName: "Kevin",
       lastName: "Reaves",
-      email: "Reaveskev@gmail.com",
+      email: "Reaveskev12@gmail.com",
       cohort: "MCSP-13",
       date: "27-JUN-22",
       attempt: 99,
@@ -71,7 +71,7 @@ const InterviewDash = () => {
     {
       firstName: "Jeremy",
       lastName: "Linder",
-      email: "jeremylinder2@gmail",
+      email: "jeremylinder12@gmail",
       cohort: "MCSP-13",
       date: "27-JUN-22",
       attempt: 99,
@@ -80,7 +80,7 @@ const InterviewDash = () => {
     {
       firstName: "Kyle",
       lastName: "Jones",
-      email: "jones.kyle2893@gmail.com",
+      email: "jones.kyle289312@gmail.com",
       cohort: "MCSP-13",
       date: "27-JUN-22",
       attempt: 99,
@@ -89,7 +89,7 @@ const InterviewDash = () => {
     {
       firstName: "Thanh",
       lastName: "Le",
-      email: "huybenpro@gmail.com",
+      email: "huybenpro12@gmail.com",
       cohort: "MCSP-13",
       date: "27-JUN-22",
       attempt: 99,
@@ -98,7 +98,7 @@ const InterviewDash = () => {
     {
       firstName: "Matthew",
       lastName: "Rust",
-      email: "matthewrust21@gmail.com",
+      email: "matthewrust2121@gmail.com",
       cohort: "MCSP-13",
       date: "27-JUN-22",
       attempt: 99,
@@ -107,7 +107,7 @@ const InterviewDash = () => {
     {
       firstName: "Hung",
       lastName: "Nguyen",
-      email: "hungnguyen1693@gmail.com",
+      email: "hungnguyen169312@gmail.com",
       cohort: "MCSP-13",
       date: "27-JUN-22",
       attempt: 99,

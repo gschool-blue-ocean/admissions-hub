@@ -14,6 +14,7 @@ const StudentInfo = ({ setStudents, students }) => {
   const [showAddStudent, setShowAddStudent] = useState(false);
   const [info, setInfo] = useState([]);
   const [seeNotes, setSeeNotes] = useState(false);
+  const [launchInterview, setLaunchInterview] = useState(false);
   console.log(info);
   const handleChange = (event) => {
     setSearch(event.target.value);
@@ -163,19 +164,34 @@ const StudentInfo = ({ setStudents, students }) => {
               paddingRight: 20,
             }}
           >
-            <button
-              style={{
-                color: "white",
-                backgroundColor: "orange",
-                border: "none",
-                height: 40,
-                width: 150,
-              }}
-            >
-              <Link href={{ pathname: "/interview", query: { id: uuid() } }}>
+            {info.length !== 0 ? (
+              <button
+                style={{
+                  color: "white",
+                  backgroundColor: "orange",
+                  border: "none",
+                  height: 40,
+                  width: 150,
+                }}
+              >
+                <Link href={{ pathname: "/interview", query: { id: uuid() } }}>
+                  Launch Interview
+                </Link>
+              </button>
+            ) : (
+              <button
+                style={{
+                  color: "#bdb6b6",
+                  backgroundColor: "#ab7512",
+                  border: "none",
+                  height: 40,
+                  width: 150,
+                }}
+                disabled
+              >
                 Launch Interview
-              </Link>
-            </button>
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -233,7 +249,6 @@ const StudentInfo = ({ setStudents, students }) => {
             border: "solid 1px black",
             maxHeight: 200,
             overflowY: "auto",
-            paddingTop: 10,
           }}
         >
           {students.map((student) => {

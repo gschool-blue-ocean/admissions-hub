@@ -74,6 +74,7 @@ const Dashboard = (input) => {
         borderRadius: 10,
       }}
     >
+      <span>First Last, MCSP-X, Attempt #: X</span>
       <Problems
         problem1Notes={problem1Notes}
         problem3Notes={problem3Notes}
@@ -104,7 +105,7 @@ const Dashboard = (input) => {
           display: "flex",
           justifyContent: "center",
           paddingTop: 10,
-          paddingBottom: 5,
+          paddingBottom: 2,
         }}
       >
         <button
@@ -116,8 +117,8 @@ const Dashboard = (input) => {
             }
           }}
           style={{
-            width: 300,
-            height: 50,
+            width: 280,
+            height: 40,
             color: "white",
             backgroundColor: "orange",
             border: "none",
