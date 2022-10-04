@@ -35,11 +35,6 @@
       "static/chunks/main.js",
       "static/chunks/pages/dashboard.js"
     ],
-    "/interview": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/interview.js"
-    ],
     "/login": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
