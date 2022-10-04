@@ -79,7 +79,7 @@ function Header() {
           >
             <NavDropdown.Item eventKey="1">Profile</NavDropdown.Item>
             <NavDropdown.Item eventKey="2">Extra page</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.4">
+            <NavDropdown.Item>
               <BtnLogin />
             </NavDropdown.Item>
           </NavDropdown>
