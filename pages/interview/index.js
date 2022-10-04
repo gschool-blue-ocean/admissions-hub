@@ -3,22 +3,18 @@ import Dashboard from '../../src/components/Dashboard'
 import Header from '../../src/components/Header'
 import Footer from "../../src/components/Footer"
 import RoomURL from "../../src/components/RoomURL"
-import Router, { useRouter } from "next/router";
+
 
 function id({ id }) {
-
-    const router = useRouter();
     const user = 'admin'
-
-    
     return (
         <>
             <Header />
-            <div className="flex ml-4 mt-4 space-x-6">
+            <div>
                 <CodeEditor sessionId={id} />
-                <div className="flex flex-col">
+                <div>
                     <RoomURL URL={id} />
-                    <Dashboard user={user}  className='mt-8'/>
+                    <Dashboard user={user}/>
                 </div>
                 
             </div>            

@@ -14,6 +14,8 @@
     "axios": "^0.27.2",
     "bootstrap": "^5.2.1",
     "mdb-react-ui-kit": "^4.2.0",
+    "monaco-editor": "^0.34.0",
+    "monaco-themes": "^0.4.2",
     "next": "12.3.1",
     "react": "18.2.0",
     "react-bootstrap": "^2.5.0",
@@ -26,12 +28,9 @@
   },
   "devDependencies": {
     "@types/react": "18.0.21",
-    "autoprefixer": "^10.4.12",
     "eslint": "8.24.0",
     "eslint-config-next": "12.3.1",
     "nodemon": "^2.0.20",
-    "postcss": "^8.4.17",
-    "prisma": "^4.4.0",
-    "tailwindcss": "^3.1.8"
+    "prisma": "^4.4.0"
   }
 }
