@@ -1,50 +1,52 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import Editor from "@monaco-editor/react";
-import io, { Socket } from 'Socket.IO-client'
+import io, { Socket } from "Socket.IO-client";
 let socket;
 
+export default function CodeEditor({ input, setInput, sessionId }) {
+  // const [input, setInput] = useState("");
+  const onChangeHandler = (e) => {
+    setInput(e);
+    socket.emit("input-change", e, sessionId);
+  };
 
-export default function CodeEditor({ sessionId }) {
+  useEffect(() => {
+    console.log("internal sessionID:", sessionId);
+    socketInitializer();
+  }, []);
 
-    const [input, setInput] = useState('')
-    const onChangeHandler = (e) => {
-        setInput(e)
-        socket.emit('input-change', e, sessionId)
-    }
+  const socketInitializer = async () => {
+    await fetch("/api/socket");
+    socket = io();
 
-    useEffect(() => {
-        
-        console.log('internal sessionID:', sessionId)
-        socketInitializer()
-    }, [])
+    socket.emit("join-room", sessionId);
+    socket.on("connect", () => {
+      console.log(`connected with user ${sessionId}`);
+    });
 
-    
-    const socketInitializer = async () => {
-        await fetch('/api/socket')
-        socket = io()
+    socket.on("update-input", (msg) => {
+      setInput(msg);
+    });
+  };
 
-        socket.emit('join-room', sessionId)
-        socket.on('connect', () => {
-            console.log(`connected with user ${sessionId}`)
-            
-        })
-
-        socket.on('update-input', msg => {
-            setInput(msg)
-        })
-    }
-
-    return (
-      <div style={{position: "absolute", left: '5%', top: "6rem", height: '600px'}}>
-        <p>Your interview ID is {sessionId}</p>
-        <Editor
-            width="600px"
-            defaultLanguage="javascript"
-            defaultValue='//start typing code here'
-            theme="vs-dark"
-            value={input}
-            onChange={(e) => onChangeHandler(e)}
-        />
-      </div>
-    )
+  return (
+    <div
+      style={{
+        position: "absolute",
+        left: "5%",
+        top: "6rem",
+        height: "800px",
+        width: "900px",
+      }}
+    >
+      <p>Your interview ID is {sessionId}</p>
+      <Editor
+        defaultLanguage="javascript"
+        defaultValue="//start typing code here"
+        theme="vs-dark"
+        value={input}
+        onChange={(e) => onChangeHandler(e)}
+      />
+    </div>
+  );
 }
