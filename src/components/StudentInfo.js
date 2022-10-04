@@ -51,7 +51,7 @@ const StudentInfo = ({ setStudents, students }) => {
               borderRadius: 10,
               border: "1px solid",
               boxShadow: "0px 0px 10px 5px #888888",
-              margin: "15% auto",
+              margin: "10% auto",
               width: 600,
               height: 650,
               display: "flex",
