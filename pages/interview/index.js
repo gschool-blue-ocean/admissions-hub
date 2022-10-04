@@ -4,12 +4,14 @@ import Header from "../../src/components/Header";
 import Footer from "../../src/components/Footer";
 import { useState } from "react";
 
+
 function id({ id }) {
   const [input, setInput] = useState("");
   return (
     <>
       <Header />
       <CodeEditor input={input} setInput={setInput} sessionId={id} />
+      <RoomURL URL={id} />
       <Dashboard input={input} />
       <Footer />
     </>

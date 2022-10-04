@@ -3,7 +3,7 @@ import Reference from "./Reference";
 import Ratings from "./Ratings";
 import Problems from "./Problems";
 
-const Dashboard = (input) => {
+const Dashboard = () => {
   const [value, setValue] = useState(0);
   const [problem1Notes, setProblem1Notes] = useState("");
   const [problem2Notes, setProblem2Notes] = useState("");
