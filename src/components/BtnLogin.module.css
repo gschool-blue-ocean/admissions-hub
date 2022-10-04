@@ -1,0 +1,12 @@
+.logoutBtn {
+    padding-right: 30px;
+    background-color: orange;
+    color: white;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding-right: 10px;
+    margin: 10px;
+    font-size: 15px;
+    display: flex;
+    align-content: center;
+  }

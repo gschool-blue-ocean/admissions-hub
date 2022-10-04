@@ -3,6 +3,15 @@
     box-shadow: 0 0 0 0.1rem #DD8D43;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.nav-link {
+    color: black;
+}
+
+.nav-link:hover {
+    color: #DD8D43;
+}
+
+.nav-link:focus {
+    color: #DD8D43;
+}
+

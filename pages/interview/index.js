@@ -1,24 +1,28 @@
-import CodeEditor from "../../src/components/CodeEditor"
-import Dashboard from '../../src/components/Dashboard'
-import Header from '../../src/components/Header'
-import Footer from "../../src/components/Footer"
+import CodeEditor from "../../src/components/CodeEditor";
+import Dashboard from "../../src/components/Dashboard";
+import Header from "../../src/components/Header";
+import Footer from "../../src/components/Footer";
+import RoomURL from "../../src/components/RoomURL";
+import { useState } from "react";
+
+
 function id({ id }) {
-    
-    return (
-        <>
-        <Header />
-        <CodeEditor sessionId={id} />
-        <Dashboard />
-        <Footer />
-        <h1>testing</h1>
-        </>       
+  const [input, setInput] = useState("");
+  return (
+    <>
+      <Header />
+      <CodeEditor input={input} setInput={setInput} sessionId={id} />
+      <RoomURL URL={id} />
+      <Dashboard input={input} />
+      <Footer />
+    </>
+  );
+}
 
-    )
-  }
-  
-export default id
+export default id;
 
-// export async function getServerSideProps({ query }) {
-//     let { id } = query
-//     return {props: {id}}
-// }
+export async function getServerSideProps({ query }) {
+  let { id } = query;
+  return { props: { id } };
+}
+

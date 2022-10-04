@@ -1,30 +1,67 @@
 import React, { useState } from "react";
 import Editor from "@monaco-editor/react";
-import { BiBorderLeft } from "react-icons/bi";
+import MarkdownIt from "markdown-it";
+import Style from "./Problems.module.css";
 
-const Problems = () => {
+const Problems = ({
+  problem1Notes,
+  problem2Notes,
+  problem3Notes,
+  setProblem1Notes,
+  setProblem2Notes,
+  setProblem3Notes,
+}) => {
   const [seeProblem1, setSeeProblem1] = useState(true);
   const [seeProblem2, setSeeProblem2] = useState(false);
   const [seeProblem3, setSeeProblem3] = useState(false);
 
-  const [problem1Notes, setProblem1Notes] = useState("");
-  const [problem2Notes, setProblem2Notes] = useState("");
-  const [problem3Notes, setProblem3Notes] = useState("");
+  let [markdownText, setMarkDownText] = useState("");
+  let [markdownText2, setMarkDownText2] = useState("");
+  let [markdownText3, setMarkDownText3] = useState("");
+  let [renderedHTML, setRenderedHTML] = useState("");
+  let [renderedHTML2, setRenderedHTML2] = useState("");
+  let [renderedHTML3, setRenderedHTML3] = useState("");
+  let [showNotes, setShowNotes] = useState(true);
 
-  const handleProblem1NotesChange = (event) => {
-    setProblem1Notes(event.target.value);
-    console.log(problem1Notes);
-  };
+  function handleTextInput(e) {
+    setMarkDownText(e.target.value);
 
-  const handleProblem2NotesChange = (event) => {
-    setProblem2Notes(event.target.value);
-    console.log(problem2Notes);
-  };
+    let md = new MarkdownIt();
 
-  const handleProblem3NotesChange = (event) => {
-    setProblem3Notes(event.target.value);
-    console.log(problem3Notes);
-  };
+    let renderedHTML = md.render(e.target.value);
+
+    setRenderedHTML(renderedHTML);
+  }
+
+  function handleTextInput2(e) {
+    setMarkDownText2(e.target.value);
+
+    let md2 = new MarkdownIt();
+
+    let renderedHTML2 = md2.render(e.target.value);
+
+    setRenderedHTML2(renderedHTML2);
+  }
+
+  function handleTextInput3(e) {
+    setMarkDownText3(e.target.value);
+
+    let md3 = new MarkdownIt();
+
+    let renderedHTML3 = md3.render(e.target.value);
+
+    setRenderedHTML3(renderedHTML3);
+  }
+
+  function handleFocus1() {
+    showNotes = true;
+    setShowNotes(showNotes);
+  }
+
+  function handleFocus2() {
+    showNotes = false;
+    setShowNotes(showNotes);
+  }
 
   const problem1 = `function addPropertiesToObject(obj1, obj2) {
 // Must combine all properties of obj1 to obj2
@@ -243,11 +280,22 @@ return newStr;
           <div style={{ paddingTop: 20 }}>
             <strong>Notes:</strong>
           </div>
-          <textarea
-            value={problem1Notes}
-            onChange={handleProblem1NotesChange}
-            style={{ width: 515, height: 100, paddingTop: 10, resize: "none" }}
-          ></textarea>
+          {showNotes ? (
+            <textarea
+              rows={20}
+              value={markdownText}
+              onChange={handleTextInput}
+              onBlur={handleFocus2}
+              autoFocus
+              style={{ width: 515, height: 100, resize: "none" }}
+            ></textarea>
+          ) : (
+            <div
+              dangerouslySetInnerHTML={{ __html: renderedHTML }}
+              className={Style.ProblemsOneMarkdown}
+              onClick={handleFocus1}
+            ></div>
+          )}
         </div>
       ) : null}
       {seeProblem2 ? (
@@ -276,11 +324,22 @@ return newStr;
           <div style={{ paddingTop: 20 }}>
             <strong>Notes:</strong>
           </div>
-          <textarea
-            value={problem2Notes}
-            onChange={handleProblem2NotesChange}
-            style={{ width: 515, height: 100, resize: "none" }}
-          ></textarea>
+          {showNotes ? (
+            <textarea
+              rows={20}
+              value={markdownText2}
+              onChange={handleTextInput2}
+              onBlur={handleFocus2}
+              autoFocus
+              style={{ width: 515, height: 100, resize: "none" }}
+            ></textarea>
+          ) : (
+            <div
+              dangerouslySetInnerHTML={{ __html: renderedHTML2 }}
+              className={Style.ProblemsOneMarkdown}
+              onClick={handleFocus1}
+            ></div>
+          )}
         </div>
       ) : null}
       {seeProblem3 ? (
@@ -309,11 +368,22 @@ return newStr;
           <div style={{ paddingTop: 20 }}>
             <strong>Notes:</strong>
           </div>
-          <textarea
-            value={problem3Notes}
-            onChange={handleProblem3NotesChange}
-            style={{ width: 515, height: 100, resize: "none" }}
-          ></textarea>
+          {showNotes ? (
+            <textarea
+              rows={20}
+              value={markdownText3}
+              onChange={handleTextInput3}
+              onBlur={handleFocus2}
+              autoFocus
+              style={{ width: 515, height: 100, resize: "none" }}
+            ></textarea>
+          ) : (
+            <div
+              dangerouslySetInnerHTML={{ __html: renderedHTML3 }}
+              className={Style.ProblemsOneMarkdown}
+              onClick={handleFocus1}
+            ></div>
+          )}
         </div>
       ) : null}
     </div>
