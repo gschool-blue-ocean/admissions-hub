@@ -2,8 +2,8 @@ import CodeEditor from "../../src/components/CodeEditor";
 import Dashboard from "../../src/components/Dashboard";
 import Header from "../../src/components/Header";
 import Footer from "../../src/components/Footer";
+import RoomURL from "../../src/components/RoomURL";
 import { useState } from "react";
-
 
 function id({ id }) {
   const [input, setInput] = useState("");
@@ -24,4 +24,3 @@ export async function getServerSideProps({ query }) {
   let { id } = query;
   return { props: { id } };
 }
-

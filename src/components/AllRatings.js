@@ -18,7 +18,6 @@ const AllRatings = () => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-
           borderRight: "solid gray",
         }}
       >
@@ -44,6 +43,7 @@ const AllRatings = () => {
                 transform: "rotate(-90deg)",
                 transformOrigin: "50% 50%",
               }}
+              rotate="180deg"
               r={normalizedRadius}
               cx={radius}
               cy={radius}

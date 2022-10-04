@@ -15,7 +15,6 @@ const StudentInfo = ({ setStudents, students }) => {
   const [info, setInfo] = useState([]);
   const [seeNotes, setSeeNotes] = useState(false);
   const [launchInterview, setLaunchInterview] = useState(false);
-  console.log(info);
   const handleChange = (event) => {
     setSearch(event.target.value);
   };
