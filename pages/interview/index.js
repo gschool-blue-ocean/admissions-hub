@@ -22,3 +22,4 @@ export async function getServerSideProps({ query }) {
   let { id } = query;
   return { props: { id } };
 }
+
