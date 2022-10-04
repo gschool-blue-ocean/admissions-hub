@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import * as ImIcons from "react-icons/im";
 
-const Ratings = ({ value, setValue }) => {
+const Ratings = ({ setValue }) => {
   const [problem1a, setProblem1a] = useState(false);
   const [problem1b, setProblem1b] = useState(false);
   const [problem1c, setProblem1c] = useState(false);
@@ -73,11 +73,18 @@ const Ratings = ({ value, setValue }) => {
   return (
     <div>
       <span style={{ fontSize: 15 }}>Rating</span>
-      <div style={{ display: "flex", justifyContent: "space-around" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-around",
+          fontSize: 30,
+        }}
+      >
         <div>
           <div
             style={{
               display: "flex",
+              paddingTop: 5,
             }}
           >
             <div style={{ paddingRight: 30 }}>Problem 1</div>

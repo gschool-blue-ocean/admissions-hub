@@ -2,7 +2,12 @@ import React from "react";
 import { useState } from "react";
 import * as AiIcons from "react-icons/ai";
 
-const NewStudent = ({ setAddStudent, addStudent }) => {
+const NewStudent = ({
+  setShowAddStudent,
+  showAddStudent,
+  students,
+  setStudents,
+}) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -23,6 +28,16 @@ const NewStudent = ({ setAddStudent, addStudent }) => {
   const handleCohortChange = (event) => {
     setCohort(event.target.value);
     console.log(cohort);
+  };
+
+  let newStudent = {
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+    cohort: cohort,
+    date: "TBD",
+    attempt: 0,
+    pass: "TBD",
   };
 
   return (
@@ -52,7 +67,7 @@ const NewStudent = ({ setAddStudent, addStudent }) => {
         }}
       >
         <div
-          onClick={() => setAddStudent(!addStudent)}
+          onClick={() => setShowAddStudent(!showAddStudent)}
           style={{ paddingLeft: 15, paddingTop: 10, cursor: "pointer" }}
         >
           <AiIcons.AiOutlineClose />
@@ -64,7 +79,9 @@ const NewStudent = ({ setAddStudent, addStudent }) => {
             justifyContent: "center",
           }}
         >
-          <div>Add New Student</div>
+          <div>
+            <strong>Add New Student</strong>
+          </div>
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div
@@ -79,6 +96,7 @@ const NewStudent = ({ setAddStudent, addStudent }) => {
               onChange={handleFirstNameChange}
               value={firstName}
               type="text"
+              required
             ></input>
           </div>
           <div
@@ -93,6 +111,7 @@ const NewStudent = ({ setAddStudent, addStudent }) => {
               onChange={handleLastNameChange}
               value={lastName}
               type="text"
+              required
             ></input>
           </div>
           <div
@@ -107,20 +126,7 @@ const NewStudent = ({ setAddStudent, addStudent }) => {
               onChange={handleEmailChange}
               value={email}
               type="text"
-            ></input>
-          </div>
-          <div
-            style={{
-              marginBottom: 10,
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            <input
-              placeholder="Cohort"
-              onChange={handleCohortChange}
-              value={cohort}
-              type="text"
+              required
             ></input>
           </div>
         </div>
@@ -131,12 +137,22 @@ const NewStudent = ({ setAddStudent, addStudent }) => {
             paddingBottom: 10,
           }}
         >
-          <select onChange={handleCohortChange}>
-            <option disabled> MCSP-11 </option>
-            <option disabled> MCSP-12 </option>
+          <select
+            style={{
+              width: 170,
+              height: 21,
+            }}
+            onChange={handleCohortChange}
+          >
+            <option> Select Cohort </option>
+            <option disabled>MCSP-11</option>
+            <option disabled>MCSP-12</option>
             <option> MCSP-13 </option>
             <option> MCSP-14 </option>
             <option> MCSP-15 </option>
+            <option> MCSP-16 </option>
+            <option> MCSP-17 </option>
+            <option> MCSP-18 </option>
           </select>
         </div>
         <div
@@ -152,8 +168,13 @@ const NewStudent = ({ setAddStudent, addStudent }) => {
               color: "white",
               backgroundColor: "orange",
               border: "none",
+              width: 75,
             }}
-            onClick={() => setAddStudent(!addStudent)}
+            onClick={() => {
+              setStudents([...students, newStudent]);
+              setShowAddStudent(!showAddStudent);
+              console.log(newStudent);
+            }}
           >
             Create
           </button>

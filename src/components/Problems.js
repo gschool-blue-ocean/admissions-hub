@@ -1,29 +1,27 @@
 import React, { useState } from "react";
 import Editor from "@monaco-editor/react";
-import { BiBorderLeft } from "react-icons/bi";
-
-const Problems = () => {
+const Problems = ({
+  problem1Notes,
+  problem2Notes,
+  problem3Notes,
+  setProblem1Notes,
+  setProblem2Notes,
+  setProblem3Notes,
+}) => {
   const [seeProblem1, setSeeProblem1] = useState(true);
   const [seeProblem2, setSeeProblem2] = useState(false);
   const [seeProblem3, setSeeProblem3] = useState(false);
 
-  const [problem1Notes, setProblem1Notes] = useState("");
-  const [problem2Notes, setProblem2Notes] = useState("");
-  const [problem3Notes, setProblem3Notes] = useState("");
-
   const handleProblem1NotesChange = (event) => {
     setProblem1Notes(event.target.value);
-    console.log(problem1Notes);
   };
 
   const handleProblem2NotesChange = (event) => {
     setProblem2Notes(event.target.value);
-    console.log(problem2Notes);
   };
 
   const handleProblem3NotesChange = (event) => {
     setProblem3Notes(event.target.value);
-    console.log(problem3Notes);
   };
 
   const problem1 = `function addPropertiesToObject(obj1, obj2) {
