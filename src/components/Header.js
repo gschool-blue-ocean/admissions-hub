@@ -6,7 +6,9 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useRouter } from "next/router";
 import BtnLogin from './BtnLogin';
-
+import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 function Header() {
   let currentPage = "";
@@ -69,9 +71,20 @@ function Header() {
           <div className={styles.innerPara}>{currentPage}</div>
         </div>
         <div className={styles.para2}>{today}</div>
-        <div className={styles.para3}>{currentUser}
-        <BtnLogin />
-        </div>
+        {/* <div className={styles.para3}>{currentUser}</div> */}
+
+      <div className={styles.dropdownmenu}>
+        <Dropdown as={ButtonGroup} >
+        <Dropdown.Toggle id="dropdown-custom-1" className="btn-light">{currentUser}</Dropdown.Toggle>
+        <Dropdown.Menu className="super-colors">
+          <Dropdown.Item eventKey="1">Profile</Dropdown.Item>
+          <Dropdown.Item eventKey="2">Extra page</Dropdown.Item>
+          <Dropdown.Divider />
+          <Dropdown.Item eventKey="4"><BtnLogin /></Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
+      </div>
+
       </div>
     </>
   );
