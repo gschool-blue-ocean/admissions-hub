@@ -2,7 +2,7 @@ import CodeEditor from "../../src/components/CodeEditor"
 import Dashboard from '../../src/components/Dashboard'
 import Header from '../../src/components/Header'
 import Footer from "../../src/components/Footer"
-function id({ id }) {
+function Id({ id }) {
     
     return (
         <>
@@ -16,9 +16,9 @@ function id({ id }) {
     )
   }
   
-export default id
+export default Id
 
-// export async function getServerSideProps({ query }) {
-//     let { id } = query
-//     return {props: {id}}
-// }
+export async function getServerSideProps({ query }) {
+    let { id } = query
+    return {props: {id}}
+}
