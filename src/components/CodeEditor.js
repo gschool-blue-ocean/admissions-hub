@@ -1,27 +1,23 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import Editor from "@monaco-editor/react";
-import io, { Socket } from 'Socket.IO-client'
+import io, { Socket } from "Socket.IO-client";
 let socket;
 
+export default function CodeEditor({ input, setInput, sessionId }) {
+  // const [input, setInput] = useState("");
+  const onChangeHandler = (e) => {
+    setInput(e);
+    socket.emit("input-change", e, sessionId);
+  };
 
-export default function CodeEditor({ sessionId }) {
+  useEffect(() => {
+    console.log("internal sessionID:", sessionId);
+    socketInitializer();
+  }, []);
 
-    const [input, setInput] = useState('')
-    const onChangeHandler = (e) => {
-        setInput(e)
-        socket.emit('input-change', e, sessionId)
-    }
-
-    useEffect(() => {
-        
-        console.log('internal sessionID:', sessionId)
-        socketInitializer()
-    }, [])
-
-    
-    const socketInitializer = async () => {
-        await fetch('/api/socket')
-        socket = io()
+  const socketInitializer = async () => {
+    await fetch("/api/socket");
+    socket = io();
 
         socket.emit('join-room', sessionId)
         socket.on('connect', () => {
@@ -35,10 +31,10 @@ export default function CodeEditor({ sessionId }) {
     }
 
     return (
-      <div style={{position: "absolute", left: '5%', top: "6rem", height: '600px'}}>
-        <p>Your interview ID is {sessionId}</p>
+      <div>
         <Editor
-            width="600px"
+            height="90vh"
+            width="50vw"
             defaultLanguage="javascript"
             defaultValue='//start typing code here'
             theme="vs-dark"
