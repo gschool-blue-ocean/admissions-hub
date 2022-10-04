@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Editor from "@monaco-editor/react";
-import io, { Socket } from "Socket.IO-client";
+import io from "Socket.IO-client";
 let socket;
 
 export default function CodeEditor({ input, setInput, sessionId }) {
