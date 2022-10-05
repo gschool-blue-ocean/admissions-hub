@@ -39,5 +39,5 @@ CREATE TABLE "Interviews" (
 -- AddForeignKey
 ALTER TABLE "Interviews" ADD CONSTRAINT "Interviews_candidatesId_fkey" FOREIGN KEY ("candidatesId") REFERENCES "Candidates"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
-insert into "interviewers" ("firstName", "lastName", "email", "password") values ('Danny', 'Andrew', 'test@gmail.com',  crypt('johnspassword', gen_salt('md5')));
+insert into "interviewers" ("firstName", "lastName", "email", "password") values ('Danny', 'Andrew', 'danny@gmail.com',  crypt('johnspassword', gen_salt('md5')));
 
