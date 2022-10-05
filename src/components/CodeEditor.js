@@ -4,17 +4,17 @@ import io from "Socket.IO-client";
 let socket;
 
 export default function CodeEditor({ input, setInput, sessionId }) {
-  // const [input, setInput] = useState("");
+
   const onChangeHandler = (e) => {
     setInput(e);
     socket.emit("input-change", e, sessionId);
   };
-
+  
   useEffect(() => {
     console.log("internal sessionID:", sessionId);
     socketInitializer();
   }, []);
-
+  //initialize the socket connection
   const socketInitializer = async () => {
     await fetch("/api/socket");
     socket = io();
