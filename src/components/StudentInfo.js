@@ -7,12 +7,15 @@ import Link from "next/link";
 import uuid from "react-uuid";
 import Problems from "./Problems";
 import Ratings from "./Ratings";
+import { useAppContext } from "./GlobalContext";
 
 const StudentInfo = ({ setStudents, students }) => {
+   const { info, setInfo } = useAppContext();
+   
   const [search, setSearch] = useState("");
   const [value, setValue] = useState(0);
   const [showAddStudent, setShowAddStudent] = useState(false);
-  const [info, setInfo] = useState([]);
+
   const [seeNotes, setSeeNotes] = useState(false);
   const [launchInterview, setLaunchInterview] = useState(false);
   const handleChange = (event) => {
