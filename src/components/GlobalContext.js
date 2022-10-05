@@ -1,11 +1,14 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 
 const AppContext = createContext();
 
 export function AppWrapper({ children }) {
+  const [info, setInfo] = useState([]);
     let dummyData = {name: "test234"}
   let sharedState = {
-    dummyData
+    dummyData,
+    info,
+    setInfo,
   };
 
   return (
