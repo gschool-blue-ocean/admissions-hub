@@ -10,9 +10,29 @@ function id({ id }) {
   return (
     <>
       <Header />
-      <CodeEditor input={input} setInput={setInput} sessionId={id} />
-      <RoomURL URL={id} />
-      <Dashboard input={input} />
+      <div style={{ display: "flex" }}>
+        <CodeEditor input={input} setInput={setInput} sessionId={id} />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <span style={{ fontSize: 20 }}>
+              First Last, MCSP-X, Attempt #: X
+            </span>
+            <RoomURL URL={id} />
+          </div>
+          <Dashboard input={input} />
+        </div>
+      </div>
       <Footer />
     </>
   );

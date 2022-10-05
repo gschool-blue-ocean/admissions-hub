@@ -52,7 +52,7 @@ const StudentInfo = ({ setStudents, students }) => {
               boxShadow: "0px 0px 10px 5px #888888",
               margin: "10% auto",
               width: 600,
-              height: 650,
+              height: 680,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
