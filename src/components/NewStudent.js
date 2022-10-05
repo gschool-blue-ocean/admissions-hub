@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import * as AiIcons from "react-icons/ai";
+import styles from "./AllRatings.module.css";
+
 
 const NewStudent = ({
   setShowAddStudent,
@@ -41,7 +43,7 @@ const NewStudent = ({
   };
 
   return (
-    <div
+    <div className={styles}
       style={{
         position: "fixed",
         zIndex: "1",
@@ -50,17 +52,14 @@ const NewStudent = ({
         width: "100%",
         height: "100%",
         overflow: "auto",
-        backgroundColor: "rgb(0,0,0)",
         backgroundColor: "rgba(0,0,0,0.4)",
       }}
     >
       <div
         style={{
           fontSize: 14,
-          backgroundColor: "#DCDCDC",
+          backgroundColor: "white",
           borderRadius: 10,
-          border: "1px solid",
-          boxShadow: "0px 0px 10px 5px #888888",
           height: "auto",
           width: 250,
           margin: "15% auto",
@@ -92,6 +91,7 @@ const NewStudent = ({
             }}
           >
             <input
+              className={styles.input}
               placeholder="First name"
               onChange={handleFirstNameChange}
               value={firstName}
@@ -104,9 +104,11 @@ const NewStudent = ({
               marginBottom: 10,
               display: "flex",
               justifyContent: "center",
+              
             }}
           >
             <input
+            className={styles.input}
               placeholder="Last name"
               onChange={handleLastNameChange}
               value={lastName}
@@ -119,9 +121,11 @@ const NewStudent = ({
               marginBottom: 10,
               display: "flex",
               justifyContent: "center",
+              
             }}
           >
             <input
+            className={styles.input}
               placeholder="Email"
               onChange={handleEmailChange}
               value={email}
@@ -135,16 +139,22 @@ const NewStudent = ({
             display: "flex",
             justifyContent: "center",
             paddingBottom: 10,
+
           }}
         >
           <select
             style={{
-              width: 170,
-              height: 21,
+              width: 190,
+              height: 30,
+              backgroundColor: "#f0f0f0",
+              borderRadius: "0px",
+              color: "#979797",
+              appearance: "none",
+              paddingLeft: 3,
             }}
             onChange={handleCohortChange}
           >
-            <option> Select Cohort </option>
+            <option > Select Cohort </option>
             <option disabled>MCSP-11</option>
             <option disabled>MCSP-12</option>
             <option> MCSP-13 </option>
@@ -166,7 +176,8 @@ const NewStudent = ({
           <button
             style={{
               color: "white",
-              backgroundColor: "orange",
+              fontFamily: "League Spartan",
+              backgroundColor: "#DD8D43",
               border: "none",
               width: 75,
             }}
