@@ -58,8 +58,8 @@ const Ratings = ({ setValue }) => {
 
   ///////////CIRCLE///////////////
 
-  let radius = 70;
-  let stroke = 10;
+  let radius = 54;
+  let stroke = 8;
   let normalizedRadius = radius - stroke * 2;
   let circumference = normalizedRadius * 2 * Math.PI;
 
@@ -379,10 +379,10 @@ const Ratings = ({ setValue }) => {
             />
             <text
               x="50%"
-              y="58%"
+              y="56%"
               text-anchor="middle"
-              stroke="orange"
-              strokeWidth="1px"
+              fill="orange"
+              strokeWidth="0"
             >
               {((rating / 12) * 100).toFixed(0)}%
             </text>

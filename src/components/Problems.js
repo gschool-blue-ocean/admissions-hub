@@ -101,7 +101,7 @@ return newStr;
         style={{
           display: "flex",
           justifyContent: "space-around",
-          backgroundColor: "#DCDCDC;",
+          // backgroundColor: "#DCDCDC;",
         }}
       >
         {seeProblem1 ? (
@@ -265,18 +265,21 @@ return newStr;
           }}
         >
           <div style={{ paddingBottom: 10 }}>
-            <strong>Question 1:</strong> Working with Strings and Functions
-            Complete the logger function that takes in a function and a string
-            and returns the result of calling the function on each letter in the
-            string
+            <code>
+              <strong>Question 1:</strong> Working with Strings and Functions
+              Complete the logger function that takes in a function and a string
+              and returns the result of calling the function on each letter in
+              the string
+            </code>
           </div>
-          <Editor
+          <code>{problem1}</code>
+          {/* <Editor
             height="150px"
             width="520px"
             defaultLanguage="javascript"
             theme="vs-dark"
             value={problem1}
-          />
+          /> */}
           <div style={{ paddingTop: 20 }}>
             <strong>Notes:</strong>
           </div>

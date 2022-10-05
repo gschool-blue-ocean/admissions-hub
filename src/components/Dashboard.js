@@ -65,16 +65,13 @@ const Dashboard = () => {
   return (
     <div
       style={{
-        position: "absolute",
-        right: "2%",
         width: "560px",
-        border: "2px solid black",
+        // border: "2px solid black",
         padding: "10px",
-        backgroundColor: "#DCDCDC",
-        borderRadius: 10,
+        // backgroundColor: "#DCDCDC",
+        // borderRadius: 10,
       }}
     >
-      <span>First Last, MCSP-X, Attempt #: X</span>
       <Problems
         problem1Notes={problem1Notes}
         problem3Notes={problem3Notes}
