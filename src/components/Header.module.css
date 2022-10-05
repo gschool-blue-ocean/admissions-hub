@@ -50,5 +50,10 @@
 }
 
 .dropdownmenu {
-  padding: 10px;
+  padding-top: 5px;
+}
+
+.nameDropdown{
+  color: #000000;
+  box-shadow: none;
 }
