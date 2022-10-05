@@ -60,12 +60,10 @@ function Header() {
       <div className={styles.header}>
         {/* <div className={styles.logo}></div> */}
         <button
-        className={styles.logo}
-        onClick={goLink}
-        name='dashboard'
-        >
-        </button>
-        
+          className={styles.logo}
+          onClick={goLink}
+          name="dashboard"
+        ></button>
 
         <div className={styles.para}>
           <div className={styles.innerPara}>{currentPage}</div>
@@ -73,18 +71,19 @@ function Header() {
         <div className={styles.para2}>{today}</div>
         {/* <div className={styles.para3}>{currentUser}</div> */}
 
-      <div className={styles.dropdownmenu}>
-        <Dropdown as={ButtonGroup} >
-        <Dropdown.Toggle id="dropdown-custom-1" className="btn-light">{currentUser}</Dropdown.Toggle>
-        <Dropdown.Menu className="super-colors">
-          <Dropdown.Item eventKey="1">Profile</Dropdown.Item>
-          <Dropdown.Item eventKey="2">Extra page</Dropdown.Item>
-          <Dropdown.Divider />
-          <Dropdown.Item eventKey="4"><BtnLogin /></Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
-      </div>
-
+        <div className={styles.dropdownmenu}>
+          <NavDropdown
+            id="nav-dropdown-dark-example"
+            title={currentUser}
+            menuVariant="light"
+          >
+            <NavDropdown.Item eventKey="1">Profile</NavDropdown.Item>
+            <NavDropdown.Item eventKey="2">Extra page</NavDropdown.Item>
+            <NavDropdown.Item>
+              <BtnLogin />
+            </NavDropdown.Item>
+          </NavDropdown>
+        </div>
       </div>
     </>
   );
