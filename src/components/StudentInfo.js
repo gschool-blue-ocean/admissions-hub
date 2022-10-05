@@ -8,15 +8,17 @@ import uuid from "react-uuid";
 import Problems from "./Problems";
 import Ratings from "./Ratings";
 import styles from "./AllRatings.module.css";
+import { useAppContext } from "./GlobalContext";
 
 const StudentInfo = ({ setStudents, students }) => {
+   const { info, setInfo } = useAppContext();
+   
   const [search, setSearch] = useState("");
   const [value, setValue] = useState(0);
   const [showAddStudent, setShowAddStudent] = useState(false);
-  const [info, setInfo] = useState([]);
+
   const [seeNotes, setSeeNotes] = useState(false);
   const [launchInterview, setLaunchInterview] = useState(false);
-  console.log(info);
   const handleChange = (event) => {
     setSearch(event.target.value);
   };
@@ -55,7 +57,7 @@ const StudentInfo = ({ setStudents, students }) => {
               boxShadow: "0px 0px 10px 5px #888888",
               margin: "10% auto",
               width: 600,
-              height: 650,
+              height: 680,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",

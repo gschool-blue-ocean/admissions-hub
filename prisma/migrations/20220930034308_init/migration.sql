@@ -1,3 +1,5 @@
+
+CREATE EXTENSION pgcrypto;
 -- CreateEnum
 CREATE TYPE "Role" AS ENUM ('BASIC', 'ADMIN');
 
@@ -15,15 +17,15 @@ CREATE TABLE "Candidates" (
 );
 
 -- CreateTable
-CREATE TABLE "Interviewers" (
-    "id" TEXT NOT NULL,
+CREATE TABLE "interviewers" (
+    "id" serial,
     "firstName" TEXT NOT NULL,
     "lastName" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "role" "Role" NOT NULL DEFAULT 'ADMIN',
+    "role" TEXT NOT NULL DEFAULT 'ADMIN',
 
-    CONSTRAINT "Interviewers_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "interviewers_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -36,3 +38,6 @@ CREATE TABLE "Interviews" (
 
 -- AddForeignKey
 ALTER TABLE "Interviews" ADD CONSTRAINT "Interviews_candidatesId_fkey" FOREIGN KEY ("candidatesId") REFERENCES "Candidates"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+insert into "interviewers" ("firstName", "lastName", "email", "password") values ('Danny', 'Andrew', 'test@gmail.com',  crypt('johnspassword', gen_salt('md5')));
+

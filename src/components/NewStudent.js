@@ -29,7 +29,6 @@ const NewStudent = ({
 
   const handleCohortChange = (event) => {
     setCohort(event.target.value);
-    console.log(cohort);
   };
 
   let newStudent = {
@@ -184,7 +183,6 @@ const NewStudent = ({
             onClick={() => {
               setStudents([...students, newStudent]);
               setShowAddStudent(!showAddStudent);
-              console.log(newStudent);
             }}
           >
             Create

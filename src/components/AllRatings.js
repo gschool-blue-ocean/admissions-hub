@@ -43,6 +43,7 @@ const AllRatings = () => {
                 transition: "stroke-dashoffset 0.35s",
                 transformOrigin: "50% 50%",
               }}
+              rotate="180deg"
               r={normalizedRadius}
               cx={radius}
               cy={radius}
