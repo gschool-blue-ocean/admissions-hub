@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Editor from "@monaco-editor/react";
 import MarkdownIt from "markdown-it";
 import Style from "./Problems.module.css";
+import Image from "next/image";
 
 const Problems = ({
   problem1Notes,
@@ -14,17 +14,18 @@ const Problems = ({
   const [seeProblem1, setSeeProblem1] = useState(true);
   const [seeProblem2, setSeeProblem2] = useState(false);
   const [seeProblem3, setSeeProblem3] = useState(false);
+  const [copied, setCopied] = useState(false);
 
-  let [markdownText, setMarkDownText] = useState("");
-  let [markdownText2, setMarkDownText2] = useState("");
-  let [markdownText3, setMarkDownText3] = useState("");
+  // let [markdownText, setMarkDownText] = useState("");
+  // let [markdownText2, setMarkDownText2] = useState("");
+  // let [markdownText3, setMarkDownText3] = useState("");
   let [renderedHTML, setRenderedHTML] = useState("");
   let [renderedHTML2, setRenderedHTML2] = useState("");
   let [renderedHTML3, setRenderedHTML3] = useState("");
   let [showNotes, setShowNotes] = useState(true);
 
   function handleTextInput(e) {
-    setMarkDownText(e.target.value);
+    setProblem1Notes(e.target.value);
 
     let md = new MarkdownIt();
 
@@ -34,7 +35,7 @@ const Problems = ({
   }
 
   function handleTextInput2(e) {
-    setMarkDownText2(e.target.value);
+    setProblem2Notes(e.target.value);
 
     let md2 = new MarkdownIt();
 
@@ -44,7 +45,7 @@ const Problems = ({
   }
 
   function handleTextInput3(e) {
-    setMarkDownText3(e.target.value);
+    setProblem3Notes(e.target.value);
 
     let md3 = new MarkdownIt();
 
@@ -92,7 +93,7 @@ return newStr;
   return (
     <div
       style={{
-        fontSize: 13,
+        fontSize: 12,
         borderTopLeftRadius: "10px 10px",
         borderTopRightRadius: "10px 10px",
       }}
@@ -101,7 +102,6 @@ return newStr;
         style={{
           display: "flex",
           justifyContent: "space-around",
-          // backgroundColor: "#DCDCDC;",
         }}
       >
         {seeProblem1 ? (
@@ -109,7 +109,7 @@ return newStr;
             style={{
               display: "flex",
               justifyContent: "center",
-              width: 180,
+              width: 220,
               backgroundColor: "#FFE8D3",
               borderTop: "1px solid #DD8D43",
               borderLeft: "1px solid #DD8D43",
@@ -118,6 +118,7 @@ return newStr;
               borderTopRightRadius: "10px 10px",
               paddingBottom: 5,
               paddingTop: 5,
+              transition: ".35s",
             }}
             onClick={() => {
               if (seeProblem1 === false) {
@@ -134,13 +135,14 @@ return newStr;
             style={{
               display: "flex",
               justifyContent: "center",
-              width: 180,
+              width: 140,
               backgroundColor: "#FFE8D3",
               border: "1px solid #DD8D43",
               borderTopLeftRadius: "10px 10px",
               borderTopRightRadius: "10px 10px",
               paddingBottom: 5,
               paddingTop: 5,
+              transition: ".35s",
             }}
             onClick={() => {
               if (seeProblem1 === false) {
@@ -159,7 +161,7 @@ return newStr;
             style={{
               display: "flex",
               justifyContent: "center",
-              width: 180,
+              width: 220,
               backgroundColor: "#FFE8D3",
               borderTop: "1px solid #DD8D43",
               borderLeft: "1px solid #DD8D43",
@@ -168,6 +170,7 @@ return newStr;
               borderTopRightRadius: "10px 10px",
               paddingBottom: 5,
               paddingTop: 5,
+              transition: ".35s",
             }}
             onClick={() => {
               if (seeProblem2 === false) {
@@ -184,13 +187,14 @@ return newStr;
             style={{
               display: "flex",
               justifyContent: "center",
-              width: 180,
+              width: 140,
               backgroundColor: "#FFE8D3",
               border: "1px solid #DD8D43",
               borderTopLeftRadius: "10px 10px",
               borderTopRightRadius: "10px 10px",
               paddingBottom: 5,
               paddingTop: 5,
+              transition: ".35s",
             }}
             onClick={() => {
               if (seeProblem2 === false) {
@@ -209,7 +213,7 @@ return newStr;
             style={{
               display: "flex",
               justifyContent: "center",
-              width: 180,
+              width: 220,
               backgroundColor: "#FFE8D3",
               borderTop: "1px solid #DD8D43",
               borderLeft: "1px solid #DD8D43",
@@ -218,6 +222,7 @@ return newStr;
               borderTopRightRadius: "10px 10px",
               paddingBottom: 5,
               paddingTop: 5,
+              transition: ".35s",
             }}
             onClick={() => {
               if (seeProblem3 === false) {
@@ -234,13 +239,14 @@ return newStr;
             style={{
               display: "flex",
               justifyContent: "center",
-              width: 180,
+              width: 140,
               backgroundColor: "#FFE8D3",
               border: "1px solid #DD8D43",
               borderTopLeftRadius: "10px 10px",
               borderTopRightRadius: "10px 10px",
               paddingBottom: 5,
               paddingTop: 5,
+              transition: ".35s",
             }}
             onClick={() => {
               if (seeProblem3 === false) {
@@ -265,35 +271,97 @@ return newStr;
           }}
         >
           <div style={{ paddingBottom: 10 }}>
-            <code>
-              <strong>Question 1:</strong> Working with Strings and Functions
-              Complete the logger function that takes in a function and a string
-              and returns the result of calling the function on each letter in
-              the string
-            </code>
+            <strong>Question 1:</strong> Working with Strings and Functions
+            Complete the logger function that takes in a function and a string
+            and returns the result of calling the function on each letter in the
+            string.
           </div>
-          <code>{problem1}</code>
-          {/* <Editor
-            height="150px"
-            width="520px"
-            defaultLanguage="javascript"
-            theme="vs-dark"
-            value={problem1}
-          /> */}
-          <div style={{ paddingTop: 20 }}>
+          <pre
+            style={{
+              display: "block",
+              fontFamily: "monospace",
+              whiteSpace: "pre",
+              margin: "1em 0px",
+            }}
+          >
+            <code
+              style={{
+                backgroundColor: "#eee",
+                border: "1px solid #999",
+                display: "block",
+                padding: "20px",
+              }}
+            >
+              {problem1}
+              <br></br>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignContent: "flex-end",
+                  alignItems: "flex-end",
+                }}
+              >
+                {copied
+                  ? setTimeout(() => {
+                      setCopied(!copied);
+                    }, 1000) && (
+                      <span
+                        style={{
+                          display: "flex",
+                          background: "black",
+                          color: "white",
+                          width: 50,
+                          justifyContent: "center",
+                          borderRadius: 5,
+                          opacity: 0.5,
+                        }}
+                      >
+                        Copied!
+                      </span>
+                    )
+                  : null}
+                <div style={{ paddingRight: 15 }}>
+                  <Image
+                    onClick={() => {
+                      navigator.clipboard.writeText(problem1);
+                      setCopied(!copied);
+                    }}
+                    src={"/images/copy.svg"}
+                    alt="/"
+                    objectFit="contain"
+                    objectPosition="bottom center"
+                    width={16}
+                    height={17}
+                  />
+                </div>
+              </div>
+            </code>
+          </pre>
+          <div>
             <strong>Notes:</strong>
           </div>
           {showNotes ? (
             <textarea
               rows={20}
-              value={markdownText}
+              value={problem1Notes}
               onChange={handleTextInput}
               onBlur={handleFocus2}
               autoFocus
-              style={{ width: 515, height: 100, resize: "none" }}
+              style={{
+                width: 378,
+                height: 150,
+                resize: "none",
+                scrollbarColor: "#ffe8d3 #dd8d43",
+              }}
             ></textarea>
           ) : (
             <div
+              style={{
+                width: "auto",
+                height: 150,
+                scrollbarColor: "#ffe8d3 #dd8d43",
+              }}
               dangerouslySetInnerHTML={{ __html: renderedHTML }}
               className={Style.ProblemsOneMarkdown}
               onClick={handleFocus1}
@@ -317,27 +385,83 @@ return newStr;
             another function, then returns a new array containing the results of
             calling the input function on each element in the array.
           </div>
-          <Editor
-            height="150px"
-            width="520px"
-            defaultLanguage="javascript"
-            theme="vs-dark"
-            value={problem2}
-          />
-          <div style={{ paddingTop: 20 }}>
+          <pre
+            style={{
+              display: "block",
+              fontFamily: "monospace",
+              whiteSpace: "pre",
+              margin: "1em 0px",
+            }}
+          >
+            <code
+              style={{
+                backgroundColor: "#eee",
+                border: "1px solid #999",
+                display: "block",
+                padding: "20px",
+              }}
+            >
+              {problem2}
+              <br></br>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignContent: "flex-end",
+                  alignItems: "flex-end",
+                }}
+              >
+                {copied
+                  ? setTimeout(() => {
+                      setCopied(!copied);
+                    }, 1000) && (
+                      <span
+                        style={{
+                          display: "flex",
+                          background: "black",
+                          color: "white",
+                          width: 50,
+                          justifyContent: "center",
+                          borderRadius: 5,
+                          opacity: 0.5,
+                        }}
+                      >
+                        Copied!
+                      </span>
+                    )
+                  : null}
+                <div style={{ paddingRight: 15 }}>
+                  <Image
+                    onClick={() => {
+                      navigator.clipboard.writeText(problem2);
+                      setCopied(!copied);
+                    }}
+                    src={"/images/copy.svg"}
+                    alt="/"
+                    objectFit="contain"
+                    objectPosition="bottom center"
+                    width={16}
+                    height={17}
+                  />
+                </div>
+              </div>
+            </code>
+          </pre>
+          <div>
             <strong>Notes:</strong>
           </div>
           {showNotes ? (
             <textarea
               rows={20}
-              value={markdownText2}
+              value={problem2Notes}
               onChange={handleTextInput2}
               onBlur={handleFocus2}
               autoFocus
-              style={{ width: 515, height: 100, resize: "none" }}
+              style={{ width: 378, height: 150, resize: "none" }}
             ></textarea>
           ) : (
             <div
+              style={{ width: "auto", height: 150 }}
               dangerouslySetInnerHTML={{ __html: renderedHTML2 }}
               className={Style.ProblemsOneMarkdown}
               onClick={handleFocus1}
@@ -361,27 +485,83 @@ return newStr;
             function that adds all properties of the first object to the second
             object and returns the second object.
           </div>
-          <Editor
-            height="150px"
-            width="520px"
-            defaultLanguage="javascript"
-            theme="vs-dark"
-            value={problem3}
-          />
-          <div style={{ paddingTop: 20 }}>
+          <pre
+            style={{
+              display: "block",
+              fontFamily: "monospace",
+              whiteSpace: "pre",
+              margin: "1em 0px",
+            }}
+          >
+            <code
+              style={{
+                backgroundColor: "#eee",
+                border: "1px solid #999",
+                display: "block",
+                padding: "20px",
+              }}
+            >
+              {problem3}
+              <br></br>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignContent: "flex-end",
+                  alignItems: "flex-end",
+                }}
+              >
+                {copied
+                  ? setTimeout(() => {
+                      setCopied(!copied);
+                    }, 1000) && (
+                      <span
+                        style={{
+                          display: "flex",
+                          background: "black",
+                          color: "white",
+                          width: 50,
+                          justifyContent: "center",
+                          borderRadius: 5,
+                          opacity: 0.5,
+                        }}
+                      >
+                        Copied!
+                      </span>
+                    )
+                  : null}
+                <div style={{ paddingRight: 15 }}>
+                  <Image
+                    onClick={() => {
+                      navigator.clipboard.writeText(problem3);
+                      setCopied(!copied);
+                    }}
+                    src={"/images/copy.svg"}
+                    alt="/"
+                    objectFit="contain"
+                    objectPosition="bottom center"
+                    width={16}
+                    height={17}
+                  />
+                </div>
+              </div>
+            </code>
+          </pre>
+          <div>
             <strong>Notes:</strong>
           </div>
           {showNotes ? (
             <textarea
               rows={20}
-              value={markdownText3}
+              value={problem3Notes}
               onChange={handleTextInput3}
               onBlur={handleFocus2}
               autoFocus
-              style={{ width: 515, height: 100, resize: "none" }}
+              style={{ width: 378, height: 150, resize: "none" }}
             ></textarea>
           ) : (
             <div
+              style={{ width: "auto", height: 150 }}
               dangerouslySetInnerHTML={{ __html: renderedHTML3 }}
               className={Style.ProblemsOneMarkdown}
               onClick={handleFocus1}
