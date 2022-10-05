@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import styles from './BtnLogin.module.css'
 
 function BtnInterviewer() {
     const router = useRouter()
@@ -13,6 +14,7 @@ function BtnInterviewer() {
         <button
         onClick={goLink}
         name='login'
+        className={styles.logoutBtn}
         >
         LOGOUT
         </button>
