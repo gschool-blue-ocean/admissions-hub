@@ -20,6 +20,10 @@ export default function RoomURL({ URL }) {
           alignItems: "center",
           backgroundColor: "#F0F0F0",
           borderRadius: 5,
+          fontSize: 12,
+          height: 35,
+          width: 430,
+          justifyContent: "center",
         }}
       >
         <div>Room URL: {asPath}</div>
@@ -45,6 +49,10 @@ export default function RoomURL({ URL }) {
         alignItems: "center",
         backgroundColor: "#F0F0F0",
         borderRadius: 5,
+        fontSize: 12,
+        height: 35,
+        width: 370,
+        justifyContent: "center",
       }}
     >
       <div>Room URL: {asPath}</div>
@@ -62,8 +70,8 @@ export default function RoomURL({ URL }) {
           alt="/"
           objectFit="contain"
           objectPosition="bottom center"
-          width={15}
-          height={15}
+          width={16}
+          height={17}
         />
       </button>
     </div>

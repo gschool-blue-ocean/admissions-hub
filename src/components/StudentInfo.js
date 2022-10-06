@@ -185,8 +185,8 @@ const StudentInfo = ({ setStudents, students }) => {
                   fontSize: 16,
                 }}
               >
-                <Link href={{ pathname: "/interview", query: { id: uuid() } }} >
-                  <a style={{color: "white"}}>Launch Interview</a>
+                <Link href={{ pathname: "/interview", query: { id: uuid() } }}>
+                  <a style={{ color: "white" }}>Launch Interview</a>
                 </Link>
               </button>
             ) : (

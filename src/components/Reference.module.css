@@ -15,10 +15,10 @@
 
 .referenceGrid {
   display: grid;
-  grid-template-columns: 260px 260px;
+  grid-template-columns: 210px 210px;
   grid-template-rows: 40px 40px 40px;
   grid-gap: 2px;
-  width: 506px;
+  width: 420px;
   gap: 2px;
   /* background-color: #000000; */
   padding: 2px;
@@ -28,7 +28,7 @@
   /* background-color: "#DCDCDC;"; */
   display: flex;
   padding: 20px;
-  font-size: 18px;
+  font-size: 14px;
   justify-content: flex-start;
   align-items: center;
 }

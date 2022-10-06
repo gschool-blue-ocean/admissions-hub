@@ -22,7 +22,7 @@ const Reference = ({
 
   return (
     <div>
-      <span style={{ fontSize: 15 }}>Suggested Study Material</span>
+      <span style={{ fontSize: 12 }}>Suggested Study Material</span>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <div className={styles.referenceGrid}>
           <div>
@@ -109,14 +109,13 @@ const Reference = ({
           </div>
         </div>
       </div>
-      <div>
-        <span style={{ fontSize: 14 }}>External Link</span>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <input
           onChange={handleChange}
           value={extraResources}
           placeholder="Insert external link"
           type="text"
-          style={{ width: 530, fontSize: 14 }}
+          style={{ width: 400, height: 32, fontSize: 12 }}
         ></input>
       </div>
     </div>
