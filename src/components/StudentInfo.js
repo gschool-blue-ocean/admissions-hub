@@ -10,8 +10,8 @@ import Ratings from "./Ratings";
 import { useAppContext } from "./GlobalContext";
 
 const StudentInfo = ({ setStudents, students }) => {
-   const { info, setInfo } = useAppContext();
-   
+  const { info, setInfo } = useAppContext();
+
   const [search, setSearch] = useState("");
   const [value, setValue] = useState(0);
   const [showAddStudent, setShowAddStudent] = useState(false);
