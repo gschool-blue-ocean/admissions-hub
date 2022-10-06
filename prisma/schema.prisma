@@ -10,18 +10,18 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Candidates {
+model candidates {
   id         String       @id @default(uuid())
   firstName  String
   lastName   String
   email      String
   cohort     String
   notes      String
-  Interviews Interviews[]
+  interviews interviews[]
   role       Role         @default(BASIC)
 }
 
-model Interviewers {
+model interviewers {
   id        String @id @default(uuid())
   firstName String
   lastName  String
@@ -30,9 +30,9 @@ model Interviewers {
   role      Role   @default(ADMIN)
 }
 
-model Interviews {
+model interviews {
   id           String     @id @default(uuid())
-  candidate    Candidates @relation(fields: [candidatesId], references: [id])
+  candidate    candidates @relation(fields: [candidatesId], references: [id])
   candidatesId String
 }
 
