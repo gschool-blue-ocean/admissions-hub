@@ -50,13 +50,12 @@ export default function CodeEditor({ input, setInput, sessionId}) {
         flexDirection: "column",
         width: "70%",
         height: "100%",
-        paddingLeft: 20,
-        paddingRight: 10,
+        padding: 20,
       }}
     >
       <Editor
         height="900px"
-        width="1000px"
+        width="1250px"
         defaultLanguage="javascript"
         defaultValue="//start typing code here"
         theme="vs-dark"

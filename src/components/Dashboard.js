@@ -4,7 +4,7 @@ import Ratings from "./Ratings";
 import Problems from "./Problems";
 import RoomURL from "./RoomURL";
 
-const Dashboard = () => {
+const Dashboard = ({ input }) => {
   const [value, setValue] = useState(0);
   const [problem1Notes, setProblem1Notes] = useState("");
   const [problem2Notes, setProblem2Notes] = useState("");
@@ -66,11 +66,12 @@ const Dashboard = () => {
   return (
     <div
       style={{
-        width: "560px",
+        width: "420px",
         // border: "2px solid black",
         padding: "10px",
         // backgroundColor: "#DCDCDC",
         // borderRadius: 10,
+        // marginLeft: 50,
       }}
     >
       <RoomURL />
@@ -116,12 +117,12 @@ const Dashboard = () => {
             }
           }}
           style={{
-            width: 280,
+            width: 220,
             height: 40,
             color: "white",
-            backgroundColor: "orange",
+            backgroundColor: "#DD8D43",
             border: "none",
-            fontSize: 20,
+            fontSize: 16,
           }}
         >
           Complete Interview

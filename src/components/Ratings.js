@@ -72,15 +72,21 @@ const Ratings = ({ setValue }) => {
 
   return (
     <div>
-      <span style={{ fontSize: 15 }}>Rating</span>
+      <span style={{ fontSize: 12 }}>Rating</span>
       <div
         style={{
           display: "flex",
           justifyContent: "space-around",
-          fontSize: 30,
+          fontSize: 16,
         }}
       >
-        <div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
           <div
             style={{
               display: "flex",
@@ -104,7 +110,7 @@ const Ratings = ({ setValue }) => {
                 }}
               >
                 {problem1a ? (
-                  <ImIcons.ImStarFull style={{ color: "orange" }} />
+                  <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
                 ) : (
                   <ImIcons.ImStarEmpty />
                 )}
@@ -124,7 +130,7 @@ const Ratings = ({ setValue }) => {
                 }}
               >
                 {problem1b ? (
-                  <ImIcons.ImStarFull style={{ color: "orange" }} />
+                  <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
                 ) : (
                   <ImIcons.ImStarEmpty />
                 )}
@@ -144,7 +150,7 @@ const Ratings = ({ setValue }) => {
                 }}
               >
                 {problem1c ? (
-                  <ImIcons.ImStarFull style={{ color: "orange" }} />
+                  <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
                 ) : (
                   <ImIcons.ImStarEmpty />
                 )}
@@ -164,7 +170,7 @@ const Ratings = ({ setValue }) => {
                 }}
               >
                 {problem1d ? (
-                  <ImIcons.ImStarFull style={{ color: "orange" }} />
+                  <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
                 ) : (
                   <ImIcons.ImStarEmpty />
                 )}
@@ -193,7 +199,7 @@ const Ratings = ({ setValue }) => {
                 }}
               >
                 {problem2a ? (
-                  <ImIcons.ImStarFull style={{ color: "orange" }} />
+                  <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
                 ) : (
                   <ImIcons.ImStarEmpty />
                 )}
@@ -213,7 +219,7 @@ const Ratings = ({ setValue }) => {
                 }}
               >
                 {problem2b ? (
-                  <ImIcons.ImStarFull style={{ color: "orange" }} />
+                  <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
                 ) : (
                   <ImIcons.ImStarEmpty />
                 )}
@@ -233,7 +239,7 @@ const Ratings = ({ setValue }) => {
                 }}
               >
                 {problem2c ? (
-                  <ImIcons.ImStarFull style={{ color: "orange" }} />
+                  <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
                 ) : (
                   <ImIcons.ImStarEmpty />
                 )}
@@ -253,7 +259,7 @@ const Ratings = ({ setValue }) => {
                 }}
               >
                 {problem2d ? (
-                  <ImIcons.ImStarFull style={{ color: "orange" }} />
+                  <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
                 ) : (
                   <ImIcons.ImStarEmpty />
                 )}
@@ -282,7 +288,7 @@ const Ratings = ({ setValue }) => {
                 }}
               >
                 {problem3a ? (
-                  <ImIcons.ImStarFull style={{ color: "orange" }} />
+                  <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
                 ) : (
                   <ImIcons.ImStarEmpty />
                 )}
@@ -302,7 +308,7 @@ const Ratings = ({ setValue }) => {
                 }}
               >
                 {problem3b ? (
-                  <ImIcons.ImStarFull style={{ color: "orange" }} />
+                  <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
                 ) : (
                   <ImIcons.ImStarEmpty />
                 )}
@@ -322,7 +328,7 @@ const Ratings = ({ setValue }) => {
                 }}
               >
                 {problem3c ? (
-                  <ImIcons.ImStarFull style={{ color: "orange" }} />
+                  <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
                 ) : (
                   <ImIcons.ImStarEmpty />
                 )}
@@ -342,7 +348,7 @@ const Ratings = ({ setValue }) => {
                 }}
               >
                 {problem3d ? (
-                  <ImIcons.ImStarFull style={{ color: "orange" }} />
+                  <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
                 ) : (
                   <ImIcons.ImStarEmpty />
                 )}
@@ -362,7 +368,7 @@ const Ratings = ({ setValue }) => {
               cy={radius}
             />
             <circle
-              stroke="orange"
+              stroke="#DD8D43"
               fill="transparent"
               strokeWidth={stroke}
               strokeDasharray={circumference + " " + circumference}
@@ -381,8 +387,8 @@ const Ratings = ({ setValue }) => {
               x="50%"
               y="56%"
               text-anchor="middle"
-              fill="orange"
-              strokeWidth="0"
+              fill="#DD8D43"
+              fontSize="23"
             >
               {((rating / 12) * 100).toFixed(0)}%
             </text>

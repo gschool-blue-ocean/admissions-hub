@@ -1,19 +1,67 @@
 import { useRouter } from "next/router";
+import { useState } from "react";
+import { useAppContext } from "../../src/components/GlobalContext";
+import axios from "axios";
 import { Form, Button, Card } from "react-bootstrap";
 import styles from "./LoginPageStyle.module.css";
 
-
 export default function AdminLogin() {
   const router = useRouter();
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    router.push("/dashboard");
+
+  const { setShowWarning } = useAppContext();
+  
+   const [loginForm, setLoginForm] = useState({
+     email: "",
+     password: "",
+   });
+  
+  
+
+   const { email, password } = loginForm;
+   const onChangeLoginForm = (event) =>
+     setLoginForm(
+       //se computed property to update properties in state loginForm
+       { ...loginForm, [event.target.name]: event.target.value },
+       //console log to see if it works
+       
+     );
+  const loginAdmin = async (loginForm) => {
+    try {
+      const response = await axios.post("/api/admin", loginForm);
+     
+      if (response.data.connect) {
+        return response.data;
+      } else {
+        return "Wrong username or password";
+      }
+    } catch (error) {
+      throw error;
+   
+    }
   };
+  
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      //get data from loginUser, login form is user's input
+      const loginData = await loginAdmin(loginForm);
+      // console.log("login data ", loginData);
+      //if login is successful, redirect to home page dashboard
+      if (loginData.connect) {
+        router.push("/dashboard");
+      } else {
+        setShowWarning(true);
+        setTimeout(() => {
+          setShowWarning(false);
+        }, 3000);
+      }
+    } catch (error) {
+     throw error;
+    }
+  };
+  
   return (
     <>
-      <p>
-        *Invalid username or password!
-      </p>
       <Card
         style={{
           width: "35%",
@@ -31,10 +79,13 @@ export default function AdminLogin() {
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Control
                     type="text"
-                    placeholder="Username"
+                    placeholder="Email"
+                    name="email"
                     style={{
                       backgroundColor: "#D9D9D9",
                     }}
+                     value={email}
+                    onChange={onChangeLoginForm}
                   />
                 </Form.Group>
 
@@ -42,9 +93,12 @@ export default function AdminLogin() {
                   <Form.Control
                     type="password"
                     placeholder="Password"
+                    name="password"
                     style={{
                       backgroundColor: "#D9D9D9",
                     }}
+                     value={password}
+                    onChange={onChangeLoginForm}
                   />
                 </Form.Group>
 
@@ -55,6 +109,7 @@ export default function AdminLogin() {
                     backgroundColor: "#DD8D43",
                     width: 116,
                   }}
+                  
                 >
                   login
                 </Button>

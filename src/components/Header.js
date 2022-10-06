@@ -5,10 +5,10 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useRouter } from "next/router";
-import BtnLogin from './BtnLogin';
-import Button from 'react-bootstrap/Button';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Dropdown from 'react-bootstrap/Dropdown';
+import BtnLogin from "./BtnLogin";
+import Button from "react-bootstrap/Button";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import Dropdown from "react-bootstrap/Dropdown";
 
 function Header() {
   let currentPage = "";
@@ -47,12 +47,12 @@ function Header() {
   var yyyy = today.getFullYear();
   today = mm + ", " + dd + " " + yyyy;
 
-  const router = useRouter()
+  const router = useRouter();
   function goLink(event, data) {
-      // console.log()
-      if (event.target.name === 'dashboard') {
-          router.push('../dashboard')
-      }
+    // console.log()
+    if (event.target.name === "dashboard") {
+      router.push("../dashboard");
+    }
   }
 
   return (

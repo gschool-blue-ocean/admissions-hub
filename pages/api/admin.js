@@ -19,18 +19,29 @@ pool.connect((err) => {
 });
 
 export default function handler(req, res) {
-  pool.query(
-    "select * from interviewers WHERE email = 'test@gmail.com' AND password = crypt('danny', password)",
-    (err, result) => {
-      if (err) {
-        console.error(err);
-        res.status(500).send("Error");
-      }
-      if (result.rows.length === 0) {
-        res.status(404).send("Wrong username or password");
-      } else {
-        res.status(200).json(result.rows[0]);
-      }
-    }
-  );
+  if (req.method === "POST") {
+    // Process a POST request
+    const { email, password } = req.body;
+    pool.query(
+      "SELECT * FROM interviewers WHERE email = $1 and password = crypt($2, password)",
+      [email, password],
+       (err, result) => {
+         if (err) {
+           console.error(err);
+           res.status(500).send("Error");
+         }
+         else {
+           if (result.rows.length > 0) {
+             res.status(200).json({ connect: true, ...result.rows[0] });
+             
+           } else {
+             res.status(200).send({ connect: false });
+           }
+         }
+        }
+     );
+  } else {
+    // Handle any other HTTP method
+    res.status(405).send("Method not allowed");
+  }
 }
