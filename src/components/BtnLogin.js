@@ -1,9 +1,12 @@
 import { useRouter } from 'next/router';
 import styles from './BtnLogin.module.css'
+import { useAppContext } from "./GlobalContext";
 
 function BtnInterviewer() {
+    const { setShowWarning } = useAppContext();
     const router = useRouter()
-    function goLink(event, data) {
+  function goLink(event, data) {
+      setShowWarning(false);
         // console.log()
         if (event.target.name === 'login') {
             router.push('../login')
