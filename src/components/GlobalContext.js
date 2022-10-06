@@ -4,11 +4,12 @@ const AppContext = createContext();
 
 export function AppWrapper({ children }) {
   const [info, setInfo] = useState([]);
-    let dummyData = {name: "test234"}
+  const [showWarning, setShowWarning] = useState(false);
   let sharedState = {
-    dummyData,
     info,
     setInfo,
+    showWarning,
+    setShowWarning,
   };
 
   return (
