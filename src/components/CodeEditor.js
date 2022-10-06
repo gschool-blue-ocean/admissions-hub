@@ -6,7 +6,7 @@ import { useState } from "react";
 let socket;
 
 export default function CodeEditor({ input, setInput, sessionId}) {
-  // const [input, setInput] = useState("");
+
   const [codeReturn, setCodeReturn] = useState([])
 
   const onChangeHandler = (e) => {
@@ -19,17 +19,16 @@ export default function CodeEditor({ input, setInput, sessionId}) {
     socketInitializer();
   }, []);
 
+  //evaluates input from code editor, sends to backend for processing, and sets return in codeReturn state
   const handleRun = async (input) => {
     const data = await axios.post('/api/codeEval', {
       code: input
     })
-    console.log(data.data[0])
-    setCodeReturn([data.data[0]])
+    console.log(data.data)
+    setCodeReturn([...data.data])
   }
-  const clearConsole = () => {
-    setCodeReturn([])
-  }
-
+ 
+  //initialized socket session
   const socketInitializer = async () => {
     await fetch("/api/socket");
     socket = io();
@@ -54,8 +53,8 @@ export default function CodeEditor({ input, setInput, sessionId}) {
       }}
     >
       <Editor
-        height="900px"
-        width="1250px"
+        height="50rem"
+        width="50rem"
         defaultLanguage="javascript"
         defaultValue="//start typing code here"
         theme="vs-dark"
