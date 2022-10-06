@@ -1,10 +1,11 @@
 import React from "react";
+import styles from "./AllRatings.module.css";
 
 const AllRatings = () => {
   ////// Circle 1
 
   const Qtr = () => {
-    let radius = 100;
+    let radius = 92;
     let stroke = 15;
     let value = 65;
     let normalizedRadius = radius - stroke * 2;
@@ -13,16 +14,16 @@ const AllRatings = () => {
     const strokeDashoffset = circumference - (value / 69) * circumference;
 
     return (
-      <div
+      <div 
         style={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          borderRight: "solid gray",
+          borderRight: "1px solid #979797",
         }}
       >
-        <span style={{ fontSize: 20 }}>Fiscal QTR</span>
-        <div>
+        <span style={{ fontSize: 20, color:"#979797" }}>Fiscal QTR</span>
+        <div className={styles.circles}>
           <svg height={radius * 2} width={radius * 2}>
             <circle
               stroke="#ffd8a7"
@@ -33,14 +34,13 @@ const AllRatings = () => {
               cy={radius}
             />
             <circle
-              stroke="orange"
+              stroke="#DD8D43"
               fill="transparent"
               strokeWidth={stroke}
               strokeDasharray={circumference + " " + circumference}
               style={{
                 strokeDashoffset,
                 transition: "stroke-dashoffset 0.35s",
-                transform: "rotate(-90deg)",
                 transformOrigin: "50% 50%",
               }}
               rotate="180deg"
@@ -50,28 +50,30 @@ const AllRatings = () => {
             />
             <text
               x="50%"
-              y="53%"
+              y="56%"
               textAnchor="middle"
-              stroke="orange"
+              fill="#DD8D43"
               strokeWidth="1px"
-              fontSize={20}
+              fontSize={36}
+              fontFamily={"League Spartan"}
+              fontWeight={300}
             >
               {((value / 69) * 100).toFixed(0)}%
             </text>
           </svg>
         </div>
-        <div style={{ display: "flex", paddingRight: 30 }}>
-          <div style={{ fontSize: 15, paddingRight: 30 }}>
+        <div style={{ display: "flex", justifyContent:"space-around"}}>
+          <div style={{ fontSize: 15, paddingRight: 30, color:"#979797" }}>
             Total Interviews: 65
           </div>
-          <div style={{ fontSize: 15 }}>Passing Interviews: 69</div>
+          <div style={{ fontSize: 15, color:"#979797" }}>Passing Interviews: 69</div>
         </div>
       </div>
     );
   };
 
   const Year = () => {
-    let radius2 = 100;
+    let radius2 = 92;
     let stroke2 = 15;
     let value2 = 65;
     let normalizedRadius2 = radius2 - stroke2 * 2;
@@ -87,7 +89,7 @@ const AllRatings = () => {
           alignItems: "center",
         }}
       >
-        <span style={{ fontSize: 20 }}>Fiscal Year</span>
+        <span style={{ fontSize: 20, color:"#979797" }}>Fiscal Year</span>
         <div>
           <svg height={radius2 * 2} width={radius2 * 2}>
             <circle
@@ -99,14 +101,13 @@ const AllRatings = () => {
               cy={radius2}
             />
             <circle
-              stroke="orange"
+              stroke="#DD8D43"
               fill="transparent"
               strokeWidth={stroke2}
               strokeDasharray={circumference2 + " " + circumference2}
               style={{
                 strokeDashoffset,
                 transition: "stroke-dashoffset 0.35s",
-                transform: "rotate(-90deg)",
                 transformOrigin: "50% 50%",
               }}
               r={normalizedRadius2}
@@ -115,21 +116,23 @@ const AllRatings = () => {
             />
             <text
               x="50%"
-              y="53%"
+              y="56%"
               textAnchor="middle"
-              stroke="orange"
+              fill="#DD8D43"
               strokeWidth="1px"
-              fontSize={20}
+              fontSize={36}
+              fontFamily={"League Spartan"}
+              fontWeight={300}
             >
               {((value2 / 69) * 100).toFixed(0)}%
             </text>
           </svg>
         </div>
-        <div style={{ display: "flex" }}>
-          <div style={{ fontSize: 15, paddingRight: 30 }}>
+        <div style={{ display: "flex", justifyContent:"space-around" }}>
+          <div style={{ fontSize: 15, paddingRight: 30, color:"#979797" }}>
             Total Interviews: 65
           </div>
-          <div style={{ fontSize: 15 }}>Passing Interviews: 69</div>
+          <div style={{ fontSize: 15, color:"#979797" }}>Passing Interviews: 69</div>
         </div>
       </div>
     );
@@ -139,9 +142,9 @@ const AllRatings = () => {
     <div
       style={{
         display: "flex",
-        backgroundColor: "#DCDCDC",
-        borderRadius: 10,
-        marginBottom: 10,
+        backgroundColor: "#f0f0f0",
+        borderRadius: "10px 10px 0px 0px",
+        marginBottom: 5,
       }}
     >
       <div style={{ width: 365 }}>
