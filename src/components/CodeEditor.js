@@ -25,7 +25,7 @@ export default function CodeEditor({ input, setInput, sessionId}) {
       code: input
     })
     console.log(data.data)
-    setCodeReturn([...data.data])
+    setCodeReturn(data.data)
   }
  
   //initialized socket session
