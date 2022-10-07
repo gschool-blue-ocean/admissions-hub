@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Reference from "./Reference";
 import Ratings from "./Ratings";
 import Problems from "./Problems";
+import RoomURL from "./RoomURL";
 
 const Dashboard = ({ input }) => {
   const [value, setValue] = useState(0);
@@ -73,6 +74,7 @@ const Dashboard = ({ input }) => {
         // marginLeft: 50,
       }}
     >
+      <RoomURL />
       <Problems
         problem1Notes={problem1Notes}
         problem3Notes={problem3Notes}

@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Editor from "@monaco-editor/react";
 import io from "Socket.IO-client";
+import axios from "axios";
+import { useState } from "react";
 let socket;
 
 export default function CodeEditor({ input, setInput, sessionId }) {
-  // const [input, setInput] = useState("");
+  const [codeReturn, setCodeReturn] = useState([]);
+
   const onChangeHandler = (e) => {
     setInput(e);
     socket.emit("input-change", e, sessionId);
@@ -15,6 +18,16 @@ export default function CodeEditor({ input, setInput, sessionId }) {
     socketInitializer();
   }, []);
 
+  //evaluates input from code editor, sends to backend for processing, and sets return in codeReturn state
+  const handleRun = async (input) => {
+    const data = await axios.post("/api/codeEval", {
+      code: input,
+    });
+    console.log(data.data);
+    setCodeReturn(data.data);
+  };
+
+  //initialized socket session
   const socketInitializer = async () => {
     await fetch("/api/socket");
     socket = io();
@@ -32,6 +45,7 @@ export default function CodeEditor({ input, setInput, sessionId }) {
     <div
       style={{
         display: "flex",
+        flexDirection: "column",
         width: "70%",
         height: "80",
         padding: 20,
@@ -45,6 +59,20 @@ export default function CodeEditor({ input, setInput, sessionId }) {
         value={input}
         onChange={(e) => onChangeHandler(e)}
       />
+      <button onClick={() => handleRun(input)}>Run</button>
+      <div
+        style={{
+          background: "black",
+          width: "full",
+          height: "120px",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        {codeReturn.map((line) => (
+          <span style={{ color: "white" }}>{`> ${line}`}</span>
+        ))}
+      </div>
     </div>
   );
 }
