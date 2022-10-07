@@ -16,14 +16,18 @@ function Header() {
   let { asPath } = useRouter();
 
   switch (asPath) {
-    case "/dashboard":
-      currentPage = "Interview Dashboard";
+    case asPath.includes("/interview"):
+      currentPage = "Interview App";
       currentUser = "Danny Andrews";
       break;
     case "/login":
       currentPage = "Interview Login";
       currentUser = "";
       break;
+    case "/dashboard":
+        currentPage = "Interview Dashboard";
+        currentUser = "Danny Andrews";
+        break;
   }
 
   const monthNames = [

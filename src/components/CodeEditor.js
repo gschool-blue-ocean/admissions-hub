@@ -32,19 +32,22 @@ export default function CodeEditor({ input, setInput, sessionId }) {
     <div
       style={{
         display: "flex",
-        width: "70%",
+        width: "100%",
         height: "100%",
         padding: 20,
       }}
     >
       <Editor
         height="900px"
-        width="1250px"
         defaultLanguage="javascript"
         defaultValue="//start typing code here"
         theme="vs-dark"
         value={input}
         onChange={(e) => onChangeHandler(e)}
+        style={{
+          width: "auto",
+          height: "auto",
+        }}
       />
     </div>
   );
