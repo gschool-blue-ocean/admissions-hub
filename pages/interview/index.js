@@ -2,12 +2,12 @@ import CodeEditor from "../../src/components/CodeEditor";
 import Dashboard from "../../src/components/Dashboard";
 import Header from "../../src/components/Header";
 import Footer from "../../src/components/Footer";
-import RoomURL from "../../src/components/RoomURL";
 import { useState } from "react";
 
 
 function id({ id }) {
   const [input, setInput] = useState("");
+
   return (
     <>
       <Header  />
@@ -34,9 +34,6 @@ function id({ id }) {
               color:"#979797"
             }}
           >
-            <span style={{ fontSize: 20 }}>
-              First Last, MCSP-X, Attempt #: X
-            </span>
             <RoomURL URL={id}/>
           <Dashboard input={input} />
           </div>

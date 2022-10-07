@@ -3,7 +3,7 @@ import Reference from "./Reference";
 import Ratings from "./Ratings";
 import Problems from "./Problems";
 import styles from "./AllRatings.module.css";
-
+import RoomURL from "./RoomURL";
 
 const Dashboard = ({ input }) => {
   const [value, setValue] = useState(0);
@@ -77,6 +77,7 @@ const Dashboard = ({ input }) => {
 
       }}
     >
+      <RoomURL />
       <Problems
         problem1Notes={problem1Notes}
         problem3Notes={problem3Notes}
