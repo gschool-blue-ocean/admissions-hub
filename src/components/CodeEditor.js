@@ -46,7 +46,7 @@ export default function CodeEditor({ input, setInput, sessionId}) {
     <div
       style={{
         display: "flex",
-
+        flexDirection: "column",
         width: "100%",
         height: "100%",
         padding: 20,

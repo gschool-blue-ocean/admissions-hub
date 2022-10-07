@@ -3,7 +3,7 @@ import Dashboard from "../../src/components/Dashboard";
 import Header from "../../src/components/Header";
 import Footer from "../../src/components/Footer";
 import { useState } from "react";
-
+import RoomURL from "../../src/components/RoomURL";
 
 function id({ id }) {
   const [input, setInput] = useState("");

@@ -77,7 +77,7 @@ const Dashboard = ({ input }) => {
 
       }}
     >
-      <RoomURL />
+      {/* <RoomURL /> */}
       <Problems
         problem1Notes={problem1Notes}
         problem3Notes={problem3Notes}
