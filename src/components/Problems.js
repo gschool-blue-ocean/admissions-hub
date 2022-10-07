@@ -17,9 +17,6 @@ const Problems = ({
   const [seeProblem3, setSeeProblem3] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  // let [markdownText, setMarkDownText] = useState("");
-  // let [markdownText2, setMarkDownText2] = useState("");
-  // let [markdownText3, setMarkDownText3] = useState("");
   let [renderedHTML, setRenderedHTML] = useState("");
   let [renderedHTML2, setRenderedHTML2] = useState("");
   let [renderedHTML3, setRenderedHTML3] = useState("");
@@ -122,7 +119,7 @@ return newStr;
               transition: ".35s",
               cursor: "pointer",
               fontFamily: "League Spartan",
-              color:"#979797"
+              color: "#979797",
             }}
             onClick={() => {
               if (seeProblem1 === false) {
@@ -148,7 +145,7 @@ return newStr;
               transition: ".35s",
               cursor: "pointer",
               fontFamily: "League Spartan",
-              color:"#979797"
+              color: "#979797",
             }}
             onClick={() => {
               if (seeProblem1 === false) {
@@ -178,7 +175,7 @@ return newStr;
               transition: ".35s",
               cursor: "pointer",
               fontFamily: "League Spartan",
-              color:"#979797"
+              color: "#979797",
             }}
             onClick={() => {
               if (seeProblem2 === false) {
@@ -204,7 +201,7 @@ return newStr;
               transition: ".35s",
               cursor: "pointer",
               fontFamily: "League Spartan",
-              color:"#979797"
+              color: "#979797",
             }}
             onClick={() => {
               if (seeProblem2 === false) {
@@ -234,7 +231,7 @@ return newStr;
               transition: ".35s",
               cursor: "pointer",
               fontFamily: "League Spartan",
-              color:"#979797"
+              color: "#979797",
             }}
             onClick={() => {
               if (seeProblem3 === false) {
@@ -260,7 +257,7 @@ return newStr;
               transition: ".35s",
               cursor: "pointer",
               fontFamily: "League Spartan",
-              color:"#979797"
+              color: "#979797",
             }}
             onClick={() => {
               if (seeProblem3 === false) {
@@ -285,7 +282,9 @@ return newStr;
           }}
         >
           <div style={{ padding: "0px 5px 2px", color: "black" }}>
-            <span style={{ fontFamily: "League Spartan", color:"#979797" }}>Question 1:</span>{" "}
+            <span style={{ fontFamily: "League Spartan", color: "#979797" }}>
+              Question 1:
+            </span>{" "}
             Working with Strings and Functions Complete the logger function that
             takes in a function and a string and returns the result of calling
             the function on each letter in the string.
@@ -302,7 +301,7 @@ return newStr;
                 backgroundColor: "#FFFAF5",
                 display: "block",
                 paddingLeft: "5px",
-                color: "#DD8D43"
+                color: "#DD8D43",
               }}
             >
               {problem1}
@@ -360,7 +359,7 @@ return newStr;
               fontFamily: "League Spartan",
               marginTop: "-15px",
               paddingLeft: 2,
-              color:"#979797"
+              color: "#979797",
             }}
           >
             Notes:
@@ -370,8 +369,8 @@ return newStr;
               rows={20}
               value={problem1Notes}
               onChange={handleTextInput}
-              // onBlur={handleFocus2}
-              // autoFocus
+              onBlur={handleFocus2}
+              autoFocus
               style={{
                 width: "100%",
                 backgroundColor: "#ffe8d3",
@@ -406,8 +405,10 @@ return newStr;
             padding: 5,
           }}
         >
-          <div style={{ padding: "0px 5px 2px",color: "black" }}>
-            <span style={{ fontFamily: "League Spartan", color:"#979797" }}>Question 2:</span>{" "}
+          <div style={{ padding: "0px 5px 2px", color: "black" }}>
+            <span style={{ fontFamily: "League Spartan", color: "#979797" }}>
+              Question 2:
+            </span>{" "}
             Working with Arrays and Functions Complete the createNewArray
             function that takes in an array and another function, then returns a
             new array containing the results of calling the input function on
@@ -482,7 +483,7 @@ return newStr;
               fontFamily: "League Spartan",
               marginTop: "-15px",
               paddingLeft: 2,
-              color:"#979797"
+              color: "#979797",
             }}
           >
             Notes:
@@ -492,18 +493,25 @@ return newStr;
               rows={20}
               value={problem2Notes}
               onChange={handleTextInput2}
+              onBlur={handleFocus2}
+              autoFocus
               style={{
-                width: 378,
-                height: 175,
-                resize: "none",
+                width: "100%",
                 backgroundColor: "#ffe8d3",
                 outline: "none",
                 border: "none",
+                height: 175,
+                resize: "none",
+                scrollbarColor: "#ffe8d3 #dd8d43",
               }}
             ></textarea>
           ) : (
             <div
-              style={{ width: "auto", height: 175 }}
+              style={{
+                width: "auto",
+                height: 175,
+                scrollbarColor: "#ffe8d3 #dd8d43",
+              }}
               dangerouslySetInnerHTML={{ __html: renderedHTML2 }}
               className={Style.ProblemsOneMarkdown}
               onClick={handleFocus1}
@@ -521,8 +529,10 @@ return newStr;
             padding: 5,
           }}
         >
-          <div style={{ padding: "0px 5px 2px",color: "black" }}>
-            <span style={{ fontFamily: "League Spartan", color:"#979797" }}>Question 3:</span>{" "}
+          <div style={{ padding: "0px 5px 2px", color: "black" }}>
+            <span style={{ fontFamily: "League Spartan", color: "#979797" }}>
+              Question 3:
+            </span>{" "}
             Working with Objects Given two objects as parameters "obj1" and
             "obj2", complete the addPropertiesToObject function that adds all
             properties of the first object to the second object and returns the
@@ -597,7 +607,7 @@ return newStr;
               fontFamily: "League Spartan",
               marginTop: "-15px",
               paddingLeft: 2,
-              color:"#979797"
+              color: "#979797",
             }}
           >
             Notes:
@@ -607,18 +617,25 @@ return newStr;
               rows={20}
               value={problem3Notes}
               onChange={handleTextInput3}
+              onBlur={handleFocus2}
+              autoFocus
               style={{
-                width: 378,
-                height: 175,
-                resize: "none",
+                width: "100%",
                 backgroundColor: "#ffe8d3",
                 outline: "none",
                 border: "none",
+                height: 175,
+                resize: "none",
+                scrollbarColor: "#ffe8d3 #dd8d43",
               }}
             ></textarea>
           ) : (
             <div
-              style={{ width: "auto", height: 175 }}
+              style={{
+                width: "auto",
+                height: 175,
+                scrollbarColor: "#ffe8d3 #dd8d43",
+              }}
               dangerouslySetInnerHTML={{ __html: renderedHTML3 }}
               className={Style.ProblemsOneMarkdown}
               onClick={handleFocus1}

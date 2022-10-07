@@ -1,6 +1,7 @@
 .ProblemsOneMarkdown {
   width: 100%;
   height: auto;
-  /* overflow: scroll; */
-  /* padding: 10px; */
+  overflow: scroll;
+  padding: 10px;
+  color: black;
 }
