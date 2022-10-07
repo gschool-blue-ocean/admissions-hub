@@ -46,20 +46,23 @@ export default function CodeEditor({ input, setInput, sessionId}) {
     <div
       style={{
         display: "flex",
-        flexDirection: "column",
-        width: "70%",
+
+        width: "100%",
         height: "100%",
         padding: 20,
       }}
     >
       <Editor
-        height="50rem"
-        width="50rem"
+        height="900px"
         defaultLanguage="javascript"
         defaultValue="//start typing code here"
         theme="vs-dark"
         value={input}
         onChange={(e) => onChangeHandler(e)}
+        style={{
+          width: "auto",
+          height: "auto",
+        }}
       />
       <button onClick={() => handleRun(input)}>Run</button>
       <div style={{

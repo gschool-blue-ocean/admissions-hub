@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import * as ImIcons from "react-icons/im";
+import styles from "./AllRatings.module.css";
+
 
 const Ratings = ({ setValue }) => {
   const [problem1a, setProblem1a] = useState(false);
@@ -71,8 +73,8 @@ const Ratings = ({ setValue }) => {
   ///////////CIRCLE///////////////
 
   return (
-    <div>
-      <span style={{ fontSize: 12 }}>Rating</span>
+    <div className={styles} style={{marginTop: "-8px"}}>
+      <span style={{ fontSize: 12, fontFamily:"League Spartan", paddingLeft: 7, color:"#979797" }}>Rating</span>
       <div
         style={{
           display: "flex",
@@ -90,11 +92,11 @@ const Ratings = ({ setValue }) => {
           <div
             style={{
               display: "flex",
-              paddingTop: 5,
+              marginTop: "-15px"
             }}
           >
-            <div style={{ paddingRight: 30 }}>Problem 1</div>
-            <div style={{ display: "flex" }}>
+            <div style={{ paddingRight: 30, color:"#979797" }}>Problem 1</div>
+            <div style={{ display: "flex", marginTop: "-2px" }}>
               <div
                 onClick={() => {
                   setProblem1a(!problem1a);
@@ -112,7 +114,7 @@ const Ratings = ({ setValue }) => {
                 {problem1a ? (
                   <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
                 ) : (
-                  <ImIcons.ImStarEmpty />
+                  <ImIcons.ImStarFull className={styles.empty} />
                 )}
               </div>
               <div
@@ -132,7 +134,7 @@ const Ratings = ({ setValue }) => {
                 {problem1b ? (
                   <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
                 ) : (
-                  <ImIcons.ImStarEmpty />
+                  <ImIcons.ImStarFull className={styles.empty} />
                 )}
               </div>
               <div
@@ -152,7 +154,7 @@ const Ratings = ({ setValue }) => {
                 {problem1c ? (
                   <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
                 ) : (
-                  <ImIcons.ImStarEmpty />
+                  <ImIcons.ImStarFull className={styles.empty} />
                 )}
               </div>
               <div
@@ -172,7 +174,7 @@ const Ratings = ({ setValue }) => {
                 {problem1d ? (
                   <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
                 ) : (
-                  <ImIcons.ImStarEmpty />
+                  <ImIcons.ImStarFull className={styles.empty}/>
                 )}
               </div>
             </div>
@@ -182,8 +184,8 @@ const Ratings = ({ setValue }) => {
               display: "flex",
             }}
           >
-            <div style={{ paddingRight: 30 }}>Problem 2</div>
-            <div style={{ display: "flex" }}>
+            <div style={{ paddingRight: 30, color:"#979797" }}>Problem 2</div>
+            <div style={{ display: "flex", marginTop: "-2px" }}>
               <div
                 onClick={() => {
                   setProblem2a(!problem2a);
@@ -201,7 +203,7 @@ const Ratings = ({ setValue }) => {
                 {problem2a ? (
                   <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
                 ) : (
-                  <ImIcons.ImStarEmpty />
+                  <ImIcons.ImStarFull className={styles.empty}/>
                 )}
               </div>
               <div
@@ -221,7 +223,7 @@ const Ratings = ({ setValue }) => {
                 {problem2b ? (
                   <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
                 ) : (
-                  <ImIcons.ImStarEmpty />
+                  <ImIcons.ImStarFull className={styles.empty}/>
                 )}
               </div>
               <div
@@ -241,7 +243,7 @@ const Ratings = ({ setValue }) => {
                 {problem2c ? (
                   <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
                 ) : (
-                  <ImIcons.ImStarEmpty />
+                  <ImIcons.ImStarFull className={styles.empty}/>
                 )}
               </div>
               <div
@@ -261,7 +263,7 @@ const Ratings = ({ setValue }) => {
                 {problem2d ? (
                   <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
                 ) : (
-                  <ImIcons.ImStarEmpty />
+                  <ImIcons.ImStarFull className={styles.empty}/>
                 )}
               </div>
             </div>
@@ -271,8 +273,8 @@ const Ratings = ({ setValue }) => {
               display: "flex",
             }}
           >
-            <div style={{ paddingRight: 30 }}>Problem 3</div>
-            <div style={{ display: "flex" }}>
+            <div style={{ paddingRight: 30, color:"#979797" }}>Problem 3</div>
+            <div style={{ display: "flex", marginTop: "-2px" }}>
               <div
                 onClick={() => {
                   setProblem3a(!problem3a);
@@ -290,7 +292,7 @@ const Ratings = ({ setValue }) => {
                 {problem3a ? (
                   <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
                 ) : (
-                  <ImIcons.ImStarEmpty />
+                  <ImIcons.ImStarFull className={styles.empty}/>
                 )}
               </div>
               <div
@@ -310,7 +312,7 @@ const Ratings = ({ setValue }) => {
                 {problem3b ? (
                   <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
                 ) : (
-                  <ImIcons.ImStarEmpty />
+                  <ImIcons.ImStarFull className={styles.empty}/>
                 )}
               </div>
               <div
@@ -330,7 +332,7 @@ const Ratings = ({ setValue }) => {
                 {problem3c ? (
                   <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
                 ) : (
-                  <ImIcons.ImStarEmpty />
+                  <ImIcons.ImStarFull className={styles.empty}/>
                 )}
               </div>
               <div
@@ -350,14 +352,14 @@ const Ratings = ({ setValue }) => {
                 {problem3d ? (
                   <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
                 ) : (
-                  <ImIcons.ImStarEmpty />
+                  <ImIcons.ImStarFull className={styles.empty}/>
                 )}
               </div>
             </div>
           </div>
         </div>
         <div>
-          <svg height={radius * 2} width={radius * 2}>
+          <svg height={radius * 2} width={radius * 2} style={{marginTop:"-15px"}}>
             <circle
               stroke="#ffd8a7"
               fill="none"
@@ -375,8 +377,6 @@ const Ratings = ({ setValue }) => {
               style={{
                 strokeDashoffset,
                 transition: "stroke-dashoffset 0.35s",
-                transform: "rotate(-90deg)",
-                transformOrigin: "50% 50%",
               }}
               stroke-width={stroke}
               r={normalizedRadius}
@@ -389,6 +389,7 @@ const Ratings = ({ setValue }) => {
               text-anchor="middle"
               fill="#DD8D43"
               fontSize="23"
+              fontFamily="League Spartan"
             >
               {((rating / 12) * 100).toFixed(0)}%
             </text>

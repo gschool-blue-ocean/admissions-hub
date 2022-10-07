@@ -1,3 +1,15 @@
+@font-face {
+  font-family: "League Spartan";
+  src: url(../../public/fonts/League_Spartan/LeagueSpartan-VariableFont_wght.ttf);
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url(../../public/fonts/Roboto/Roboto-Thin.ttf);
+}
+
+
+
 .header {
   display: flex;
   flex-direction: row;
@@ -7,7 +19,9 @@
   top: 0px;
   background: #ffffff;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "League Spartan";
+  position: relative;
+  z-index: 3;
 }
 
 .logo {
@@ -26,10 +40,11 @@
 }
 
 .innerPara {
-  width: 60%;
+  z-index: 4;
   line-height: 50px;
-  margin-left: 35%;
-  text-align: center;
+  left: 50%;
+  position: absolute;
+  transform: translate(0 -50%);
   background: white;
   overflow: hidden;
 }
@@ -44,9 +59,11 @@
 
 .para3 {
   width: 15%;
-  text-align: center;
+  text-align: right;
   line-height: 50px;
   overflow: hidden;
+  font-family: "Roboto";
+
 }
 
 .dropdownmenu {
@@ -56,4 +73,5 @@
 .nameDropdown{
   color: #000000;
   box-shadow: none;
+  font-family: "Roboto";
 }

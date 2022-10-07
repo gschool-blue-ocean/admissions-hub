@@ -8,7 +8,7 @@ function Footer() {
     <MDBFooter bgColor="light" className="text-center text-lg-start text-muted">
       <div
         class="text-center p-4"
-        style={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
+        style={{ backgroundColor: "#f0f0f0", position: "relative",  zIndex: 4 }}
       >
         © 2022 Copyright: Team A+
       </div>
