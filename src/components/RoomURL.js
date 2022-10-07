@@ -51,8 +51,8 @@ export default function RoomURL({ URL }) {
         style={{
           display: "flex",
           backgroundColor: "#F0F0F0",
-          color: "#DD8D43",
-          overflowX: "scroll"
+          color: "#979797",
+          overflowX: "scroll",
           alignItems: "center",
           borderRadius: 5,
           fontSize: 12,
