@@ -11,7 +11,7 @@ import styles from "./AllRatings.module.css";
 import { useAppContext } from "./GlobalContext";
 
 const StudentInfo = ({ setStudents, students }) => {
-  const { info, setInfo } = useAppContext();
+  const { info, setInfo } = useAppContext([]);
 
   const [search, setSearch] = useState("");
   const [value, setValue] = useState(0);
@@ -22,15 +22,16 @@ const StudentInfo = ({ setStudents, students }) => {
   const handleChange = (event) => {
     setSearch(event.target.value);
   };
+  console.log(info);
 
   return (
-    <div className={styles}
+    <div
+      className={styles}
       style={{
         fontSize: 14,
         backgroundColor: "#f0f0f0",
         marginTop: 5,
         marginBottom: 5,
-        
       }}
     >
       {seeNotes ? (
@@ -50,14 +51,13 @@ const StudentInfo = ({ setStudents, students }) => {
           <div
             style={{
               fontSize: 14,
-              
               backgroundColor: "#DCDCDC",
               borderRadius: 10,
               border: "1px solid",
               boxShadow: "0px 0px 10px 5px #888888",
               margin: "10% auto",
-              width: 600,
-              height: 680,
+              width: 550,
+              height: 750,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -76,16 +76,21 @@ const StudentInfo = ({ setStudents, students }) => {
             </div>
             <div
               style={{
-                width: 540,
+                width: 420,
                 height: 600,
                 backgroundColor: "#DCDCDC",
               }}
             >
               <div style={{ display: "flex", paddingBottom: 10 }}>
-                {Object.values(info).map((info) => {
+                {info.map((infos) => {
                   return (
-                    <div style={{ paddingRight: 10 }}>
-                      <span>{info}</span>
+                    <div>
+                      <span style={{ paddingRight: 8 }}>{infos.firstName}</span>
+                      <span style={{ paddingRight: 8 }}>{infos.lastName}</span>
+                      <span style={{ paddingRight: 8 }}>{infos.cohort}</span>
+                      <span style={{ paddingRight: 8 }}>
+                        Attempt #{infos.attempt}
+                      </span>
                     </div>
                   );
                 })}
@@ -119,7 +124,10 @@ const StudentInfo = ({ setStudents, students }) => {
             style={{ cursor: "pointer" }}
             onClick={() => console.log(search)}
           >
-            <BiIcons.BiSearchAlt size={28} style={{marginTop: 5, color: "#979797"}} />
+            <BiIcons.BiSearchAlt
+              size={28}
+              style={{ marginTop: 5, color: "#979797" }}
+            />
           </div>
         </div>
         <div
@@ -134,7 +142,7 @@ const StudentInfo = ({ setStudents, students }) => {
             }}
           >
             {info.length !== 0 ? (
-              <button 
+              <button
                 style={{
                   color: "white",
                   backgroundColor: "#DD8D43",
@@ -144,7 +152,7 @@ const StudentInfo = ({ setStudents, students }) => {
                   fontFamily: "League Spartan",
                   fontSize: 16,
                 }}
-                className={styles.button}
+                className={styles.bob}
                 onClick={() => {
                   setSeeNotes(!seeNotes);
                 }}
@@ -174,21 +182,22 @@ const StudentInfo = ({ setStudents, students }) => {
             }}
           >
             {info.length !== 0 ? (
-              <button
-                style={{
-                  color: "white",
-                  backgroundColor: "#DD8D43",
-                  border: "none",
-                  height: 40,
-                  width: 150,
-                  fontFamily: "League Spartan",
-                  fontSize: 16,
-                }}
-              >
-                <Link href={{ pathname: "/interview", query: { id: uuid() } }}>
+              <Link href={{ pathname: "/interview", query: { id: uuid() } }}>
+                <button
+                  className={styles.bob}
+                  style={{
+                    color: "white",
+                    backgroundColor: "#DD8D43",
+                    border: "none",
+                    height: 40,
+                    width: 150,
+                    fontFamily: "League Spartan",
+                    fontSize: 16,
+                  }}
+                >
                   <a style={{ color: "white" }}>Launch Interview</a>
-                </Link>
-              </button>
+                </button>
+              </Link>
             ) : (
               <button
                 style={{
@@ -230,7 +239,7 @@ const StudentInfo = ({ setStudents, students }) => {
           <span
             style={{
               width: 230,
-              overflowX: "hidden"
+              overflowX: "hidden",
             }}
           >
             Email Address
@@ -252,25 +261,26 @@ const StudentInfo = ({ setStudents, students }) => {
           <span style={{ width: 70 }}> Attempt#</span>
           <span
             style={{
-              justifySelf: "right"
+              justifySelf: "right",
             }}
           >
             Pass
           </span>
         </div>
         <div
+          className={styles.scroll}
           style={{
             // border: "solid 1px #979797",
             maxHeight: 200,
             overflowY: "auto",
             borderRadius: "5px",
-
-
+            backgroundColor: "white",
           }}
         >
           {students.map((student) => {
             return (
               <div
+                className={styles.cell}
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
@@ -279,7 +289,7 @@ const StudentInfo = ({ setStudents, students }) => {
                   // paddingLeft: 10,
                   borderBottom: "solid 1px #979797",
                   backgroundColor:
-                    info.email === student.email ? "#DD8D43" : "white",
+                    info.email === student.email ? "#DD8D43" : "",
                   color: info.email === student.email ? "white" : "#979797",
                 }}
                 key={uuid()}
@@ -287,7 +297,7 @@ const StudentInfo = ({ setStudents, students }) => {
                   if (info.email === student.email) {
                     setInfo([]);
                   } else {
-                    setInfo(student);
+                    setInfo([student]);
                   }
                 }}
               >
@@ -302,16 +312,18 @@ const StudentInfo = ({ setStudents, students }) => {
                 <span style={{ width: 186 }}>{student.email}</span>
                 <span style={{ width: 70 }}>{student.cohort}</span>
                 <span style={{ width: 80 }}>{student.date}</span>
-                <span style={{ width: 16 }}>
-                  {student.attempt}
-                </span>
+                <span style={{ width: 16 }}>{student.attempt}</span>
                 {student.pass === true ? (
                   <div style={{ width: 30 }}>
-                    <AiIcons.AiOutlineCheck color={info.email === student.email ? "white" : "#DD8D43"} />
+                    <AiIcons.AiOutlineCheck
+                      color={info.email === student.email ? "white" : "#DD8D43"}
+                    />
                   </div>
                 ) : student.pass === false ? (
-                  <div style={{ width: 30}}>
-                    <AiIcons.AiOutlineClose color={info.email === student.email ? "white" : "#979797"} />
+                  <div style={{ width: 30 }}>
+                    <AiIcons.AiOutlineClose
+                      color={info.email === student.email ? "white" : "#979797"}
+                    />
                   </div>
                 ) : (
                   <span style={{ width: 30 }}>{student.pass}</span>
@@ -329,12 +341,15 @@ const StudentInfo = ({ setStudents, students }) => {
           }}
         >
           <div
+            className={styles.bob}
             onClick={() => setShowAddStudent(!showAddStudent)}
             style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
           >
             <BsIcons.BsPlusLg color="#DD8D43" />
 
-            <span style={{ paddingLeft: 5, color: "#979797" }}>add student</span>
+            <span style={{ paddingLeft: 5, color: "#979797" }}>
+              add student
+            </span>
           </div>
           {showAddStudent ? (
             <NewStudent
@@ -346,6 +361,7 @@ const StudentInfo = ({ setStudents, students }) => {
           ) : null}
           <div>
             <button
+              className={styles.bob}
               style={{
                 borderRadius: 5,
                 backgroundColor: "#979797",

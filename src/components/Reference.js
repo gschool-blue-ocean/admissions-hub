@@ -26,7 +26,7 @@ const Reference = ({
       <div style={{ display: "flex", justifyContent: "center" }}>
         <div className={styles.referenceGrid}>
           <div>
-            <label classname={styles.container}>
+            <label className={styles.container}>
               <input
                 onClick={() => {
                   setVariables(!variables);
@@ -34,13 +34,13 @@ const Reference = ({
                 type="checkbox"
               ></input>
 
-              <span style={{ paddingLeft: 5 }} classname={styles.checkmark}>
+              <span style={{ paddingLeft: 5 }} className={styles.checkmark}>
                 Variables
               </span>
             </label>
           </div>
           <div>
-            <label classname={styles.container}>
+            <label className={styles.container}>
               <input
                 onClick={() => {
                   setArrays(!arrays);
@@ -48,27 +48,26 @@ const Reference = ({
                 type="checkbox"
               ></input>
 
-              <span style={{ paddingLeft: 5 }} classname={styles.checkmark}>
+              <span style={{ paddingLeft: 5 }} className={styles.checkmark}>
                 Arrays & Objects
               </span>
             </label>
           </div>
           <div>
-            <label classname={styles.container}>
+            <label className={styles.container}>
               <input
                 onClick={() => {
                   setOperators(!operators);
                 }}
                 type="checkbox"
               ></input>
-
-              <span style={{ paddingLeft: 5 }} classname={styles.checkmark}>
+              <span style={{ paddingLeft: 5 }} className={styles.checkmark}>
                 Operators And Methods
               </span>
             </label>
           </div>
           <div>
-            <label classname={styles.container}>
+            <label className={styles.container}>
               <input
                 onClick={() => {
                   setConditionals(!conditionals);
@@ -76,33 +75,33 @@ const Reference = ({
                 type="checkbox"
               ></input>
 
-              <span style={{ paddingLeft: 5 }} classname={styles.checkmark}>
+              <span style={{ paddingLeft: 5 }} className={styles.checkmark}>
                 Conditionals
               </span>
             </label>
           </div>
           <div>
-            <label classname={styles.container}>
+            <label className={styles.container}>
               <input
                 onClick={() => {
                   setLoops(!loops);
                 }}
                 type="checkbox"
               ></input>
-              <span style={{ paddingLeft: 5 }} classname={styles.checkmark}>
+              <span style={{ paddingLeft: 5 }} className={styles.checkmark}>
                 Loops
               </span>
             </label>
           </div>
           <div>
-            <label classname={styles.container}>
+            <label className={styles.container}>
               <input
                 onClick={() => {
                   setAccumulator(!accumulator);
                 }}
                 type="checkbox"
               ></input>
-              <span style={{ paddingLeft: 10 }} classname={styles.checkmark}>
+              <span style={{ paddingLeft: 10 }} className={styles.checkmark}>
                 Accumulator Pattern
               </span>
             </label>

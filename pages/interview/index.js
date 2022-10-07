@@ -16,6 +16,7 @@ function id({ id }) {
           style={{
             display: "flex",
             flexDirection: "column",
+            right: 0,
           }}
         >
           <div

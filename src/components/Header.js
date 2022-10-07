@@ -24,6 +24,10 @@ function Header() {
       currentPage = "Interview Login";
       currentUser = "";
       break;
+    case asPath.match("/interview")?.input:
+      currentPage = "Interview App";
+      currentUser = "Danny Andrews";
+      break;
   }
 
   const monthNames = [

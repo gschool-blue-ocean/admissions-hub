@@ -33,13 +33,12 @@ export default function CodeEditor({ input, setInput, sessionId }) {
       style={{
         display: "flex",
         width: "70%",
-        height: "100%",
+        height: "80",
         padding: 20,
       }}
     >
       <Editor
-        height="900px"
-        width="1250px"
+        style={{ width: "auto", height: "auto" }}
         defaultLanguage="javascript"
         defaultValue="//start typing code here"
         theme="vs-dark"
