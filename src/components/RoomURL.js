@@ -23,7 +23,7 @@ export default function RoomURL({ URL }) {
           borderRadius: 5,
           fontSize: 12,
           height: 35,
-          width: 430,
+          width: 400,
           justifyContent: "center",
         }}
       >
@@ -35,6 +35,7 @@ export default function RoomURL({ URL }) {
             height: 15,
             alignItems: "center",
             backgroundColor: "#F0F0F0",
+            overflowX: "scroll"
           }}
           onClick={handleCopy}
         >
@@ -49,8 +50,10 @@ export default function RoomURL({ URL }) {
       <div
         style={{
           display: "flex",
-          alignItems: "center",
           backgroundColor: "#F0F0F0",
+          color: "#DD8D43",
+          overflowX: "scroll"
+          alignItems: "center",
           borderRadius: 5,
           fontSize: 12,
           height: 35,

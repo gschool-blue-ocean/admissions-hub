@@ -153,6 +153,7 @@ const NewStudent = ({
             }}
             onChange={handleCohortChange}
           >
+{/*          ///////////////////////////////////// INPUT/DELETE COHORTS HERE */}
             <option > Select Cohort </option>
             <option disabled>MCSP-11</option>
             <option disabled>MCSP-12</option>
@@ -172,7 +173,7 @@ const NewStudent = ({
             paddingBottom: 10,
           }}
         >
-          <button
+          <button className={styles.bob}
             style={{
               color: "white",
               fontFamily: "League Spartan",

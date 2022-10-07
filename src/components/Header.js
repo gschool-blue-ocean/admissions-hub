@@ -16,16 +16,18 @@ function Header() {
   let { asPath } = useRouter();
 
   switch (asPath) {
-    case "/dashboard":
-      currentPage = "Interview Dashboard";
+    case asPath.match("/interview")?.input:
+      currentPage = "Interview App";
+      currentUser = "Danny Andrews";
+      break;
       currentUser = "Danny Andrews";
       break;
     case "/login":
       currentPage = "Interview Login";
       currentUser = "";
       break;
-    case asPath.match("/interview")?.input:
-      currentPage = "Interview App";
+    case "/dashboard":
+      currentPage = "Interview Dashboard";
       currentUser = "Danny Andrews";
       break;
   }

@@ -31,10 +31,22 @@
   cursor: pointer;
 }
 
+.cell {
+  transition: 0.2s;
+}
+
 .scroll::-webkit-scrollbar {
   width: 1px;
 }
 
 .scroll::-webkit-scrollbar-thumb {
   background: #dd8d43;
+}
+
+.empty {
+  color: #dcdcdc;
+}
+
+#complete {
+  margin-top: 40px;
 }

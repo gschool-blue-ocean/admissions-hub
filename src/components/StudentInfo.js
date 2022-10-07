@@ -182,19 +182,19 @@ const StudentInfo = ({ setStudents, students }) => {
             }}
           >
             {info.length !== 0 ? (
-              <Link href={{ pathname: "/interview", query: { id: uuid() } }}>
-                <button
-                  className={styles.bob}
-                  style={{
-                    color: "white",
-                    backgroundColor: "#DD8D43",
-                    border: "none",
-                    height: 40,
-                    width: 150,
-                    fontFamily: "League Spartan",
-                    fontSize: 16,
-                  }}
-                >
+              <button
+              className={styles.bob}
+                style={{
+                  color: "white",
+                  backgroundColor: "#DD8D43",
+                  border: "none",
+                  height: 40,
+                  width: 150,
+                  fontFamily: "League Spartan",
+                  fontSize: 16,
+                }}
+              >
+                <Link href={{ pathname: "/interview", query: { id: uuid() } }}>
                   <a style={{ color: "white" }}>Launch Interview</a>
                 </button>
               </Link>
@@ -267,21 +267,21 @@ const StudentInfo = ({ setStudents, students }) => {
             Pass
           </span>
         </div>
-        <div
-          className={styles.scroll}
+        <div className={styles.scroll}
           style={{
             // border: "solid 1px #979797",
             maxHeight: 200,
             overflowY: "auto",
             borderRadius: "5px",
-            backgroundColor: "white",
+            backgroundColor: "white"
+
           }}
         >
           {students.map((student) => {
             return (
-              <div
-                className={styles.cell}
+              <div className={styles.cell}
                 style={{
+                  zIndex: 1,
                   display: "flex",
                   justifyContent: "space-between",
                   paddingBottom: 3,
@@ -301,14 +301,14 @@ const StudentInfo = ({ setStudents, students }) => {
                   }
                 }}
               >
-                <span
+                <span 
                   style={{
                     minWidth: 120,
                     paddingLeft: 10,
                   }}
                 >
                   {`${student.lastName}, ${student.firstName}`}
-                </span>
+                </span >
                 <span style={{ width: 186 }}>{student.email}</span>
                 <span style={{ width: 70 }}>{student.cohort}</span>
                 <span style={{ width: 80 }}>{student.date}</span>
@@ -340,8 +340,7 @@ const StudentInfo = ({ setStudents, students }) => {
             padding: "5px 10px 0px 10px",
           }}
         >
-          <div
-            className={styles.bob}
+          <div className={styles.bob}
             onClick={() => setShowAddStudent(!showAddStudent)}
             style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
           >
@@ -360,8 +359,7 @@ const StudentInfo = ({ setStudents, students }) => {
             />
           ) : null}
           <div>
-            <button
-              className={styles.bob}
+            <button className={styles.bob}
               style={{
                 borderRadius: 5,
                 backgroundColor: "#979797",

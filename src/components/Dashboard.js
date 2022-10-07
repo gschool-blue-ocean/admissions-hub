@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Reference from "./Reference";
 import Ratings from "./Ratings";
 import Problems from "./Problems";
+import styles from "./AllRatings.module.css";
 import RoomURL from "./RoomURL";
 
 const Dashboard = ({ input }) => {
@@ -64,14 +65,16 @@ const Dashboard = ({ input }) => {
     studyMaterial.extraResources = extraResources;
   }
   return (
-    <div
+    <div className={styles}
       style={{
+        // float: "right",
         width: "420px",
-        // border: "2px solid black",
-        padding: "10px",
-        // backgroundColor: "#DCDCDC",
-        // borderRadius: 10,
-        // marginLeft: 50,
+        height: "100%",
+        zIndex: "1",
+        padding: "10px 10px 0px",
+        position: "sticky",
+        backgroundColor: "white",
+
       }}
     >
       <RoomURL />
@@ -108,7 +111,7 @@ const Dashboard = ({ input }) => {
           paddingBottom: 2,
         }}
       >
-        <button
+        <button className={styles.bob} id={styles.complete}
           onClick={() => {
             console.log("postRequest", postRequest);
             console.log("Code Editor", input);
@@ -123,6 +126,7 @@ const Dashboard = ({ input }) => {
             backgroundColor: "#DD8D43",
             border: "none",
             fontSize: 16,
+            fontFamily: "League Spartan"
           }}
         >
           Complete Interview

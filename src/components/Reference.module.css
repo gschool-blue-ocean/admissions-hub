@@ -1,7 +1,35 @@
+@font-face {
+  font-family: "League Spartan";
+  src: url(../../public/fonts/League_Spartan/LeagueSpartan-VariableFont_wght.ttf);
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url(../../public/fonts/Roboto/Roboto-Light.ttf);
+}
+
+.referenceGrid {
+  display: grid;
+  grid-template-columns: 225px 210px;
+  grid-template-rows: 30px 30px 30px;
+  grid-gap: 2px;
+  width: 450px;
+  gap: 2px;
+  padding: 2px;
+}
+
+.referenceGrid > div {
+  display: flex;
+  padding: 20px;
+  font-size: 1px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 .container {
   display: block;
   position: relative;
-  padding-right: 35px;
+  padding-left: 35px;
   margin-bottom: 12px;
   cursor: pointer;
   font-size: 14px;
@@ -9,11 +37,12 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  color: #979797;
 }
 
 /* Hide the browser's default checkbox */
 .container input {
-  position: absolute;
+  position: relative;
   opacity: 0;
   cursor: pointer;
   height: 0;
@@ -27,12 +56,13 @@
   left: 0;
   height: 25px;
   width: 25px;
-  background-color: white;
+  background-color: #dcdcdc;
+  transition: 0.2s;
 }
 
 /* On mouse-over, add a grey background color */
 .container:hover input ~ .checkmark {
-  background-color: red;
+  background-color: #ffe8d3;
 }
 
 /* When the checkbox is checked, add a blue background */
@@ -56,8 +86,8 @@
 .container .checkmark:after {
   left: 9px;
   top: 5px;
-  width: 5px;
-  height: 10px;
+  width: 8px;
+  height: 15px;
   border: solid white;
   border-width: 0 3px 3px 0;
   -webkit-transform: rotate(45deg);
@@ -65,22 +95,9 @@
   transform: rotate(45deg);
 }
 
-.referenceGrid {
-  display: grid;
-  grid-template-columns: 150px 150px;
-  grid-template-rows: 100px 100px 100px;
-  grid-gap: 2px;
-  width: 420px;
-  gap: 2px;
-  /* background-color: #000000; */
-  padding: 2px;
-}
-
-.referenceGrid > div {
-  /* background-color: "#DCDCDC;"; */
-  display: flex;
-  padding: 20px;
-  font-size: 14px;
-  justify-content: flex-start;
-  align-items: center;
+.input[type="text"] {
+  background-color: #f0f0f0;
+  color: #979797;
+  width: 190px;
+  padding-left: 3px;
 }
