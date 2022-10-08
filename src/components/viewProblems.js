@@ -5,25 +5,12 @@ import Image from "next/image";
 import styles from "./AllRatings.module.css";
 import { useAppContext } from "./GlobalContext";
 
-const Problems = ({
-  problem1Notes,
-  problem2Notes,
-  problem3Notes,
-  setProblem1Notes,
-  setProblem2Notes,
-  setProblem3Notes,
-}) => {
+const ViewProblems = () => {
   const [seeProblem1, setSeeProblem1] = useState(true);
   const [seeProblem2, setSeeProblem2] = useState(false);
   const [seeProblem3, setSeeProblem3] = useState(false);
   const [copied, setCopied] = useState(false);
   const { info, setInfo } = useAppContext();
-
-  useEffect(() => {
-    setProblem1Notes(info.notes_1);
-    setProblem2Notes(info.notes_2);
-    setProblem3Notes(info.notes_3);
-  }, []);
 
   // let [markdownText, setMarkDownText] = useState("");
   // let [markdownText2, setMarkDownText2] = useState("");
@@ -32,46 +19,6 @@ const Problems = ({
   let [renderedHTML2, setRenderedHTML2] = useState("");
   let [renderedHTML3, setRenderedHTML3] = useState("");
   let [showNotes, setShowNotes] = useState(true);
-
-  function handleTextInput(e) {
-    setProblem1Notes(e.target.value);
-
-    let md = new MarkdownIt();
-
-    let renderedHTML = md.render(e.target.value);
-
-    setRenderedHTML(renderedHTML);
-  }
-
-  function handleTextInput2(e) {
-    setProblem2Notes(e.target.value);
-
-    let md2 = new MarkdownIt();
-
-    let renderedHTML2 = md2.render(e.target.value);
-
-    setRenderedHTML2(renderedHTML2);
-  }
-
-  function handleTextInput3(e) {
-    setProblem3Notes(e.target.value);
-
-    let md3 = new MarkdownIt();
-
-    let renderedHTML3 = md3.render(e.target.value);
-
-    setRenderedHTML3(renderedHTML3);
-  }
-
-  function handleFocus1() {
-    showNotes = true;
-    setShowNotes(showNotes);
-  }
-
-  function handleFocus2() {
-    showNotes = false;
-    setShowNotes(showNotes);
-  }
 
   const problem1 = `function addPropertiesToObject(obj1, obj2) {
 // Must combine all properties of obj1 to obj2
@@ -378,10 +325,7 @@ return newStr;
           {showNotes ? (
             <textarea
               rows={20}
-              value={problem1Notes}
-              onChange={handleTextInput}
-              // onBlur={handleFocus2}
-              // autoFocus
+              value={info.notes_1}
               style={{
                 width: "100%",
                 backgroundColor: "#ffe8d3",
@@ -401,7 +345,6 @@ return newStr;
               }}
               dangerouslySetInnerHTML={{ __html: renderedHTML }}
               className={Style.ProblemsOneMarkdown}
-              onClick={handleFocus1}
             ></div>
           )}
         </div>
@@ -502,8 +445,7 @@ return newStr;
           {showNotes ? (
             <textarea
               rows={20}
-              value={problem2Notes}
-              onChange={handleTextInput2}
+              value={info.notes_2}
               style={{
                 width: 378,
                 height: 175,
@@ -518,7 +460,6 @@ return newStr;
               style={{ width: "auto", height: 175 }}
               dangerouslySetInnerHTML={{ __html: renderedHTML2 }}
               className={Style.ProblemsOneMarkdown}
-              onClick={handleFocus1}
             ></div>
           )}
         </div>
@@ -619,8 +560,7 @@ return newStr;
           {showNotes ? (
             <textarea
               rows={20}
-              value={problem3Notes}
-              onChange={handleTextInput3}
+              value={info.notes_3}
               style={{
                 width: 378,
                 height: 175,
@@ -635,7 +575,6 @@ return newStr;
               style={{ width: "auto", height: 175 }}
               dangerouslySetInnerHTML={{ __html: renderedHTML3 }}
               className={Style.ProblemsOneMarkdown}
-              onClick={handleFocus1}
             ></div>
           )}
         </div>
@@ -644,4 +583,4 @@ return newStr;
   );
 };
 
-export default Problems;
+export default ViewProblems;

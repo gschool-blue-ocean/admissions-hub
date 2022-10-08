@@ -4,12 +4,15 @@ import Ratings from "./Ratings";
 import Problems from "./Problems";
 import styles from "./AllRatings.module.css";
 import RoomURL from "./RoomURL";
+import axios from "axios";
+import { useAppContext } from "./GlobalContext";
 
 const Dashboard = ({ input }) => {
   const [value, setValue] = useState(0);
   const [problem1Notes, setProblem1Notes] = useState("");
   const [problem2Notes, setProblem2Notes] = useState("");
   const [problem3Notes, setProblem3Notes] = useState("");
+  const { info, setInfo } = useAppContext();
 
   const [variables, setVariables] = useState(false);
   const [arrays, setArrays] = useState(false);
@@ -34,11 +37,22 @@ const Dashboard = ({ input }) => {
   const accumulatorLink =
     "https://learn-2.galvanize.com/cohorts/1346/blocks/1615/content_files/13-Accumulator-Pattern/00-section-overview.md";
 
-  let postRequest = {
-    totalPercent: totalPercent,
-    problem1Notes: problem1Notes,
-    problem2Notes: problem2Notes,
-    problem3Notes: problem3Notes,
+  let patchRequest = {
+    // totalPercent: totalPercent,
+    notes_1: problem1Notes,
+    notes_2: problem2Notes,
+    notes_3: problem3Notes,
+  };
+
+  const completeInterview = (patchRequest) => {
+    axios
+      .patch(`/api/candidate/${info.email}`, patchRequest)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   let studyMaterial = {};
@@ -65,7 +79,8 @@ const Dashboard = ({ input }) => {
     studyMaterial.extraResources = extraResources;
   }
   return (
-    <div className={styles}
+    <div
+      className={styles}
       style={{
         // float: "right",
         width: "420px",
@@ -74,7 +89,6 @@ const Dashboard = ({ input }) => {
         padding: "10px 10px 0px",
         position: "sticky",
         backgroundColor: "white",
-
       }}
     >
       {/* <RoomURL /> */}
@@ -111,10 +125,13 @@ const Dashboard = ({ input }) => {
           paddingBottom: 2,
         }}
       >
-        <button className={styles.bob} id={styles.complete}
+        <button
+          className={styles.bob}
+          id={styles.complete}
           onClick={() => {
-            console.log("postRequest", postRequest);
+            console.log("patchRequest", patchRequest);
             console.log("Code Editor", input);
+            completeInterview(patchRequest);
             if (Object.keys(studyMaterial).length !== 0) {
               console.log("studyMaterial", studyMaterial);
             }
@@ -126,7 +143,7 @@ const Dashboard = ({ input }) => {
             backgroundColor: "#DD8D43",
             border: "none",
             fontSize: 16,
-            fontFamily: "League Spartan"
+            fontFamily: "League Spartan",
           }}
         >
           Complete Interview

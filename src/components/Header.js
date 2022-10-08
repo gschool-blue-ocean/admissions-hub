@@ -20,8 +20,6 @@ function Header() {
       currentPage = "Interview App";
       currentUser = "Danny Andrews";
       break;
-      currentUser = "Danny Andrews";
-      break;
     case "/login":
       currentPage = "Interview Login";
       currentUser = "";
@@ -64,32 +62,40 @@ function Header() {
   return (
     <>
       <div className={styles.header}>
-        {/* <div className={styles.logo}></div> */}
-        <button
-          className={styles.logo}
-          onClick={goLink}
-          name="dashboard"
-        ></button>
+        {asPath !== "/login" ? (
+          <button
+            className={styles.logo}
+            onClick={goLink}
+            name="dashboard"
+          ></button>
+        ) : (
+          <button className={styles.logo} name="dashboard"></button>
+        )}
 
         <div className={styles.para}>
-          <div className={styles.innerPara}>{currentPage}</div>
+          {asPath !== "/login" ? (
+            <div className={styles.innerPara}>{currentPage}</div>
+          ) : (
+            <div className={styles.innerLoginPara}>{currentPage}</div>
+          )}
         </div>
         <div className={styles.para2}>{today}</div>
-        {/* <div className={styles.para3}>{currentUser}</div> */}
 
-        <div className={styles.dropdownmenu}>
-          <NavDropdown
-            id="nav-dropdown-dark-example"
-            title={currentUser}
-            menuVariant="light"
-          >
-            <NavDropdown.Item eventKey="1">Profile</NavDropdown.Item>
-            <NavDropdown.Item eventKey="2">Extra page</NavDropdown.Item>
-            <NavDropdown.Item>
-              <BtnLogin />
-            </NavDropdown.Item>
-          </NavDropdown>
-        </div>
+        {asPath !== "/login" ? (
+          <div className={styles.dropdownmenu}>
+            <NavDropdown
+              id="nav-dropdown-dark-example"
+              title={currentUser}
+              menuVariant="light"
+            >
+              <NavDropdown.Item eventKey="1">Profile</NavDropdown.Item>
+              <NavDropdown.Item eventKey="2">Extra page</NavDropdown.Item>
+              <NavDropdown.Item>
+                <BtnLogin />
+              </NavDropdown.Item>
+            </NavDropdown>
+          </div>
+        ) : null}
       </div>
     </>
   );

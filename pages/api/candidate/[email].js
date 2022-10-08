@@ -1,4 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 const { Pool } = require("pg");
 
 const pool = new Pool({
@@ -19,22 +18,22 @@ pool.connect((err) => {
 });
 
 export default function handler(req, res) {
-  if (req.method === "POST") {
-    // Process a POST request
-    const { email, password } = req.body;
+  const query = req.query;
+  const { email } = query;
+  console.log(req.query);
+  console.log(email);
+  if (req.method === "PATCH") {
+    const { date, attempt, pass, notes_1, notes_2, notes_3 } = req.body;
+    console.log(req.body);
     pool.query(
-      "SELECT * FROM interviewers WHERE email = $1 and password = crypt($2, password)",
-      [email, password],
+      "UPDATE candidates SET date = COALESCE($1, date), attempt = COALESCE($2, attempt), pass = COALESCE($3, pass), notes_1 = COALESCE($4, notes_1), notes_2 = COALESCE($5, notes_2), notes_3 = COALESCE($6, notes_3) WHERE email = $7 RETURNING *",
+      [date, attempt, pass, notes_1, notes_2, notes_3, email],
       (err, result) => {
         if (err) {
           console.error(err);
           res.status(500).send("Error");
         } else {
-          if (result.rows.length > 0) {
-            res.status(200).json({ connect: true, ...result.rows[0] });
-          } else {
-            res.status(200).send({ connect: false });
-          }
+          res.status(200).json(result.rows);
         }
       }
     );

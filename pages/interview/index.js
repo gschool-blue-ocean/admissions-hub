@@ -7,11 +7,12 @@ import RoomURL from "../../src/components/RoomURL";
 
 function id({ id }) {
   const [input, setInput] = useState("");
+  let user = "admin";
 
   return (
     <>
-      <Header  />
-      <div style={{ display: "flex", position: "relative",zIndex: "1"}}>
+      <Header />
+      <div style={{ display: "flex", position: "relative", zIndex: "1" }}>
         <CodeEditor input={input} setInput={setInput} sessionId={id} />
         <div
           style={{
@@ -29,14 +30,14 @@ function id({ id }) {
               zIndex: "2",
               position: "fixed",
               right: "0%",
-              height:"100%",
+              height: "100%",
               width: "450px",
               marginTop: "15px",
-              color:"#979797"
+              color: "#979797",
             }}
           >
-            <RoomURL URL={id}/>
-          <Dashboard input={input} />
+            <RoomURL URL={id} />
+            {user === "admin" ? <Dashboard input={input} /> : null}
           </div>
         </div>
       </div>

@@ -5,24 +5,24 @@ import * as AiIcons from "react-icons/ai";
 import NewStudent from "./NewStudent";
 import Link from "next/link";
 import uuid from "react-uuid";
-import Problems from "./Problems";
 import Ratings from "./Ratings";
 import styles from "./AllRatings.module.css";
 import { useAppContext } from "./GlobalContext";
+import ViewProblems from "./viewProblems";
+import { useRouter } from "next/router";
 
 const StudentInfo = ({ setStudents, students }) => {
-  const { info, setInfo } = useAppContext([]);
+  const { info, setInfo } = useAppContext();
+  let { asPath } = useRouter();
 
   const [search, setSearch] = useState("");
   const [value, setValue] = useState(0);
   const [showAddStudent, setShowAddStudent] = useState(false);
 
   const [seeNotes, setSeeNotes] = useState(false);
-  const [launchInterview, setLaunchInterview] = useState(false);
   const handleChange = (event) => {
     setSearch(event.target.value);
   };
-  console.log(info);
 
   return (
     <div
@@ -51,12 +51,12 @@ const StudentInfo = ({ setStudents, students }) => {
           <div
             style={{
               fontSize: 14,
-              backgroundColor: "#DCDCDC",
+              backgroundColor: "white",
               borderRadius: 10,
               border: "1px solid",
               boxShadow: "0px 0px 10px 5px #888888",
               margin: "10% auto",
-              width: 550,
+              width: 450,
               height: 750,
               display: "flex",
               flexDirection: "column",
@@ -69,7 +69,7 @@ const StudentInfo = ({ setStudents, students }) => {
               }}
               style={{
                 padding: 10,
-                paddingLeft: 515,
+                position: "sticky",
               }}
             >
               <AiIcons.AiOutlineClose size={25} />
@@ -78,24 +78,16 @@ const StudentInfo = ({ setStudents, students }) => {
               style={{
                 width: 420,
                 height: 600,
-                backgroundColor: "#DCDCDC",
+                backgroundColor: "white",
               }}
             >
               <div style={{ display: "flex", paddingBottom: 10 }}>
-                {info.map((infos) => {
-                  return (
-                    <div>
-                      <span style={{ paddingRight: 8 }}>{infos.firstName}</span>
-                      <span style={{ paddingRight: 8 }}>{infos.lastName}</span>
-                      <span style={{ paddingRight: 8 }}>{infos.cohort}</span>
-                      <span style={{ paddingRight: 8 }}>
-                        Attempt #{infos.attempt}
-                      </span>
-                    </div>
-                  );
-                })}
+                <span
+                  style={{ fontSize: 20 }}
+                >{`${info.first_name} ${info.last_name}, ${info.cohort}, Attempt #: ${info.attempt}`}</span>
               </div>
-              <Problems />
+              <ViewProblems />
+              <br></br>
               <Ratings setValue={setValue} />
             </div>
           </div>
@@ -182,19 +174,19 @@ const StudentInfo = ({ setStudents, students }) => {
             }}
           >
             {info.length !== 0 ? (
-              <button
-              className={styles.bob}
-                style={{
-                  color: "white",
-                  backgroundColor: "#DD8D43",
-                  border: "none",
-                  height: 40,
-                  width: 150,
-                  fontFamily: "League Spartan",
-                  fontSize: 16,
-                }}
-              >
-                <Link href={{ pathname: "/interview", query: { id: uuid() } }}>
+              <Link href={{ pathname: "/interview", query: { id: uuid() } }}>
+                <button
+                  className={styles.bob}
+                  style={{
+                    color: "white",
+                    backgroundColor: "#DD8D43",
+                    border: "none",
+                    height: 40,
+                    width: 150,
+                    fontFamily: "League Spartan",
+                    fontSize: 16,
+                  }}
+                >
                   <a style={{ color: "white" }}>Launch Interview</a>
                 </button>
               </Link>
@@ -267,19 +259,20 @@ const StudentInfo = ({ setStudents, students }) => {
             Pass
           </span>
         </div>
-        <div className={styles.scroll}
+        <div
+          className={styles.scroll}
           style={{
             // border: "solid 1px #979797",
             maxHeight: 200,
             overflowY: "auto",
             borderRadius: "5px",
-            backgroundColor: "white"
-
+            backgroundColor: "white",
           }}
         >
           {students.map((student) => {
             return (
-              <div className={styles.cell}
+              <div
+                className={styles.cell}
                 style={{
                   zIndex: 1,
                   display: "flex",
@@ -295,31 +288,31 @@ const StudentInfo = ({ setStudents, students }) => {
                 key={uuid()}
                 onClick={() => {
                   if (info.email === student.email) {
-                    setInfo([]);
+                    setInfo("");
                   } else {
-                    setInfo([student]);
+                    setInfo(student);
                   }
                 }}
               >
-                <span 
+                <span
                   style={{
                     minWidth: 120,
                     paddingLeft: 10,
                   }}
                 >
-                  {`${student.lastName}, ${student.firstName}`}
-                </span >
+                  {`${student.last_name}, ${student.first_name}`}
+                </span>
                 <span style={{ width: 186 }}>{student.email}</span>
                 <span style={{ width: 70 }}>{student.cohort}</span>
                 <span style={{ width: 80 }}>{student.date}</span>
                 <span style={{ width: 16 }}>{student.attempt}</span>
-                {student.pass === true ? (
+                {student.pass === "true" ? (
                   <div style={{ width: 30 }}>
                     <AiIcons.AiOutlineCheck
                       color={info.email === student.email ? "white" : "#DD8D43"}
                     />
                   </div>
-                ) : student.pass === false ? (
+                ) : student.pass === "false" ? (
                   <div style={{ width: 30 }}>
                     <AiIcons.AiOutlineClose
                       color={info.email === student.email ? "white" : "#979797"}
@@ -340,7 +333,8 @@ const StudentInfo = ({ setStudents, students }) => {
             padding: "5px 10px 0px 10px",
           }}
         >
-          <div className={styles.bob}
+          <div
+            className={styles.bob}
             onClick={() => setShowAddStudent(!showAddStudent)}
             style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
           >
@@ -359,7 +353,8 @@ const StudentInfo = ({ setStudents, students }) => {
             />
           ) : null}
           <div>
-            <button className={styles.bob}
+            <button
+              className={styles.bob}
               style={{
                 borderRadius: 5,
                 backgroundColor: "#979797",
