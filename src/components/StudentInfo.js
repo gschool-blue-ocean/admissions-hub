@@ -270,59 +270,68 @@ const StudentInfo = ({ setStudents, students }) => {
           }}
         >
           {students.map((student) => {
-            return (
-              <div
-                className={styles.cell}
-                style={{
-                  zIndex: 1,
-                  display: "flex",
-                  justifyContent: "space-between",
-                  paddingBottom: 3,
-                  paddingTop: 3,
-                  // paddingLeft: 10,
-                  borderBottom: "solid 1px #979797",
-                  backgroundColor:
-                    info.email === student.email ? "#DD8D43" : "",
-                  color: info.email === student.email ? "white" : "#979797",
-                }}
-                key={uuid()}
-                onClick={() => {
-                  if (info.email === student.email) {
-                    setInfo("");
-                  } else {
-                    setInfo(student);
-                  }
-                }}
-              >
-                <span
+            if (
+              student.email.toLowerCase().includes(search.toLowerCase()) ||
+              student.first_name.toLowerCase().includes(search.toLowerCase()) ||
+              student.last_name.toLowerCase().includes(search.toLowerCase())
+            ) {
+              return (
+                <div
+                  className={styles.cell}
                   style={{
-                    minWidth: 120,
-                    paddingLeft: 10,
+                    zIndex: 1,
+                    display: "flex",
+                    justifyContent: "space-between",
+                    paddingBottom: 3,
+                    paddingTop: 3,
+                    borderBottom: "solid 1px #979797",
+                    backgroundColor:
+                      info.email === student.email ? "#DD8D43" : "",
+                    color: info.email === student.email ? "white" : "#979797",
+                  }}
+                  key={uuid()}
+                  onClick={() => {
+                    if (info.email === student.email) {
+                      setInfo("");
+                    } else {
+                      setInfo(student);
+                    }
                   }}
                 >
-                  {`${student.last_name}, ${student.first_name}`}
-                </span>
-                <span style={{ width: 186 }}>{student.email}</span>
-                <span style={{ width: 70 }}>{student.cohort}</span>
-                <span style={{ width: 80 }}>{student.date}</span>
-                <span style={{ width: 16 }}>{student.attempt}</span>
-                {student.pass === "true" ? (
-                  <div style={{ width: 30 }}>
-                    <AiIcons.AiOutlineCheck
-                      color={info.email === student.email ? "white" : "#DD8D43"}
-                    />
-                  </div>
-                ) : student.pass === "false" ? (
-                  <div style={{ width: 30 }}>
-                    <AiIcons.AiOutlineClose
-                      color={info.email === student.email ? "white" : "#979797"}
-                    />
-                  </div>
-                ) : (
-                  <span style={{ width: 30 }}>{student.pass}</span>
-                )}
-              </div>
-            );
+                  <span
+                    style={{
+                      minWidth: 120,
+                      paddingLeft: 10,
+                    }}
+                  >
+                    {`${student.last_name}, ${student.first_name}`}
+                  </span>
+                  <span style={{ width: 186 }}>{student.email}</span>
+                  <span style={{ width: 70 }}>{student.cohort}</span>
+                  <span style={{ width: 80 }}>{student.date}</span>
+                  <span style={{ width: 16 }}>{student.attempt}</span>
+                  {student.pass === "true" ? (
+                    <div style={{ width: 30 }}>
+                      <AiIcons.AiOutlineCheck
+                        color={
+                          info.email === student.email ? "white" : "#DD8D43"
+                        }
+                      />
+                    </div>
+                  ) : student.pass === "false" ? (
+                    <div style={{ width: 30 }}>
+                      <AiIcons.AiOutlineClose
+                        color={
+                          info.email === student.email ? "white" : "#979797"
+                        }
+                      />
+                    </div>
+                  ) : (
+                    <span style={{ width: 30 }}>{student.pass}</span>
+                  )}
+                </div>
+              );
+            }
           })}
         </div>
         <div
