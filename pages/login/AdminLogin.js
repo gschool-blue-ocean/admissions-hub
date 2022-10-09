@@ -8,7 +8,7 @@ import styles from "./LoginPageStyle.module.css";
 export default function AdminLogin() {
   const router = useRouter();
 
-  const { setShowWarning } = useAppContext();
+  const { setShowWarning, setUser } = useAppContext();
 
   const [loginForm, setLoginForm] = useState({
     email: "",
@@ -27,6 +27,7 @@ export default function AdminLogin() {
       const response = await axios.post("/api/admin", loginForm);
 
       if (response.data.connect) {
+        setUser(response.data);
         return response.data;
       } else {
         return "Wrong username or password";

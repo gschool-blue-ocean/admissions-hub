@@ -5,6 +5,7 @@ import Problems from "./Problems";
 import styles from "./AllRatings.module.css";
 import RoomURL from "./RoomURL";
 import axios from "axios";
+import { useRouter } from "next/router";
 import { useAppContext } from "./GlobalContext";
 
 const Dashboard = ({ input }) => {
@@ -37,12 +38,46 @@ const Dashboard = ({ input }) => {
   const accumulatorLink =
     "https://learn-2.galvanize.com/cohorts/1346/blocks/1615/content_files/13-Accumulator-Pattern/00-section-overview.md";
 
+  let passOrFail;
+  if (((value / 12) * 100).toFixed(0) >= 70) {
+    passOrFail = true;
+  } else {
+    passOrFail = false;
+  }
+
+  const months = [
+    "JAN",
+    "FEB",
+    "MAR",
+    "APR",
+    "MAY",
+    "JUN",
+    "JUL",
+    "AUG",
+    "SEP",
+    "OCT",
+    "NOV",
+    "DEC",
+  ];
+
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, "0");
+  var mmm = months[today.getMonth()];
+  var yy = String(today.getFullYear()).slice(2);
+  today = dd + "-" + mmm + "-" + yy;
+
+  let numAttempt = Number(info.attempt);
+
   let patchRequest = {
-    // totalPercent: totalPercent,
+    date: today,
+    attempt: numAttempt + 1,
+    pass: passOrFail,
     notes_1: problem1Notes,
     notes_2: problem2Notes,
     notes_3: problem3Notes,
   };
+
+  const router = useRouter();
 
   const completeInterview = (patchRequest) => {
     axios
@@ -135,6 +170,7 @@ const Dashboard = ({ input }) => {
             if (Object.keys(studyMaterial).length !== 0) {
               console.log("studyMaterial", studyMaterial);
             }
+            router.push("../dashboard");
           }}
           style={{
             width: 220,

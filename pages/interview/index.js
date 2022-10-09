@@ -2,12 +2,25 @@ import CodeEditor from "../../src/components/CodeEditor";
 import Dashboard from "../../src/components/Dashboard";
 import Header from "../../src/components/Header";
 import Footer from "../../src/components/Footer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RoomURL from "../../src/components/RoomURL";
+import { useAppContext } from "../../src/components/GlobalContext";
 
 function id({ id }) {
   const [input, setInput] = useState("");
-  let user = "admin";
+  const { user } = useAppContext();
+
+  let userRole;
+
+  if (user !== undefined) {
+    localStorage.setItem("userInfo", JSON.stringify(user.role));
+
+    userRole = user.role;
+  } else {
+    if (typeof window !== "undefined") {
+      userRole = JSON.parse(localStorage.getItem("userInfo"));
+    }
+  }
 
   return (
     <>
@@ -37,7 +50,7 @@ function id({ id }) {
             }}
           >
             <RoomURL URL={id} />
-            {user === "admin" ? <Dashboard input={input} /> : null}
+            {userRole === "ADMIN" ? <Dashboard input={input} /> : null}
           </div>
         </div>
       </div>

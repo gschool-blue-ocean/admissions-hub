@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as BsIcons from "react-icons/bs";
 import * as BiIcons from "react-icons/bi";
 import * as AiIcons from "react-icons/ai";
@@ -9,11 +9,13 @@ import Ratings from "./Ratings";
 import styles from "./AllRatings.module.css";
 import { useAppContext } from "./GlobalContext";
 import ViewProblems from "./viewProblems";
-import { useRouter } from "next/router";
 
 const StudentInfo = ({ setStudents, students }) => {
   const { info, setInfo } = useAppContext();
-  let { asPath } = useRouter();
+
+  useEffect(() => {
+    setInfo("");
+  }, []);
 
   const [search, setSearch] = useState("");
   const [value, setValue] = useState(0);
@@ -259,11 +261,12 @@ const StudentInfo = ({ setStudents, students }) => {
             Pass
           </span>
         </div>
+
         <div
           className={styles.scroll}
           style={{
-            // border: "solid 1px #979797",
             maxHeight: 200,
+            minHeight: 200,
             overflowY: "auto",
             borderRadius: "5px",
             backgroundColor: "white",

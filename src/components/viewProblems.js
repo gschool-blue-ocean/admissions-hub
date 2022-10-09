@@ -335,6 +335,7 @@ return newStr;
                 resize: "none",
                 scrollbarColor: "#ffe8d3 #dd8d43",
               }}
+              readOnly={true}
             ></textarea>
           ) : (
             <div
@@ -454,6 +455,7 @@ return newStr;
                 outline: "none",
                 border: "none",
               }}
+              readOnly={true}
             ></textarea>
           ) : (
             <div
@@ -569,6 +571,7 @@ return newStr;
                 outline: "none",
                 border: "none",
               }}
+              readOnly={true}
             ></textarea>
           ) : (
             <div

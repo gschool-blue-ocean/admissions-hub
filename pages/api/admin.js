@@ -31,6 +31,7 @@ export default function handler(req, res) {
           res.status(500).send("Error");
         } else {
           if (result.rows.length > 0) {
+            console.log(result.rows[0]);
             res.status(200).json({ connect: true, ...result.rows[0] });
           } else {
             res.status(200).send({ connect: false });
