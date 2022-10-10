@@ -11,8 +11,9 @@ const NewStudent = ({
   setStudents,
 }) => {
   const addCandidate = (newStudent) => {
+    let paths = { params: ["POST"] };
     axios
-      .post("/api/candidate/createNewCandidate", newStudent)
+      .post(`/api/candidate/${paths.params`, newStudent)
       .then(function (response) {
         console.log(response);
       })
