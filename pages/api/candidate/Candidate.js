@@ -18,8 +18,10 @@ pool.connect((err) => {
 });
 
 export default function handler(req, res) {
-  if (req.method === "POST") {
-    const {
+  const { method } = req;
+
+  if (method === "POST") {
+    let {
       first_name,
       last_name,
       email,
@@ -55,8 +57,14 @@ export default function handler(req, res) {
         }
       }
     );
-  } else {
-    // Handle any other HTTP method
-    res.status(405).send("Method not allowed");
+  } else if (method === "GET") {
+    pool.query("SELECT * FROM candidates", (err, result) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send("Error");
+      } else {
+        res.status(200).json(result.rows);
+      }
+    });
   }
 }

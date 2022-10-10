@@ -24,7 +24,7 @@ export default function handler(req, res) {
   console.log(email);
   if (req.method === "PATCH") {
     const { date, attempt, pass, notes_1, notes_2, notes_3 } = req.body;
-    console.log(req.body);
+
     pool.query(
       "UPDATE candidates SET date = COALESCE($1, date), attempt = COALESCE($2, attempt), pass = COALESCE($3, pass), notes_1 = COALESCE($4, notes_1), notes_2 = COALESCE($5, notes_2), notes_3 = COALESCE($6, notes_3) WHERE email = $7 RETURNING *",
       [date, attempt, pass, notes_1, notes_2, notes_3, email],
@@ -37,8 +37,14 @@ export default function handler(req, res) {
         }
       }
     );
-  } else {
-    // Handle any other HTTP method
-    res.status(405).send("Method not allowed");
+  } else if (method === "GET") {
+    pool.query("SELECT * FROM candidates", (err, result) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send("Error");
+      } else {
+        res.status(200).json(result.rows);
+      }
+    });
   }
 }

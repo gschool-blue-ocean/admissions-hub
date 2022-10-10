@@ -6,7 +6,7 @@ import StudentInfo from "./StudentInfo";
 
 const InterviewDash = () => {
   useEffect(() => {
-    axios.get("/api/candidate/readCandidate").then((res) => {
+    axios.get(`/api/candidate/Candidate`).then((res) => {
       setStudents(res.data);
     });
   }, []);

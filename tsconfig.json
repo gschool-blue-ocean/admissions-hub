@@ -19,7 +19,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "pages/api/readCandidate.js"
+    "pages/api/readCandidate.js",
+    "pages/api/candidate/.jsjs"
   ],
   "exclude": ["node_modules"]
 }
