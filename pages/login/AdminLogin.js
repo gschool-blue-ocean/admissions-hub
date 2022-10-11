@@ -8,11 +8,7 @@ import styles from "./LoginPageStyle.module.css";
 export default function AdminLogin() {
   const router = useRouter();
 
-<<<<<<< HEAD
-  const { setShowWarning } = useAppContext();
-=======
   const { setShowWarning, setUser } = useAppContext();
->>>>>>> 9587a1da78bad7842b2477b303acd3b1bd8f2238
 
   const [loginForm, setLoginForm] = useState({
     email: "",
@@ -30,12 +26,6 @@ export default function AdminLogin() {
     try {
       const response = await axios.post("/api/admin", loginForm);
 
-<<<<<<< HEAD
-      console.log(loginForm);
-      console.log(response.data);
-
-=======
->>>>>>> 9587a1da78bad7842b2477b303acd3b1bd8f2238
       if (response.data.connect) {
         setUser(response.data);
         return response.data;
