@@ -110,14 +110,14 @@ const Reference = ({
           </div>
         </div>
       </div>
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div style={{ display: "flex", justifyContent: "center",  }}>
         <input
           className={styles.input}
           onChange={handleChange}
           value={extraResources}
           placeholder="Insert external link"
           type="text"
-          style={{ width: 400, height: 32, fontSize: 12, marginTop: 5, borderRadius: 5 }}
+          style={{ width: 400, height: 32, fontSize: 12, marginTop: 5, borderRadius: 5, border: "none" }}
         ></input>
       </div>
     </div>
