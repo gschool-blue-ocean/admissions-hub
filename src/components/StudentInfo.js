@@ -51,13 +51,13 @@ const StudentInfo = ({ setStudents, students }) => {
           <div
             style={{
               fontSize: 14,
-              backgroundColor: "#DCDCDC",
+              
+              backgroundColor: "white",
               borderRadius: 10,
-              border: "1px solid",
               boxShadow: "0px 0px 10px 5px #888888",
               margin: "10% auto",
-              width: 550,
-              height: 750,
+              width: 450,
+              height: 680,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -69,33 +69,25 @@ const StudentInfo = ({ setStudents, students }) => {
               }}
               style={{
                 padding: 10,
-                paddingLeft: 515,
+                position: "sticky",
+                left: "90%",
               }}
             >
               <AiIcons.AiOutlineClose size={25} />
             </div>
             <div
               style={{
-                width: 420,
+                width: 400,
                 height: 600,
-                backgroundColor: "#DCDCDC",
+                backgroundColor: "white",
               }}
             >
-              <div style={{ display: "flex", paddingBottom: 10 }}>
-                {info.map((infos) => {
-                  return (
-                    <div>
-                      <span style={{ paddingRight: 8 }}>{infos.firstName}</span>
-                      <span style={{ paddingRight: 8 }}>{infos.lastName}</span>
-                      <span style={{ paddingRight: 8 }}>{infos.cohort}</span>
-                      <span style={{ paddingRight: 8 }}>
-                        Attempt #{infos.attempt}
-                      </span>
-                    </div>
-                  );
-                })}
+              <div style={{ display: "flex", paddingBottom: 10, color: "#979797" }}>
+              <span
+                  style={{ fontSize: 20 }}
+                >{`${info.firstName} ${info.lastName}, ${info.cohort}, Attempt #: ${info.attempt}`}</span>
               </div>
-              <Problems />
+              <Problems /> <br></br>
               <Ratings setValue={setValue} />
             </div>
           </div>
@@ -117,7 +109,7 @@ const StudentInfo = ({ setStudents, students }) => {
             placeholder="Search by name or email"
             onChange={handleChange}
             value={search}
-            style={{ height: 30, width: 220, borderRadius: 5, margin: 5 }}
+            style={{ height: 30, width: 220, borderRadius: 5, margin: 5, border: "none" }}
             type="text"
           ></input>
           <div
@@ -286,7 +278,6 @@ const StudentInfo = ({ setStudents, students }) => {
                   justifyContent: "space-between",
                   paddingBottom: 3,
                   paddingTop: 3,
-                  // paddingLeft: 10,
                   borderBottom: "solid 1px #979797",
                   backgroundColor:
                     info.email === student.email ? "#DD8D43" : "",

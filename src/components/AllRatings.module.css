@@ -12,6 +12,7 @@
   background-color: #f0f0f0;
   color: #595959;
   width: 190px;
+  border: none;
 }
 
 .input::placeholder {
