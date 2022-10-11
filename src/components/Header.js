@@ -53,7 +53,6 @@ function Header() {
 
   const router = useRouter();
   function goLink(event, data) {
-    // console.log()
     if (event.target.name === "dashboard") {
       router.push("../dashboard");
     }

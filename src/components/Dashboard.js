@@ -59,7 +59,7 @@ const Dashboard = ({ input }) => {
     "NOV",
     "DEC",
   ];
-
+  console.log(new Date());
   var today = new Date();
   var dd = String(today.getDate()).padStart(2, "0");
   var mmm = months[today.getMonth()];
