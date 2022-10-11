@@ -8,7 +8,7 @@ import RoomURL from "../../src/components/RoomURL";
 function id({ id }) {
   const [input, setInput] = useState("");
 
-  let user = "";
+  let user = "admin";
 
   return (
     <>
