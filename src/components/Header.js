@@ -9,16 +9,35 @@ import BtnLogin from "./BtnLogin";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Dropdown from "react-bootstrap/Dropdown";
+import { useAppContext } from "./GlobalContext";
 
 function Header() {
+  const { user } = useAppContext();
   let currentPage = "";
   let currentUser = "";
   let { asPath } = useRouter();
 
+  let userRole;
+  // let userInfo;
+
+  if (user !== undefined) {
+    localStorage.setItem("userRole", JSON.stringify(user.role));
+    // localStorage.setItem("user", JSON.stringify(user));
+
+    userRole = user.role;
+    // userInfo = JSON.parse(JSON.stringify(user));
+  } else {
+    if (typeof window !== "undefined") {
+      userRole = JSON.parse(localStorage.getItem("userRole"));
+      // userInfo = JSON.parse(localStorage.getItem("user"));
+    }
+  }
+
   switch (asPath) {
     case asPath.match("/interview")?.input:
       currentPage = "Interview App";
-      currentUser = "Danny Andrews";
+      currentUser = `Danny Andrews`;
+
       break;
     case "/login":
       currentPage = "Interview Login";
@@ -26,7 +45,8 @@ function Header() {
       break;
     case "/dashboard":
       currentPage = "Interview Dashboard";
-      currentUser = "Danny Andrews";
+      currentUser = `Danny Andrews`;
+
       break;
   }
 
@@ -82,17 +102,19 @@ function Header() {
 
         {asPath !== "/login" ? (
           <div className={styles.dropdownmenu}>
-            <NavDropdown
-              id="nav-dropdown-dark-example"
-              title={currentUser}
-              menuVariant="light"
-            >
-              <NavDropdown.Item eventKey="1">Profile</NavDropdown.Item>
-              <NavDropdown.Item eventKey="2">Extra page</NavDropdown.Item>
-              <NavDropdown.Item>
-                <BtnLogin />
-              </NavDropdown.Item>
-            </NavDropdown>
+            {userRole !== "ADMIN" ? null : (
+              <NavDropdown
+                id="nav-dropdown-dark-example"
+                title={currentUser}
+                menuVariant="light"
+              >
+                <NavDropdown.Item eventKey="1">Profile</NavDropdown.Item>
+                <NavDropdown.Item eventKey="2">Extra page</NavDropdown.Item>
+                <NavDropdown.Item>
+                  <BtnLogin />
+                </NavDropdown.Item>
+              </NavDropdown>
+            )}
           </div>
         ) : null}
       </div>

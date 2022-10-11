@@ -13,12 +13,12 @@ function id({ id }) {
   let userRole;
 
   if (user !== undefined) {
-    localStorage.setItem("userInfo", JSON.stringify(user.role));
+    localStorage.setItem("userRole", JSON.stringify(user.role));
 
     userRole = user.role;
   } else {
     if (typeof window !== "undefined") {
-      userRole = JSON.parse(localStorage.getItem("userInfo"));
+      userRole = JSON.parse(localStorage.getItem("userRole"));
     }
   }
 
