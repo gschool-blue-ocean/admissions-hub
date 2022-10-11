@@ -1,14 +1,12 @@
 @font-face {
-    font-family: "League Spartan";
-    src: url(../../public/fonts/League_Spartan/LeagueSpartan-VariableFont_wght.ttf);
+  font-family: "League Spartan";
+  src: url(../../public/fonts/League_Spartan/LeagueSpartan-VariableFont_wght.ttf);
 }
 
 @font-face {
-    font-family: "Roboto";
-    src: url(../../public/fonts/Roboto/Roboto-Light.ttf);
+  font-family: "Roboto";
+  src: url(../../public/fonts/Roboto/Roboto-Light.ttf);
 }
-
-
 
 .referenceGrid {
   display: grid;
@@ -39,7 +37,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  color:#979797;
+  color: #979797;
 }
 
 /* Hide the browser's default checkbox */
@@ -49,7 +47,6 @@
   cursor: pointer;
   height: 0;
   width: 0;
-
 }
 
 /* Create a custom checkbox */
@@ -60,7 +57,7 @@
   height: 25px;
   width: 25px;
   background-color: #dcdcdc;
-  transition: .2s;
+  transition: 0.2s;
 }
 
 /* On mouse-over, add a grey background color */
@@ -70,7 +67,7 @@
 
 /* When the checkbox is checked, add a blue background */
 .container input:checked ~ .checkmark {
-  background-color: #DD8D43;
+  background-color: #dd8d43;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -89,7 +86,7 @@
 .container .checkmark:after {
   left: 9px;
   top: 5px;
-  width: 8px; 
+  width: 8px;
   height: 15px;
   border: solid white;
   border-width: 0 3px 3px 0;
@@ -98,7 +95,7 @@
   transform: rotate(45deg);
 }
 
-.input[type=text]{
+.input[type="text"] {
   background-color: #f0f0f0;
   color: #979797;
   width: 190px;

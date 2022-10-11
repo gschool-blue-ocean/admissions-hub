@@ -16,7 +16,7 @@ function Header() {
   let { asPath } = useRouter();
 
   switch (asPath) {
-    case asPath.includes("/interview"):
+    case asPath.match("/interview")?.input:
       currentPage = "Interview App";
       currentUser = "Danny Andrews";
       break;
@@ -25,9 +25,9 @@ function Header() {
       currentUser = "";
       break;
     case "/dashboard":
-        currentPage = "Interview Dashboard";
-        currentUser = "Danny Andrews";
-        break;
+      currentPage = "Interview Dashboard";
+      currentUser = "Danny Andrews";
+      break;
   }
 
   const monthNames = [
@@ -53,7 +53,6 @@ function Header() {
 
   const router = useRouter();
   function goLink(event, data) {
-    // console.log()
     if (event.target.name === "dashboard") {
       router.push("../dashboard");
     }
@@ -62,32 +61,40 @@ function Header() {
   return (
     <>
       <div className={styles.header}>
-        {/* <div className={styles.logo}></div> */}
-        <button
-          className={styles.logo}
-          onClick={goLink}
-          name="dashboard"
-        ></button>
+        {asPath !== "/login" ? (
+          <button
+            className={styles.logo}
+            onClick={goLink}
+            name="dashboard"
+          ></button>
+        ) : (
+          <button className={styles.logo} name="dashboard"></button>
+        )}
 
         <div className={styles.para}>
-          <div className={styles.innerPara}>{currentPage}</div>
+          {asPath !== "/login" ? (
+            <div className={styles.innerPara}>{currentPage}</div>
+          ) : (
+            <div className={styles.innerLoginPara}>{currentPage}</div>
+          )}
         </div>
         <div className={styles.para2}>{today}</div>
-        {/* <div className={styles.para3}>{currentUser}</div> */}
 
-        <div className={styles.dropdownmenu}>
-          <NavDropdown
-            id="nav-dropdown-dark-example"
-            title={currentUser}
-            menuVariant="light"
-          >
-            <NavDropdown.Item eventKey="1">Profile</NavDropdown.Item>
-            <NavDropdown.Item eventKey="2">Extra page</NavDropdown.Item>
-            <NavDropdown.Item>
-              <BtnLogin />
-            </NavDropdown.Item>
-          </NavDropdown>
-        </div>
+        {asPath !== "/login" ? (
+          <div className={styles.dropdownmenu}>
+            <NavDropdown
+              id="nav-dropdown-dark-example"
+              title={currentUser}
+              menuVariant="light"
+            >
+              <NavDropdown.Item eventKey="1">Profile</NavDropdown.Item>
+              <NavDropdown.Item eventKey="2">Extra page</NavDropdown.Item>
+              <NavDropdown.Item>
+                <BtnLogin />
+              </NavDropdown.Item>
+            </NavDropdown>
+          </div>
+        ) : null}
       </div>
     </>
   );
