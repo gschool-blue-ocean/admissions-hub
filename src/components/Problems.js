@@ -25,9 +25,6 @@ const Problems = ({
     setProblem3Notes(info.notes_3);
   }, []);
 
-  // let [markdownText, setMarkDownText] = useState("");
-  // let [markdownText2, setMarkDownText2] = useState("");
-  // let [markdownText3, setMarkDownText3] = useState("");
   let [renderedHTML, setRenderedHTML] = useState("");
   let [renderedHTML2, setRenderedHTML2] = useState("");
   let [renderedHTML3, setRenderedHTML3] = useState("");
@@ -380,8 +377,8 @@ return newStr;
               rows={20}
               value={problem1Notes}
               onChange={handleTextInput}
-              // onBlur={handleFocus2}
-              // autoFocus
+              onBlur={handleFocus2}
+              autoFocus
               style={{
                 width: "100%",
                 backgroundColor: "#ffe8d3",
@@ -504,18 +501,25 @@ return newStr;
               rows={20}
               value={problem2Notes}
               onChange={handleTextInput2}
+              onBlur={handleFocus2}
+              autoFocus
               style={{
-                width: 378,
-                height: 175,
-                resize: "none",
+                width: "100%",
                 backgroundColor: "#ffe8d3",
                 outline: "none",
                 border: "none",
+                height: 175,
+                resize: "none",
+                scrollbarColor: "#ffe8d3 #dd8d43",
               }}
             ></textarea>
           ) : (
             <div
-              style={{ width: "auto", height: 175 }}
+              style={{
+                width: "auto",
+                height: 175,
+                scrollbarColor: "#ffe8d3 #dd8d43",
+              }}
               dangerouslySetInnerHTML={{ __html: renderedHTML2 }}
               className={Style.ProblemsOneMarkdown}
               onClick={handleFocus1}
@@ -621,18 +625,25 @@ return newStr;
               rows={20}
               value={problem3Notes}
               onChange={handleTextInput3}
+              onBlur={handleFocus2}
+              autoFocus
               style={{
-                width: 378,
-                height: 175,
-                resize: "none",
+                width: "100%",
                 backgroundColor: "#ffe8d3",
                 outline: "none",
                 border: "none",
+                height: 175,
+                resize: "none",
+                scrollbarColor: "#ffe8d3 #dd8d43",
               }}
             ></textarea>
           ) : (
             <div
-              style={{ width: "auto", height: 175 }}
+              style={{
+                width: "auto",
+                height: 175,
+                scrollbarColor: "#ffe8d3 #dd8d43",
+              }}
               dangerouslySetInnerHTML={{ __html: renderedHTML3 }}
               className={Style.ProblemsOneMarkdown}
               onClick={handleFocus1}

@@ -25,8 +25,30 @@ function id({ id }) {
   return (
     <>
       <Header />
-      <div style={{ display: "flex", position: "relative", zIndex: "1" }}>
-        <CodeEditor input={input} setInput={setInput} sessionId={id} />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          position: "relative",
+          zIndex: "1",
+        }}
+      >
+        {userRole === "ADMIN" ? (
+          <div style={{ width: "calc(100% - 450px)" }}>
+            <CodeEditor input={input} setInput={setInput} sessionId={id} />
+          </div>
+        ) : (
+          <div
+            style={{
+              width: "900px",
+              position: "relative",
+              left: "50%",
+              transform: "translate(-50%, 0%)",
+            }}
+          >
+            <CodeEditor input={input} setInput={setInput} sessionId={id} />
+          </div>
+        )}
         <div
           style={{
             display: "flex",
@@ -40,7 +62,7 @@ function id({ id }) {
               flexDirection: "column",
               alignItems: "center",
               backgroundColor: "white",
-              zIndex: "2",
+              zIndex: "1",
               position: "fixed",
               right: "0%",
               height: "100%",
@@ -49,8 +71,12 @@ function id({ id }) {
               color: "#979797",
             }}
           >
-            <RoomURL URL={id} />
-            {userRole === "ADMIN" ? <Dashboard input={input} /> : null}
+            {userRole === "ADMIN" ? (
+              <>
+                <RoomURL URL={id} />
+                <Dashboard input={input} />
+              </>
+            ) : null}
           </div>
         </div>
       </div>

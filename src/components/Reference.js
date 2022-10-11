@@ -141,6 +141,7 @@ const Reference = ({
             fontSize: 12,
             marginTop: 5,
             borderRadius: 5,
+            border: "none",
           }}
         ></input>
       </div>
