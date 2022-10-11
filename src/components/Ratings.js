@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import * as ImIcons from "react-icons/im";
 import styles from "./AllRatings.module.css";
-
+import { useRouter } from "next/router";
 
 const Ratings = ({ setValue }) => {
   const [problem1a, setProblem1a] = useState(false);
@@ -18,6 +18,8 @@ const Ratings = ({ setValue }) => {
   const [problem3b, setProblem3b] = useState(false);
   const [problem3c, setProblem3c] = useState(false);
   const [problem3d, setProblem3d] = useState(false);
+
+  let { asPath } = useRouter();
 
   let rating = 0;
 
@@ -73,330 +75,541 @@ const Ratings = ({ setValue }) => {
   ///////////CIRCLE///////////////
 
   return (
-    <div className={styles} style={{marginTop: "-8px"}}>
-      <span style={{ fontSize: 12, fontFamily:"League Spartan", paddingLeft: 7, color:"#979797" }}>Rating</span>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          fontSize: 16,
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-          }}
-        >
+    <>
+      {asPath === "/dashboard" ? (
+        <div className={styles} style={{ marginTop: "-8px" }}>
+          <span
+            style={{
+              fontSize: 12,
+              fontFamily: "League Spartan",
+              paddingLeft: 7,
+              color: "#979797",
+            }}
+          >
+            Rating
+          </span>
           <div
             style={{
               display: "flex",
-              marginTop: "-15px"
+              justifyContent: "space-around",
+              fontSize: 16,
             }}
           >
-            <div style={{ paddingRight: 30, color:"#979797" }}>Problem 1</div>
-            <div style={{ display: "flex", marginTop: "-2px" }}>
-              <div
-                onClick={() => {
-                  setProblem1a(!problem1a);
-                  if (problem1b) {
-                    setProblem1b(!problem1b);
-                  }
-                  if (problem1c) {
-                    setProblem1c(!problem1c);
-                  }
-                  if (problem1d) {
-                    setProblem1d(!problem1d);
-                  }
-                }}
-              >
-                {problem1a ? (
-                  <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
-                ) : (
-                  <ImIcons.ImStarFull className={styles.empty} />
-                )}
-              </div>
-              <div
-                onClick={() => {
-                  if (!problem1a) {
-                    setProblem1a(!problem1a);
-                  }
-                  if (problem1c) {
-                    setProblem1c(!problem1c);
-                  }
-                  if (problem1d) {
-                    setProblem1d(!problem1d);
-                  }
-                  setProblem1b(!problem1b);
-                }}
-              >
-                {problem1b ? (
-                  <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
-                ) : (
-                  <ImIcons.ImStarFull className={styles.empty} />
-                )}
-              </div>
-              <div
-                onClick={() => {
-                  if (!problem1a) {
-                    setProblem1a(!problem1a);
-                  }
-                  if (!problem1b) {
-                    setProblem1b(!problem1b);
-                  }
-                  if (problem1d) {
-                    setProblem1d(!problem1d);
-                  }
-                  setProblem1c(!problem1c);
-                }}
-              >
-                {problem1c ? (
-                  <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
-                ) : (
-                  <ImIcons.ImStarFull className={styles.empty} />
-                )}
-              </div>
-              <div
-                onClick={() => {
-                  if (!problem1a) {
-                    setProblem1a(!problem1a);
-                  }
-                  if (!problem1b) {
-                    setProblem1b(!problem1b);
-                  }
-                  if (!problem1c) {
-                    setProblem1c(!problem1c);
-                  }
-                  setProblem1d(!problem1d);
-                }}
-              >
-                {problem1d ? (
-                  <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
-                ) : (
-                  <ImIcons.ImStarFull className={styles.empty}/>
-                )}
-              </div>
-            </div>
-          </div>
-          <div
-            style={{
-              display: "flex",
-            }}
-          >
-            <div style={{ paddingRight: 30, color:"#979797" }}>Problem 2</div>
-            <div style={{ display: "flex", marginTop: "-2px" }}>
-              <div
-                onClick={() => {
-                  setProblem2a(!problem2a);
-                  if (problem2b) {
-                    setProblem2b(!problem2b);
-                  }
-                  if (problem2c) {
-                    setProblem2c(!problem2c);
-                  }
-                  if (problem2d) {
-                    setProblem2d(!problem2d);
-                  }
-                }}
-              >
-                {problem2a ? (
-                  <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
-                ) : (
-                  <ImIcons.ImStarFull className={styles.empty}/>
-                )}
-              </div>
-              <div
-                onClick={() => {
-                  if (!problem2a) {
-                    setProblem2a(!problem2a);
-                  }
-                  if (problem2c) {
-                    setProblem2c(!problem2c);
-                  }
-                  if (problem2d) {
-                    setProblem2d(!problem2d);
-                  }
-                  setProblem2b(!problem2b);
-                }}
-              >
-                {problem2b ? (
-                  <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
-                ) : (
-                  <ImIcons.ImStarFull className={styles.empty}/>
-                )}
-              </div>
-              <div
-                onClick={() => {
-                  if (!problem2a) {
-                    setProblem2a(!problem2a);
-                  }
-                  if (!problem2b) {
-                    setProblem2b(!problem2b);
-                  }
-                  if (problem2d) {
-                    setProblem2d(!problem2d);
-                  }
-                  setProblem2c(!problem2c);
-                }}
-              >
-                {problem2c ? (
-                  <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
-                ) : (
-                  <ImIcons.ImStarFull className={styles.empty}/>
-                )}
-              </div>
-              <div
-                onClick={() => {
-                  if (!problem2a) {
-                    setProblem2a(!problem2a);
-                  }
-                  if (!problem2b) {
-                    setProblem2b(!problem2b);
-                  }
-                  if (!problem2c) {
-                    setProblem2c(!problem2c);
-                  }
-                  setProblem2d(!problem2d);
-                }}
-              >
-                {problem2d ? (
-                  <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
-                ) : (
-                  <ImIcons.ImStarFull className={styles.empty}/>
-                )}
-              </div>
-            </div>
-          </div>
-          <div
-            style={{
-              display: "flex",
-            }}
-          >
-            <div style={{ paddingRight: 30, color:"#979797" }}>Problem 3</div>
-            <div style={{ display: "flex", marginTop: "-2px" }}>
-              <div
-                onClick={() => {
-                  setProblem3a(!problem3a);
-                  if (problem3b) {
-                    setProblem3b(!problem3b);
-                  }
-                  if (problem3c) {
-                    setProblem3c(!problem3c);
-                  }
-                  if (problem3d) {
-                    setProblem3d(!problem3d);
-                  }
-                }}
-              >
-                {problem3a ? (
-                  <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
-                ) : (
-                  <ImIcons.ImStarFull className={styles.empty}/>
-                )}
-              </div>
-              <div
-                onClick={() => {
-                  if (!problem3a) {
-                    setProblem3a(!problem3a);
-                  }
-                  if (problem3c) {
-                    setProblem3c(!problem3c);
-                  }
-                  if (problem3d) {
-                    setProblem3d(!problem3d);
-                  }
-                  setProblem3b(!problem3b);
-                }}
-              >
-                {problem3b ? (
-                  <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
-                ) : (
-                  <ImIcons.ImStarFull className={styles.empty}/>
-                )}
-              </div>
-              <div
-                onClick={() => {
-                  if (!problem3a) {
-                    setProblem3a(!problem3a);
-                  }
-                  if (!problem3b) {
-                    setProblem3b(!problem3b);
-                  }
-                  if (problem3d) {
-                    setProblem3d(!problem3d);
-                  }
-                  setProblem3c(!problem3c);
-                }}
-              >
-                {problem3c ? (
-                  <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
-                ) : (
-                  <ImIcons.ImStarFull className={styles.empty}/>
-                )}
-              </div>
-              <div
-                onClick={() => {
-                  if (!problem3a) {
-                    setProblem3a(!problem3a);
-                  }
-                  if (!problem3b) {
-                    setProblem3b(!problem3b);
-                  }
-                  if (!problem3c) {
-                    setProblem3c(!problem3c);
-                  }
-                  setProblem3d(!problem3d);
-                }}
-              >
-                {problem3d ? (
-                  <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
-                ) : (
-                  <ImIcons.ImStarFull className={styles.empty}/>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <svg height={radius * 2} width={radius * 2} style={{marginTop:"-15px"}}>
-            <circle
-              stroke="#ffd8a7"
-              fill="none"
-              strokeWidth={stroke}
-              stroke-width={stroke}
-              r={normalizedRadius}
-              cx={radius}
-              cy={radius}
-            />
-            <circle
-              stroke="#DD8D43"
-              fill="transparent"
-              strokeWidth={stroke}
-              strokeDasharray={circumference + " " + circumference}
+            <div
               style={{
-                strokeDashoffset,
-                transition: "stroke-dashoffset 0.35s",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
               }}
-              stroke-width={stroke}
-              r={normalizedRadius}
-              cx={radius}
-              cy={radius}
-            />
-            <text
-              x="50%"
-              y="56%"
-              text-anchor="middle"
-              fill="#DD8D43"
-              fontSize="23"
-              fontFamily="League Spartan"
             >
-              {((rating / 12) * 100).toFixed(0)}%
-            </text>
-          </svg>
+              <div
+                style={{
+                  display: "flex",
+                  marginTop: "-15px",
+                }}
+              >
+                <div style={{ paddingRight: 30, color: "#979797" }}>
+                  Problem 1
+                </div>
+                <div style={{ display: "flex", marginTop: "-2px" }}>
+                  <div>
+                    {problem1a ? (
+                      <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
+                    ) : (
+                      <ImIcons.ImStarFull className={styles.empty} />
+                    )}
+                  </div>
+                  <div>
+                    {problem1b ? (
+                      <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
+                    ) : (
+                      <ImIcons.ImStarFull className={styles.empty} />
+                    )}
+                  </div>
+                  <div>
+                    {problem1c ? (
+                      <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
+                    ) : (
+                      <ImIcons.ImStarFull className={styles.empty} />
+                    )}
+                  </div>
+                  <div>
+                    {problem1d ? (
+                      <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
+                    ) : (
+                      <ImIcons.ImStarFull className={styles.empty} />
+                    )}
+                  </div>
+                </div>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                }}
+              >
+                <div style={{ paddingRight: 30, color: "#979797" }}>
+                  Problem 2
+                </div>
+                <div style={{ display: "flex", marginTop: "-2px" }}>
+                  <div>
+                    {problem2a ? (
+                      <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
+                    ) : (
+                      <ImIcons.ImStarFull className={styles.empty} />
+                    )}
+                  </div>
+                  <div>
+                    {problem2b ? (
+                      <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
+                    ) : (
+                      <ImIcons.ImStarFull className={styles.empty} />
+                    )}
+                  </div>
+                  <div>
+                    {problem2c ? (
+                      <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
+                    ) : (
+                      <ImIcons.ImStarFull className={styles.empty} />
+                    )}
+                  </div>
+                  <div>
+                    {problem2d ? (
+                      <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
+                    ) : (
+                      <ImIcons.ImStarFull className={styles.empty} />
+                    )}
+                  </div>
+                </div>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                }}
+              >
+                <div style={{ paddingRight: 30, color: "#979797" }}>
+                  Problem 3
+                </div>
+                <div style={{ display: "flex", marginTop: "-2px" }}>
+                  <div>
+                    {problem3a ? (
+                      <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
+                    ) : (
+                      <ImIcons.ImStarFull className={styles.empty} />
+                    )}
+                  </div>
+                  <div>
+                    {problem3b ? (
+                      <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
+                    ) : (
+                      <ImIcons.ImStarFull className={styles.empty} />
+                    )}
+                  </div>
+                  <div>
+                    {problem3c ? (
+                      <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
+                    ) : (
+                      <ImIcons.ImStarFull className={styles.empty} />
+                    )}
+                  </div>
+                  <div>
+                    {problem3d ? (
+                      <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
+                    ) : (
+                      <ImIcons.ImStarFull className={styles.empty} />
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <svg
+                height={radius * 2}
+                width={radius * 2}
+                style={{ marginTop: "-15px" }}
+              >
+                <circle
+                  stroke="#ffd8a7"
+                  fill="none"
+                  strokeWidth={stroke}
+                  stroke-width={stroke}
+                  r={normalizedRadius}
+                  cx={radius}
+                  cy={radius}
+                />
+                <circle
+                  stroke="#DD8D43"
+                  fill="transparent"
+                  strokeWidth={stroke}
+                  strokeDasharray={circumference + " " + circumference}
+                  style={{
+                    strokeDashoffset,
+                    transition: "stroke-dashoffset 0.35s",
+                  }}
+                  stroke-width={stroke}
+                  r={normalizedRadius}
+                  cx={radius}
+                  cy={radius}
+                />
+                <text
+                  x="50%"
+                  y="56%"
+                  text-anchor="middle"
+                  fill="#DD8D43"
+                  fontSize="23"
+                  fontFamily="League Spartan"
+                >
+                  {((rating / 12) * 100).toFixed(0)}%
+                </text>
+              </svg>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      ) : (
+        <div className={styles} style={{ marginTop: "-8px" }}>
+          <span
+            style={{
+              fontSize: 12,
+              fontFamily: "League Spartan",
+              paddingLeft: 7,
+              color: "#979797",
+            }}
+          >
+            Rating
+          </span>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-around",
+              fontSize: 16,
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  marginTop: "-15px",
+                }}
+              >
+                <div style={{ paddingRight: 30, color: "#979797" }}>
+                  Problem 1
+                </div>
+                <div style={{ display: "flex", marginTop: "-2px" }}>
+                  <div
+                    onClick={() => {
+                      setProblem1a(!problem1a);
+                      if (problem1b) {
+                        setProblem1b(!problem1b);
+                      }
+                      if (problem1c) {
+                        setProblem1c(!problem1c);
+                      }
+                      if (problem1d) {
+                        setProblem1d(!problem1d);
+                      }
+                    }}
+                  >
+                    {problem1a ? (
+                      <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
+                    ) : (
+                      <ImIcons.ImStarFull className={styles.empty} />
+                    )}
+                  </div>
+                  <div
+                    onClick={() => {
+                      if (!problem1a) {
+                        setProblem1a(!problem1a);
+                      }
+                      if (problem1c) {
+                        setProblem1c(!problem1c);
+                      }
+                      if (problem1d) {
+                        setProblem1d(!problem1d);
+                      }
+                      setProblem1b(!problem1b);
+                    }}
+                  >
+                    {problem1b ? (
+                      <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
+                    ) : (
+                      <ImIcons.ImStarFull className={styles.empty} />
+                    )}
+                  </div>
+                  <div
+                    onClick={() => {
+                      if (!problem1a) {
+                        setProblem1a(!problem1a);
+                      }
+                      if (!problem1b) {
+                        setProblem1b(!problem1b);
+                      }
+                      if (problem1d) {
+                        setProblem1d(!problem1d);
+                      }
+                      setProblem1c(!problem1c);
+                    }}
+                  >
+                    {problem1c ? (
+                      <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
+                    ) : (
+                      <ImIcons.ImStarFull className={styles.empty} />
+                    )}
+                  </div>
+                  <div
+                    onClick={() => {
+                      if (!problem1a) {
+                        setProblem1a(!problem1a);
+                      }
+                      if (!problem1b) {
+                        setProblem1b(!problem1b);
+                      }
+                      if (!problem1c) {
+                        setProblem1c(!problem1c);
+                      }
+                      setProblem1d(!problem1d);
+                    }}
+                  >
+                    {problem1d ? (
+                      <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
+                    ) : (
+                      <ImIcons.ImStarFull className={styles.empty} />
+                    )}
+                  </div>
+                </div>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                }}
+              >
+                <div style={{ paddingRight: 30, color: "#979797" }}>
+                  Problem 2
+                </div>
+                <div style={{ display: "flex", marginTop: "-2px" }}>
+                  <div
+                    onClick={() => {
+                      setProblem2a(!problem2a);
+                      if (problem2b) {
+                        setProblem2b(!problem2b);
+                      }
+                      if (problem2c) {
+                        setProblem2c(!problem2c);
+                      }
+                      if (problem2d) {
+                        setProblem2d(!problem2d);
+                      }
+                    }}
+                  >
+                    {problem2a ? (
+                      <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
+                    ) : (
+                      <ImIcons.ImStarFull className={styles.empty} />
+                    )}
+                  </div>
+                  <div
+                    onClick={() => {
+                      if (!problem2a) {
+                        setProblem2a(!problem2a);
+                      }
+                      if (problem2c) {
+                        setProblem2c(!problem2c);
+                      }
+                      if (problem2d) {
+                        setProblem2d(!problem2d);
+                      }
+                      setProblem2b(!problem2b);
+                    }}
+                  >
+                    {problem2b ? (
+                      <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
+                    ) : (
+                      <ImIcons.ImStarFull className={styles.empty} />
+                    )}
+                  </div>
+                  <div
+                    onClick={() => {
+                      if (!problem2a) {
+                        setProblem2a(!problem2a);
+                      }
+                      if (!problem2b) {
+                        setProblem2b(!problem2b);
+                      }
+                      if (problem2d) {
+                        setProblem2d(!problem2d);
+                      }
+                      setProblem2c(!problem2c);
+                    }}
+                  >
+                    {problem2c ? (
+                      <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
+                    ) : (
+                      <ImIcons.ImStarFull className={styles.empty} />
+                    )}
+                  </div>
+                  <div
+                    onClick={() => {
+                      if (!problem2a) {
+                        setProblem2a(!problem2a);
+                      }
+                      if (!problem2b) {
+                        setProblem2b(!problem2b);
+                      }
+                      if (!problem2c) {
+                        setProblem2c(!problem2c);
+                      }
+                      setProblem2d(!problem2d);
+                    }}
+                  >
+                    {problem2d ? (
+                      <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
+                    ) : (
+                      <ImIcons.ImStarFull className={styles.empty} />
+                    )}
+                  </div>
+                </div>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                }}
+              >
+                <div style={{ paddingRight: 30, color: "#979797" }}>
+                  Problem 3
+                </div>
+                <div style={{ display: "flex", marginTop: "-2px" }}>
+                  <div
+                    onClick={() => {
+                      setProblem3a(!problem3a);
+                      if (problem3b) {
+                        setProblem3b(!problem3b);
+                      }
+                      if (problem3c) {
+                        setProblem3c(!problem3c);
+                      }
+                      if (problem3d) {
+                        setProblem3d(!problem3d);
+                      }
+                    }}
+                  >
+                    {problem3a ? (
+                      <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
+                    ) : (
+                      <ImIcons.ImStarFull className={styles.empty} />
+                    )}
+                  </div>
+                  <div
+                    onClick={() => {
+                      if (!problem3a) {
+                        setProblem3a(!problem3a);
+                      }
+                      if (problem3c) {
+                        setProblem3c(!problem3c);
+                      }
+                      if (problem3d) {
+                        setProblem3d(!problem3d);
+                      }
+                      setProblem3b(!problem3b);
+                    }}
+                  >
+                    {problem3b ? (
+                      <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
+                    ) : (
+                      <ImIcons.ImStarFull className={styles.empty} />
+                    )}
+                  </div>
+                  <div
+                    onClick={() => {
+                      if (!problem3a) {
+                        setProblem3a(!problem3a);
+                      }
+                      if (!problem3b) {
+                        setProblem3b(!problem3b);
+                      }
+                      if (problem3d) {
+                        setProblem3d(!problem3d);
+                      }
+                      setProblem3c(!problem3c);
+                    }}
+                  >
+                    {problem3c ? (
+                      <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
+                    ) : (
+                      <ImIcons.ImStarFull className={styles.empty} />
+                    )}
+                  </div>
+                  <div
+                    onClick={() => {
+                      if (!problem3a) {
+                        setProblem3a(!problem3a);
+                      }
+                      if (!problem3b) {
+                        setProblem3b(!problem3b);
+                      }
+                      if (!problem3c) {
+                        setProblem3c(!problem3c);
+                      }
+                      setProblem3d(!problem3d);
+                    }}
+                  >
+                    {problem3d ? (
+                      <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
+                    ) : (
+                      <ImIcons.ImStarFull className={styles.empty} />
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <svg
+                height={radius * 2}
+                width={radius * 2}
+                style={{ marginTop: "-15px" }}
+              >
+                <circle
+                  stroke="#ffd8a7"
+                  fill="none"
+                  strokeWidth={stroke}
+                  stroke-width={stroke}
+                  r={normalizedRadius}
+                  cx={radius}
+                  cy={radius}
+                />
+                <circle
+                  stroke="#DD8D43"
+                  fill="transparent"
+                  strokeWidth={stroke}
+                  strokeDasharray={circumference + " " + circumference}
+                  style={{
+                    strokeDashoffset,
+                    transition: "stroke-dashoffset 0.35s",
+                  }}
+                  stroke-width={stroke}
+                  r={normalizedRadius}
+                  cx={radius}
+                  cy={radius}
+                />
+                <text
+                  x="50%"
+                  y="56%"
+                  text-anchor="middle"
+                  fill="#DD8D43"
+                  fontSize="23"
+                  fontFamily="League Spartan"
+                >
+                  {((rating / 12) * 100).toFixed(0)}%
+                </text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

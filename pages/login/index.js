@@ -1,12 +1,9 @@
-
 import AdminLogin from "./AdminLogin";
 import { useAppContext } from "../../src/components/GlobalContext";
+import Header from "../../src/components/Header";
 import LoginNavbar from "./LoginNavbar";
-import {
-  MDBFooter
-} from "mdb-react-ui-kit";
+import { MDBFooter } from "mdb-react-ui-kit";
 import styles from "./LoginPageStyle.module.css";
-
 
 export default function Login() {
   const { showWarning } = useAppContext();
@@ -14,7 +11,8 @@ export default function Login() {
   return (
     <>
       <div>
-        <LoginNavbar />
+        <Header />
+        {/* <LoginNavbar /> */}
       </div>
       {showWarning && (
         <div className={styles.warning}>

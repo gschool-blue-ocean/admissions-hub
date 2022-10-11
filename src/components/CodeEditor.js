@@ -61,6 +61,27 @@ export default function CodeEditor({ input, setInput, sessionId }) {
         theme="vs-dark"
         value={input}
         onChange={(e) => onChangeHandler(e)}
+        className={styles.editor}
+      />
+      <button
+        onClick={() => handleRun(input)}
+        style={{
+          width: 100,
+          margin: "-34px 10px 0px",
+          zIndex: 3,
+          position: "sticky",
+          color: "#dd8d43",
+          left: "100%",
+          top: "100%",
+          transform: "translate(-10%, -50%)",
+          backgroundColor: "black",
+          border: "2px solid #dd8d43",
+          fontFamily: "League Spartan",
+        }}
+      >
+        Run Code
+      </button>
+      <code
         style={{
           background: "#1e1e1e",
           height: "250px",
@@ -69,14 +90,19 @@ export default function CodeEditor({ input, setInput, sessionId }) {
           padding: "15px",
           borderTop: "1px solid #979797",
           position: "relative",
-          zIndex: 2,
+          zIndex: 2
+>>>>>>>>> Temporary merge branch 2
         }}
       />
       <code>
         {codeReturn.map((line) => (
           <span style={{ color: "white" }}>{`> ${line}`}</span>
         ))}
+<<<<<<<<< Temporary merge branch 1
+      </div>
+=========
       </code>
+>>>>>>>>> Temporary merge branch 2
     </div>
   );
 }
