@@ -9,26 +9,26 @@ export default function AdminLogin() {
   const router = useRouter();
 
   const { setShowWarning } = useAppContext();
-  
-   const [loginForm, setLoginForm] = useState({
-     email: "",
-     password: "",
-   });
-  
-  
 
-   const { email, password } = loginForm;
-   const onChangeLoginForm = (event) =>
-     setLoginForm(
-       //se computed property to update properties in state loginForm
-       { ...loginForm, [event.target.name]: event.target.value },
-       //console log to see if it works
-       
-     );
+  const [loginForm, setLoginForm] = useState({
+    email: "",
+    password: "",
+  });
+
+  const { email, password } = loginForm;
+  const onChangeLoginForm = (event) =>
+    setLoginForm(
+      //se computed property to update properties in state loginForm
+      { ...loginForm, [event.target.name]: event.target.value }
+      //console log to see if it works
+    );
   const loginAdmin = async (loginForm) => {
     try {
       const response = await axios.post("/api/admin", loginForm);
-     
+
+      console.log(loginForm);
+      console.log(response.data);
+
       if (response.data.connect) {
         return response.data;
       } else {
@@ -36,10 +36,9 @@ export default function AdminLogin() {
       }
     } catch (error) {
       throw error;
-   
     }
   };
-  
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -56,10 +55,10 @@ export default function AdminLogin() {
         }, 3000);
       }
     } catch (error) {
-     throw error;
+      throw error;
     }
   };
-  
+
   return (
     <>
       <Card
@@ -84,7 +83,7 @@ export default function AdminLogin() {
                     style={{
                       backgroundColor: "#D9D9D9",
                     }}
-                     value={email}
+                    value={email}
                     onChange={onChangeLoginForm}
                   />
                 </Form.Group>
@@ -97,7 +96,7 @@ export default function AdminLogin() {
                     style={{
                       backgroundColor: "#D9D9D9",
                     }}
-                     value={password}
+                    value={password}
                     onChange={onChangeLoginForm}
                   />
                 </Form.Group>
@@ -109,7 +108,6 @@ export default function AdminLogin() {
                     backgroundColor: "#DD8D43",
                     width: 116,
                   }}
-                  
                 >
                   login
                 </Button>

@@ -6,11 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "@monaco-editor/react": "^4.4.6",
     "@prisma/client": "^4.4.0",
+    "@testing-library/react": "^13.4.0",
     "axios": "^0.27.2",
     "body-parser": "^1.20.0",
     "bootstrap": "^5.2.1",
@@ -33,6 +35,7 @@
   },
   "devDependencies": {
     "@types/react": "18.0.21",
+    "cypress": "^10.9.0",
     "eslint": "8.24.0",
     "eslint-config-next": "12.3.1",
     "nodemon": "^2.0.20",
