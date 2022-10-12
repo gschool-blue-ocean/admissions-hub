@@ -6,7 +6,9 @@ function BtnInterviewer() {
     const { setShowWarning } = useAppContext();
     const router = useRouter()
   function goLink(event, data) {
-      setShowWarning(false);
+    setShowWarning(false);
+    //delete accessToken from local storage
+    localStorage.removeItem("accessToken");
         // console.log()
         if (event.target.name === 'login') {
             router.push('../login')
