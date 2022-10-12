@@ -1,4 +1,4 @@
-
+import router from "next/router";
 import AdminLogin from "./AdminLogin";
 import { useAppContext } from "../../src/components/GlobalContext";
 import LoginNavbar from "./LoginNavbar";
@@ -10,6 +10,10 @@ import styles from "./LoginPageStyle.module.css";
 
 export default function Login() {
   const { showWarning } = useAppContext();
+  //if local storage has accessToken, redirect to dashboard
+  if (localStorage.getItem("accessToken")) {
+    router.push("/dashboard");
+  }
 
   return (
     <>

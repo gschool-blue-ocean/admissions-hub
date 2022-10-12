@@ -1,3 +1,4 @@
+import {useState, useEffect} from 'react'
 import styles from "./Header.module.css";
 import Image from "next/image";
 import Container from "react-bootstrap/Container";
@@ -14,17 +15,21 @@ function Header() {
   let currentPage = "";
   let currentUser = "";
   let { asPath } = useRouter();
+  //get current access token from local storage
+  useEffect(() => {
+    let accessToken = localStorage.getItem("accessToken");
 
-  switch (asPath) {
-    case "/dashboard":
-      currentPage = "Interview Dashboard";
-      currentUser = "Danny Andrews";
-      break;
-    case "/login":
-      currentPage = "Interview Login";
-      currentUser = "";
-      break;
-  }
+    switch (asPath) {
+      case `/dashboard?access=${accessToken}`:
+        currentPage = "Interview Dashboard";
+        currentUser = "Danny Andrews";
+        break;
+      case "/login":
+        currentPage = "Interview Login";
+        currentUser = "";
+        break;
+    }
+  }, []);
 
   const monthNames = [
     "January",
@@ -74,7 +79,7 @@ function Header() {
         <div className={styles.dropdownmenu}>
           <NavDropdown
             id="nav-dropdown-dark-example"
-            title={currentUser}
+            title={currentUser ? currentUser : "Danny Andrews"}
             menuVariant="light"
           >
             <NavDropdown.Item eventKey="1">Profile</NavDropdown.Item>

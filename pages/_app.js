@@ -1,3 +1,4 @@
+import router from "next/router";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import { useEffect } from "react";
@@ -9,6 +10,9 @@ function MyApp({ Component, pageProps }) {
   useEffect(() => {
     import("bootstrap/dist/js/bootstrap.bundle.min.js");
   }, []);
+
+
+
   return (
     <div>
       <Head>

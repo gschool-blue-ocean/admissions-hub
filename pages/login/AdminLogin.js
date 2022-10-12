@@ -45,10 +45,15 @@ export default function AdminLogin() {
     try {
       //get data from loginUser, login form is user's input
       const loginData = await loginAdmin(loginForm);
-      // console.log("login data ", loginData);
+      // console.log("login data ", loginData.accessToken);
+      //save accessToken to local storage
+      localStorage.setItem("accessToken", loginData.accessToken);
+      
       //if login is successful, redirect to home page dashboard
       if (loginData.connect) {
         router.push("/dashboard");
+        //add accessToken to url
+        router.push(`/dashboard?access=${loginData.accessToken}`);
       } else {
         setShowWarning(true);
         setTimeout(() => {

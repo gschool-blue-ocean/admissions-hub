@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -8,8 +9,8 @@ export default function LoginNavbar() {
     <Navbar bg="light" expand="lg">
       <Container>
         <Navbar.Brand href="#home">
-          <img
-            src="https://thumbs.bfldr.com/at/4p5aiwmm?expiry=1665113137&fit=bounds&height=800&sig=ODEyYTI5ZGE1NmZmZTQ1NGJkNzI1MzBkMzhhYjY2OTg3ZWYxODhiNg%3D%3D&width=1100"
+          <Image
+            src="/galvanize-full-logo.png"
             width="156"
             height="60"
             className="d-inline-block align-top"
