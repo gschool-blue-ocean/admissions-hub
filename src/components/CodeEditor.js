@@ -91,18 +91,11 @@ export default function CodeEditor({ input, setInput, sessionId }) {
           borderTop: "1px solid #979797",
           position: "relative",
           zIndex: 2
->>>>>>>>> Temporary merge branch 2
         }}
       />
-      <code>
         {codeReturn.map((line) => (
           <span style={{ color: "white" }}>{`> ${line}`}</span>
         ))}
-<<<<<<<<< Temporary merge branch 1
       </div>
-=========
-      </code>
->>>>>>>>> Temporary merge branch 2
-    </div>
   );
 }

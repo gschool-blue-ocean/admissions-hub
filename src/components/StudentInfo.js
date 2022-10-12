@@ -91,7 +91,7 @@ const StudentInfo = ({ setStudents, students }) => {
                   style={{ fontSize: 20 }}
                 >{`${info.firstName} ${info.lastName}, ${info.cohort}, Attempt #: ${info.attempt}`}</span>
               </div>
-              <Problems /> <br></br>
+              <ViewProblems /> <br></br>
               <Ratings setValue={setValue} />
             </div>
           </div>
