@@ -66,3 +66,4 @@ insert into "candidates" ("first_name", "last_name", "email", "cohort", "date", 
 ('Thanh', 'Le', 'huybenpro12@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes'),
 ('Matthew', 'Rust', 'matthewrust221@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes'),
 ('Hung', 'Nguyen', 'hungnguyen16931@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes');
+

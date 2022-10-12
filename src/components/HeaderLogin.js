@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from "react";
 import styles from "./Header.module.css";
 import Image from "next/image";
 import Container from "react-bootstrap/Container";
@@ -11,7 +11,7 @@ import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Dropdown from "react-bootstrap/Dropdown";
 
-function Header() {
+function HeaderLogin() {
   let currentPage = "";
   let currentUser = "";
   let { asPath } = useRouter();
@@ -80,23 +80,9 @@ function Header() {
           )}
         </div>
         <div className={styles.para2}>{today}</div>
-
-        <div className={styles.dropdownmenu}>
-          <NavDropdown
-            id="nav-dropdown-dark-example"
-            title={currentUser ? currentUser : "Danny Andrews"}
-            menuVariant="light"
-          >
-            <NavDropdown.Item eventKey="1">Profile</NavDropdown.Item>
-            <NavDropdown.Item eventKey="2">Extra page</NavDropdown.Item>
-            <NavDropdown.Item>
-              <BtnLogin />
-            </NavDropdown.Item>
-          </NavDropdown>
-        </div>
       </div>
     </>
   );
 }
 
-export default Header;
+export default HeaderLogin;

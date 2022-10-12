@@ -97,5 +97,6 @@ export default function CodeEditor({ input, setInput, sessionId }) {
           <span style={{ color: "white" }}>{`> ${line}`}</span>
         ))}
       </div>
+
   );
 }
