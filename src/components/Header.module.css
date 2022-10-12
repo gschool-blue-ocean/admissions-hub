@@ -17,10 +17,14 @@
 .logo {
   background-image: url("../../public/galvanize-full-logo.png");
   background-size: cover;
-  background-position: center;
-  width: 10%;
+  background-position: left;
+  width: 200px;
   background-color: #ffffff;
   border: none;
+  position: relative;
+  z-index: 5;
+  overflow:visible;
+  display: flex;
 }
 
 .para {
@@ -28,9 +32,10 @@
   z-index: 1;
   position: relative;
   overflow: hidden;
-  font-weight: 600;
+  font-weight: 400;
   display: flex;
   justify-content: center;
+  font-family: "League Spartan";
 }
 
 .innerPara {
@@ -40,7 +45,7 @@
   position: absolute;
   transform: translate(0 -50%);
   background: white;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .innerLoginPara {
