@@ -22,22 +22,32 @@ const Reference = ({
   };
 
   return (
-    <div style={{marginTop: "-15px" }}>
-      <span style={{ fontSize: 12, fontFamily: "League Spartan", paddingLeft: 7, color:"#979797"}}>Suggested Study Material</span>
+    <div style={{ marginTop: "-15px" }}>
+      <span
+        style={{
+          fontSize: 12,
+          fontFamily: "League Spartan",
+          paddingLeft: 7,
+          color: "#979797",
+        }}
+      >
+        Suggested Study Material
+      </span>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <div className={styles.referenceGrid}>
           <div>
             <label className={styles.container}>
-              <input 
+              <input
                 onClick={() => {
                   setVariables(!variables);
                 }}
                 type="checkbox"
               ></input>
-
-              <span style={{ paddingLeft: 5 }} className={styles.checkmark}>
-              </span>
-                Variables
+              <span
+                style={{ paddingLeft: 5 }}
+                className={styles.checkmark}
+              ></span>
+              Variables
             </label>
           </div>
           <div>
@@ -48,10 +58,11 @@ const Reference = ({
                 }}
                 type="checkbox"
               ></input>
-
-              <span style={{ paddingLeft: 5 }} className={styles.checkmark}>
-              </span>
-                Arrays & Objects
+              <span
+                style={{ paddingLeft: 5 }}
+                className={styles.checkmark}
+              ></span>
+              Arrays & Objects
             </label>
           </div>
           <div>
@@ -62,10 +73,11 @@ const Reference = ({
                 }}
                 type="checkbox"
               ></input>
-
-              <span style={{ paddingLeft: 5 }} className={styles.checkmark}>
-              </span>
-                Operators And Methods
+              <span
+                style={{ paddingLeft: 5 }}
+                className={styles.checkmark}
+              ></span>
+              Operators And Methods
             </label>
           </div>
           <div>
@@ -76,23 +88,27 @@ const Reference = ({
                 }}
                 type="checkbox"
               ></input>
-
-              <span style={{ paddingLeft: 5 }} className={styles.checkmark}>
-              </span>
-               Conditionals
+              <span
+                style={{ paddingLeft: 5 }}
+                className={styles.checkmark}
+              ></span>
+              Conditionals
             </label>
           </div>
           <div>
             <label className={styles.container}>
-              <input className={styles.check}
+              <input
+                className={styles.check}
                 onClick={() => {
                   setLoops(!loops);
                 }}
                 type="checkbox"
               ></input>
-              <span style={{ paddingLeft: 5 }} className={styles.checkmark}>
-              </span>
-                Loops
+              <span
+                style={{ paddingLeft: 5 }}
+                className={styles.checkmark}
+              ></span>
+              Loops
             </label>
           </div>
           <div>
@@ -103,21 +119,30 @@ const Reference = ({
                 }}
                 type="checkbox"
               ></input>
-              <span style={{ paddingLeft: 10 }} className={styles.checkmark}>
-              </span>
-                Accumulator Pattern
+              <span
+                style={{ paddingLeft: 10 }}
+                className={styles.checkmark}
+              ></span>
+              Accumulator Pattern
             </label>
           </div>
         </div>
       </div>
-      <div style={{ display: "flex", justifyContent: "center",  }}>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <input
           className={styles.input}
           onChange={handleChange}
           value={extraResources}
           placeholder="Insert external link"
           type="text"
-          style={{ width: 400, height: 32, fontSize: 12, marginTop: 5, borderRadius: 5, border: "none" }}
+          style={{
+            width: 400,
+            height: 32,
+            fontSize: 12,
+            marginTop: 5,
+            borderRadius: 5,
+            border: "none",
+          }}
         ></input>
       </div>
     </div>

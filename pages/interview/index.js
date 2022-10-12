@@ -2,13 +2,25 @@ import CodeEditor from "../../src/components/CodeEditor";
 import Dashboard from "../../src/components/Dashboard";
 import Header from "../../src/components/Header";
 import Footer from "../../src/components/Footer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RoomURL from "../../src/components/RoomURL";
+import { useAppContext } from "../../src/components/GlobalContext";
 
 function id({ id }) {
   const [input, setInput] = useState("");
+  const { user } = useAppContext();
 
-  let user = "admin";
+  let userRole;
+
+  if (user !== undefined) {
+    localStorage.setItem("userInfo", JSON.stringify(user.role));
+
+    userRole = user.role;
+  } else {
+    if (typeof window !== "undefined") {
+      userRole = JSON.parse(localStorage.getItem("userInfo"));
+    }
+  }
 
   return (
     <>
@@ -21,12 +33,19 @@ function id({ id }) {
           zIndex: "1",
         }}
       >
-        {user === "admin" ? (
+        {userRole === "ADMIN" ? (
           <div style={{ width: "calc(100% - 450px)" }}>
             <CodeEditor input={input} setInput={setInput} sessionId={id} />
           </div>
         ) : (
-          <div style={{ width: "900px", position: "relative", left: "50%", transform: "translate(-50%, 0%)" }}>
+          <div
+            style={{
+              width: "900px",
+              position: "relative",
+              left: "50%",
+              transform: "translate(-50%, 0%)",
+            }}
+          >
             <CodeEditor input={input} setInput={setInput} sessionId={id} />
           </div>
         )}
@@ -34,6 +53,7 @@ function id({ id }) {
           style={{
             display: "flex",
             flexDirection: "column",
+            right: 0,
           }}
         >
           <div
@@ -51,10 +71,10 @@ function id({ id }) {
               color: "#979797",
             }}
           >
-            {user === "admin" ? (
+            {userRole === "ADMIN" ? (
               <>
                 <RoomURL URL={id} />
-                <Dashboard input={input} />{" "}
+                <Dashboard input={input} />
               </>
             ) : null}
           </div>

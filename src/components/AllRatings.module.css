@@ -1,51 +1,53 @@
 @font-face {
-    font-family: "League Spartan";
-    src: url(../../public/fonts/League_Spartan/LeagueSpartan-VariableFont_wght.ttf);
+  font-family: "League Spartan";
+  src: url(../../public/fonts/League_Spartan/LeagueSpartan-VariableFont_wght.ttf);
 }
 
 @font-face {
-    font-family: "Roboto";
-    src: url(../../public/fonts/Roboto/Roboto-Light.ttf);
+  font-family: "Roboto";
+  src: url(../../public/fonts/Roboto/Roboto-Light.ttf);
 }
 
-.input[type=text]{
-    background-color: #f0f0f0;
-    color: #595959;
-    width: 190px;
-    border: none;
+.input[type="text"] {
+  background-color: #f0f0f0;
+  color: #595959;
+  width: 190px;
+  border: none;
 }
 
-.input::placeholder{
-    color: #979797;
+.input::placeholder {
+  color: #979797;
 }
 
-.bob{
-    transition: .2s;
+.bob {
+  transition: 0.2s;
 }
 
 .bob:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .cell:hover {
-    background-color: #ffe8d3;
-    cursor: pointer;
+  background-color: #ffe8d3;
+  cursor: pointer;
 }
 
-.cell{transition: .2s;}
+.cell {
+  transition: 0.2s;
+}
 
 .scroll::-webkit-scrollbar {
-    width: 1px;
-  }
-  
+  width: 1px;
+}
+
 .scroll::-webkit-scrollbar-thumb {
-    background: #dd8d43;
-  }
+  background: #dd8d43;
+}
 
 .empty {
-    color:#dcdcdc
+  color: #dcdcdc;
 }
 
 #complete {
-    margin-top: 40px;
+  margin-top: 40px;
 }

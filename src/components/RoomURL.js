@@ -35,7 +35,7 @@ export default function RoomURL({ URL }) {
             height: 15,
             alignItems: "center",
             backgroundColor: "#F0F0F0",
-            overflowX: "scroll"
+            overflowX: "scroll",
           }}
           onClick={handleCopy}
         >
@@ -46,7 +46,9 @@ export default function RoomURL({ URL }) {
   }
   return (
     <div>
-        <span style={{ fontSize: 20 }}>{`${info.firstName} ${info.lastName}, ${info.cohort}, Attempt #:`}</span>
+      <span
+        style={{ fontSize: 20 }}
+      >{`${info.first_name} ${info.last_name}, ${info.cohort}, Attempt #: ${info.attempt}`}</span>
       <div
         style={{
           display: "flex",
@@ -58,7 +60,7 @@ export default function RoomURL({ URL }) {
           fontSize: 12,
           height: 35,
           width: 370,
-          justifyContent: "center"
+          justifyContent: "center",
         }}
       >
         <div>Room URL: {asPath}</div>

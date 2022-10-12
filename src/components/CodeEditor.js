@@ -60,8 +60,8 @@ export default function CodeEditor({ input, setInput, sessionId }) {
         defaultValue="//start typing code here"
         theme="vs-dark"
         value={input}
-        onChange={(e) => onChangeHandler(e)}   
-        className={styles.editor}    
+        onChange={(e) => onChangeHandler(e)}
+        className={styles.editor}
       />
       <button
         onClick={() => handleRun(input)}
@@ -87,16 +87,15 @@ export default function CodeEditor({ input, setInput, sessionId }) {
           height: "250px",
           display: "flex",
           flexDirection: "column",
-          padding: "15px",          
+          padding: "15px",
           borderTop: "1px solid #979797",
           position: "relative",
           zIndex: 2
         }}
-      >
+      />
         {codeReturn.map((line) => (
           <span style={{ color: "white" }}>{`> ${line}`}</span>
         ))}
-      </code>
-    </div>
+      </div>
   );
 }
