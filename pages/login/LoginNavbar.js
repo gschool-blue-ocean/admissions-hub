@@ -18,12 +18,12 @@ export default function LoginNavbar() {
           />
         </Navbar.Brand>
 
-        <Nav href="#home">Interview Login</Nav>
+//         <Nav href="#home">Interview Login</Nav>
 
-        <Nav href="#link">
-          <LoginDate />
-        </Nav>
-      </Container>
-    </Navbar>
-  );
-}
+//         <Nav href="#link">
+//           <LoginDate />
+//         </Nav>
+//       </Container>
+//     </Navbar>
+//   );
+// }

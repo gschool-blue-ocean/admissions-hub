@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-import Editor from "@monaco-editor/react";
+import React, { useEffect, useState } from "react";
 import MarkdownIt from "markdown-it";
 import Style from "./Problems.module.css";
+import Image from "next/image";
+import styles from "./AllRatings.module.css";
+import { useAppContext } from "./GlobalContext";
 
 const Problems = ({
   problem1Notes,
@@ -14,17 +16,22 @@ const Problems = ({
   const [seeProblem1, setSeeProblem1] = useState(true);
   const [seeProblem2, setSeeProblem2] = useState(false);
   const [seeProblem3, setSeeProblem3] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const { info, setInfo } = useAppContext();
 
-  let [markdownText, setMarkDownText] = useState("");
-  let [markdownText2, setMarkDownText2] = useState("");
-  let [markdownText3, setMarkDownText3] = useState("");
+  useEffect(() => {
+    setProblem1Notes(info.notes_1);
+    setProblem2Notes(info.notes_2);
+    setProblem3Notes(info.notes_3);
+  }, []);
+
   let [renderedHTML, setRenderedHTML] = useState("");
   let [renderedHTML2, setRenderedHTML2] = useState("");
   let [renderedHTML3, setRenderedHTML3] = useState("");
   let [showNotes, setShowNotes] = useState(true);
 
   function handleTextInput(e) {
-    setMarkDownText(e.target.value);
+    setProblem1Notes(e.target.value);
 
     let md = new MarkdownIt();
 
@@ -34,7 +41,7 @@ const Problems = ({
   }
 
   function handleTextInput2(e) {
-    setMarkDownText2(e.target.value);
+    setProblem2Notes(e.target.value);
 
     let md2 = new MarkdownIt();
 
@@ -44,7 +51,7 @@ const Problems = ({
   }
 
   function handleTextInput3(e) {
-    setMarkDownText3(e.target.value);
+    setProblem3Notes(e.target.value);
 
     let md3 = new MarkdownIt();
 
@@ -91,8 +98,9 @@ return newStr;
 }`;
   return (
     <div
+      className={styles}
       style={{
-        fontSize: 13,
+        fontSize: 12,
         borderTopLeftRadius: "10px 10px",
         borderTopRightRadius: "10px 10px",
       }}
@@ -100,8 +108,7 @@ return newStr;
       <div
         style={{
           display: "flex",
-          justifyContent: "space-around",
-          backgroundColor: "#DCDCDC;",
+          // justifyContent: "space-around",
         }}
       >
         {seeProblem1 ? (
@@ -109,15 +116,18 @@ return newStr;
             style={{
               display: "flex",
               justifyContent: "center",
-              width: 180,
+              width: 220,
               backgroundColor: "#FFE8D3",
               borderTop: "1px solid #DD8D43",
               borderLeft: "1px solid #DD8D43",
               borderRight: "1px solid #DD8D43",
               borderTopLeftRadius: "10px 10px",
               borderTopRightRadius: "10px 10px",
-              paddingBottom: 5,
               paddingTop: 5,
+              transition: ".35s",
+              cursor: "pointer",
+              fontFamily: "League Spartan",
+              color: "#979797",
             }}
             onClick={() => {
               if (seeProblem1 === false) {
@@ -134,13 +144,16 @@ return newStr;
             style={{
               display: "flex",
               justifyContent: "center",
-              width: 180,
+              width: 140,
               backgroundColor: "#FFE8D3",
               border: "1px solid #DD8D43",
               borderTopLeftRadius: "10px 10px",
               borderTopRightRadius: "10px 10px",
-              paddingBottom: 5,
               paddingTop: 5,
+              transition: ".35s",
+              cursor: "pointer",
+              fontFamily: "League Spartan",
+              color: "#979797",
             }}
             onClick={() => {
               if (seeProblem1 === false) {
@@ -159,15 +172,18 @@ return newStr;
             style={{
               display: "flex",
               justifyContent: "center",
-              width: 180,
+              width: 220,
               backgroundColor: "#FFE8D3",
               borderTop: "1px solid #DD8D43",
               borderLeft: "1px solid #DD8D43",
               borderRight: "1px solid #DD8D43",
               borderTopLeftRadius: "10px 10px",
               borderTopRightRadius: "10px 10px",
-              paddingBottom: 5,
               paddingTop: 5,
+              transition: ".35s",
+              cursor: "pointer",
+              fontFamily: "League Spartan",
+              color: "#979797",
             }}
             onClick={() => {
               if (seeProblem2 === false) {
@@ -184,13 +200,16 @@ return newStr;
             style={{
               display: "flex",
               justifyContent: "center",
-              width: 180,
+              width: 140,
               backgroundColor: "#FFE8D3",
               border: "1px solid #DD8D43",
               borderTopLeftRadius: "10px 10px",
               borderTopRightRadius: "10px 10px",
-              paddingBottom: 5,
               paddingTop: 5,
+              transition: ".35s",
+              cursor: "pointer",
+              fontFamily: "League Spartan",
+              color: "#979797",
             }}
             onClick={() => {
               if (seeProblem2 === false) {
@@ -209,15 +228,18 @@ return newStr;
             style={{
               display: "flex",
               justifyContent: "center",
-              width: 180,
+              width: 220,
               backgroundColor: "#FFE8D3",
               borderTop: "1px solid #DD8D43",
               borderLeft: "1px solid #DD8D43",
               borderRight: "1px solid #DD8D43",
               borderTopLeftRadius: "10px 10px",
               borderTopRightRadius: "10px 10px",
-              paddingBottom: 5,
               paddingTop: 5,
+              transition: ".35s",
+              cursor: "pointer",
+              fontFamily: "League Spartan",
+              color: "#979797",
             }}
             onClick={() => {
               if (seeProblem3 === false) {
@@ -234,13 +256,16 @@ return newStr;
             style={{
               display: "flex",
               justifyContent: "center",
-              width: 180,
+              width: 140,
               backgroundColor: "#FFE8D3",
               border: "1px solid #DD8D43",
               borderTopLeftRadius: "10px 10px",
               borderTopRightRadius: "10px 10px",
-              paddingBottom: 5,
               paddingTop: 5,
+              transition: ".35s",
+              cursor: "pointer",
+              fontFamily: "League Spartan",
+              color: "#979797",
             }}
             onClick={() => {
               if (seeProblem3 === false) {
@@ -261,36 +286,116 @@ return newStr;
             borderLeft: "1px solid #DD8D43",
             borderRight: "1px solid #DD8D43",
             borderBottom: "1px solid #DD8D43",
-            padding: 10,
+            padding: 5,
           }}
         >
-          <div style={{ paddingBottom: 10 }}>
-            <strong>Question 1:</strong> Working with Strings and Functions
-            Complete the logger function that takes in a function and a string
-            and returns the result of calling the function on each letter in the
-            string
+          <div style={{ padding: "0px 5px 2px", color: "black" }}>
+            <span style={{ fontFamily: "League Spartan", color: "#979797" }}>
+              Question 1:
+            </span>{" "}
+            Working with Strings and Functions Complete the logger function that
+            takes in a function and a string and returns the result of calling
+            the function on each letter in the string.
           </div>
-          <Editor
-            height="150px"
-            width="520px"
-            defaultLanguage="javascript"
-            theme="vs-dark"
-            value={problem1}
-          />
-          <div style={{ paddingTop: 20 }}>
-            <strong>Notes:</strong>
+          <pre
+            style={{
+              display: "block",
+              fontFamily: "monospace",
+              whiteSpace: "pre",
+            }}
+          >
+            <code
+              style={{
+                backgroundColor: "#FFFAF5",
+                display: "block",
+                paddingLeft: "5px",
+                color: "#DD8D43",
+              }}
+            >
+              {problem1}
+              <br></br>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignContent: "flex-end",
+                  alignItems: "flex-end",
+                  position: "relative",
+                }}
+              >
+                {copied
+                  ? setTimeout(() => {
+                      setCopied(!copied);
+                    }, 1000) && (
+                      <span
+                        style={{
+                          zIndex: 1,
+                          display: "flex",
+                          background: "#DD8D43",
+                          color: "white",
+                          width: 50,
+                          justifyContent: "center",
+                          borderRadius: 5,
+                          position: "fixed",
+                          padding: 2,
+                          marginTop: "-15px",
+                        }}
+                      >
+                        Copied!
+                      </span>
+                    )
+                  : null}
+                <div style={{ paddingRight: 5, marginTop: "-15px" }}>
+                  <Image
+                    onClick={() => {
+                      navigator.clipboard.writeText(problem1);
+                      setCopied(!copied);
+                    }}
+                    src={"/images/copy.svg"}
+                    alt="/"
+                    objectFit="contain"
+                    objectPosition="bottom center"
+                    width={16}
+                    height={17}
+                  />
+                </div>
+              </div>
+            </code>
+          </pre>
+          <div
+            style={{
+              fontFamily: "League Spartan",
+              marginTop: "-15px",
+              paddingLeft: 2,
+              color: "#979797",
+            }}
+          >
+            Notes:
           </div>
           {showNotes ? (
             <textarea
               rows={20}
-              value={markdownText}
+              value={problem1Notes}
               onChange={handleTextInput}
               onBlur={handleFocus2}
               autoFocus
-              style={{ width: 515, height: 100, resize: "none" }}
+              style={{
+                width: "100%",
+                backgroundColor: "#ffe8d3",
+                outline: "none",
+                border: "none",
+                height: 175,
+                resize: "none",
+                scrollbarColor: "#ffe8d3 #dd8d43",
+              }}
             ></textarea>
           ) : (
             <div
+              style={{
+                width: "auto",
+                height: 175,
+                scrollbarColor: "#ffe8d3 #dd8d43",
+              }}
               dangerouslySetInnerHTML={{ __html: renderedHTML }}
               className={Style.ProblemsOneMarkdown}
               onClick={handleFocus1}
@@ -305,36 +410,116 @@ return newStr;
             borderLeft: "1px solid #DD8D43",
             borderRight: "1px solid #DD8D43",
             borderBottom: "1px solid #DD8D43",
-            padding: 10,
+            padding: 5,
           }}
         >
-          <div style={{ paddingBottom: 10 }}>
-            <strong>Question 2:</strong> Working with Arrays and Functions
-            Complete the createNewArray function that takes in an array and
-            another function, then returns a new array containing the results of
-            calling the input function on each element in the array.
+          <div style={{ padding: "0px 5px 2px", color: "black" }}>
+            <span style={{ fontFamily: "League Spartan", color: "#979797" }}>
+              Question 2:
+            </span>{" "}
+            Working with Arrays and Functions Complete the createNewArray
+            function that takes in an array and another function, then returns a
+            new array containing the results of calling the input function on
+            each element in the array.
           </div>
-          <Editor
-            height="150px"
-            width="520px"
-            defaultLanguage="javascript"
-            theme="vs-dark"
-            value={problem2}
-          />
-          <div style={{ paddingTop: 20 }}>
-            <strong>Notes:</strong>
+          <pre
+            style={{
+              display: "block",
+              fontFamily: "monospace",
+              whiteSpace: "pre",
+            }}
+          >
+            <code
+              style={{
+                color: "#DD8D43",
+                backgroundColor: "#FFFAF5",
+                display: "block",
+                paddingLeft: "5px",
+              }}
+            >
+              {problem2}
+              <br></br>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignContent: "flex-end",
+                  alignItems: "flex-end",
+                }}
+              >
+                {copied
+                  ? setTimeout(() => {
+                      setCopied(!copied);
+                    }, 1000) && (
+                      <span
+                        style={{
+                          zIndex: 1,
+                          display: "flex",
+                          background: "#DD8D43",
+                          color: "white",
+                          width: 50,
+                          justifyContent: "center",
+                          borderRadius: 5,
+                          position: "fixed",
+                          padding: 2,
+                          marginTop: "-15px",
+                        }}
+                      >
+                        Copied!
+                      </span>
+                    )
+                  : null}
+                <div style={{ paddingRight: 5, marginTop: "-15px" }}>
+                  <Image
+                    onClick={() => {
+                      navigator.clipboard.writeText(problem2);
+                      setCopied(!copied);
+                    }}
+                    src={"/images/copy.svg"}
+                    alt="/"
+                    objectFit="contain"
+                    objectPosition="bottom center"
+                    width={16}
+                    height={17}
+                  />
+                </div>
+              </div>
+            </code>
+          </pre>
+          <div
+            style={{
+              fontFamily: "League Spartan",
+              marginTop: "-15px",
+              paddingLeft: 2,
+              color: "#979797",
+            }}
+          >
+            Notes:
           </div>
           {showNotes ? (
             <textarea
               rows={20}
-              value={markdownText2}
+              value={problem2Notes}
               onChange={handleTextInput2}
               onBlur={handleFocus2}
               autoFocus
-              style={{ width: 515, height: 100, resize: "none" }}
+              style={{
+                width: "100%",
+                backgroundColor: "#ffe8d3",
+                outline: "none",
+                border: "none",
+                height: 175,
+                resize: "none",
+                scrollbarColor: "#ffe8d3 #dd8d43",
+              }}
             ></textarea>
           ) : (
             <div
+              style={{
+                width: "auto",
+                height: 175,
+                scrollbarColor: "#ffe8d3 #dd8d43",
+              }}
               dangerouslySetInnerHTML={{ __html: renderedHTML2 }}
               className={Style.ProblemsOneMarkdown}
               onClick={handleFocus1}
@@ -349,36 +534,116 @@ return newStr;
             borderLeft: "1px solid #DD8D43",
             borderRight: "1px solid #DD8D43",
             borderBottom: "1px solid #DD8D43",
-            padding: 10,
+            padding: 5,
           }}
         >
-          <div style={{ paddingBottom: 10 }}>
-            <strong>Question 3:</strong> Working with Objects Given two objects
-            as parameters "obj1" and "obj2", complete the addPropertiesToObject
-            function that adds all properties of the first object to the second
-            object and returns the second object.
+          <div style={{ padding: "0px 5px 2px", color: "black" }}>
+            <span style={{ fontFamily: "League Spartan", color: "#979797" }}>
+              Question 3:
+            </span>{" "}
+            Working with Objects Given two objects as parameters "obj1" and
+            "obj2", complete the addPropertiesToObject function that adds all
+            properties of the first object to the second object and returns the
+            second object.
           </div>
-          <Editor
-            height="150px"
-            width="520px"
-            defaultLanguage="javascript"
-            theme="vs-dark"
-            value={problem3}
-          />
-          <div style={{ paddingTop: 20 }}>
-            <strong>Notes:</strong>
+          <pre
+            style={{
+              display: "block",
+              fontFamily: "monospace",
+              whiteSpace: "pre",
+            }}
+          >
+            <code
+              style={{
+                color: "#DD8D43",
+                backgroundColor: "#FFFAF5",
+                display: "block",
+                paddingLeft: "5px",
+              }}
+            >
+              {problem3}
+              <br></br>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignContent: "flex-end",
+                  alignItems: "flex-end",
+                }}
+              >
+                {copied
+                  ? setTimeout(() => {
+                      setCopied(!copied);
+                    }, 1000) && (
+                      <span
+                        style={{
+                          zIndex: 1,
+                          display: "flex",
+                          background: "#DD8D43",
+                          color: "white",
+                          width: 50,
+                          justifyContent: "center",
+                          borderRadius: 5,
+                          position: "fixed",
+                          padding: 2,
+                          marginTop: "-15px",
+                        }}
+                      >
+                        Copied!
+                      </span>
+                    )
+                  : null}
+                <div style={{ paddingRight: 5, marginTop: "-15px" }}>
+                  <Image
+                    onClick={() => {
+                      navigator.clipboard.writeText(problem3);
+                      setCopied(!copied);
+                    }}
+                    src={"/images/copy.svg"}
+                    alt="/"
+                    objectFit="contain"
+                    objectPosition="bottom center"
+                    width={16}
+                    height={17}
+                  />
+                </div>
+              </div>
+            </code>
+          </pre>
+          <div
+            style={{
+              fontFamily: "League Spartan",
+              marginTop: "-15px",
+              paddingLeft: 2,
+              color: "#979797",
+            }}
+          >
+            Notes:
           </div>
           {showNotes ? (
             <textarea
               rows={20}
-              value={markdownText3}
+              value={problem3Notes}
               onChange={handleTextInput3}
               onBlur={handleFocus2}
               autoFocus
-              style={{ width: 515, height: 100, resize: "none" }}
+              style={{
+                width: "100%",
+                backgroundColor: "#ffe8d3",
+                outline: "none",
+                border: "none",
+                height: 175,
+                resize: "none",
+                scrollbarColor: "#ffe8d3 #dd8d43",
+              }}
             ></textarea>
           ) : (
             <div
+              style={{
+                width: "auto",
+                height: 175,
+                scrollbarColor: "#ffe8d3 #dd8d43",
+              }}
               dangerouslySetInnerHTML={{ __html: renderedHTML3 }}
               className={Style.ProblemsOneMarkdown}
               onClick={handleFocus1}

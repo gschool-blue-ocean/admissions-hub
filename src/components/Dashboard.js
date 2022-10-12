@@ -2,12 +2,18 @@ import React, { useState } from "react";
 import Reference from "./Reference";
 import Ratings from "./Ratings";
 import Problems from "./Problems";
+import styles from "./AllRatings.module.css";
+import RoomURL from "./RoomURL";
+import axios from "axios";
+import { useRouter } from "next/router";
+import { useAppContext } from "./GlobalContext";
 
-const Dashboard = () => {
+const Dashboard = ({ input }) => {
   const [value, setValue] = useState(0);
   const [problem1Notes, setProblem1Notes] = useState("");
   const [problem2Notes, setProblem2Notes] = useState("");
   const [problem3Notes, setProblem3Notes] = useState("");
+  const { info, setInfo } = useAppContext();
 
   const [variables, setVariables] = useState(false);
   const [arrays, setArrays] = useState(false);
@@ -32,11 +38,56 @@ const Dashboard = () => {
   const accumulatorLink =
     "https://learn-2.galvanize.com/cohorts/1346/blocks/1615/content_files/13-Accumulator-Pattern/00-section-overview.md";
 
-  let postRequest = {
-    totalPercent: totalPercent,
-    problem1Notes: problem1Notes,
-    problem2Notes: problem2Notes,
-    problem3Notes: problem3Notes,
+  let passOrFail;
+  if (((value / 12) * 100).toFixed(0) >= 70) {
+    passOrFail = true;
+  } else {
+    passOrFail = false;
+  }
+
+  const months = [
+    "JAN",
+    "FEB",
+    "MAR",
+    "APR",
+    "MAY",
+    "JUN",
+    "JUL",
+    "AUG",
+    "SEP",
+    "OCT",
+    "NOV",
+    "DEC",
+  ];
+  console.log(new Date());
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, "0");
+  var mmm = months[today.getMonth()];
+  var yy = String(today.getFullYear()).slice(2);
+  today = dd + "-" + mmm + "-" + yy;
+
+  let numAttempt = Number(info.attempt);
+
+  let patchRequest = {
+    date: today,
+    attempt: numAttempt + 1,
+    pass: passOrFail,
+    notes_1: problem1Notes,
+    notes_2: problem2Notes,
+    notes_3: problem3Notes,
+  };
+
+  const router = useRouter();
+
+  const completeInterview = (patchRequest) => {
+    axios
+      .patch(`/api/candidate/${info.email}`, patchRequest)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   let studyMaterial = {};
@@ -64,17 +115,18 @@ const Dashboard = () => {
   }
   return (
     <div
+      className={styles}
       style={{
-        position: "absolute",
-        right: "2%",
-        width: "560px",
-        border: "2px solid black",
-        padding: "10px",
-        backgroundColor: "#DCDCDC",
-        borderRadius: 10,
+        // float: "right",
+        width: "420px",
+        height: "100%",
+        zIndex: "1",
+        padding: "10px 10px 0px",
+        position: "sticky",
+        backgroundColor: "white",
       }}
     >
-      <span>First Last, MCSP-X, Attempt #: X</span>
+      {/* <RoomURL /> */}
       <Problems
         problem1Notes={problem1Notes}
         problem3Notes={problem3Notes}
@@ -109,20 +161,25 @@ const Dashboard = () => {
         }}
       >
         <button
+          className={styles.bob}
+          id={styles.complete}
           onClick={() => {
-            console.log("postRequest", postRequest);
+            console.log("patchRequest", patchRequest);
             console.log("Code Editor", input);
+            completeInterview(patchRequest);
             if (Object.keys(studyMaterial).length !== 0) {
               console.log("studyMaterial", studyMaterial);
             }
+            router.push("../dashboard");
           }}
           style={{
-            width: 280,
+            width: 220,
             height: 40,
             color: "white",
-            backgroundColor: "orange",
+            backgroundColor: "#DD8D43",
             border: "none",
-            fontSize: 20,
+            fontSize: 16,
+            fontFamily: "League Spartan",
           }}
         >
           Complete Interview

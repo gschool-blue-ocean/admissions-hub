@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Reference.module.css";
+
 const Reference = ({
   variables,
   arrays,
@@ -21,102 +22,127 @@ const Reference = ({
   };
 
   return (
-    <div>
-      <span style={{ fontSize: 15 }}>Suggested Study Material</span>
+    <div style={{ marginTop: "-15px" }}>
+      <span
+        style={{
+          fontSize: 12,
+          fontFamily: "League Spartan",
+          paddingLeft: 7,
+          color: "#979797",
+        }}
+      >
+        Suggested Study Material
+      </span>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <div className={styles.referenceGrid}>
           <div>
-            <label classname={styles.container}>
+            <label className={styles.container}>
               <input
                 onClick={() => {
                   setVariables(!variables);
                 }}
                 type="checkbox"
               ></input>
-
-              <span style={{ paddingLeft: 5 }} classname={styles.checkmark}>
-                Variables
-              </span>
+              <span
+                style={{ paddingLeft: 5 }}
+                className={styles.checkmark}
+              ></span>
+              Variables
             </label>
           </div>
           <div>
-            <label classname={styles.container}>
+            <label className={styles.container}>
               <input
                 onClick={() => {
                   setArrays(!arrays);
                 }}
                 type="checkbox"
               ></input>
-
-              <span style={{ paddingLeft: 5 }} classname={styles.checkmark}>
-                Arrays & Objects
-              </span>
+              <span
+                style={{ paddingLeft: 5 }}
+                className={styles.checkmark}
+              ></span>
+              Arrays & Objects
             </label>
           </div>
           <div>
-            <label classname={styles.container}>
+            <label className={styles.container}>
               <input
                 onClick={() => {
                   setOperators(!operators);
                 }}
                 type="checkbox"
               ></input>
-
-              <span style={{ paddingLeft: 5 }} classname={styles.checkmark}>
-                Operators And Methods
-              </span>
+              <span
+                style={{ paddingLeft: 5 }}
+                className={styles.checkmark}
+              ></span>
+              Operators And Methods
             </label>
           </div>
           <div>
-            <label classname={styles.container}>
+            <label className={styles.container}>
               <input
                 onClick={() => {
                   setConditionals(!conditionals);
                 }}
                 type="checkbox"
               ></input>
-
-              <span style={{ paddingLeft: 5 }} classname={styles.checkmark}>
-                Conditionals
-              </span>
+              <span
+                style={{ paddingLeft: 5 }}
+                className={styles.checkmark}
+              ></span>
+              Conditionals
             </label>
           </div>
           <div>
-            <label classname={styles.container}>
+            <label className={styles.container}>
               <input
+                className={styles.check}
                 onClick={() => {
                   setLoops(!loops);
                 }}
                 type="checkbox"
               ></input>
-              <span style={{ paddingLeft: 5 }} classname={styles.checkmark}>
-                Loops
-              </span>
+              <span
+                style={{ paddingLeft: 5 }}
+                className={styles.checkmark}
+              ></span>
+              Loops
             </label>
           </div>
           <div>
-            <label classname={styles.container}>
+            <label className={styles.container}>
               <input
                 onClick={() => {
                   setAccumulator(!accumulator);
                 }}
                 type="checkbox"
               ></input>
-              <span style={{ paddingLeft: 10 }} classname={styles.checkmark}>
-                Accumulator Pattern
-              </span>
+              <span
+                style={{ paddingLeft: 10 }}
+                className={styles.checkmark}
+              ></span>
+              Accumulator Pattern
             </label>
           </div>
         </div>
       </div>
-      <div>
-        <span style={{ fontSize: 14 }}>External Link</span>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <input
+          className={styles.input}
           onChange={handleChange}
           value={extraResources}
           placeholder="Insert external link"
           type="text"
-          style={{ width: 530, fontSize: 14 }}
+          style={{
+            width: 400,
+            height: 32,
+            fontSize: 12,
+            marginTop: 5,
+            borderRadius: 5,
+            border: "none",
+          }}
         ></input>
       </div>
     </div>

@@ -1,36 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as BsIcons from "react-icons/bs";
 import * as BiIcons from "react-icons/bi";
 import * as AiIcons from "react-icons/ai";
 import NewStudent from "./NewStudent";
 import Link from "next/link";
 import uuid from "react-uuid";
-import Problems from "./Problems";
 import Ratings from "./Ratings";
+import styles from "./AllRatings.module.css";
 import { useAppContext } from "./GlobalContext";
+import ViewProblems from "./viewProblems";
 
 const StudentInfo = ({ setStudents, students }) => {
-   const { info, setInfo } = useAppContext();
-   
+  const { info, setInfo } = useAppContext();
+
+  useEffect(() => {
+    setInfo("");
+  }, []);
+
   const [search, setSearch] = useState("");
   const [value, setValue] = useState(0);
   const [showAddStudent, setShowAddStudent] = useState(false);
 
   const [seeNotes, setSeeNotes] = useState(false);
-  const [launchInterview, setLaunchInterview] = useState(false);
-  console.log(info);
   const handleChange = (event) => {
     setSearch(event.target.value);
   };
 
   return (
     <div
+      className={styles}
       style={{
         fontSize: 14,
-        backgroundColor: "#DCDCDC",
-        borderRadius: 10,
-        marginTop: 10,
-        marginBottom: 10,
+        backgroundColor: "#f0f0f0",
+        marginTop: 5,
+        marginBottom: 5,
       }}
     >
       {seeNotes ? (
@@ -50,13 +53,13 @@ const StudentInfo = ({ setStudents, students }) => {
           <div
             style={{
               fontSize: 14,
-              backgroundColor: "#DCDCDC",
+
+              backgroundColor: "white",
               borderRadius: 10,
-              border: "1px solid",
               boxShadow: "0px 0px 10px 5px #888888",
               margin: "10% auto",
-              width: 600,
-              height: 650,
+              width: 450,
+              height: 680,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -68,28 +71,27 @@ const StudentInfo = ({ setStudents, students }) => {
               }}
               style={{
                 padding: 10,
-                paddingLeft: 515,
+                position: "sticky",
+                left: "90%",
               }}
             >
               <AiIcons.AiOutlineClose size={25} />
             </div>
             <div
               style={{
-                width: 540,
+                width: 400,
                 height: 600,
-                backgroundColor: "#DCDCDC",
+                backgroundColor: "white",
               }}
             >
-              <div style={{ display: "flex", paddingBottom: 10 }}>
-                {Object.values(info).map((info) => {
-                  return (
-                    <div style={{ paddingRight: 10 }}>
-                      <span>{info}</span>
-                    </div>
-                  );
-                })}
+              <div
+                style={{ display: "flex", paddingBottom: 10, color: "#979797" }}
+              >
+                <span
+                  style={{ fontSize: 20 }}
+                >{`${info.firstName} ${info.lastName}, ${info.cohort}, Attempt #: ${info.attempt}`}</span>
               </div>
-              <Problems />
+              <ViewProblems /> <br></br>
               <Ratings setValue={setValue} />
             </div>
           </div>
@@ -111,14 +113,23 @@ const StudentInfo = ({ setStudents, students }) => {
             placeholder="Search by name or email"
             onChange={handleChange}
             value={search}
-            style={{ height: 30, width: 220 }}
+            style={{
+              height: 30,
+              width: 220,
+              borderRadius: 5,
+              margin: 5,
+              border: "none",
+            }}
             type="text"
           ></input>
           <div
             style={{ cursor: "pointer" }}
             onClick={() => console.log(search)}
           >
-            <BiIcons.BiSearchAlt size={28} />
+            <BiIcons.BiSearchAlt
+              size={28}
+              style={{ marginTop: 5, color: "#979797" }}
+            />
           </div>
         </div>
         <div
@@ -129,18 +140,21 @@ const StudentInfo = ({ setStudents, students }) => {
         >
           <div
             style={{
-              paddingRight: 20,
+              paddingRight: 8,
             }}
           >
             {info.length !== 0 ? (
               <button
                 style={{
                   color: "white",
-                  backgroundColor: "orange",
+                  backgroundColor: "#DD8D43",
                   border: "none",
                   height: 40,
                   width: 100,
+                  fontFamily: "League Spartan",
+                  fontSize: 16,
                 }}
+                className={styles.bob}
                 onClick={() => {
                   setSeeNotes(!seeNotes);
                 }}
@@ -150,11 +164,13 @@ const StudentInfo = ({ setStudents, students }) => {
             ) : (
               <button
                 style={{
-                  color: "#bdb6b6",
-                  backgroundColor: "#ab7512",
+                  color: "#979797",
+                  backgroundColor: "#FFE8D3",
                   border: "none",
                   height: 40,
                   width: 100,
+                  fontFamily: "League Spartan",
+                  fontSize: 16,
                 }}
                 disabled
               >
@@ -164,31 +180,36 @@ const StudentInfo = ({ setStudents, students }) => {
           </div>
           <div
             style={{
-              paddingRight: 20,
+              paddingRight: 0,
             }}
           >
             {info.length !== 0 ? (
-              <button
-                style={{
-                  color: "white",
-                  backgroundColor: "orange",
-                  border: "none",
-                  height: 40,
-                  width: 150,
-                }}
-              >
-                <Link href={{ pathname: "/interview", query: { id: uuid() } }}>
-                  Launch Interview
-                </Link>
-              </button>
+              <Link href={{ pathname: "/interview", query: { id: uuid() } }}>
+                <button
+                  className={styles.bob}
+                  style={{
+                    color: "white",
+                    backgroundColor: "#DD8D43",
+                    border: "none",
+                    height: 40,
+                    width: 150,
+                    fontFamily: "League Spartan",
+                    fontSize: 16,
+                  }}
+                >
+                  <a style={{ color: "white" }}>Launch Interview</a>
+                </button>
+              </Link>
             ) : (
               <button
                 style={{
-                  color: "#bdb6b6",
-                  backgroundColor: "#ab7512",
+                  color: "#979797",
+                  backgroundColor: "#FFE8D3",
                   border: "none",
                   height: 40,
                   width: 150,
+                  fontFamily: "League Spartan",
+                  fontSize: 16,
                 }}
                 disabled
               >
@@ -198,110 +219,130 @@ const StudentInfo = ({ setStudents, students }) => {
           </div>
         </div>
       </div>
-      <div style={{ padding: 10 }}>
+      <div style={{ padding: 5 }}>
         <div
           style={{
             display: "flex",
-            width: 690,
-            justifyContent: "space-between",
-            paddingTop: 10,
+            width: 720,
+            justifyContent: "start",
+            marginTop: "-5px",
             paddingLeft: 10,
             paddingRight: 10,
+            color: "#979797",
           }}
         >
           <span
             style={{
-              minWidth: 135,
+              width: 155,
             }}
           >
             Last, First name
           </span>
           <span
             style={{
-              minWidth: 195,
+              width: 230,
+              overflowX: "hidden",
             }}
           >
             Email Address
           </span>
           <span
             style={{
-              minWidth: 75,
+              width: 114,
             }}
           >
             Cohort #
           </span>
           <span
             style={{
-              minWidth: 70,
+              width: 100,
             }}
           >
-            DD-MMM-YY
+            Date
           </span>
-          <span style={{ minWidth: 16 }}> Attempt #</span>
+          <span style={{ width: 70 }}> Attempt#</span>
           <span
             style={{
-              minWidth: 16,
-              paddingRight: 10,
+              justifySelf: "right",
             }}
           >
             Pass
           </span>
         </div>
+
         <div
+          className={styles.scroll}
           style={{
-            border: "solid 1px black",
             maxHeight: 200,
+            minHeight: 200,
             overflowY: "auto",
+            borderRadius: "5px",
+            backgroundColor: "white",
           }}
         >
           {students.map((student) => {
-            return (
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  paddingBottom: 5,
-                  paddingTop: 5,
-                  paddingLeft: 10,
-                  borderBottom: "solid 1px black",
-                  backgroundColor:
-                    info.email === student.email ? "orange" : "none",
-                }}
-                key={uuid()}
-                onClick={() => {
-                  if (info.email === student.email) {
-                    setInfo([]);
-                  } else {
-                    setInfo(student);
-                  }
-                }}
-              >
-                <span
+            if (
+              student.email.toLowerCase().includes(search.toLowerCase()) ||
+              student.first_name.toLowerCase().includes(search.toLowerCase()) ||
+              student.last_name.toLowerCase().includes(search.toLowerCase())
+            ) {
+              return (
+                <div
+                  className={styles.cell}
                   style={{
-                    minWidth: 120,
+                    zIndex: 1,
+                    display: "flex",
+                    justifyContent: "space-between",
+                    paddingBottom: 3,
+                    paddingTop: 3,
+                    borderBottom: "solid 1px #979797",
+                    backgroundColor:
+                      info.email === student.email ? "#DD8D43" : "",
+                    color: info.email === student.email ? "white" : "#979797",
+                  }}
+                  key={uuid()}
+                  onClick={() => {
+                    if (info.email === student.email) {
+                      setInfo("");
+                    } else {
+                      setInfo(student);
+                    }
                   }}
                 >
-                  {`${student.lastName}, ${student.firstName}`}
-                </span>
-                <span style={{ minWidth: 186 }}>{student.email}</span>
-                <span style={{ minWidth: 70 }}>{student.cohort}</span>
-                <span style={{ minWidth: 80 }}>{student.date}</span>
-                <span style={{ minWidth: 16, paddingRight: 10 }}>
-                  {student.attempt}
-                </span>
-                {student.pass === true ? (
-                  <div style={{ minWidth: 15 }}>
-                    <AiIcons.AiOutlineCheck color="green" />
-                  </div>
-                ) : student.pass === false ? (
-                  <div style={{ minWidth: 15 }}>
-                    <AiIcons.AiOutlineClose color="red" />
-                  </div>
-                ) : (
-                  <span style={{ minWidth: 15 }}>{student.pass}</span>
-                )}
-              </div>
-            );
+                  <span
+                    style={{
+                      minWidth: 120,
+                      paddingLeft: 10,
+                    }}
+                  >
+                    {`${student.last_name}, ${student.first_name}`}
+                  </span>
+                  <span style={{ width: 186 }}>{student.email}</span>
+                  <span style={{ width: 70 }}>{student.cohort}</span>
+                  <span style={{ width: 80 }}>{student.date}</span>
+                  <span style={{ width: 16 }}>{student.attempt}</span>
+                  {student.pass === "true" ? (
+                    <div style={{ width: 30 }}>
+                      <AiIcons.AiOutlineCheck
+                        color={
+                          info.email === student.email ? "white" : "#DD8D43"
+                        }
+                      />
+                    </div>
+                  ) : student.pass === "false" ? (
+                    <div style={{ width: 30 }}>
+                      <AiIcons.AiOutlineClose
+                        color={
+                          info.email === student.email ? "white" : "#979797"
+                        }
+                      />
+                    </div>
+                  ) : (
+                    <span style={{ width: 30 }}>{student.pass}</span>
+                  )}
+                </div>
+              );
+            }
           })}
         </div>
         <div
@@ -309,16 +350,19 @@ const StudentInfo = ({ setStudents, students }) => {
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            padding: 10,
+            padding: "5px 10px 0px 10px",
           }}
         >
           <div
+            className={styles.bob}
             onClick={() => setShowAddStudent(!showAddStudent)}
             style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
           >
-            <BsIcons.BsPlusLg color="orange" />
+            <BsIcons.BsPlusLg color="#DD8D43" />
 
-            <span style={{ paddingLeft: 5 }}>add student</span>
+            <span style={{ paddingLeft: 5, color: "#979797" }}>
+              add student
+            </span>
           </div>
           {showAddStudent ? (
             <NewStudent
@@ -330,9 +374,10 @@ const StudentInfo = ({ setStudents, students }) => {
           ) : null}
           <div>
             <button
+              className={styles.bob}
               style={{
                 borderRadius: 5,
-                backgroundColor: "gray",
+                backgroundColor: "#979797",
                 color: "white",
                 border: "none",
                 width: 80,

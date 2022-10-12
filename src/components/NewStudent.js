@@ -1,6 +1,8 @@
+import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import * as AiIcons from "react-icons/ai";
+import styles from "./AllRatings.module.css";
 
 const NewStudent = ({
   setShowAddStudent,
@@ -8,6 +10,17 @@ const NewStudent = ({
   students,
   setStudents,
 }) => {
+  const addCandidate = (newStudent) => {
+    axios
+      .post(`/api/candidate/Candidate`, newStudent)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -27,21 +40,24 @@ const NewStudent = ({
 
   const handleCohortChange = (event) => {
     setCohort(event.target.value);
-    console.log(cohort);
   };
 
   let newStudent = {
-    firstName: firstName,
-    lastName: lastName,
+    first_name: firstName,
+    last_name: lastName,
     email: email,
     cohort: cohort,
     date: "TBD",
     attempt: 0,
     pass: "TBD",
+    notes_1: "Add Notes",
+    notes_1: "Add Notes",
+    notes_1: "Add Notes",
   };
 
   return (
     <div
+      className={styles}
       style={{
         position: "fixed",
         zIndex: "1",
@@ -50,17 +66,14 @@ const NewStudent = ({
         width: "100%",
         height: "100%",
         overflow: "auto",
-        backgroundColor: "rgb(0,0,0)",
         backgroundColor: "rgba(0,0,0,0.4)",
       }}
     >
       <div
         style={{
           fontSize: 14,
-          backgroundColor: "#DCDCDC",
+          backgroundColor: "white",
           borderRadius: 10,
-          border: "1px solid",
-          boxShadow: "0px 0px 10px 5px #888888",
           height: "auto",
           width: 250,
           margin: "15% auto",
@@ -92,6 +105,7 @@ const NewStudent = ({
             }}
           >
             <input
+              className={styles.input}
               placeholder="First name"
               onChange={handleFirstNameChange}
               value={firstName}
@@ -107,6 +121,7 @@ const NewStudent = ({
             }}
           >
             <input
+              className={styles.input}
               placeholder="Last name"
               onChange={handleLastNameChange}
               value={lastName}
@@ -122,6 +137,7 @@ const NewStudent = ({
             }}
           >
             <input
+              className={styles.input}
               placeholder="Email"
               onChange={handleEmailChange}
               value={email}
@@ -139,11 +155,17 @@ const NewStudent = ({
         >
           <select
             style={{
-              width: 170,
-              height: 21,
+              width: 190,
+              height: 30,
+              backgroundColor: "#f0f0f0",
+              borderRadius: "0px",
+              color: "#979797",
+              appearance: "none",
+              paddingLeft: 3,
             }}
             onChange={handleCohortChange}
           >
+            {/*          ///////////////////////////////////// INPUT/DELETE COHORTS HERE */}
             <option> Select Cohort </option>
             <option disabled>MCSP-11</option>
             <option disabled>MCSP-12</option>
@@ -164,16 +186,18 @@ const NewStudent = ({
           }}
         >
           <button
+            className={styles.bob}
             style={{
               color: "white",
-              backgroundColor: "orange",
+              fontFamily: "League Spartan",
+              backgroundColor: "#DD8D43",
               border: "none",
               width: 75,
             }}
             onClick={() => {
+              addCandidate(newStudent);
               setStudents([...students, newStudent]);
               setShowAddStudent(!showAddStudent);
-              console.log(newStudent);
             }}
           >
             Create
