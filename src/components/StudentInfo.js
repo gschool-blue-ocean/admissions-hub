@@ -11,7 +11,11 @@ import { useAppContext } from "./GlobalContext";
 import ViewProblems from "./viewProblems";
 
 const StudentInfo = ({ setStudents, students }) => {
-  const { info, setInfo } = useAppContext();
+  const { info, setInfo, setUserRole } = useAppContext();
+
+  const changeUserRole = (e) => {
+    setUserRole("ADMIN");
+  };
 
   useEffect(() => {
     setInfo("");
@@ -187,6 +191,7 @@ const StudentInfo = ({ setStudents, students }) => {
               <Link href={{ pathname: "/interview", query: { id: uuid() } }}>
                 <button
                   className={styles.bob}
+                  onClick={changeUserRole}
                   style={{
                     color: "white",
                     backgroundColor: "#DD8D43",
