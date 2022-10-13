@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from "react";
 import styles from "./Header.module.css";
 import Image from "next/image";
 import Container from "react-bootstrap/Container";
@@ -10,10 +10,8 @@ import BtnLogin from "./BtnLogin";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Dropdown from "react-bootstrap/Dropdown";
-import { useAppContext } from "./GlobalContext";
 
-function Header() {
-  const { user } = useAppContext();
+function HeaderLogin() {
   let currentPage = "";
   let currentUser = "";
   let { asPath } = useRouter();
@@ -21,36 +19,17 @@ function Header() {
   useEffect(() => {
     let accessToken = localStorage.getItem("accessToken");
 
-    let userRole;
-    // let userInfo;
-  
-    if (user !== undefined) {
-      localStorage.setItem("userRole", JSON.stringify(user.role));
-      // localStorage.setItem("user", JSON.stringify(user));
-  
-      userRole = user.role;
-      // userInfo = JSON.parse(JSON.stringify(user));
-    } else {
-      if (typeof window !== "undefined") {
-        userRole = JSON.parse(localStorage.getItem("userRole"));
-        // userInfo = JSON.parse(localStorage.getItem("user"));
-      }
-    }
-  
     switch (asPath) {
-      case asPath.match("/interview")?.input:
-        currentPage = "Interview App";
-        currentUser = `Danny Andrews`;
+      case `/dashboard?access=${accessToken}`:
+        currentPage = "Interview Dashboard";
+        currentUser = "Danny Andrews";
         break;
       case "/login":
         currentPage = "Interview Login";
         currentUser = "";
         break;
-        case `/dashboard?access=${accessToken}`:
-          currentPage = "Interview Dashboard";
-          currentUser = "Danny Andrews";
-          break;
     }
+  }, []);
 
   const monthNames = [
     "January",
@@ -101,23 +80,9 @@ function Header() {
           )}
         </div>
         <div className={styles.para2}>{today}</div>
-
-        <div className={styles.dropdownmenu}>
-          <NavDropdown
-            id="nav-dropdown-dark-example"
-            title={currentUser ? currentUser : "Danny Andrews"}
-            menuVariant="light"
-          >
-            <NavDropdown.Item eventKey="1">Profile</NavDropdown.Item>
-            <NavDropdown.Item eventKey="2">Extra page</NavDropdown.Item>
-            <NavDropdown.Item>
-              <BtnLogin />
-            </NavDropdown.Item>
-          </NavDropdown>
-        </div>
       </div>
     </>
   );
 }
 
-export default Header;
+export default HeaderLogin;

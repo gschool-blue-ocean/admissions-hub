@@ -12,6 +12,8 @@ function id({ id }) {
 
   let userRole;
 
+  
+
   if (user !== undefined) {
     localStorage.setItem("userRole", JSON.stringify(user.role));
 

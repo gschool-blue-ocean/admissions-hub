@@ -1,18 +1,26 @@
+import {useEffect} from 'react'
+import router from "next/router";
 import AdminLogin from "./AdminLogin";
 import { useAppContext } from "../../src/components/GlobalContext";
-import Header from "../../src/components/Header";
-import LoginNavbar from "./LoginNavbar";
 import { MDBFooter } from "mdb-react-ui-kit";
 import styles from "./LoginPageStyle.module.css";
+import HeaderLogin from "../../src/components/HeaderLogin";
 
 export default function Login() {
   const { showWarning } = useAppContext();
+  //if local storage has accessToken, redirect to dashboard
+
+  useEffect(() => {
+
+  if (localStorage.getItem("accessToken")) {
+    router.push("/dashboard");
+  }
+  }, []);
 
   return (
     <>
       <div>
-        <Header />
-        {/* <LoginNavbar /> */}
+        <HeaderLogin />
       </div>
       {showWarning && (
         <div className={styles.warning}>
