@@ -72,8 +72,12 @@ const Ratings = ({
   let totalRating;
 
   if (asPath === asPath.match("/dashboard")?.input) {
-    totalRating =
-      info.problem_1_rating + info.problem_2_rating + info.problem_3_rating;
+    if (info.problem_1_rating === undefined) {
+      totalRating = 0;
+    } else {
+      totalRating =
+        info.problem_1_rating + info.problem_2_rating + info.problem_3_rating;
+    }
   } else {
     totalRating = rating1 + rating2 + rating3;
   }

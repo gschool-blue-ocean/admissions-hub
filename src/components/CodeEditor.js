@@ -90,13 +90,12 @@ export default function CodeEditor({ input, setInput, sessionId }) {
           padding: "15px",
           borderTop: "1px solid #979797",
           position: "relative",
-          zIndex: 2
+          zIndex: 2,
         }}
       />
-        {codeReturn.map((line) => (
-          <span style={{ color: "white" }}>{`> ${line}`}</span>
-        ))}
-      </div>
-
+      {codeReturn.map((line) => (
+        <span style={{ color: "white" }}>{`> ${line}`}</span>
+      ))}
+    </div>
   );
 }
