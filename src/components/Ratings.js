@@ -71,7 +71,7 @@ const Ratings = ({
 
   let totalRating;
 
-  if (asPath === "/dashboard") {
+  if (asPath === asPath.match("/dashboard")?.input) {
     totalRating =
       info.problem_1_rating + info.problem_2_rating + info.problem_3_rating;
   } else {
@@ -85,7 +85,7 @@ const Ratings = ({
   let normalizedRadius = radius - stroke * 2;
   let circumference = normalizedRadius * 2 * Math.PI;
 
-  if (asPath !== "/dashboard") {
+  if (asPath !== asPath.match("/dashboard")?.input) {
     useEffect(() => {
       setValue(totalRating);
       setProblem1Rating(rating1);
@@ -99,7 +99,7 @@ const Ratings = ({
 
   return (
     <>
-      {asPath === "/dashboard" ? (
+      {asPath === asPath.match("/dashboard")?.input ? (
         <div className={styles} style={{ marginTop: "-8px" }}>
           <span
             style={{

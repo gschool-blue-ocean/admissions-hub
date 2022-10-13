@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from "react";
 import styles from "./Header.module.css";
 import Image from "next/image";
 import Container from "react-bootstrap/Container";
@@ -23,11 +23,11 @@ function Header() {
 
     let userRole;
     // let userInfo;
-  
+
     if (user !== undefined) {
       localStorage.setItem("userRole", JSON.stringify(user.role));
       // localStorage.setItem("user", JSON.stringify(user));
-  
+
       userRole = user.role;
       // userInfo = JSON.parse(JSON.stringify(user));
     } else {
@@ -36,7 +36,7 @@ function Header() {
         // userInfo = JSON.parse(localStorage.getItem("user"));
       }
     }
-  
+
     switch (asPath) {
       case asPath.match("/interview")?.input:
         currentPage = "Interview App";
@@ -46,11 +46,12 @@ function Header() {
         currentPage = "Interview Login";
         currentUser = "";
         break;
-        case `/dashboard?access=${accessToken}`:
-          currentPage = "Interview Dashboard";
-          currentUser = "Danny Andrews";
-          break;
+      case `/dashboard?access=${accessToken}`:
+        currentPage = "Interview Dashboard";
+        currentUser = "Danny Andrews";
+        break;
     }
+  });
 
   const monthNames = [
     "January",
