@@ -16,20 +16,20 @@ function HeaderLogin() {
   let currentUser = "";
   let { asPath } = useRouter();
   //get current access token from local storage
-  useEffect(() => {
-    let accessToken = localStorage.getItem("accessToken");
+  // useEffect(() => {
+  //   let accessToken = localStorage.getItem("accessToken");
 
-    switch (asPath) {
-      case `/dashboard?access=${accessToken}`:
-        currentPage = "Interview Dashboard";
-        currentUser = "Danny Andrews";
-        break;
-      case "/login":
-        currentPage = "Interview Login";
-        currentUser = "";
-        break;
-    }
-  }, []);
+  //   switch (asPath) {
+  //     case `/dashboard?access=${accessToken}`:
+  //       currentPage = "Interview Dashboard";
+  //       currentUser = "Danny Andrews";
+  //       break;
+  //     case "/login":
+  //       currentPage = "Interview Login";
+  //       currentUser = "";
+  //       break;
+  //   }
+  // }, []);
 
   const monthNames = [
     "January",
