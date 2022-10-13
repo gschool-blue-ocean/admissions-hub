@@ -93,7 +93,7 @@ const StudentInfo = ({ setStudents, students }) => {
               >
                 <span
                   style={{ fontSize: 20 }}
-                >{`${info.firstName} ${info.lastName}, ${info.cohort}, Attempt #: ${info.attempt}`}</span>
+                >{`${info.first_name} ${info.last_name}, ${info.cohort}, Attempt #: ${info.attempt}`}</span>
               </div>
               <ViewProblems /> <br></br>
               <Ratings setValue={setValue} />
