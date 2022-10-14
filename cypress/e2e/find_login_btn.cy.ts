@@ -9,3 +9,6 @@ context("Admin Login", () => {
     cy.get("button").contains("login");
   });
 });
+
+
+export {}
