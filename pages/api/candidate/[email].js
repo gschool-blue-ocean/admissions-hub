@@ -52,20 +52,24 @@ export default function handler(req, res) {
       (err, result) => {
         if (err) {
           console.error(err);
-          res.status(500).send("Error");
+          return res.status(500).send("Error");
         } else {
-          res.status(200).json(result.rows);
+          return res.status(200).send(result.rows);
         }
       }
     );
-  } else if (method === "GET") {
-    pool.query("SELECT * FROM candidates", (err, result) => {
-      if (err) {
-        console.error(err);
-        res.status(500).send("Error");
-      } else {
-        res.status(200).json(result.rows);
+  } else if (req.method === "DELETE") {
+    pool.query(
+      "DELETE FROM candidates WHERE email = $1",
+      [email],
+      (err, result) => {
+        if (err) {
+          console.error(err);
+          return res.status(500).send("Error");
+        } else {
+          return res.status(200).send(result.rows);
+        }
       }
-    });
+    );
   }
 }

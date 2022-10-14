@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import * as BsIcons from "react-icons/bs";
 import * as BiIcons from "react-icons/bi";
 import * as AiIcons from "react-icons/ai";
+import * as TiIcons from "react-icons/ti";
+
 import NewStudent from "./NewStudent";
 import Link from "next/link";
 import uuid from "react-uuid";
@@ -9,6 +11,7 @@ import Ratings from "./Ratings";
 import styles from "./AllRatings.module.css";
 import { useAppContext } from "./GlobalContext";
 import ViewProblems from "./viewProblems";
+import axios from "axios";
 
 const StudentInfo = ({ setStudents, students }) => {
   const { info, setInfo, setUserRole } = useAppContext();
@@ -28,6 +31,24 @@ const StudentInfo = ({ setStudents, students }) => {
   const [seeNotes, setSeeNotes] = useState(false);
   const handleChange = (event) => {
     setSearch(event.target.value);
+  };
+
+  const deleteStudent = () => {
+    let tempArr = [...students];
+    let indexOfObject = tempArr.findIndex((object) => {
+      return object.email === info.email;
+    });
+    tempArr.splice(indexOfObject, 1);
+
+    setStudents(tempArr);
+    axios
+      .delete(`/api/candidate/${info.email}`, info.email)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   return (
@@ -57,7 +78,6 @@ const StudentInfo = ({ setStudents, students }) => {
           <div
             style={{
               fontSize: 14,
-
               backgroundColor: "white",
               borderRadius: 10,
               boxShadow: "0px 0px 10px 5px #888888",
@@ -128,7 +148,7 @@ const StudentInfo = ({ setStudents, students }) => {
           ></input>
           <div
             style={{ cursor: "pointer" }}
-            onClick={() => console.log(search)}
+            // onClick={() => console.log(search)}
           >
             <BiIcons.BiSearchAlt
               size={28}
@@ -359,16 +379,41 @@ const StudentInfo = ({ setStudents, students }) => {
           }}
         >
           <div
-            className={styles.bob}
-            onClick={() => setShowAddStudent(!showAddStudent)}
             style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
           >
-            <BsIcons.BsPlusLg color="#DD8D43" />
-
-            <span style={{ paddingLeft: 5, color: "#979797" }}>
-              add student
-            </span>
+            <div
+              className={styles.bob}
+              onClick={() => setShowAddStudent(!showAddStudent)}
+              style={{ paddingRight: 10 }}
+            >
+              <TiIcons.TiUserAddOutline size={22} color="#DD8D43" />
+              <span style={{ paddingLeft: 5, color: "#979797" }}>
+                add student
+              </span>
+            </div>
+            {info.length === 0 ? (
+              <div style={{ cursor: "not-allowed" }}>
+                <TiIcons.TiUserDeleteOutline size={22} color="#FFE8D3" />
+                <span style={{ paddingLeft: 5, color: "#979797" }}>
+                  delete student
+                </span>
+              </div>
+            ) : (
+              <div
+                className={styles.bob}
+                onClick={() => {
+                  deleteStudent();
+                  setInfo("");
+                }}
+              >
+                <TiIcons.TiUserDeleteOutline size={22} color="#DD8D43" />
+                <span style={{ paddingLeft: 5, color: "#979797" }}>
+                  delete student
+                </span>
+              </div>
+            )}
           </div>
+
           {showAddStudent ? (
             <NewStudent
               students={students}

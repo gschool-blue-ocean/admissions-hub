@@ -1,4 +1,4 @@
-import {useEffect} from 'react'
+import { useEffect } from "react";
 import router from "next/router";
 import AdminLogin from "./AdminLogin";
 import { useAppContext } from "../../src/components/GlobalContext";
@@ -11,10 +11,9 @@ export default function Login() {
   //if local storage has accessToken, redirect to dashboard
 
   useEffect(() => {
-
-  if (localStorage.getItem("accessToken")) {
-    router.push("/dashboard");
-  }
+    if (localStorage.getItem("accessToken")) {
+      router.push("/dashboard");
+    }
   }, []);
 
   return (
