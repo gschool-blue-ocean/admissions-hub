@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from "react";
 import styles from "./Header.module.css";
 import Image from "next/image";
 import Container from "react-bootstrap/Container";
@@ -10,23 +10,42 @@ import BtnLogin from "./BtnLogin";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Dropdown from "react-bootstrap/Dropdown";
+import { useAppContext } from "./GlobalContext";
 
 function Header() {
+  const { user } = useAppContext();
   let currentPage = "";
   let currentUser = "";
   let { asPath } = useRouter();
   //get current access token from local storage
+  const [userRole, setUserRole] = useState("");
+
   useEffect(() => {
     let accessToken = localStorage.getItem("accessToken");
 
+    if (user !== undefined) {
+      localStorage.setItem("userRole", JSON.stringify(user.role));
+      setUserRole(user.role);
+      // userInfo = JSON.parse(JSON.stringify(user));
+    } else {
+      if (typeof window !== "undefined") {
+        let temp = JSON.parse(localStorage.getItem("userRole"));
+        setUserRole(temp);
+      }
+    }
+
     switch (asPath) {
-      case `/dashboard?access=${accessToken}`:
-        currentPage = "Interview Dashboard";
-        currentUser = "Danny Andrews";
+      case asPath.match("/interview")?.input:
+        currentPage = "Interview App";
+        currentUser = `Danny Andrews`;
         break;
       case "/login":
         currentPage = "Interview Login";
         currentUser = "";
+        break;
+      case `/dashboard?access=${accessToken}`:
+        currentPage = "Interview Dashboard";
+        currentUser = "Danny Andrews";
         break;
     }
   }, []);
@@ -80,20 +99,21 @@ function Header() {
           )}
         </div>
         <div className={styles.para2}>{today}</div>
-
-        <div className={styles.dropdownmenu}>
-          <NavDropdown
-            id="nav-dropdown-dark-example"
-            title={currentUser ? currentUser : "Danny Andrews"}
-            menuVariant="light"
-          >
-            <NavDropdown.Item eventKey="1">Profile</NavDropdown.Item>
-            <NavDropdown.Item eventKey="2">Extra page</NavDropdown.Item>
-            <NavDropdown.Item>
-              <BtnLogin />
-            </NavDropdown.Item>
-          </NavDropdown>
-        </div>
+        {userRole !== "ADMIN" ? null : (
+          <div className={styles.dropdownmenu}>
+            <NavDropdown
+              id="nav-dropdown-dark-example"
+              title={currentUser ? currentUser : "Danny Andrews"}
+              menuVariant="light"
+            >
+              <NavDropdown.Item eventKey="1">Profile</NavDropdown.Item>
+              <NavDropdown.Item eventKey="2">Extra page</NavDropdown.Item>
+              <NavDropdown.Item>
+                <BtnLogin />
+              </NavDropdown.Item>
+            </NavDropdown>
+          </div>
+        )}
       </div>
     </>
   );

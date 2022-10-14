@@ -20,6 +20,9 @@ CREATE TABLE "candidates" (
     "notes_1" TEXT,
     "notes_2" TEXT,
     "notes_3" TEXT,
+    "problem_1_rating" INT DEFAULT NULL,
+    "problem_2_rating" INT DEFAULT NULL,
+    "problem_3_rating" INT DEFAULT NULL,
     "role" "Role" NOT NULL DEFAULT 'BASIC',
 
     CONSTRAINT "candidates_pkey" PRIMARY KEY ("id")
@@ -50,7 +53,7 @@ CREATE TABLE "interviewers" (
 -- AddForeignKey
 -- ALTER TABLE "Interviews" ADD CONSTRAINT "Interviews_candidatesId_fkey" FOREIGN KEY ("candidatesId") REFERENCES "Candidates"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
-insert into "interviewers" ("first_name", "last_name", "email", "password") values ('Danny', 'Andrew', 'danny@gmail.com',  crypt('johnspassword', gen_salt('md5')));
+insert into "interviewers" ("first_name", "last_name", "email", "password") values ('Danny', 'Andrews', 'danny@gmail.com',  crypt('johnspassword', gen_salt('md5')));
 
 
 insert into "candidates" ("first_name", "last_name", "email", "cohort", "date", "attempt", "pass", "notes_1", "notes_2", "notes_3") values 

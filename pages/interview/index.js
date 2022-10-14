@@ -8,18 +8,21 @@ import { useAppContext } from "../../src/components/GlobalContext";
 
 function id({ id }) {
   const [input, setInput] = useState("");
-  const { user, displayRole } = useAppContext();
-  let { userRole } = useAppContext();
+  const { user } = useAppContext();
 
-  if (user !== undefined) {
-    localStorage.setItem("userInfo", JSON.stringify(user.role));
+  const [userRole, setUserRole] = useState("");
+  useEffect(() => {
+    if (user !== undefined) {
+      // localStorage.setItem("userRole", JSON.stringify(user.role));
 
-    userRole = user.role;
-  } else {
-    if (typeof window !== "undefined") {
-      userRole = JSON.parse(localStorage.getItem("userInfo"));
+      setUserRole(user.role);
+    } else {
+      if (typeof window !== "undefined") {
+        let temp = JSON.parse(localStorage.getItem("userRole"));
+        setUserRole(temp);
+      }
     }
-  }
+  }, []);
 
   return (
     <>
@@ -68,8 +71,6 @@ function id({ id }) {
               width: "450px",
               marginTop: "15px",
               color: "#979797",
-              //if user is admin, show the dashboard
-              visibility: displayRole,
             }}
           >
             {userRole === "ADMIN" ? (
@@ -77,16 +78,10 @@ function id({ id }) {
                 <RoomURL URL={id} />
                 <Dashboard input={input} />
               </>
-            ) : (
-                null
-            )}
-            
-            
-           
+            ) : null}
           </div>
         </div>
       </div>
-
       <Footer />
     </>
   );
