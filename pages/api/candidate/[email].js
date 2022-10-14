@@ -52,9 +52,9 @@ export default function handler(req, res) {
       (err, result) => {
         if (err) {
           console.error(err);
-          res.status(500).send("Error");
+          return res.status(500).send("Error");
         } else {
-          res.status(200).json(result.rows);
+          return res.status(200).send(result.rows);
         }
       }
     );
@@ -65,9 +65,9 @@ export default function handler(req, res) {
       (err, result) => {
         if (err) {
           console.error(err);
-          res.status(500).send("Error");
+          return res.status(500).send("Error");
         } else {
-          res.status(200).json(result.rows);
+          return res.status(200).send(result.rows);
         }
       }
     );

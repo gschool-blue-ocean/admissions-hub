@@ -92,10 +92,11 @@ export default function CodeEditor({ input, setInput, sessionId }) {
           position: "relative",
           zIndex: 2,
         }}
-      />
-      {codeReturn.map((line) => (
-        <span style={{ color: "white" }}>{`> ${line}`}</span>
-      ))}
+      >
+        {codeReturn.map((line) => (
+          <span style={{ color: "white" }}>{`> ${line}`}</span>
+        ))}
+      </code>
     </div>
   );
 }

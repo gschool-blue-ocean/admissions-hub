@@ -18,25 +18,21 @@ function Header() {
   let currentUser = "";
   let { asPath } = useRouter();
   //get current access token from local storage
-  let userRole;
-
-  if (user !== undefined) {
-    localStorage.setItem("userRole", JSON.stringify(user.role));
-    // localStorage.setItem("user", JSON.stringify(user));
-
-    userRole = user.role;
-    // userInfo = JSON.parse(JSON.stringify(user));
-  } else {
-    if (typeof window !== "undefined") {
-      userRole = JSON.parse(localStorage.getItem("userRole"));
-      // userInfo = JSON.parse(localStorage.getItem("user"));
-    }
-  }
+  const [userRole, setUserRole] = useState("");
 
   useEffect(() => {
     let accessToken = localStorage.getItem("accessToken");
 
-    // let userInfo;
+    if (user !== undefined) {
+      localStorage.setItem("userRole", JSON.stringify(user.role));
+      setUserRole(user.role);
+      // userInfo = JSON.parse(JSON.stringify(user));
+    } else {
+      if (typeof window !== "undefined") {
+        let temp = JSON.parse(localStorage.getItem("userRole"));
+        setUserRole(temp);
+      }
+    }
 
     switch (asPath) {
       case asPath.match("/interview")?.input:
