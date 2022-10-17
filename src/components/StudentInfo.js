@@ -83,7 +83,7 @@ const StudentInfo = ({ setStudents, students }) => {
               boxShadow: "0px 0px 10px 5px #888888",
               margin: "10% auto",
               width: 450,
-              height: 680,
+              height: "auto",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -104,7 +104,7 @@ const StudentInfo = ({ setStudents, students }) => {
             <div
               style={{
                 width: 400,
-                height: 600,
+                height: "auto",
                 backgroundColor: "white",
               }}
             >
