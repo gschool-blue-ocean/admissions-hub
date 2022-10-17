@@ -143,6 +143,7 @@ const StudentInfo = ({ setStudents, students }) => {
               borderRadius: 5,
               margin: 5,
               border: "none",
+              paddingLeft: "10px",
             }}
             type="text"
           ></input>

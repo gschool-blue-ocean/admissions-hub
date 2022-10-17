@@ -318,6 +318,7 @@ return newStr;
               marginTop: "-15px",
               paddingLeft: 2,
               color: "#979797",
+              fontSize: "14px",
             }}
           >
             Notes:
