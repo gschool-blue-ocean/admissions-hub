@@ -2,7 +2,12 @@
 
 context("Create new student", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:3000/dashboard");
+    cy.visit("http://localhost:3000/login");
+
+    cy.get("#formBasicEmail").type("danny@gmail.com");
+    cy.get("#formBasicPassword").type("johnspassword");
+    cy.get(".btn").click();
+    cy.url().should("eq", "http://localhost:3000/dashboard");
   });
 
   it("should create a new student", () => {
@@ -16,5 +21,9 @@ context("Create new student", () => {
     ).click();
     cy.get("input").type("billy");
     cy.get(".AllRatings_scroll__aC0kb").contains("billy@bob.com");
+    cy.get(".AllRatings_cell__eianI").click();
+    cy.get(
+      '[style="display: flex; align-items: center; cursor: pointer;"] > [style=""]'
+    ).click();
   });
 });

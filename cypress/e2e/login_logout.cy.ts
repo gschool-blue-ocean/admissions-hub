@@ -9,7 +9,7 @@ context("Admin Login", () => {
     cy.get("#formBasicEmail").type("danny@gmail.com");
     cy.get("#formBasicPassword").type("johnspassword");
     cy.get(".btn").click();
-    cy.url().should("eq", "http://localhost:3000/dashboard");
+    cy.url().should("include", "http://localhost:3000/dashboard");
     cy.get("#nav-dropdown-dark-example").click();
     cy.get(".BtnLogin_logoutBtn__kMh0D").click();
     cy.url().should("eq", "http://localhost:3000/login");
@@ -24,4 +24,4 @@ context("Admin Login", () => {
   });
 });
 
-export {}
+export {};
