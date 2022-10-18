@@ -1,20 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./AllRatings.module.css";
 
-const AllRatings = () => {
+const AllRatings = ({ students }) => {
   ////// Circle 1
+  let passing = 0;
+  let totalInterviews = 0;
+
+  students.forEach((el) => {
+    if (el.pass === "true") {
+      passing++;
+      totalInterviews++;
+    } else if (el.pass === "false") {
+      totalInterviews++;
+    }
+  });
 
   const Qtr = () => {
     let radius = 92;
     let stroke = 15;
-    let value = 65;
+    let value = passing;
     let normalizedRadius = radius - stroke * 2;
     let circumference = normalizedRadius * 2 * Math.PI;
 
-    const strokeDashoffset = circumference - (value / 69) * circumference;
+    const strokeDashoffset =
+      circumference - (value / totalInterviews) * circumference;
 
     return (
-      <div 
+      <div
         style={{
           display: "flex",
           flexDirection: "column",
@@ -22,7 +34,7 @@ const AllRatings = () => {
           borderRight: "1px solid #979797",
         }}
       >
-        <span style={{ fontSize: 20, color:"#979797" }}>Fiscal QTR</span>
+        <span style={{ fontSize: 20, color: "#979797" }}>Fiscal QTR</span>
         <div className={styles.circles}>
           <svg height={radius * 2} width={radius * 2}>
             <circle
@@ -58,15 +70,17 @@ const AllRatings = () => {
               fontFamily={"League Spartan"}
               fontWeight={300}
             >
-              {((value / 69) * 100).toFixed(0)}%
+              {((value / totalInterviews) * 100).toFixed(0)}%
             </text>
           </svg>
         </div>
-        <div style={{ display: "flex", justifyContent:"space-around"}}>
-          <div style={{ fontSize: 15, paddingRight: 30, color:"#979797" }}>
-            Total Interviews: 65
+        <div style={{ display: "flex", justifyContent: "space-around" }}>
+          <div style={{ fontSize: 15, paddingRight: 30, color: "#979797" }}>
+            Total Interviews: {totalInterviews}
           </div>
-          <div style={{ fontSize: 15, color:"#979797" }}>Passing Interviews: 69</div>
+          <div style={{ fontSize: 15, color: "#979797" }}>
+            Passing Interviews: {passing}
+          </div>
         </div>
       </div>
     );
@@ -75,11 +89,12 @@ const AllRatings = () => {
   const Year = () => {
     let radius2 = 92;
     let stroke2 = 15;
-    let value2 = 65;
+    let value2 = passing;
     let normalizedRadius2 = radius2 - stroke2 * 2;
     let circumference2 = normalizedRadius2 * 2 * Math.PI;
 
-    const strokeDashoffset = circumference2 - (value2 / 69) * circumference2;
+    const strokeDashoffset =
+      circumference2 - (value2 / totalInterviews) * circumference2;
 
     return (
       <div
@@ -89,7 +104,7 @@ const AllRatings = () => {
           alignItems: "center",
         }}
       >
-        <span style={{ fontSize: 20, color:"#979797" }}>Fiscal Year</span>
+        <span style={{ fontSize: 20, color: "#979797" }}>Fiscal Year</span>
         <div>
           <svg height={radius2 * 2} width={radius2 * 2}>
             <circle
@@ -124,15 +139,17 @@ const AllRatings = () => {
               fontFamily={"League Spartan"}
               fontWeight={300}
             >
-              {((value2 / 69) * 100).toFixed(0)}%
+              {((value2 / totalInterviews) * 100).toFixed(0)}%
             </text>
           </svg>
         </div>
-        <div style={{ display: "flex", justifyContent:"space-around" }}>
-          <div style={{ fontSize: 15, paddingRight: 30, color:"#979797" }}>
-            Total Interviews: 65
+        <div style={{ display: "flex", justifyContent: "space-around" }}>
+          <div style={{ fontSize: 15, paddingRight: 30, color: "#979797" }}>
+            Total Interviews: {totalInterviews}
           </div>
-          <div style={{ fontSize: 15, color:"#979797" }}>Passing Interviews: 69</div>
+          <div style={{ fontSize: 15, color: "#979797" }}>
+            Passing Interviews: {passing}
+          </div>
         </div>
       </div>
     );
