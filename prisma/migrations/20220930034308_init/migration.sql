@@ -3,9 +3,19 @@ CREATE EXTENSION pgcrypto;
 -- CreateEnum
 CREATE TYPE "Role" AS ENUM ('BASIC', 'ADMIN');
 
-DROP TABLE IF EXISTS candidates;
+
 DROP TABLE IF EXISTS interviewers;
--- DROP TABLE IF EXISTS interviews;
+DROP TABLE IF EXISTS candidates;
+
+
+CREATE TABLE "interviewers" (
+    "id" SERIAL PRIMARY KEY ,
+    "first_name" TEXT NOT NULL,
+    "last_name" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "password" TEXT NOT NULL,
+    "role" TEXT NOT NULL DEFAULT 'ADMIN'
+);
 
 -- CreateTable
 CREATE TABLE "candidates" (
@@ -24,28 +34,20 @@ CREATE TABLE "candidates" (
     "problem_2_rating" INT DEFAULT NULL,
     "problem_3_rating" INT DEFAULT NULL,
     "role" "Role" NOT NULL DEFAULT 'BASIC',
-
-    CONSTRAINT "candidates_pkey" PRIMARY KEY ("id")
+    "interviewers_id" INT REFERENCES "interviewers"("id")
 );
 
   
 
--- CreateTable
-CREATE TABLE "interviewers" (
-    "id" serial,
-    "first_name" TEXT NOT NULL,
-    "last_name" TEXT NOT NULL,
-    "email" TEXT NOT NULL,
-    "password" TEXT NOT NULL,
-    "role" TEXT NOT NULL DEFAULT 'ADMIN',
 
-    CONSTRAINT "interviewers_pkey" PRIMARY KEY ("id")
-);
+
 
 -- CreateTable
--- CREATE TABLE "Interviews" (
---     "id" TEXT NOT NULL,
---     "candidatesId" TEXT NOT NULL,
+-- CREATE TABLE "interviews" (
+--     "id" SERIAL,
+--     "candidatesId" REFERENCES FOREIGN KEY "candidates_pkey" FROM TABLE "candidates"  ,
+--     FOREIGN KEY(candidatesId) REFERENCES candidates_pkey(candidates));
+--     "interviewersId" REFERENCES FOREIGN KEY "interviewers_pkey" FROM "interviews" TABLE 
 
 --     CONSTRAINT "Interviews_pkey" PRIMARY KEY ("id")
 -- );
@@ -56,17 +58,17 @@ CREATE TABLE "interviewers" (
 insert into "interviewers" ("first_name", "last_name", "email", "password") values ('Danny', 'Andrews', 'danny@gmail.com',  crypt('johnspassword', gen_salt('md5')));
 
 
-insert into "candidates" ("first_name", "last_name", "email", "cohort", "date", "attempt", "pass", "notes_1", "notes_2", "notes_3") values 
-('Kevin', 'Reaves', 'Reaveskev@gmail.com', 'MCSP-13','27-JUN-22', '2', 'false', 'Add Notes', 'Add Notes', 'Add Notes'),
-('Jeremy', 'Linder', 'jeremylinder2@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes'),
-('Kyle', 'Jones', 'jones.kyle2893@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes'),
-('Thanh', 'Le', 'huybenpro@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes'),
-('Matthew', 'Rust', 'matthewrust21@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes'),
-('Hung', 'Nguyen', 'hungnguyen1693@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes'),
-('Kevin', 'Reaves', 'Reaveskev12@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes'),
-('Jeremy', 'Linder', 'jeremylinder12@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes'),
-('Kyle', 'Jones', 'jones.kyle28932@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes'),
-('Thanh', 'Le', 'huybenpro12@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes'),
-('Matthew', 'Rust', 'matthewrust221@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes'),
-('Hung', 'Nguyen', 'hungnguyen16931@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes');
+insert into "candidates" ("first_name", "last_name", "email", "cohort", "date", "attempt", "pass", "notes_1", "notes_2", "notes_3", "interviewers_id") values 
+('Kevin', 'Reaves', 'Reaveskev@gmail.com', 'MCSP-13','27-JUN-22', '2', 'false', 'Add Notes', 'Add Notes', 'Add Notes', '2'),
+('Jeremy', 'Linder', 'jeremylinder2@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes', '1'),
+('Kyle', 'Jones', 'jones.kyle2893@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes', '1'),
+('Thanh', 'Le', 'huybenpro@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes', '1'),
+('Matthew', 'Rust', 'matthewrust21@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes', '1'),
+('Hung', 'Nguyen', 'hungnguyen1693@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes', '1'),
+('Kevin', 'Reaves', 'Reaveskev12@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes', '1'),
+('Jeremy', 'Linder', 'jeremylinder12@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes', '1'),
+('Kyle', 'Jones', 'jones.kyle28932@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes', '2'),
+('Thanh', 'Le', 'huybenpro12@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes', '2'),
+('Matthew', 'Rust', 'matthewrust221@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes', '2'),
+('Hung', 'Nguyen', 'hungnguyen16931@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes', '2');
 
