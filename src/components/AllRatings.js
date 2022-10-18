@@ -138,16 +138,23 @@ const AllRatings = ({ students }) => {
               fontSize={36}
               fontFamily={"League Spartan"}
               fontWeight={300}
+              id="percentPassed"
             >
               {((value2 / totalInterviews) * 100).toFixed(0)}%
             </text>
           </svg>
         </div>
         <div style={{ display: "flex", justifyContent: "space-around" }}>
-          <div style={{ fontSize: 15, paddingRight: 30, color: "#979797" }}>
+          <div
+            id="totalInterviews"
+            style={{ fontSize: 15, paddingRight: 30, color: "#979797" }}
+          >
             Total Interviews: {totalInterviews}
           </div>
-          <div style={{ fontSize: 15, color: "#979797" }}>
+          <div
+            id="passingInterviews"
+            style={{ fontSize: 15, color: "#979797" }}
+          >
             Passing Interviews: {passing}
           </div>
         </div>
