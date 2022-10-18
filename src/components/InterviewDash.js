@@ -15,9 +15,9 @@ const InterviewDash = () => {
 
   return (
     <div style={{ width: 730, margin: "5% auto" }}>
-      <AllRatings />
+      <AllRatings students={students} />
       <StudentInfo students={students} setStudents={setStudents} />
-      <InterviewerReport />
+      <InterviewerReport students={students} />
     </div>
   );
 };

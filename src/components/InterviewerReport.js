@@ -1,6 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useAppContext } from "./GlobalContext";
 
-const InterviewerReport = () => {
+const InterviewerReport = ({ students }) => {
+  const { user } = useAppContext();
+  let count = 0;
+
+  const [userId, setUserId] = useState("");
+  useEffect(() => {
+    if (user !== undefined) {
+      localStorage.setItem("userId", JSON.stringify(user.id));
+
+      setUserId(user.id);
+    } else {
+      if (typeof window !== "undefined") {
+        let temp = JSON.parse(localStorage.getItem("userId"));
+        setUserId(temp);
+      }
+    }
+  }, []);
+
+  students.forEach((el) => {
+    if (el.interviewers_id === userId) {
+      count++;
+    }
+  });
+
   return (
     <div
       style={{
@@ -8,10 +32,12 @@ const InterviewerReport = () => {
         backgroundColor: "#f0f0f0",
         borderRadius: "0px 0px 10px 10px",
         marginTop: 5,
-        color:"#979797"
+        color: "#979797",
       }}
     >
-      <span style={{ fontSize: 15, marginLeft: "10px" }}>Danny Andrew's Interview Report</span>
+      <span style={{ fontSize: 15, marginLeft: "10px" }}>
+        Danny Andrew's Interview Report
+      </span>
       <div
         style={{
           display: "flex",
@@ -23,7 +49,7 @@ const InterviewerReport = () => {
       >
         <div
           style={{
-            borderRight: "1px solid #979797",            
+            borderRight: "1px solid #979797",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -31,8 +57,16 @@ const InterviewerReport = () => {
           }}
         >
           {" "}
-          <div style={{ fontSize: 64, fontFamily: "League Spartan", fontWeight: 200  }}>7</div>
-          <span style={{ fontSize: 15, marginTop: -30  }}>Fiscal QTR</span>
+          <div
+            style={{
+              fontSize: 64,
+              fontFamily: "League Spartan",
+              fontWeight: 200,
+            }}
+          >
+            {count}
+          </div>
+          <span style={{ fontSize: 15, marginTop: -30 }}>Fiscal QTR</span>
         </div>
         <div
           style={{
@@ -44,8 +78,16 @@ const InterviewerReport = () => {
           }}
         >
           {" "}
-          <div style={{ fontSize: 64, fontFamily: "League Spartan", fontWeight: 200  }}>7</div>
-          <span style={{ fontSize: 15, marginTop: -30  }}>Fiscal Year</span>
+          <div
+            style={{
+              fontSize: 64,
+              fontFamily: "League Spartan",
+              fontWeight: 200,
+            }}
+          >
+            {count}
+          </div>
+          <span style={{ fontSize: 15, marginTop: -30 }}>Fiscal Year</span>
         </div>
         <div
           style={{
@@ -56,7 +98,15 @@ const InterviewerReport = () => {
           }}
         >
           {" "}
-          <div style={{ fontSize: 64, fontFamily: "League Spartan", fontWeight: 200 }}>150</div>
+          <div
+            style={{
+              fontSize: 64,
+              fontFamily: "League Spartan",
+              fontWeight: 200,
+            }}
+          >
+            {count}
+          </div>
           <span style={{ fontSize: 15, marginTop: -30 }}>Lifetime</span>
         </div>
       </div>

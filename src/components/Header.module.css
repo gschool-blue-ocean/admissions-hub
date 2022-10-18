@@ -1,34 +1,30 @@
-@font-face {
-  font-family: "League Spartan";
-  src: url(../../public/fonts/League_Spartan/LeagueSpartan-VariableFont_wght.ttf);
-}
 
-@font-face {
-  font-family: "Roboto";
-  src: url(../../public/fonts/Roboto/Roboto-Thin.ttf);
-}
 
 .header {
   display: flex;
   flex-direction: row;
   width: 100%;
   height: 56px;
-  /* left: 0px;
-  top: 0px; */
+  left: 0px;
+  top: 0px;
   background: #ffffff;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
   font-family: "League Spartan";
-  /* position: relative; */
+  position: relative;
   z-index: 3;
 }
 
 .logo {
   background-image: url("../../public/galvanize-full-logo.png");
   background-size: cover;
-  background-position: center;
-  width: 10%;
+  background-position: left;
+  width: 200px;
   background-color: #ffffff;
   border: none;
+  position: relative;
+  z-index: 5;
+  overflow:visible;
+  display: flex;
 }
 
 .para {
@@ -36,9 +32,10 @@
   z-index: 1;
   position: relative;
   overflow: hidden;
-  font-weight: 600;
+  font-weight: 400;
   display: flex;
   justify-content: center;
+  font-family: "League Spartan";
 }
 
 .innerPara {
@@ -48,7 +45,7 @@
   position: absolute;
   transform: translate(0 -50%);
   background: white;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .innerLoginPara {

@@ -23,3 +23,5 @@ context("Admin Login", () => {
     cy.get("p").contains("Wrong username or password");
   });
 });
+
+export {}

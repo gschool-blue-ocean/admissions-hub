@@ -2,8 +2,14 @@ import React, { useEffect, useState } from "react";
 import * as ImIcons from "react-icons/im";
 import styles from "./AllRatings.module.css";
 import { useRouter } from "next/router";
+import { useAppContext } from "./GlobalContext";
 
-const Ratings = ({ setValue }) => {
+const Ratings = ({
+  setValue,
+  setProblem1Rating,
+  setProblem2Rating,
+  setProblem3Rating,
+}) => {
   const [problem1a, setProblem1a] = useState(false);
   const [problem1b, setProblem1b] = useState(false);
   const [problem1c, setProblem1c] = useState(false);
@@ -19,45 +25,61 @@ const Ratings = ({ setValue }) => {
   const [problem3c, setProblem3c] = useState(false);
   const [problem3d, setProblem3d] = useState(false);
 
+  const { info } = useAppContext();
   let { asPath } = useRouter();
 
-  let rating = 0;
+  let rating1 = 0;
+  let rating2 = 0;
+  let rating3 = 0;
 
   if (problem1a === true) {
-    rating++;
+    rating1++;
   }
   if (problem1b === true) {
-    rating++;
+    rating1++;
   }
   if (problem1c === true) {
-    rating++;
+    rating1++;
   }
   if (problem1d === true) {
-    rating++;
+    rating1++;
   }
   if (problem2a === true) {
-    rating++;
+    rating2++;
   }
   if (problem2b === true) {
-    rating++;
+    rating2++;
   }
   if (problem2c === true) {
-    rating++;
+    rating2++;
   }
   if (problem2d === true) {
-    rating++;
+    rating2++;
   }
   if (problem3a === true) {
-    rating++;
+    rating3++;
   }
   if (problem3b === true) {
-    rating++;
+    rating3++;
   }
   if (problem3c === true) {
-    rating++;
+    rating3++;
   }
   if (problem3d === true) {
-    rating++;
+    rating3++;
+  }
+
+  let totalRating;
+
+  if (asPath === asPath.match("/dashboard")?.input) {
+    if (info.problem_1_rating === undefined) {
+      totalRating = 0;
+    } else {
+      totalRating =
+        info.problem_1_rating + info.problem_2_rating + info.problem_3_rating;
+    }
+  } else {
+    totalRating = rating1 + rating2 + rating3;
   }
 
   ///////////CIRCLE///////////////
@@ -67,20 +89,25 @@ const Ratings = ({ setValue }) => {
   let normalizedRadius = radius - stroke * 2;
   let circumference = normalizedRadius * 2 * Math.PI;
 
-  useEffect(() => {
-    setValue(rating);
-  }, [rating]);
-  const strokeDashoffset = circumference - (rating / 12) * circumference;
+  if (asPath !== asPath.match("/dashboard")?.input) {
+    useEffect(() => {
+      setValue(totalRating);
+      setProblem1Rating(rating1);
+      setProblem2Rating(rating2);
+      setProblem3Rating(rating3);
+    }, [totalRating]);
+  }
+  const strokeDashoffset = circumference - (totalRating / 12) * circumference;
 
   ///////////CIRCLE///////////////
 
   return (
     <>
-      {asPath === "/dashboard" ? (
-        <div className={styles} style={{ marginTop: "-8px" }}>
+      {asPath === asPath.match("/dashboard")?.input ? (
+        <div className={styles} style={{ marginTop: "0px" }}>
           <span
             style={{
-              fontSize: 12,
+              fontSize: 14,
               fontFamily: "League Spartan",
               paddingLeft: 7,
               color: "#979797",
@@ -113,28 +140,28 @@ const Ratings = ({ setValue }) => {
                 </div>
                 <div style={{ display: "flex", marginTop: "-2px" }}>
                   <div>
-                    {problem1a ? (
+                    {info.problem_1_rating > 0 ? (
                       <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
                     ) : (
                       <ImIcons.ImStarFull className={styles.empty} />
                     )}
                   </div>
                   <div>
-                    {problem1b ? (
+                    {info.problem_1_rating > 1 ? (
                       <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
                     ) : (
                       <ImIcons.ImStarFull className={styles.empty} />
                     )}
                   </div>
                   <div>
-                    {problem1c ? (
+                    {info.problem_1_rating > 2 ? (
                       <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
                     ) : (
                       <ImIcons.ImStarFull className={styles.empty} />
                     )}
                   </div>
                   <div>
-                    {problem1d ? (
+                    {info.problem_1_rating > 3 ? (
                       <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
                     ) : (
                       <ImIcons.ImStarFull className={styles.empty} />
@@ -152,28 +179,28 @@ const Ratings = ({ setValue }) => {
                 </div>
                 <div style={{ display: "flex", marginTop: "-2px" }}>
                   <div>
-                    {problem2a ? (
+                    {info.problem_2_rating > 0 ? (
                       <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
                     ) : (
                       <ImIcons.ImStarFull className={styles.empty} />
                     )}
                   </div>
                   <div>
-                    {problem2b ? (
+                    {info.problem_2_rating > 1 ? (
                       <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
                     ) : (
                       <ImIcons.ImStarFull className={styles.empty} />
                     )}
                   </div>
                   <div>
-                    {problem2c ? (
+                    {info.problem_2_rating > 2 ? (
                       <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
                     ) : (
                       <ImIcons.ImStarFull className={styles.empty} />
                     )}
                   </div>
                   <div>
-                    {problem2d ? (
+                    {info.problem_2_rating > 3 ? (
                       <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
                     ) : (
                       <ImIcons.ImStarFull className={styles.empty} />
@@ -191,28 +218,28 @@ const Ratings = ({ setValue }) => {
                 </div>
                 <div style={{ display: "flex", marginTop: "-2px" }}>
                   <div>
-                    {problem3a ? (
+                    {info.problem_3_rating > 0 ? (
                       <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
                     ) : (
                       <ImIcons.ImStarFull className={styles.empty} />
                     )}
                   </div>
                   <div>
-                    {problem3b ? (
+                    {info.problem_3_rating > 1 ? (
                       <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
                     ) : (
                       <ImIcons.ImStarFull className={styles.empty} />
                     )}
                   </div>
                   <div>
-                    {problem3c ? (
+                    {info.problem_3_rating > 2 ? (
                       <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
                     ) : (
                       <ImIcons.ImStarFull className={styles.empty} />
                     )}
                   </div>
                   <div>
-                    {problem3d ? (
+                    {info.problem_3_rating > 3 ? (
                       <ImIcons.ImStarFull style={{ color: "#DD8D43" }} />
                     ) : (
                       <ImIcons.ImStarFull className={styles.empty} />
@@ -258,17 +285,17 @@ const Ratings = ({ setValue }) => {
                   fontSize="23"
                   fontFamily="League Spartan"
                 >
-                  {((rating / 12) * 100).toFixed(0)}%
+                  {((totalRating / 12) * 100).toFixed(0)}%
                 </text>
               </svg>
             </div>
           </div>
         </div>
       ) : (
-        <div className={styles} style={{ marginTop: "-8px" }}>
+        <div className={styles} style={{ marginTop: "0px" }}>
           <span
             style={{
-              fontSize: 12,
+              fontSize: 14,
               fontFamily: "League Spartan",
               paddingLeft: 7,
               color: "#979797",
@@ -602,7 +629,7 @@ const Ratings = ({ setValue }) => {
                   fontSize="23"
                   fontFamily="League Spartan"
                 >
-                  {((rating / 12) * 100).toFixed(0)}%
+                  {((totalRating / 12) * 100).toFixed(0)}%
                 </text>
               </svg>
             </div>

@@ -10,17 +10,19 @@ function id({ id }) {
   const [input, setInput] = useState("");
   const { user } = useAppContext();
 
-  let userRole;
+  const [userRole, setUserRole] = useState("");
+  useEffect(() => {
+    if (user !== undefined) {
+      // localStorage.setItem("userRole", JSON.stringify(user.role));
 
-  if (user !== undefined) {
-    localStorage.setItem("userInfo", JSON.stringify(user.role));
-
-    userRole = user.role;
-  } else {
-    if (typeof window !== "undefined") {
-      userRole = JSON.parse(localStorage.getItem("userInfo"));
+      setUserRole(user.role);
+    } else {
+      if (typeof window !== "undefined") {
+        let temp = JSON.parse(localStorage.getItem("userRole"));
+        setUserRole(temp);
+      }
     }
-  }
+  }, []);
 
   return (
     <>

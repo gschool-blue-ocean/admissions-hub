@@ -81,23 +81,21 @@ export default function CodeEditor({ input, setInput, sessionId }) {
       >
         Run Code
       </button>
-      <code>
-        <div
-          style={{
-            background: "#1e1e1e",
-            height: "250px",
-            display: "flex",
-            flexDirection: "column",
-            padding: "15px",
-            borderTop: "1px solid #979797",
-            position: "relative",
-            zIndex: 2,
-          }}
-        >
-          {codeReturn.map((line) => (
-            <span style={{ color: "white" }}>{`> ${line}`}</span>
-          ))}
-        </div>
+      <code
+        style={{
+          background: "#1e1e1e",
+          height: "250px",
+          display: "flex",
+          flexDirection: "column",
+          padding: "15px",
+          borderTop: "1px solid #979797",
+          position: "relative",
+          zIndex: 2,
+        }}
+      >
+        {codeReturn.map((line) => (
+          <span style={{ color: "white" }}>{`> ${line}`}</span>
+        ))}
       </code>
     </div>
   );

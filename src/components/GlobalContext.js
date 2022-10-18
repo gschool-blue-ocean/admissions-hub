@@ -6,6 +6,13 @@ export function AppWrapper({ children }) {
   const [info, setInfo] = useState([]);
   const [showWarning, setShowWarning] = useState(false);
   const [user, setUser] = useState();
+  const [userRole, setUserRole] = useState("");
+    let displayRole = "";
+    if (userRole === "ADMIN") {
+      displayRole = "";
+    } else {
+      displayRole = "hidden";
+    }
   let sharedState = {
     info,
     setInfo,
@@ -13,6 +20,9 @@ export function AppWrapper({ children }) {
     setShowWarning,
     user,
     setUser,
+    setUserRole,
+    userRole,
+    displayRole,
   };
 
   return (

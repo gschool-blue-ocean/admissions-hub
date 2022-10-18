@@ -21,6 +21,11 @@ const NewStudent = ({
       });
   };
 
+  const [firstNameInput, setFirstNameInput] = useState(false);
+  const [lastNameInput, setLastNameInput] = useState(false);
+  const [emailInput, setEmailInput] = useState(false);
+  const [cohortInput, setCohortInput] = useState(false);
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -28,18 +33,38 @@ const NewStudent = ({
 
   const handleFirstNameChange = (event) => {
     setFirstName(event.target.value);
+    setFirstNameInput(false);
   };
 
   const handleLastNameChange = (event) => {
     setLastName(event.target.value);
+    setLastNameInput(false);
   };
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
+    setEmailInput(false);
   };
 
   const handleCohortChange = (event) => {
     setCohort(event.target.value);
+    setCohortInput(false);
+  };
+
+  const handleNewStudent = () => {
+    if (firstName === "") {
+      setFirstNameInput(true);
+    } else if (lastName === "") {
+      setLastNameInput(true);
+    } else if (email === "") {
+      setEmailInput(true);
+    } else if (cohort === "") {
+      setEmailInput(true);
+    } else {
+      addCandidate(newStudent);
+      setStudents([...students, newStudent]);
+      setShowAddStudent(!showAddStudent);
+    }
   };
 
   let newStudent = {
@@ -60,7 +85,7 @@ const NewStudent = ({
       className={styles}
       style={{
         position: "fixed",
-        zIndex: "1",
+        zIndex: "6",
         left: "0",
         top: "0",
         width: "100%",
@@ -97,6 +122,17 @@ const NewStudent = ({
           </div>
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
+          {firstNameInput ? (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                color: "red",
+              }}
+            >
+              <span>Please input first name!</span>
+            </div>
+          ) : null}
           <div
             style={{
               marginBottom: 10,
@@ -110,9 +146,19 @@ const NewStudent = ({
               onChange={handleFirstNameChange}
               value={firstName}
               type="text"
-              required
             ></input>
           </div>
+          {lastNameInput ? (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                color: "red",
+              }}
+            >
+              <span>Please input last name!</span>
+            </div>
+          ) : null}
           <div
             style={{
               marginBottom: 10,
@@ -126,9 +172,19 @@ const NewStudent = ({
               onChange={handleLastNameChange}
               value={lastName}
               type="text"
-              required
             ></input>
           </div>
+          {emailInput ? (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                color: "red",
+              }}
+            >
+              <span>Please input email!</span>
+            </div>
+          ) : null}
           <div
             style={{
               marginBottom: 10,
@@ -142,10 +198,20 @@ const NewStudent = ({
               onChange={handleEmailChange}
               value={email}
               type="text"
-              required
             ></input>
           </div>
         </div>
+        {cohortInput ? (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              color: "red",
+            }}
+          >
+            <span>Please input cohort!</span>
+          </div>
+        ) : null}
         <div
           style={{
             display: "flex",
@@ -195,9 +261,10 @@ const NewStudent = ({
               width: 75,
             }}
             onClick={() => {
-              addCandidate(newStudent);
-              setStudents([...students, newStudent]);
-              setShowAddStudent(!showAddStudent);
+              handleNewStudent();
+              // addCandidate(newStudent);
+              // setStudents([...students, newStudent]);
+              // setShowAddStudent(!showAddStudent);
             }}
           >
             Create

@@ -13,7 +13,12 @@ const Dashboard = ({ input }) => {
   const [problem1Notes, setProblem1Notes] = useState("");
   const [problem2Notes, setProblem2Notes] = useState("");
   const [problem3Notes, setProblem3Notes] = useState("");
-  const { info, setInfo } = useAppContext();
+
+  const [problem1Rating, setProblem1Rating] = useState("");
+  const [problem2Rating, setProblem2Rating] = useState("");
+  const [problem3Rating, setProblem3Rating] = useState("");
+  const { info, setInfo, user } = useAppContext();
+  console.log(user);
 
   const [variables, setVariables] = useState(false);
   const [arrays, setArrays] = useState(false);
@@ -59,7 +64,7 @@ const Dashboard = ({ input }) => {
     "NOV",
     "DEC",
   ];
-  console.log(new Date());
+
   var today = new Date();
   var dd = String(today.getDate()).padStart(2, "0");
   var mmm = months[today.getMonth()];
@@ -75,6 +80,10 @@ const Dashboard = ({ input }) => {
     notes_1: problem1Notes,
     notes_2: problem2Notes,
     notes_3: problem3Notes,
+    problem_1_rating: problem1Rating,
+    problem_2_rating: problem2Rating,
+    problem_3_rating: problem3Rating,
+    interviewers_id: user.id,
   };
 
   const router = useRouter();
@@ -135,7 +144,12 @@ const Dashboard = ({ input }) => {
         setProblem2Notes={setProblem2Notes}
         setProblem3Notes={setProblem3Notes}
       />
-      <Ratings setValue={setValue} />
+      <Ratings
+        setValue={setValue}
+        setProblem1Rating={setProblem1Rating}
+        setProblem2Rating={setProblem2Rating}
+        setProblem3Rating={setProblem3Rating}
+      />
       <Reference
         variables={variables}
         arrays={arrays}
