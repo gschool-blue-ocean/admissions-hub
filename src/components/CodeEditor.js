@@ -25,7 +25,7 @@ export default function CodeEditor({ input, setInput, sessionId }) {
     const data = await axios.post("/api/codeEval", {
       code: input,
     });
-    console.log(data.data);
+    //console.log(data.data);
     setCodeReturn(data.data);
   };
 
@@ -91,11 +91,11 @@ export default function CodeEditor({ input, setInput, sessionId }) {
           borderTop: "1px solid #979797",
           position: "relative",
           zIndex: 2
-        }}
-      />
+        }}>
         {codeReturn.map((line) => (
           <span style={{ color: "white" }}>{`> ${line}`}</span>
         ))}
+        </code>
       </div>
 
   );
