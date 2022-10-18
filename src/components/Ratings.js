@@ -104,10 +104,10 @@ const Ratings = ({
   return (
     <>
       {asPath === asPath.match("/dashboard")?.input ? (
-        <div className={styles} style={{ marginTop: "-8px" }}>
+        <div className={styles} style={{ marginTop: "0px" }}>
           <span
             style={{
-              fontSize: 12,
+              fontSize: 14,
               fontFamily: "League Spartan",
               paddingLeft: 7,
               color: "#979797",
@@ -292,10 +292,10 @@ const Ratings = ({
           </div>
         </div>
       ) : (
-        <div className={styles} style={{ marginTop: "-8px" }}>
+        <div className={styles} style={{ marginTop: "0px" }}>
           <span
             style={{
-              fontSize: 12,
+              fontSize: 14,
               fontFamily: "League Spartan",
               paddingLeft: 7,
               color: "#979797",
