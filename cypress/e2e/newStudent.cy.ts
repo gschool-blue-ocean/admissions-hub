@@ -10,7 +10,7 @@ context("Create new student", () => {
     cy.url().should("eq", "http://localhost:3000/dashboard");
   });
 
-  it("should create a new student", () => {
+  it("should create a new student then delete newly created student", () => {
     cy.get("span").contains("add student").click();
     cy.get(":nth-child(1) > .AllRatings_input__2JMrd").type("billy");
     cy.get(":nth-child(2) > .AllRatings_input__2JMrd").type("bob");
