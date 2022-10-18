@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Editor from "@monaco-editor/react";
-import io from "Socket.IO-client";
+import io from "socket.io-client";
 import axios from "axios";
 import { useState } from "react";
 import styles from "src/components/CodeEditor.module.css";
@@ -25,7 +25,7 @@ export default function CodeEditor({ input, setInput, sessionId }) {
     const data = await axios.post("/api/codeEval", {
       code: input,
     });
-    console.log(data.data);
+    //console.log(data.data);
     setCodeReturn(data.data);
   };
 
