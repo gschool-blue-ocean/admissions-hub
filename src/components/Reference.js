@@ -25,7 +25,7 @@ const Reference = ({
     <div style={{ marginTop: "-15px" }}>
       <span
         style={{
-          fontSize: 12,
+          fontSize: 14,
           fontFamily: "League Spartan",
           paddingLeft: 7,
           color: "#979797",

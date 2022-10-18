@@ -18,22 +18,19 @@ function Header() {
   let currentUser = "";
   let { asPath } = useRouter();
   //get current access token from local storage
+  const [userRole, setUserRole] = useState("");
+
   useEffect(() => {
     let accessToken = localStorage.getItem("accessToken");
 
-    let userRole;
-    // let userInfo;
-
     if (user !== undefined) {
       localStorage.setItem("userRole", JSON.stringify(user.role));
-      // localStorage.setItem("user", JSON.stringify(user));
-
-      userRole = user.role;
+      setUserRole(user.role);
       // userInfo = JSON.parse(JSON.stringify(user));
     } else {
       if (typeof window !== "undefined") {
-        userRole = JSON.parse(localStorage.getItem("userRole"));
-        // userInfo = JSON.parse(localStorage.getItem("user"));
+        let temp = JSON.parse(localStorage.getItem("userRole"));
+        setUserRole(temp);
       }
     }
 
@@ -51,7 +48,7 @@ function Header() {
         currentUser = "Danny Andrews";
         break;
     }
-  });
+  }, []);
 
   const monthNames = [
     "January",
@@ -102,20 +99,21 @@ function Header() {
           )}
         </div>
         <div className={styles.para2}>{today}</div>
-
-        <div className={styles.dropdownmenu}>
-          <NavDropdown
-            id="nav-dropdown-dark-example"
-            title={currentUser ? currentUser : "Danny Andrews"}
-            menuVariant="light"
-          >
-            <NavDropdown.Item eventKey="1">Profile</NavDropdown.Item>
-            <NavDropdown.Item eventKey="2">Extra page</NavDropdown.Item>
-            <NavDropdown.Item>
-              <BtnLogin />
-            </NavDropdown.Item>
-          </NavDropdown>
-        </div>
+        {userRole !== "ADMIN" ? null : (
+          <div className={styles.dropdownmenu}>
+            <NavDropdown
+              id="nav-dropdown-dark-example"
+              title={currentUser ? currentUser : "Danny Andrews"}
+              menuVariant="light"
+            >
+              <NavDropdown.Item eventKey="1">Profile</NavDropdown.Item>
+              <NavDropdown.Item eventKey="2">Extra page</NavDropdown.Item>
+              <NavDropdown.Item>
+                <BtnLogin />
+              </NavDropdown.Item>
+            </NavDropdown>
+          </div>
+        )}
       </div>
     </>
   );

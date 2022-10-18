@@ -15,33 +15,38 @@ export default function RoomURL({ URL }) {
 
   if (clicked) {
     return (
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          backgroundColor: "#F0F0F0",
-          borderRadius: 5,
-          fontSize: 12,
-          height: 35,
-          width: 400,
-          justifyContent: "center",
-        }}
-      >
-        <div>Room URL: {asPath}</div>
-        <button
+      <>
+        <span
+          style={{ fontSize: 20 }}
+        >{`${info.first_name} ${info.last_name}, ${info.cohort}, Attempt #: ${info.attempt}`}</span>
+        <div
           style={{
-            border: "none",
             display: "flex",
-            height: 15,
             alignItems: "center",
             backgroundColor: "#F0F0F0",
-            overflowX: "scroll",
+            borderRadius: 5,
+            fontSize: 12,
+            height: 35,
+            width: 400,
+            justifyContent: "center",
           }}
-          onClick={handleCopy}
         >
-          Copied!
-        </button>
-      </div>
+          <div>Room URL: {asPath}</div>
+          <button
+            style={{
+              border: "none",
+              display: "flex",
+              height: 15,
+              alignItems: "center",
+              backgroundColor: "#F0F0F0",
+              overflowX: "scroll",
+            }}
+            onClick={handleCopy}
+          >
+            Copied!
+          </button>
+        </div>
+      </>
     );
   }
   return (

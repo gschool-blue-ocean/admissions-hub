@@ -17,7 +17,8 @@ const Dashboard = ({ input }) => {
   const [problem1Rating, setProblem1Rating] = useState("");
   const [problem2Rating, setProblem2Rating] = useState("");
   const [problem3Rating, setProblem3Rating] = useState("");
-  const { info, setInfo } = useAppContext();
+  const { info, setInfo, user } = useAppContext();
+  console.log(user);
 
   const [variables, setVariables] = useState(false);
   const [arrays, setArrays] = useState(false);
@@ -82,6 +83,7 @@ const Dashboard = ({ input }) => {
     problem_1_rating: problem1Rating,
     problem_2_rating: problem2Rating,
     problem_3_rating: problem3Rating,
+    interviewers_id: user.id,
   };
 
   const router = useRouter();

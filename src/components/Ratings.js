@@ -72,8 +72,12 @@ const Ratings = ({
   let totalRating;
 
   if (asPath === asPath.match("/dashboard")?.input) {
-    totalRating =
-      info.problem_1_rating + info.problem_2_rating + info.problem_3_rating;
+    if (info.problem_1_rating === undefined) {
+      totalRating = 0;
+    } else {
+      totalRating =
+        info.problem_1_rating + info.problem_2_rating + info.problem_3_rating;
+    }
   } else {
     totalRating = rating1 + rating2 + rating3;
   }
@@ -100,10 +104,10 @@ const Ratings = ({
   return (
     <>
       {asPath === asPath.match("/dashboard")?.input ? (
-        <div className={styles} style={{ marginTop: "-8px" }}>
+        <div className={styles} style={{ marginTop: "0px" }}>
           <span
             style={{
-              fontSize: 12,
+              fontSize: 14,
               fontFamily: "League Spartan",
               paddingLeft: 7,
               color: "#979797",
@@ -288,10 +292,10 @@ const Ratings = ({
           </div>
         </div>
       ) : (
-        <div className={styles} style={{ marginTop: "-8px" }}>
+        <div className={styles} style={{ marginTop: "0px" }}>
           <span
             style={{
-              fontSize: 12,
+              fontSize: 14,
               fontFamily: "League Spartan",
               paddingLeft: 7,
               color: "#979797",

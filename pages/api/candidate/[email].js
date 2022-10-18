@@ -33,10 +33,11 @@ export default function handler(req, res) {
       problem_1_rating,
       problem_2_rating,
       problem_3_rating,
+      interviewers_id,
     } = req.body;
 
     pool.query(
-      "UPDATE candidates SET date = COALESCE($1, date), attempt = COALESCE($2, attempt), pass = COALESCE($3, pass), notes_1 = COALESCE($4, notes_1), notes_2 = COALESCE($5, notes_2), notes_3 = COALESCE($6, notes_3), problem_1_rating = COALESCE($7,  problem_1_rating), problem_2_rating = COALESCE($8,  problem_2_rating), problem_3_rating = COALESCE($9,  problem_3_rating) WHERE email = $10 RETURNING *",
+      "UPDATE candidates SET date = COALESCE($1, date), attempt = COALESCE($2, attempt), pass = COALESCE($3, pass), notes_1 = COALESCE($4, notes_1), notes_2 = COALESCE($5, notes_2), notes_3 = COALESCE($6, notes_3), problem_1_rating = COALESCE($7,  problem_1_rating), problem_2_rating = COALESCE($8,  problem_2_rating), problem_3_rating = COALESCE($9,  problem_3_rating), interviewers_id = COALESCE($10, interviewers_id) WHERE email = $11 RETURNING *",
       [
         date,
         attempt,
@@ -47,25 +48,30 @@ export default function handler(req, res) {
         problem_1_rating,
         problem_2_rating,
         problem_3_rating,
+        interviewers_id,
         email,
       ],
       (err, result) => {
         if (err) {
           console.error(err);
-          res.status(500).send("Error");
+          return res.status(500).send("Error");
         } else {
-          res.status(200).json(result.rows);
+          return res.status(200).send(result.rows);
         }
       }
     );
-  } else if (method === "GET") {
-    pool.query("SELECT * FROM candidates", (err, result) => {
-      if (err) {
-        console.error(err);
-        res.status(500).send("Error");
-      } else {
-        res.status(200).json(result.rows);
+  } else if (req.method === "DELETE") {
+    pool.query(
+      "DELETE FROM candidates WHERE email = $1",
+      [email],
+      (err, result) => {
+        if (err) {
+          console.error(err);
+          return res.status(500).send("Error");
+        } else {
+          return res.status(200).send(result.rows);
+        }
       }
-    });
+    );
   }
 }
