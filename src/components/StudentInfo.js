@@ -13,9 +13,8 @@ import { useAppContext } from "./GlobalContext";
 import ViewProblems from "./viewProblems";
 import axios from "axios";
 
-const StudentInfo = ({ setStudents, students }) => {
-  const { info, setInfo, setUserRole } = useAppContext();
-
+const StudentInfo = () => {
+  const { info, setInfo, setUserRole, setStudents, students } = useAppContext();
   const changeUserRole = (e) => {
     setUserRole("ADMIN");
   };
@@ -36,7 +35,7 @@ const StudentInfo = ({ setStudents, students }) => {
   const deleteStudent = () => {
     let tempArr = [...students];
     let indexOfObject = tempArr.findIndex((object) => {
-      return object.email === info.email;
+      return object.id === info.id;
     });
     tempArr.splice(indexOfObject, 1);
 
@@ -147,10 +146,7 @@ const StudentInfo = ({ setStudents, students }) => {
             }}
             type="text"
           ></input>
-          <div
-            style={{ cursor: "pointer" }}
-            // onClick={() => console.log(search)}
-          >
+          <div style={{ cursor: "pointer" }}>
             <BiIcons.BiSearchAlt
               size={28}
               style={{ marginTop: 5, color: "#979797" }}
@@ -307,6 +303,35 @@ const StudentInfo = ({ setStudents, students }) => {
           }}
         >
           {students.map((student) => {
+            const months = [
+              "JAN",
+              "FEB",
+              "MAR",
+              "APR",
+              "MAY",
+              "JUN",
+              "JUL",
+              "AUG",
+              "SEP",
+              "OCT",
+              "NOV",
+              "DEC",
+            ];
+            let testDate;
+            if (student.date === null) {
+              testDate = "TBD";
+            } else {
+              testDate = student.date.slice(0, -14);
+              var dd = testDate.slice(8);
+              var mm = months[parseInt(testDate.slice(6, -3)) - 1];
+              var yyyy = testDate.slice(0, -6);
+              testDate = dd + "-" + mm + "-" + yyyy;
+            }
+
+            // console.log("day", dd);
+            // console.log("month", mm);
+            // console.log(yyyy);
+            // console.log(testDate);
             if (
               student.email.toLowerCase().includes(search.toLowerCase()) ||
               student.first_name.toLowerCase().includes(search.toLowerCase()) ||
@@ -322,13 +347,12 @@ const StudentInfo = ({ setStudents, students }) => {
                     paddingBottom: 3,
                     paddingTop: 3,
                     borderBottom: "solid 1px #979797",
-                    backgroundColor:
-                      info.email === student.email ? "#DD8D43" : "",
-                    color: info.email === student.email ? "white" : "#979797",
+                    backgroundColor: info.id === student.id ? "#DD8D43" : "",
+                    color: info.id === student.id ? "white" : "#979797",
                   }}
                   key={uuid()}
                   onClick={() => {
-                    if (info.email === student.email) {
+                    if (info.id === student.id) {
                       setInfo("");
                     } else {
                       setInfo(student);
@@ -345,8 +369,12 @@ const StudentInfo = ({ setStudents, students }) => {
                   </span>
                   <span style={{ width: 186 }}>{student.email}</span>
                   <span style={{ width: 70 }}>{student.cohort}</span>
-                  <span style={{ width: 80 }}>{student.date}</span>
-                  <span style={{ width: 16 }}>{student.attempt}</span>
+                  {testDate === "04-JUL-1776" ? (
+                    <span style={{ width: 85 }}>TBD</span>
+                  ) : (
+                    <span style={{ width: 85 }}>{testDate}</span>
+                  )}
+                  <span style={{ width: 11 }}>{student.attempt}</span>
                   {student.pass === "true" ? (
                     <div style={{ width: 30 }}>
                       <AiIcons.AiOutlineCheck

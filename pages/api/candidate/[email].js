@@ -20,37 +20,14 @@ pool.connect((err) => {
 export default function handler(req, res) {
   const query = req.query;
   const { email } = query;
-  console.log(req.query);
-  console.log(email);
+  // console.log(req.query);
+  // console.log(email);
   if (req.method === "PATCH") {
-    const {
-      date,
-      attempt,
-      pass,
-      notes_1,
-      notes_2,
-      notes_3,
-      problem_1_rating,
-      problem_2_rating,
-      problem_3_rating,
-      interviewers_id,
-    } = req.body;
+    const { pass } = req.body;
 
     pool.query(
-      "UPDATE candidates SET date = COALESCE($1, date), attempt = COALESCE($2, attempt), pass = COALESCE($3, pass), notes_1 = COALESCE($4, notes_1), notes_2 = COALESCE($5, notes_2), notes_3 = COALESCE($6, notes_3), problem_1_rating = COALESCE($7,  problem_1_rating), problem_2_rating = COALESCE($8,  problem_2_rating), problem_3_rating = COALESCE($9,  problem_3_rating), interviewers_id = COALESCE($10, interviewers_id) WHERE email = $11 RETURNING *",
-      [
-        date,
-        attempt,
-        pass,
-        notes_1,
-        notes_2,
-        notes_3,
-        problem_1_rating,
-        problem_2_rating,
-        problem_3_rating,
-        interviewers_id,
-        email,
-      ],
+      "UPDATE candidates SET  pass = COALESCE($1, pass) WHERE email = $2 RETURNING *",
+      [pass, email],
       (err, result) => {
         if (err) {
           console.error(err);

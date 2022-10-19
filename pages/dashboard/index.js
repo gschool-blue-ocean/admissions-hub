@@ -1,4 +1,4 @@
-import {useEffect} from 'react'
+import { useEffect } from "react";
 import router from "next/router";
 import Header from "../../src/components/Header";
 import Footer from "../../src/components/Footer";
@@ -14,9 +14,6 @@ export default function index() {
       router.push(`/dashboard?access=${accessToken}`);
     }
   }, []);
-
- 
-
 
   return (
     <div>
