@@ -146,10 +146,7 @@ const StudentInfo = () => {
             }}
             type="text"
           ></input>
-          <div
-            style={{ cursor: "pointer" }}
-            // onClick={() => console.log(search)}
-          >
+          <div style={{ cursor: "pointer" }}>
             <BiIcons.BiSearchAlt
               size={28}
               style={{ marginTop: 5, color: "#979797" }}
@@ -320,12 +317,16 @@ const StudentInfo = () => {
               "NOV",
               "DEC",
             ];
-            console.log(student.date);
-            let testDate = student.date.slice(0, -14);
-            var dd = testDate.slice(8);
-            var mm = months[parseInt(testDate.slice(6, -3)) - 1];
-            var yyyy = testDate.slice(0, -6);
-            testDate = dd + "-" + mm + "-" + yyyy;
+            let testDate;
+            if (student.date === null) {
+              testDate = "TBD";
+            } else {
+              testDate = student.date.slice(0, -14);
+              var dd = testDate.slice(8);
+              var mm = months[parseInt(testDate.slice(6, -3)) - 1];
+              var yyyy = testDate.slice(0, -6);
+              testDate = dd + "-" + mm + "-" + yyyy;
+            }
 
             // console.log("day", dd);
             // console.log("month", mm);
@@ -368,9 +369,11 @@ const StudentInfo = () => {
                   </span>
                   <span style={{ width: 186 }}>{student.email}</span>
                   <span style={{ width: 70 }}>{student.cohort}</span>
-
-                  <span style={{ width: 85 }}>{testDate}</span>
-
+                  {testDate === "04-JUL-1776" ? (
+                    <span style={{ width: 85 }}>TBD</span>
+                  ) : (
+                    <span style={{ width: 85 }}>{testDate}</span>
+                  )}
                   <span style={{ width: 11 }}>{student.attempt}</span>
                   {student.pass === "true" ? (
                     <div style={{ width: 30 }}>

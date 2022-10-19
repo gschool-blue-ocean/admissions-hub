@@ -21,7 +21,7 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
           problem_1_rating: null,
           problem_2_rating: null,
           problem_3_rating: null,
-          date: "1776-07-04",
+          date: "1776-07-04T07:00:00.000Z",
           attempt: 0,
           pass: "TBD",
         };
@@ -83,7 +83,7 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
     } else {
       addCandidate(newStudent, interviewObj);
       setShowAddStudent(!showAddStudent);
-      setStudents([...students, placeholder]);
+      // setStudents([...students, placeholder]);
     }
   };
 
@@ -92,7 +92,7 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
     last_name: lastName,
     email: email,
     cohort: cohort,
-    date: "1776-07-04",
+    date: "1776-07-04T07:00:00.000Z",
     attempt: 0,
     pass: "TBD",
   };
@@ -105,20 +105,20 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
     problem_1_rating: null,
     problem_2_rating: null,
     problem_3_rating: null,
-    date: "1776-07-04",
+    date: "1776-07-04T07:00:00.000Z",
     attempt: 0,
     pass: "TBD",
   };
 
-  let placeholder = {
-    first_name: firstName,
-    last_name: lastName,
-    email: email,
-    cohort: cohort,
-    pass: "TBD",
-    attempt: 0,
-    date: "1776-07-04",
-  };
+  // let placeholder = {
+  //   first_name: firstName,
+  //   last_name: lastName,
+  //   email: email,
+  //   cohort: cohort,
+  //   pass: "TBD",
+  //   attempt: 0,
+  //   date: "1776-07-04T07:00:00.000Z",
+  // };
 
   return (
     <div
@@ -302,6 +302,26 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
             }}
             onClick={() => {
               handleNewStudent();
+              axios.get(`/api/candidate/Candidate`).then((result) => {
+                let temp = result.data;
+
+                const arr = temp.reduce((result, obj) => {
+                  let row = result.find(
+                    (x) => x.candidates_id === obj.candidates_id
+                  );
+                  if (!row) result.push({ ...obj });
+                  else if (parseInt(row.attempt) < parseInt(obj.attempt))
+                    Object.assign(row, obj);
+                  return result;
+                }, []);
+
+                arr.sort(function (a, b) {
+                  // Turn your strings into dates, and then subtract them
+                  // to get a value that is either negative, positive, or zero.
+                  return new Date(b.date) - new Date(a.date);
+                });
+                setStudents(arr);
+              });
             }}
           >
             Create

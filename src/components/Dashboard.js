@@ -28,6 +28,8 @@ const Dashboard = ({ input }) => {
   const [accumulator, setAccumulator] = useState(false);
   const [extraResources, setExtraResources] = useState("");
 
+  console.log(info);
+
   useEffect(() => {
     if (user !== undefined) {
       localStorage.setItem("userId", JSON.stringify(user.id));
@@ -209,8 +211,31 @@ const Dashboard = ({ input }) => {
             // console.log("Code Editor", input);
             completeInterview();
             completeInterviews();
+            axios
+              .get(`/api/candidate/Candidate`)
+              .then((result) => {
+                let temp = result.data;
 
-            router.push("../dashboard");
+                const arr = temp.reduce((result, obj) => {
+                  let row = result.find(
+                    (x) => x.candidates_id === obj.candidates_id
+                  );
+                  if (!row) result.push({ ...obj });
+                  else if (parseInt(row.attempt) < parseInt(obj.attempt))
+                    Object.assign(row, obj);
+                  return result;
+                }, []);
+
+                arr.sort(function (a, b) {
+                  // Turn your strings into dates, and then subtract them
+                  // to get a value that is either negative, positive, or zero.
+                  return new Date(b.date) - new Date(a.date);
+                });
+                setStudents(arr);
+              })
+              .then(router.push("../dashboard"));
+
+            // router.push("../dashboard");
           }}
           style={{
             width: 220,
