@@ -21,7 +21,7 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
           problem_1_rating: null,
           problem_2_rating: null,
           problem_3_rating: null,
-          date: "TBD",
+          date: "1776-07-04",
           attempt: 0,
           pass: "TBD",
         };
@@ -92,7 +92,7 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
     last_name: lastName,
     email: email,
     cohort: cohort,
-    date: "TBD",
+    date: "1776-07-04",
     attempt: 0,
     pass: "TBD",
   };
@@ -105,7 +105,7 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
     problem_1_rating: null,
     problem_2_rating: null,
     problem_3_rating: null,
-    date: "TBD",
+    date: "1776-07-04",
     attempt: 0,
     pass: "TBD",
   };
@@ -117,7 +117,7 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
     cohort: cohort,
     pass: "TBD",
     attempt: 0,
-    date: "TBD",
+    date: "1776-07-04",
   };
 
   return (

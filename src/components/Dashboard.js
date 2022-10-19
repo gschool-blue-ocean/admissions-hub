@@ -85,19 +85,6 @@ const Dashboard = ({ input }) => {
   today = yy + "-" + mm + "-" + dd;
   let numAttempt = Number(info.attempt);
 
-  // let patchRequest = {
-  //   date: today,
-  //   attempt: numAttempt + 1,
-  //   pass: passOrFail,
-  //   notes_1: problem1Notes,
-  //   notes_2: problem2Notes,
-  //   notes_3: problem3Notes,
-  //   problem_1_rating: problem1Rating,
-  //   problem_2_rating: problem2Rating,
-  //   problem_3_rating: problem3Rating,
-  //   interviewers_id: user.id,
-  // };
-
   let newPatchRequest = {
     pass: passOrFail,
   };

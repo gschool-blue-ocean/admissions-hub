@@ -320,12 +320,13 @@ const StudentInfo = () => {
               "NOV",
               "DEC",
             ];
-
+            console.log(student.date);
             let testDate = student.date.slice(0, -14);
             var dd = testDate.slice(8);
-            var mm = months[testDate.slice(6, -3)];
+            var mm = months[parseInt(testDate.slice(6, -3)) - 1];
             var yyyy = testDate.slice(0, -6);
             testDate = dd + "-" + mm + "-" + yyyy;
+
             // console.log("day", dd);
             // console.log("month", mm);
             // console.log(yyyy);
@@ -367,8 +368,10 @@ const StudentInfo = () => {
                   </span>
                   <span style={{ width: 186 }}>{student.email}</span>
                   <span style={{ width: 70 }}>{student.cohort}</span>
-                  <span style={{ width: 80 }}>{testDate}</span>
-                  <span style={{ width: 16 }}>{student.attempt}</span>
+
+                  <span style={{ width: 85 }}>{testDate}</span>
+
+                  <span style={{ width: 11 }}>{student.attempt}</span>
                   {student.pass === "true" ? (
                     <div style={{ width: 30 }}>
                       <AiIcons.AiOutlineCheck
