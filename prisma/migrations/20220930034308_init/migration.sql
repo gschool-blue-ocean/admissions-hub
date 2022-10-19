@@ -4,75 +4,84 @@ CREATE EXTENSION pgcrypto;
 CREATE TYPE "Role" AS ENUM ('BASIC', 'ADMIN');
 
 
-DROP TABLE IF EXISTS candidates;
-DROP TABLE IF EXISTS interviewers;
+DROP TABLE IF EXISTS interviewers CASCADE;
+DROP TABLE IF EXISTS candidates CASCADE;
+DROP TABLE IF EXISTS interviews CASCADE;
 
-
+-- CreateTable
 CREATE TABLE "interviewers" (
-    "id" SERIAL PRIMARY KEY ,
+    "id" SERIAL ,
     "first_name" TEXT NOT NULL,
     "last_name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "role" TEXT NOT NULL DEFAULT 'ADMIN'
+    "role" TEXT NOT NULL DEFAULT 'ADMIN',
+    PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "candidates" (
-    "id" serial,
+    "id" SERIAL,
     "first_name" TEXT NOT NULL,
     "last_name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "cohort" TEXT NOT NULL,
-    "date" TEXT,
-    "attempt" TEXT,
     "pass" TEXT,
+    "role" "Role" NOT NULL DEFAULT 'BASIC',
+      PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "interviews" (
+    "id" SERIAL,
+    "interviewers_id" INT REFERENCES "interviewers"("id")  ON DELETE CASCADE
+    ON UPDATE CASCADE DEFAULT 0,
+    "candidates_id" INT REFERENCES "candidates"("id")  ON DELETE CASCADE
+     ON UPDATE CASCADE,
     "notes_1" TEXT,
     "notes_2" TEXT,
     "notes_3" TEXT,
     "problem_1_rating" INT DEFAULT NULL,
     "problem_2_rating" INT DEFAULT NULL,
     "problem_3_rating" INT DEFAULT NULL,
-    "role" "Role" NOT NULL DEFAULT 'BASIC',
-    "interviewers_id" INT REFERENCES "interviewers"("id")
+    "attempt" TEXT,
+    "pass" TEXT,
+    "date" DATE
 );
-
-  
-
-
-
-
--- CreateTable
--- CREATE TABLE "interviews" (
---     "id" SERIAL,
---     "candidatesId" REFERENCES FOREIGN KEY "candidates_pkey" FROM TABLE "candidates"  ,
---     FOREIGN KEY(candidatesId) REFERENCES candidates_pkey(candidates));
---     "interviewersId" REFERENCES FOREIGN KEY "interviewers_pkey" FROM "interviews" TABLE 
-
---     CONSTRAINT "Interviews_pkey" PRIMARY KEY ("id")
--- );
 
 -- AddForeignKey
 -- ALTER TABLE "Interviews" ADD CONSTRAINT "Interviews_candidatesId_fkey" FOREIGN KEY ("candidatesId") REFERENCES "Candidates"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
+insert into "interviewers" ("first_name", "last_name", "email", "password") values 
+('TEMP', 'TEMP', 'danny@TEMP.com',  crypt('TEMP', gen_salt('md5'))),
+('Danny', 'Andrews', 'danny@gmail.com',  crypt('johnspassword', gen_salt('md5'))),
+('Kevin', 'Reaves', 'reaveskev@gmail.com',  crypt('password', gen_salt('md5')));
 
+insert into "candidates" ("first_name", "last_name", "email", "cohort", "pass") values 
+('Kevin', 'Reaves', 'Reaveskev@gmail.com', 'MCSP-13', 'false'),
+('Jeremy', 'Linder', 'jeremylinder2@gmail.com', 'MCSP-13', 'true'),
+('Kyle', 'Jones', 'jones.kyle2893@gmail.com', 'MCSP-13',  'true'),
+('Thanh', 'Le', 'huybenpro@gmail.com', 'MCSP-13', 'true'),
+('Matthew', 'Rust', 'matthewrust21@gmail.com', 'MCSP-13', 'true'),
+('Hung', 'Nguyen', 'hungnguyen1693@gmail.com', 'MCSP-13', 'true'),
+('Kevin', 'Reaves', 'Reaveskev12@gmail.com', 'MCSP-13', 'true'),
+('Jeremy', 'Linder', 'jeremylinder12@gmail.com', 'MCSP-13', 'true'),
+('Kyle', 'Jones', 'jones.kyle28932@gmail.com', 'MCSP-13', 'true'),
+('Thanh', 'Le', 'huybenpro12@gmail.com', 'MCSP-13', 'true'),
+('Matthew', 'Rust', 'matthewrust221@gmail.com', 'MCSP-13', 'true'),
+('Hung', 'Nguyen', 'hungnguyen16931@gmail.com', 'MCSP-13', 'true');
 
-insert into "candidates" ("first_name", "last_name", "email", "cohort", "date", "attempt", "pass", "notes_1", "notes_2", "notes_3", "interviewers_id") values 
-('Kevin', 'Reaves', 'Reaveskev@gmail.com', 'MCSP-13','27-JUN-22', '2', 'false', 'Add Notes', 'Add Notes', 'Add Notes', '2'),
-('Jeremy', 'Linder', 'jeremylinder2@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes', '1'),
-('Kyle', 'Jones', 'jones.kyle2893@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes', '1'),
-('Thanh', 'Le', 'huybenpro@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes', '1'),
-('Matthew', 'Rust', 'matthewrust21@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes', '1'),
-('Hung', 'Nguyen', 'hungnguyen1693@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes', '1'),
-('Kevin', 'Reaves', 'Reaveskev12@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes', '1'),
-('Jeremy', 'Linder', 'jeremylinder12@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes', '1'),
-('Kyle', 'Jones', 'jones.kyle28932@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes', '2'),
-('Thanh', 'Le', 'huybenpro12@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes', '2'),
-('Matthew', 'Rust', 'matthewrust221@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes', '2'),
-('Hung', 'Nguyen', 'hungnguyen16931@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes', '2');
-
-insert into "interviewers" ("first_name", "last_name", "email", "password") values ('Danny', 'Andrews', 'danny@gmail.com',  crypt('johnspassword', gen_salt('md5')));
-
-
--- SELECT candidates.*, interviews.date, interviews.attempt FROM 
--- candidates INNER JOIN interviews ON candidates.id = interviews.candidates_id ORDER BY date GROUP BY candidate.last_name;
+insert into "interviews" ("interviewers_id", "candidates_id", "notes_1", "notes_2","notes_3", "problem_1_rating", "problem_2_rating", "problem_3_rating","date", "attempt", "pass") values 
+('3', '1', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-17', '1', 'false'),
+('3', '1', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-27', '2','false'),
+('2', '2', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-17', '1','true'),
+('2', '3', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-17', '1','true'),
+('2', '4', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-17', '1','true'),
+('2', '5', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-17', '1','true'),
+('2', '6', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-17', '1','true'),
+('3', '7', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-17', '1','true'),
+('3', '8', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-17', '1','true'),
+('3', '9', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-17', '1','true'),
+('3', '10', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-17', '1','true'),
+('2', '11', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-17', '1','true'),
+('2', '12', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-17', '1','true');

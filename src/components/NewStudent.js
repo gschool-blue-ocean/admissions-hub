@@ -3,17 +3,37 @@ import React from "react";
 import { useState } from "react";
 import * as AiIcons from "react-icons/ai";
 import styles from "./AllRatings.module.css";
+import { useAppContext } from "./GlobalContext";
+const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
+  const { students, setStudents } = useAppContext();
 
-const NewStudent = ({
-  setShowAddStudent,
-  showAddStudent,
-  students,
-  setStudents,
-}) => {
-  const addCandidate = (newStudent) => {
+  const addCandidate = (newStudent, interviewObj) => {
     axios
       .post(`/api/candidate/Candidate`, newStudent)
       .then(function (response) {
+        let tempId = response.data[0].id;
+
+        interviewObj = {
+          candidates_id: tempId,
+          notes_1: null,
+          notes_2: null,
+          notes_3: null,
+          problem_1_rating: null,
+          problem_2_rating: null,
+          problem_3_rating: null,
+          date: "1776-07-04T07:00:00.000Z",
+          attempt: 0,
+          pass: "TBD",
+        };
+
+        axios
+          .post(`/api/interviews/Interviews`, interviewObj)
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
         console.log(response);
       })
       .catch(function (error) {
@@ -61,9 +81,9 @@ const NewStudent = ({
     } else if (cohort === "") {
       setEmailInput(true);
     } else {
-      addCandidate(newStudent);
-      setStudents([...students, newStudent]);
+      addCandidate(newStudent, interviewObj);
       setShowAddStudent(!showAddStudent);
+      // setStudents([...students, placeholder]);
     }
   };
 
@@ -72,13 +92,33 @@ const NewStudent = ({
     last_name: lastName,
     email: email,
     cohort: cohort,
-    date: "TBD",
+    date: "1776-07-04T07:00:00.000Z",
     attempt: 0,
     pass: "TBD",
-    notes_1: "Add Notes",
-    notes_1: "Add Notes",
-    notes_1: "Add Notes",
   };
+  let interviewObj = {
+    interviewers_id: 1,
+    candidates_id: "",
+    notes_1: null,
+    notes_2: null,
+    notes_3: null,
+    problem_1_rating: null,
+    problem_2_rating: null,
+    problem_3_rating: null,
+    date: "1776-07-04T07:00:00.000Z",
+    attempt: 0,
+    pass: "TBD",
+  };
+
+  // let placeholder = {
+  //   first_name: firstName,
+  //   last_name: lastName,
+  //   email: email,
+  //   cohort: cohort,
+  //   pass: "TBD",
+  //   attempt: 0,
+  //   date: "1776-07-04T07:00:00.000Z",
+  // };
 
   return (
     <div
@@ -262,9 +302,26 @@ const NewStudent = ({
             }}
             onClick={() => {
               handleNewStudent();
-              // addCandidate(newStudent);
-              // setStudents([...students, newStudent]);
-              // setShowAddStudent(!showAddStudent);
+              axios.get(`/api/candidate/Candidate`).then((result) => {
+                let temp = result.data;
+
+                const arr = temp.reduce((result, obj) => {
+                  let row = result.find(
+                    (x) => x.candidates_id === obj.candidates_id
+                  );
+                  if (!row) result.push({ ...obj });
+                  else if (parseInt(row.attempt) < parseInt(obj.attempt))
+                    Object.assign(row, obj);
+                  return result;
+                }, []);
+
+                arr.sort(function (a, b) {
+                  // Turn your strings into dates, and then subtract them
+                  // to get a value that is either negative, positive, or zero.
+                  return new Date(b.date) - new Date(a.date);
+                });
+                setStudents(arr);
+              });
             }}
           >
             Create

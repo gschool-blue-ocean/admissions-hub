@@ -6,13 +6,15 @@ export function AppWrapper({ children }) {
   const [info, setInfo] = useState([]);
   const [showWarning, setShowWarning] = useState(false);
   const [user, setUser] = useState();
+  const [interviewReport, setInterviewReport] = useState([]);
   const [userRole, setUserRole] = useState("");
-    let displayRole = "";
-    if (userRole === "ADMIN") {
-      displayRole = "";
-    } else {
-      displayRole = "hidden";
-    }
+  const [students, setStudents] = useState([]);
+  let displayRole = "";
+  if (userRole === "ADMIN") {
+    displayRole = "";
+  } else {
+    displayRole = "hidden";
+  }
   let sharedState = {
     info,
     setInfo,
@@ -23,6 +25,10 @@ export function AppWrapper({ children }) {
     setUserRole,
     userRole,
     displayRole,
+    interviewReport,
+    setInterviewReport,
+    students,
+    setStudents,
   };
 
   return (
