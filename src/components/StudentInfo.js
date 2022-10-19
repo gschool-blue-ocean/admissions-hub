@@ -328,10 +328,6 @@ const StudentInfo = () => {
               testDate = dd + "-" + mm + "-" + yyyy;
             }
 
-            // console.log("day", dd);
-            // console.log("month", mm);
-            // console.log(yyyy);
-            // console.log(testDate);
             if (
               student.email.toLowerCase().includes(search.toLowerCase()) ||
               student.first_name.toLowerCase().includes(search.toLowerCase()) ||

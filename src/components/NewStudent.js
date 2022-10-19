@@ -83,6 +83,26 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
     } else {
       addCandidate(newStudent, interviewObj);
       setShowAddStudent(!showAddStudent);
+
+      axios.get(`/api/candidate/Candidate`).then((result) => {
+        let temp = result.data;
+
+        const arr = temp.reduce((result, obj) => {
+          let row = result.find((x) => x.candidates_id === obj.candidates_id);
+          if (!row) result.push({ ...obj });
+          else if (parseInt(row.attempt) < parseInt(obj.attempt))
+            Object.assign(row, obj);
+          return result;
+        }, []);
+
+        arr.sort(function (a, b) {
+          // Turn your strings into dates, and then subtract them
+          // to get a value that is either negative, positive, or zero.
+          return new Date(b.date) - new Date(a.date);
+        });
+        setStudents(arr);
+      });
+
       // setStudents([...students, placeholder]);
     }
   };
@@ -302,26 +322,6 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
             }}
             onClick={() => {
               handleNewStudent();
-              axios.get(`/api/candidate/Candidate`).then((result) => {
-                let temp = result.data;
-
-                const arr = temp.reduce((result, obj) => {
-                  let row = result.find(
-                    (x) => x.candidates_id === obj.candidates_id
-                  );
-                  if (!row) result.push({ ...obj });
-                  else if (parseInt(row.attempt) < parseInt(obj.attempt))
-                    Object.assign(row, obj);
-                  return result;
-                }, []);
-
-                arr.sort(function (a, b) {
-                  // Turn your strings into dates, and then subtract them
-                  // to get a value that is either negative, positive, or zero.
-                  return new Date(b.date) - new Date(a.date);
-                });
-                setStudents(arr);
-              });
             }}
           >
             Create
