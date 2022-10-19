@@ -1,8 +1,9 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useAppContext } from "./GlobalContext";
 
-const InterviewerReport = ({ students }) => {
-  const { user } = useAppContext();
+const InterviewerReport = () => {
+  const { user, interviewReport, setInterviewReport } = useAppContext();
   let count = 0;
 
   const [userId, setUserId] = useState("");
@@ -17,9 +18,18 @@ const InterviewerReport = ({ students }) => {
         setUserId(temp);
       }
     }
+    axios
+      .get(`/api/interviews/Interviews`)
+      .then(function (response) {
+        // console.log(response.data);
+        setInterviewReport(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }, []);
 
-  students.forEach((el) => {
+  interviewReport.forEach((el) => {
     if (el.interviewers_id === userId) {
       count++;
     }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Reference from "./Reference";
 import Ratings from "./Ratings";
 import Problems from "./Problems";
@@ -10,6 +10,7 @@ import { useAppContext } from "./GlobalContext";
 
 const Dashboard = ({ input }) => {
   const [value, setValue] = useState(0);
+  const [userId, setUserId] = useState("");
   const [problem1Notes, setProblem1Notes] = useState("");
   const [problem2Notes, setProblem2Notes] = useState("");
   const [problem3Notes, setProblem3Notes] = useState("");
@@ -17,8 +18,7 @@ const Dashboard = ({ input }) => {
   const [problem1Rating, setProblem1Rating] = useState("");
   const [problem2Rating, setProblem2Rating] = useState("");
   const [problem3Rating, setProblem3Rating] = useState("");
-  const { info, setInfo, user } = useAppContext();
-  console.log(user);
+  const { info, user, setStudents } = useAppContext();
 
   const [variables, setVariables] = useState(false);
   const [arrays, setArrays] = useState(false);
@@ -28,7 +28,20 @@ const Dashboard = ({ input }) => {
   const [accumulator, setAccumulator] = useState(false);
   const [extraResources, setExtraResources] = useState("");
 
-  let totalPercent = `${((value / 12) * 100).toFixed(0)}%`;
+  useEffect(() => {
+    if (user !== undefined) {
+      localStorage.setItem("userId", JSON.stringify(user.id));
+
+      setUserId(user.id);
+    } else {
+      if (typeof window !== "undefined") {
+        let temp = JSON.parse(localStorage.getItem("userId"));
+        setUserId(temp);
+      }
+    }
+  }, []);
+
+  // let totalPercent = `${((value / 12) * 100).toFixed(0)}%`;
 
   const variablesLink =
     "https://learn-2.galvanize.com/cohorts/1346/blocks/1615/content_files/08-variables/00-section-overview.md";
@@ -67,32 +80,59 @@ const Dashboard = ({ input }) => {
 
   var today = new Date();
   var dd = String(today.getDate()).padStart(2, "0");
-  var mmm = months[today.getMonth()];
-  var yy = String(today.getFullYear()).slice(2);
-  today = dd + "-" + mmm + "-" + yy;
-
+  var mm = today.getMonth();
+  var yy = String(today.getFullYear());
+  today = yy + "-" + mm + "-" + dd;
   let numAttempt = Number(info.attempt);
 
-  let patchRequest = {
-    date: today,
-    attempt: numAttempt + 1,
+  // let patchRequest = {
+  //   date: today,
+  //   attempt: numAttempt + 1,
+  //   pass: passOrFail,
+  //   notes_1: problem1Notes,
+  //   notes_2: problem2Notes,
+  //   notes_3: problem3Notes,
+  //   problem_1_rating: problem1Rating,
+  //   problem_2_rating: problem2Rating,
+  //   problem_3_rating: problem3Rating,
+  //   interviewers_id: user.id,
+  // };
+
+  let newPatchRequest = {
     pass: passOrFail,
+  };
+
+  let interviewObj = {
+    interviewers_id: userId,
+    candidates_id: info.candidates_id,
     notes_1: problem1Notes,
     notes_2: problem2Notes,
     notes_3: problem3Notes,
     problem_1_rating: problem1Rating,
     problem_2_rating: problem2Rating,
     problem_3_rating: problem3Rating,
-    interviewers_id: user.id,
+    date: today,
+    attempt: numAttempt + 1,
+    pass: passOrFail,
   };
 
   const router = useRouter();
 
-  const completeInterview = (patchRequest) => {
+  const completeInterview = () => {
     axios
-      .patch(`/api/candidate/${info.email}`, patchRequest)
+      .patch(`/api/candidate/${info.email}`, newPatchRequest)
       .then(function (response) {
-        console.log(response);
+        console.log("patch to candidate", response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+  const completeInterviews = () => {
+    axios
+      .post(`/api/interviews/Interviews`, interviewObj)
+      .then(function (response) {
+        console.log("post to interviews", response);
       })
       .catch(function (error) {
         console.log(error);
@@ -178,12 +218,11 @@ const Dashboard = ({ input }) => {
           className={styles.bob}
           id={styles.complete}
           onClick={() => {
-            console.log("patchRequest", patchRequest);
-            console.log("Code Editor", input);
-            completeInterview(patchRequest);
-            if (Object.keys(studyMaterial).length !== 0) {
-              console.log("studyMaterial", studyMaterial);
-            }
+            // console.log("patchRequest", patchRequest);
+            // console.log("Code Editor", input);
+            completeInterview();
+            completeInterviews();
+
             router.push("../dashboard");
           }}
           style={{

@@ -1,12 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./AllRatings.module.css";
+import { useAppContext } from "./GlobalContext";
 
-const AllRatings = ({ students }) => {
+const AllRatings = () => {
   ////// Circle 1
   let passing = 0;
   let totalInterviews = 0;
+  const { interviewReport } = useAppContext();
 
-  students.forEach((el) => {
+  interviewReport.forEach((el) => {
     if (el.pass === "true") {
       passing++;
       totalInterviews++;

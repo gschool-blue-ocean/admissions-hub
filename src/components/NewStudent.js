@@ -3,17 +3,37 @@ import React from "react";
 import { useState } from "react";
 import * as AiIcons from "react-icons/ai";
 import styles from "./AllRatings.module.css";
+import { useAppContext } from "./GlobalContext";
+const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
+  const { students, setStudents } = useAppContext();
 
-const NewStudent = ({
-  setShowAddStudent,
-  showAddStudent,
-  students,
-  setStudents,
-}) => {
-  const addCandidate = (newStudent) => {
+  const addCandidate = (newStudent, interviewObj) => {
     axios
       .post(`/api/candidate/Candidate`, newStudent)
       .then(function (response) {
+        let tempId = response.data[0].id;
+
+        interviewObj = {
+          candidates_id: tempId,
+          notes_1: null,
+          notes_2: null,
+          notes_3: null,
+          problem_1_rating: null,
+          problem_2_rating: null,
+          problem_3_rating: null,
+          date: "TBD",
+          attempt: 0,
+          pass: "TBD",
+        };
+
+        axios
+          .post(`/api/interviews/Interviews`, interviewObj)
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
         console.log(response);
       })
       .catch(function (error) {
@@ -61,9 +81,9 @@ const NewStudent = ({
     } else if (cohort === "") {
       setEmailInput(true);
     } else {
-      addCandidate(newStudent);
-      setStudents([...students, newStudent]);
+      addCandidate(newStudent, interviewObj);
       setShowAddStudent(!showAddStudent);
+      setStudents([...students, placeholder]);
     }
   };
 
@@ -75,9 +95,29 @@ const NewStudent = ({
     date: "TBD",
     attempt: 0,
     pass: "TBD",
-    notes_1: "Add Notes",
-    notes_1: "Add Notes",
-    notes_1: "Add Notes",
+  };
+  let interviewObj = {
+    interviewers_id: 1,
+    candidates_id: "",
+    notes_1: null,
+    notes_2: null,
+    notes_3: null,
+    problem_1_rating: null,
+    problem_2_rating: null,
+    problem_3_rating: null,
+    date: "TBD",
+    attempt: 0,
+    pass: "TBD",
+  };
+
+  let placeholder = {
+    first_name: firstName,
+    last_name: lastName,
+    email: email,
+    cohort: cohort,
+    pass: "TBD",
+    attempt: 0,
+    date: "TBD",
   };
 
   return (
@@ -262,9 +302,6 @@ const NewStudent = ({
             }}
             onClick={() => {
               handleNewStudent();
-              // addCandidate(newStudent);
-              // setStudents([...students, newStudent]);
-              // setShowAddStudent(!showAddStudent);
             }}
           >
             Create
