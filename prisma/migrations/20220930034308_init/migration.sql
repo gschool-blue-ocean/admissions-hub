@@ -4,8 +4,8 @@ CREATE EXTENSION pgcrypto;
 CREATE TYPE "Role" AS ENUM ('BASIC', 'ADMIN');
 
 
-DROP TABLE IF EXISTS interviewers;
 DROP TABLE IF EXISTS candidates;
+DROP TABLE IF EXISTS interviewers;
 
 
 CREATE TABLE "interviewers" (
@@ -55,7 +55,6 @@ CREATE TABLE "candidates" (
 -- AddForeignKey
 -- ALTER TABLE "Interviews" ADD CONSTRAINT "Interviews_candidatesId_fkey" FOREIGN KEY ("candidatesId") REFERENCES "Candidates"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
-insert into "interviewers" ("first_name", "last_name", "email", "password") values ('Danny', 'Andrews', 'danny@gmail.com',  crypt('johnspassword', gen_salt('md5')));
 
 
 insert into "candidates" ("first_name", "last_name", "email", "cohort", "date", "attempt", "pass", "notes_1", "notes_2", "notes_3", "interviewers_id") values 
@@ -72,3 +71,8 @@ insert into "candidates" ("first_name", "last_name", "email", "cohort", "date", 
 ('Matthew', 'Rust', 'matthewrust221@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes', '2'),
 ('Hung', 'Nguyen', 'hungnguyen16931@gmail.com', 'MCSP-13','27-JUN-22', '1', 'true', 'Add Notes', 'Add Notes', 'Add Notes', '2');
 
+insert into "interviewers" ("first_name", "last_name", "email", "password") values ('Danny', 'Andrews', 'danny@gmail.com',  crypt('johnspassword', gen_salt('md5')));
+
+
+-- SELECT candidates.*, interviews.date, interviews.attempt FROM 
+-- candidates INNER JOIN interviews ON candidates.id = interviews.candidates_id ORDER BY date GROUP BY candidate.last_name;
