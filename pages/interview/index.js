@@ -11,10 +11,10 @@ function id({ id }) {
   const { user } = useAppContext();
 
   const [userRole, setUserRole] = useState("");
+
   useEffect(() => {
     if (user !== undefined) {
-      // localStorage.setItem("userRole", JSON.stringify(user.role));
-
+      localStorage.setItem("userRole", JSON.stringify(user.role));
       setUserRole(user.role);
     } else {
       if (typeof window !== "undefined") {
@@ -51,36 +51,33 @@ function id({ id }) {
             <CodeEditor input={input} setInput={setInput} sessionId={id} />
           </div>
         )}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            right: 0,
-          }}
-        >
+        {userRole === "ADMIN" ? (
           <div
             style={{
               display: "flex",
               flexDirection: "column",
-              alignItems: "center",
-              backgroundColor: "white",
-              zIndex: "1",
-              position: "fixed",
-              right: "0%",
-              height: "100%",
-              width: "450px",
-              marginTop: "15px",
-              color: "#979797",
+              right: 0,
             }}
           >
-            {userRole === "ADMIN" ? (
-              <>
-                <RoomURL URL={id} />
-                <Dashboard input={input} />
-              </>
-            ) : null}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                backgroundColor: "white",
+                zIndex: "1",
+                right: "0%",
+                height: "100%",
+                width: "450px",
+                marginTop: "15px",
+                color: "#979797",
+              }}
+            >
+              <RoomURL URL={id} />
+              <Dashboard input={input} />
+            </div>
           </div>
-        </div>
+        ) : null}
       </div>
       <Footer />
     </>

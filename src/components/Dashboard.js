@@ -109,7 +109,7 @@ const Dashboard = ({ input }) => {
     axios
       .patch(`/api/candidate/${info.email}`, newPatchRequest)
       .then(function (response) {
-        console.log("patch to candidate", response);
+        console.log(response);
       })
       .catch(function (error) {
         console.log(error);
@@ -119,7 +119,7 @@ const Dashboard = ({ input }) => {
     axios
       .post(`/api/interviews/Interviews`, interviewObj)
       .then(function (response) {
-        console.log("post to interviews", response);
+        console.log(response);
       })
       .catch(function (error) {
         console.log(error);
@@ -205,8 +205,6 @@ const Dashboard = ({ input }) => {
           className={styles.bob}
           id={styles.complete}
           onClick={() => {
-            // console.log("patchRequest", patchRequest);
-            // console.log("Code Editor", input);
             completeInterview();
             completeInterviews();
             axios
