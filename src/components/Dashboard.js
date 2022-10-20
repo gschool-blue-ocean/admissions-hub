@@ -28,8 +28,6 @@ const Dashboard = ({ input }) => {
   const [accumulator, setAccumulator] = useState(false);
   const [extraResources, setExtraResources] = useState("");
 
-  console.log(info);
-
   useEffect(() => {
     if (user !== undefined) {
       localStorage.setItem("userId", JSON.stringify(user.id));

@@ -11,6 +11,7 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
     axios
       .post(`/api/candidate/Candidate`, newStudent)
       .then(function (response) {
+        console.log("New Candidate", response);
         let tempId = response.data[0].id;
 
         interviewObj = {
@@ -28,13 +29,34 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
 
         axios
           .post(`/api/interviews/Interviews`, interviewObj)
-          .then(function (response) {
-            console.log(response);
+          .then(function (res) {
+            ///////////////
+            axios.get(`/api/candidate/Candidate`).then((result) => {
+              console.log("ReRead new data", result);
+              let temp = result.data;
+
+              const arr = temp.reduce((result, obj) => {
+                let row = result.find(
+                  (x) => x.candidates_id === obj.candidates_id
+                );
+                if (!row) result.push({ ...obj });
+                else if (parseInt(row.attempt) < parseInt(obj.attempt))
+                  Object.assign(row, obj);
+                return result;
+              }, []);
+
+              arr.sort(function (a, b) {
+                // Turn your strings into dates, and then subtract them
+                // to get a value that is either negative, positive, or zero.
+                return new Date(b.date) - new Date(a.date);
+              });
+              setStudents(arr);
+            });
+            console.log("New Interview default", res);
           })
           .catch(function (error) {
             console.log(error);
           });
-        console.log(response);
       })
       .catch(function (error) {
         console.log(error);
@@ -84,25 +106,6 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
       addCandidate(newStudent, interviewObj);
       setShowAddStudent(!showAddStudent);
 
-      axios.get(`/api/candidate/Candidate`).then((result) => {
-        let temp = result.data;
-
-        const arr = temp.reduce((result, obj) => {
-          let row = result.find((x) => x.candidates_id === obj.candidates_id);
-          if (!row) result.push({ ...obj });
-          else if (parseInt(row.attempt) < parseInt(obj.attempt))
-            Object.assign(row, obj);
-          return result;
-        }, []);
-
-        arr.sort(function (a, b) {
-          // Turn your strings into dates, and then subtract them
-          // to get a value that is either negative, positive, or zero.
-          return new Date(b.date) - new Date(a.date);
-        });
-        setStudents(arr);
-      });
-
       // setStudents([...students, placeholder]);
     }
   };
@@ -112,8 +115,6 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
     last_name: lastName,
     email: email,
     cohort: cohort,
-    date: "1776-07-04T07:00:00.000Z",
-    attempt: 0,
     pass: "TBD",
   };
   let interviewObj = {
