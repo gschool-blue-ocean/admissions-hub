@@ -7,8 +7,9 @@ import styles from "src/components/CodeEditor.module.css";
 
 let socket;
 
-export default function CodeEditor({ input, setInput, sessionId }) {
+export default function CodeEditor({sessionId }) {
   const [codeReturn, setCodeReturn] = useState([]);
+  const [input, setInput] = useState("");
 
   const onChangeHandler = (e) => {
     setInput(e);

@@ -9,7 +9,7 @@ export default function RoomURL({ URL }) {
   const { info } = useAppContext();
 
   const handleCopy = () => {
-    let url = "https://blueoceanadmissionshub.onrender.com/" + asPath;
+    let url = "https://blueoceanadmissionshub.onrender.com" + asPath;
     navigator.clipboard.writeText(url);
     setClicked(true);
   };
@@ -19,14 +19,12 @@ export default function RoomURL({ URL }) {
     if (info.length !== 0) {
       localStorage.setItem("info", JSON.stringify(info));
       setStudentInfo(info);
-      console.log("info", info);
     } else {
       if (typeof window !== "undefined") {
         let temp = JSON.parse(localStorage.getItem("info"));
         setStudentInfo(temp);
       }
     }
-    console.log(studentInfo);
   }, []);
 
   if (clicked) {

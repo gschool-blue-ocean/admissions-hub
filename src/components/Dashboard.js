@@ -8,7 +8,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useAppContext } from "./GlobalContext";
 
-const Dashboard = ({ input }) => {
+const Dashboard = () => {
   const [value, setValue] = useState(0);
   const [userId, setUserId] = useState("");
   const [problem1Notes, setProblem1Notes] = useState("");

@@ -7,7 +7,6 @@ import RoomURL from "../../src/components/RoomURL";
 import { useAppContext } from "../../src/components/GlobalContext";
 
 function id({ id }) {
-  const [input, setInput] = useState("");
   const { user } = useAppContext();
 
   const [userRole, setUserRole] = useState("");
@@ -37,7 +36,7 @@ function id({ id }) {
       >
         {userRole === "ADMIN" ? (
           <div style={{ width: "calc(100% - 450px)" }}>
-            <CodeEditor input={input} setInput={setInput} sessionId={id} />
+            <CodeEditor sessionId={id} />
           </div>
         ) : (
           <div
@@ -48,7 +47,7 @@ function id({ id }) {
               transform: "translate(-50%, 0%)",
             }}
           >
-            <CodeEditor input={input} setInput={setInput} sessionId={id} />
+            <CodeEditor sessionId={id} />
           </div>
         )}
         {userRole === "ADMIN" ? (
@@ -74,7 +73,7 @@ function id({ id }) {
               }}
             >
               <RoomURL URL={id} />
-              <Dashboard input={input} />
+              <Dashboard />
             </div>
           </div>
         ) : null}
