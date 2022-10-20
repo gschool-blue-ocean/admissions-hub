@@ -14,10 +14,15 @@ export default function handler(req, res) {
   console.log(req.body.code);
   //overwrite console.log behavior to output to custom stdout
   console.log = function (d) {
-    logs.push(d);
+    logs.push(JSON.stringify(d))
   };
   //run code supplied by req
-  vm.run(req.body.code);
+  try {
+    vm.run(req.body.code);
+  } catch (err) {
+   console.log('error')
+  }
+  
 
   res.send(logs);
 }
