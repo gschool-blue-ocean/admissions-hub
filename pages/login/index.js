@@ -28,7 +28,12 @@ export default function Login() {
       )}
       <div
         className="position-absolute container"
-        style={{ top: "34.5%", left: "33%", width: 600 }}
+        style={{
+          top: "34.5%",
+          left: "50%",
+          width: 600,
+          transform: " translate(-50%)",
+        }}
       >
         <AdminLogin />
       </div>

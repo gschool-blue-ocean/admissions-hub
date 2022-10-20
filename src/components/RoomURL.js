@@ -9,16 +9,32 @@ export default function RoomURL({ URL }) {
   const { info } = useAppContext();
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(asPath);
+    let url = "https://blueoceanadmissionshub.onrender.com/" + asPath;
+    navigator.clipboard.writeText(url);
     setClicked(true);
   };
+
+  const [studentInfo, setStudentInfo] = useState("");
+  useEffect(() => {
+    if (info.length !== 0) {
+      localStorage.setItem("info", JSON.stringify(info));
+      setStudentInfo(info);
+      console.log("info", info);
+    } else {
+      if (typeof window !== "undefined") {
+        let temp = JSON.parse(localStorage.getItem("info"));
+        setStudentInfo(temp);
+      }
+    }
+    console.log(studentInfo);
+  }, []);
 
   if (clicked) {
     return (
       <>
         <span
           style={{ fontSize: 20 }}
-        >{`${info.first_name} ${info.last_name}, ${info.cohort}, Attempt #: ${info.attempt}`}</span>
+        >{`${studentInfo.first_name} ${studentInfo.last_name}, ${studentInfo.cohort}, Attempt #: ${studentInfo.attempt}`}</span>
         <div
           style={{
             display: "flex",
@@ -53,7 +69,7 @@ export default function RoomURL({ URL }) {
     <div>
       <span
         style={{ fontSize: 20 }}
-      >{`${info.first_name} ${info.last_name}, ${info.cohort}, Attempt #: ${info.attempt}`}</span>
+      >{`${studentInfo.first_name} ${studentInfo.last_name}, ${studentInfo.cohort}, Attempt #: ${studentInfo.attempt}`}</span>
       <div
         style={{
           display: "flex",

@@ -11,7 +11,6 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
     axios
       .post(`/api/candidate/Candidate`, newStudent)
       .then(function (response) {
-        console.log("New Candidate", response);
         let tempId = response.data[0].id;
 
         interviewObj = {
@@ -52,7 +51,6 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
               });
               setStudents(arr);
             });
-            console.log("New Interview default", res);
           })
           .catch(function (error) {
             console.log(error);
@@ -101,12 +99,10 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
     } else if (email === "") {
       setEmailInput(true);
     } else if (cohort === "") {
-      setEmailInput(true);
+      setCohortInput(true);
     } else {
       addCandidate(newStudent, interviewObj);
       setShowAddStudent(!showAddStudent);
-
-      // setStudents([...students, placeholder]);
     }
   };
 
@@ -130,16 +126,6 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
     attempt: 0,
     pass: "TBD",
   };
-
-  // let placeholder = {
-  //   first_name: firstName,
-  //   last_name: lastName,
-  //   email: email,
-  //   cohort: cohort,
-  //   pass: "TBD",
-  //   attempt: 0,
-  //   date: "1776-07-04T07:00:00.000Z",
-  // };
 
   return (
     <div
