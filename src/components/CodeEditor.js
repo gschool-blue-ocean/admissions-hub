@@ -12,7 +12,6 @@ export default function CodeEditor({sessionId }) {
   const [input, setInput] = useState("");
 
   const onChangeHandler = (e) => {
-    setInput(e);
     socket.emit("input-change", e, sessionId);
   };
 
