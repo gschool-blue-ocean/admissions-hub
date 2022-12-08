@@ -2,14 +2,16 @@ import React, { useEffect, useState } from "react";
 import Router, { useRouter } from "next/router";
 import Image from "next/image";
 import { useAppContext } from "./GlobalContext";
+import connectionStrings from "../../lib/connection";
 
 export default function RoomURL({ URL }) {
   const [clicked, setClicked] = useState(false);
   const { asPath } = useRouter();
   const { info } = useAppContext();
-
+  
   const handleCopy = () => {
-    let url = "https://blueoceanadmissionshub.onrender.com" + asPath;
+    // let url = process.env.ROOT_URL
+    let url = process.env.NODE_ENV === "production" ? connectionStrings.rootUrl + asPath : "http://localhost:3000/" + asPath;
     navigator.clipboard.writeText(url);
     setClicked(true);
   };
