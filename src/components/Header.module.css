@@ -15,10 +15,10 @@
 }
 
 .logo {
-  background-image: url("../../public/galvanize-full-logo.png");
+  background-image: url("https://www.galvanize.com/wp-content/uploads/2022/11/galvanize_logo_full-color_light-background-311x60.png");
   background-size: cover;
   background-position: left;
-  width: 200px;
+  width: 450px;
   background-color: #ffffff;
   border: none;
   position: relative;

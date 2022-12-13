@@ -1,23 +1,32 @@
 import React, { useEffect } from "react";
 import Editor from "@monaco-editor/react";
-import io from "socket.io-client";
+//import io from "socket.io-client";
 import axios from "axios";
 import { useState } from "react";
 import styles from "src/components/CodeEditor.module.css";
+import { JsonWebTokenError } from "jsonwebtoken";
 
-let socket;
+//let socket;
 
 export default function CodeEditor({sessionId }) {
   const [codeReturn, setCodeReturn] = useState([]);
   const [input, setInput] = useState("");
 
   const onChangeHandler = (e) => {
-    socket.emit("input-change", e, sessionId);
+    //socket.emit("input-change", e, sessionId);
+    console.log(e)
+    fetch('http://localhost:3050/truth',{
+      method:'POST',
+      mode:'cors',
+      headers:{'Content-Type': 'application/json'},
+      body:JSON.stringify({truth:e})
+    })
+    .then().catch(console.error)
   };
 
   useEffect(() => {
     console.log("internal sessionID:", sessionId);
-    socketInitializer();
+    //socketInitializer();
   }, []);
 
   //evaluates input from code editor, sends to backend for processing, and sets return in codeReturn state
@@ -31,7 +40,7 @@ export default function CodeEditor({sessionId }) {
 
   //initialized socket session
   const socketInitializer = async () => {
-    await fetch("/api/socket");
+    await fetch("/api/socket"); 
     socket = io();
 
     socket.emit("join-room", sessionId);
@@ -39,7 +48,7 @@ export default function CodeEditor({sessionId }) {
       console.log(`connected with user ${sessionId}`);
     });
     socket.on("update-input", (msg) => {
-      setInput(msg);
+      setInput(msg); 
     });
   };
 
