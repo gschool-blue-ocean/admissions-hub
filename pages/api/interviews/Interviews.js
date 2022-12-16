@@ -88,10 +88,12 @@ export default function handler(req, res) {
 
     let {code, id} = req.body;
 
-    console.log('id', id)
+    // console.log('id', id)
 
     return pool.query(`UPDATE interviews SET code = $1 WHERE id = $2`, [code, id])
-    .then(console.log)
+    .then((data)=> {
+      res.send(data)
+    })
     .catch(console.log)
   }
 }

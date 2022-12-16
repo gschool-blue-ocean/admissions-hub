@@ -49,7 +49,7 @@ const StudentInfo = () => {
 
     axios.post('/api/interviews/Interviews', newInterview)
       .then((returnedInfo) => {
-        console.log(returnedInfo)
+        console.log('returned info',returnedInfo)
 
       })
       .catch(error => console.log(error.response))
@@ -59,11 +59,11 @@ const StudentInfo = () => {
 
   }, [user])
 
-  useEffect(() => {
-    setInfo("");
+  // useEffect(() => {
+  //   setInfo("");
     
-    //userid = user.id
-  }, []);
+  //   //userid = user.id
+  // }, []);
 
   const [search, setSearch] = useState("");
   const [value, setValue] = useState(0);
@@ -91,6 +91,7 @@ const StudentInfo = () => {
         console.log(error);
       });
   };
+  console.log('complete?',  info)
 
   return (
     <div
@@ -250,7 +251,15 @@ const StudentInfo = () => {
               <Link href={{ pathname: "/interview", query: { id: uuid() } }}>
                 <button
                   className={styles.bob}
-                  onClick={changeUserRoleNew}
+                  onClick={() => {
+                    console.log('complete?', typeof info)
+                    changeUserRoleNew()
+                       return setInfo({
+                        ...info,
+                        complete: false
+                      })
+                    }
+                  }
                   style={{
                     color: "white",
                     backgroundColor: "#DD8D43",
@@ -264,7 +273,7 @@ const StudentInfo = () => {
                   <a style={{ color: "white" }}>Launch Interview</a>
                 </button>
               </Link>
-            ) : info.length !== 0 ? (
+            ) : info.length !== 0 && !info.complete ? (
               <Link href={{ pathname: "/interview", query: { id: uuid() } }}>
                 <button
                   className={styles.bob}
@@ -416,7 +425,14 @@ const StudentInfo = () => {
                     if (info.id === student.id) {
                       setInfo("");
                     } else {
-                      setInfo(student);
+                      console.log('student' , student)
+                     
+                      setInfo({
+                        ...student,
+                        complete: false
+                      }
+                        
+                        );
                     }
                   }}
                 >

@@ -31,7 +31,7 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
           .then(function (res) {
             ///////////////
             axios.get(`/api/candidate/Candidate`).then((result) => {
-              console.log("ReRead new data", result);
+              // console.log("ReRead new data", result);
               let temp = result.data;
 
               const arr = temp.reduce((result, obj) => {

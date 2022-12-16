@@ -22,7 +22,7 @@ function id({ id }) {
       }
     }
   }, []);
-
+  
   return info.complete ? 
 
    (
@@ -38,7 +38,7 @@ function id({ id }) {
       >
         {userRole === "ADMIN" ? (
           <div style={{ width: "calc(100% - 450px)" }}>
-            <CodeEditor sessionId={id} />
+            <CodeEditor sessionId={id} candidateInfo={info.id} />
           </div>
         ) : (
           <div
@@ -49,7 +49,7 @@ function id({ id }) {
               transform: "translate(-50%, 0%)",
             }}
           >
-            <CodeEditor sessionId={id} />
+            <CodeEditor sessionId={id} candidateInfo={info.id} />
           </div>
         )}
         {userRole === "ADMIN" ? (
