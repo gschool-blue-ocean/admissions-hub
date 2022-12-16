@@ -40,7 +40,7 @@ const AllRatings = () => {
         <div className={styles.circles}>
           <svg height={radius * 2} width={radius * 2}>
             <circle
-              stroke="#ffd8a7"
+              stroke="#babcf5"
               fill="none"
               strokeWidth={stroke}
               r={normalizedRadius}
@@ -48,7 +48,7 @@ const AllRatings = () => {
               cy={radius}
             />
             <circle
-              stroke="#DD8D43"
+              stroke="#0D0F4A"
               fill="transparent"
               strokeWidth={stroke}
               strokeDasharray={circumference + " " + circumference}
@@ -66,7 +66,7 @@ const AllRatings = () => {
               x="50%"
               y="56%"
               textAnchor="middle"
-              fill="#DD8D43"
+              fill="#0D0F4A"
               strokeWidth="1px"
               fontSize={36}
               fontFamily={"League Spartan"}
@@ -118,7 +118,7 @@ const AllRatings = () => {
               cy={radius2}
             />
             <circle
-              stroke="#DD8D43"
+              stroke="#EF6E47"
               fill="transparent"
               strokeWidth={stroke2}
               strokeDasharray={circumference2 + " " + circumference2}
@@ -135,7 +135,7 @@ const AllRatings = () => {
               x="50%"
               y="56%"
               textAnchor="middle"
-              fill="#DD8D43"
+              fill="#EF6E47"
               strokeWidth="1px"
               fontSize={36}
               fontFamily={"League Spartan"}
