@@ -1,7 +1,8 @@
-const { Pool } = require("pg");
+const { Client } = require("pg");
+import { resolve } from "styled-jsx/css";
 import connectionStrings from "../../../lib/connection";
 
-const pool = new Pool({
+const pool = new Client({
   // Format: postgres://user:password@host:5432/database
   connectionString: process.env.NODE_ENV === "production" ? connectionStrings.production : connectionStrings.dev,
   ...(process.env.NODE_ENV === "production"
@@ -24,30 +25,46 @@ export default function handler(req, res) {
   if (method === "POST") {
     let { first_name, last_name, email, cohort, pass } = req.body;
 
-    pool.query(
-      "INSERT INTO candidates( first_name, last_name, email, cohort, pass) VALUES ($1, $2, $3, $4, $5) RETURNING *;",
+    return pool
+    .query(
+      "INSERT INTO candidates( first_name, last_name, email, cohort, pass) VALUES ($1, $2, $3, $4, $5) RETURNING *;"//,
       [first_name, last_name, email, cohort, pass],
-      (err, result) => {
-        if (err) {
-          console.error(err);
-          return res.status(500).send("Error");
-        } else {
-          return res.status(200).send(result.rows);
-        }
-      }
-    );
+      // (err, result) => {
+      //   if (err) {
+      //     console.error(err);
+      //     return res.status(500).send("Error");
+      //   } else {
+      //     return res.status(200).send(result.rows);
+      //   }
+      // }
+    )
+    .then((data) => {
+      res.send(data.rows)
+    })
+    .catch((error) => {
+      console.log(error)
+      res.send(error)
+    })
   } else if (method === "GET") {
-    pool.query(
-      "SELECT candidates.*, interviews.* FROM candidates LEFT JOIN interviews ON candidates.id = interviews.candidates_id;",
-      (err, result) => {
-        if (err) {
-          console.error(err);
-          return res.status(500).send("Error");
-        } else {
-          return res.status(200).send(result.rows);
-        }
-      }
-    );
+    return pool.query(
+      "SELECT candidates.*, interviews.* FROM candidates LEFT JOIN interviews ON candidates.id = interviews.candidates_id ORDER BY date DESC;"//,
+      // (err, result) => {
+      //   if (err) {
+      //     console.error(err);
+      //     return res.status(500).send("Error");
+      //   } else {
+      //     return res.status(200).send(result.rows);
+      //   }
+      // }
+    )
+    .then((data) => {
+      res.send(data.rows)
+      //console.log(data)
+    })
+    .catch((error) => {
+      console.log(error)
+      res.send(error)
+    })
   }
 }
 

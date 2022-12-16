@@ -1,7 +1,7 @@
-const { Pool } = require("pg");
+const { Client } = require("pg");
 import connectionStrings from "../../../lib/connection";
 
-const pool = new Pool({
+const pool = new Client({
   // Format: postgres://user:password@host:5432/database
   connectionString: process.env.NODE_ENV === "production" ? connectionStrings.production : connectionStrings.dev,
   ...(process.env.NODE_ENV === "production"
@@ -34,10 +34,12 @@ export default function handler(req, res) {
       problem_3_rating,
       attempt,
       date,
+      code,
+      complete
     } = req.body;
 
-    pool.query(
-      "INSERT INTO interviews( interviewers_id, candidates_id, pass , notes_1 , notes_2 , notes_3 , problem_1_rating , problem_2_rating , problem_3_rating , attempt, date) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11 ) RETURNING *;",
+    return pool.query(
+      "INSERT INTO interviews( interviewers_id, candidates_id, pass , notes_1 , notes_2 , notes_3 , problem_1_rating , problem_2_rating , problem_3_rating , attempt, date, code, complete) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13 ) RETURNING *;",
       [
         interviewers_id,
         candidates_id,
@@ -50,24 +52,46 @@ export default function handler(req, res) {
         problem_3_rating,
         attempt,
         date,
-      ],
-      (err, result) => {
-        if (err) {
-          console.error(err);
-          return res.status(500).send("Error");
-        } else {
-          return res.status(200).send(result.rows);
-        }
-      }
-    );
+        code,
+        complete
+      ]//,
+      // (err, result) => {
+      //   if (err) {
+      //     console.error('This route works',err);
+
+      //     return res.status(500).send("Error");
+      //   } else {
+      //     return res.status(200).send(result.rows);
+      //   }
+      // }
+    )
+    .then(data => {
+      res.send(data.rows)
+    })
+    .catch(console.log);
   } else if (method === "GET") {
-    pool.query("SELECT * FROM interviews", (err, result) => {
-      if (err) {
-        console.error(err);
-        return res.status(500).send("Error");
-      } else {
-        return res.status(200).send(result.rows);
-      }
-    });
+    return pool.query("SELECT * FROM interviews"//, 
+    // (err, result) => {
+    //   if (err) {
+    //     console.error(err);
+    //     return res.status(500).send("Error");
+    //   } else {
+    //     return res.status(200).send(result.rows);
+    //   }
+    // }
+    )
+    .then(data => {
+      res.send(data.rows)
+    })
+    .catch();
+  } else if (method === "PATCH") {
+
+    let {code, id} = req.body;
+
+    console.log('id', id)
+
+    return pool.query(`UPDATE interviews SET code = $1 WHERE id = $2`, [code, id])
+    .then(console.log)
+    .catch(console.log)
   }
 }

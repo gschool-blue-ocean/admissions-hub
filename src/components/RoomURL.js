@@ -7,7 +7,7 @@ import connectionStrings from "../../lib/connection";
 export default function RoomURL({ URL }) {
   const [clicked, setClicked] = useState(false);
   const { asPath } = useRouter();
-  const { info } = useAppContext();
+  const { info, interview } = useAppContext();
   
   const handleCopy = () => {
     // let url = process.env.ROOT_URL

@@ -11,16 +11,58 @@ import Ratings from "./Ratings";
 import styles from "./AllRatings.module.css";
 import { useAppContext } from "./GlobalContext";
 import ViewProblems from "./viewProblems";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 const StudentInfo = () => {
-  const { info, setInfo, setUserRole, setStudents, students } = useAppContext();
+  const { info, setInfo, setUserRole, setStudents, students, user } = useAppContext();
+
   const changeUserRole = (e) => {
+    setUserRole("ADMIN")
+  }
+  let userid
+
+  const changeUserRoleNew = (e) => {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, "0");
+    var mm = today.getMonth();
+    var yy = String(today.getFullYear());
+    today = yy + "-" + mm + "-" + dd;
+
+    userid = localStorage.getItem('userId')
+
+    let newInterview = {
+      "interviewers_id": userid,
+      "candidates_id": info.id,
+      "notes_1": '',
+      "notes_2": '',
+      "notes_3": '',
+      "problem_1_rating": null,
+      "problem_2_rating": null,
+      "problem_3_rating": null,
+      "date": today,
+      "attempt": 0,
+      "pass": 'false',
+      "code": '//Type code here',
+      "complete": false
+    }
+
+
+    axios.post('/api/interviews/Interviews', newInterview)
+      .then((returnedInfo) => {
+        console.log(returnedInfo)
+
+      })
+      .catch(error => console.log(error.response))
     setUserRole("ADMIN");
   };
+  useEffect(()=>{
+
+  }, [user])
 
   useEffect(() => {
     setInfo("");
+    
+    //userid = user.id
   }, []);
 
   const [search, setSearch] = useState("");
@@ -204,7 +246,25 @@ const StudentInfo = () => {
               paddingRight: 0,
             }}
           >
-            {info.length !== 0 ? (
+            {info.length !== 0 && info.complete ? (
+              <Link href={{ pathname: "/interview", query: { id: uuid() } }}>
+                <button
+                  className={styles.bob}
+                  onClick={changeUserRoleNew}
+                  style={{
+                    color: "white",
+                    backgroundColor: "#DD8D43",
+                    border: "none",
+                    height: 40,
+                    width: 150,
+                    fontFamily: "League Spartan",
+                    fontSize: 16,
+                  }}
+                >
+                  <a style={{ color: "white" }}>Launch Interview</a>
+                </button>
+              </Link>
+            ) : info.length !== 0 ? (
               <Link href={{ pathname: "/interview", query: { id: uuid() } }}>
                 <button
                   className={styles.bob}
@@ -219,25 +279,27 @@ const StudentInfo = () => {
                     fontSize: 16,
                   }}
                 >
-                  <a style={{ color: "white" }}>Launch Interview</a>
+                  <a style={{ color: "white" }}>Resume Interview</a>
                 </button>
               </Link>
-            ) : (
-              <button
-                style={{
-                  color: "#979797",
-                  backgroundColor: "#FFE8D3",
-                  border: "none",
-                  height: 40,
-                  width: 150,
-                  fontFamily: "League Spartan",
-                  fontSize: 16,
-                }}
-                disabled
-              >
-                Launch Interview
-              </button>
-            )}
+            ) :
+              (
+                <button
+                  style={{
+                    color: "#979797",
+                    backgroundColor: "#FFE8D3",
+                    border: "none",
+                    height: 40,
+                    width: 150,
+                    fontFamily: "League Spartan",
+                    fontSize: 16,
+                  }}
+                  disabled
+                >
+                  Launch Interview
+                </button>
+              )
+            }
           </div>
         </div>
       </div>
@@ -302,7 +364,19 @@ const StudentInfo = () => {
             backgroundColor: "white",
           }}
         >
-          {students.map((student) => {
+          {students.map((student) =>
+          {
+            
+            if (user){
+              console.log('running')
+              if (student.interviewers_id !== user.id) {
+                return null;
+              }
+            } else {
+              console.log('not running')
+            }
+            // console.log('interviewer id', user ? user.id : 'no user', 'students interviewer', student.interviewers_id)
+            //console.log(user)
             const months = [
               "JAN",
               "FEB",

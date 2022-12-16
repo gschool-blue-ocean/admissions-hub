@@ -46,7 +46,9 @@ CREATE TABLE "interviews" (
     "problem_3_rating" INT DEFAULT NULL,
     "attempt" TEXT,
     "pass" TEXT,
-    "date" DATE
+    "date" DATE,
+    "complete" BOOLEAN,
+    "code" TEXT
 );
 
 -- AddForeignKey
@@ -59,29 +61,29 @@ insert into "interviewers" ("first_name", "last_name", "email", "password") valu
 
 insert into "candidates" ("first_name", "last_name", "email", "cohort", "pass") values 
 ('Kevin', 'Reaves', 'Reaveskev@gmail.com', 'MCSP-13', 'false'),
-('Jeremy', 'Linder', 'jeremylinder2@gmail.com', 'MCSP-13', 'true'),
+('Baremy', 'Linder', 'jeremylinder2@gmail.com', 'MCSP-13', 'true'),
 ('Kyle', 'Jones', 'jones.kyle2893@gmail.com', 'MCSP-13',  'true'),
 ('Thanh', 'Le', 'huybenpro@gmail.com', 'MCSP-13', 'true'),
 ('Matthew', 'Rust', 'matthewrust21@gmail.com', 'MCSP-13', 'true'),
 ('Hung', 'Nguyen', 'hungnguyen1693@gmail.com', 'MCSP-13', 'true'),
-('Kevin', 'Reaves', 'Reaveskev12@gmail.com', 'MCSP-13', 'true'),
+('Trevin', 'Reaves', 'Reaveskev12@gmail.com', 'MCSP-13', 'true'),
 ('Jeremy', 'Linder', 'jeremylinder12@gmail.com', 'MCSP-13', 'true'),
-('Kyle', 'Jones', 'jones.kyle28932@gmail.com', 'MCSP-13', 'true'),
-('Thanh', 'Le', 'huybenpro12@gmail.com', 'MCSP-13', 'true'),
-('Matthew', 'Rust', 'matthewrust221@gmail.com', 'MCSP-13', 'true'),
-('Hung', 'Nguyen', 'hungnguyen16931@gmail.com', 'MCSP-13', 'true');
+('Thighle', 'Jones', 'jones.kyle28932@gmail.com', 'MCSP-13', 'true'),
+('Thanhohss', 'Le', 'huybenpro12@gmail.com', 'MCSP-13', 'true'),
+('Shmathew', 'Rust', 'matthewrust221@gmail.com', 'MCSP-13', 'true'),
+('Flung', 'Nguyen', 'hungnguyen16931@gmail.com', 'MCSP-13', 'true');
 
-insert into "interviews" ("interviewers_id", "candidates_id", "notes_1", "notes_2","notes_3", "problem_1_rating", "problem_2_rating", "problem_3_rating","date", "attempt", "pass") values 
-('3', '1', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-17', '1', 'false'),
-('3', '1', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-27', '2','false'),
-('2', '2', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-17', '1','true'),
-('2', '3', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-17', '1','true'),
-('2', '4', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-17', '1','true'),
-('2', '5', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-17', '1','true'),
-('2', '6', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-17', '1','true'),
-('3', '7', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-17', '1','true'),
-('3', '8', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-17', '1','true'),
-('3', '9', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-17', '1','true'),
-('3', '10', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-17', '1','true'),
-('2', '11', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-17', '1','true'),
-('2', '12', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-17', '1','true');
+insert into "interviews" ("interviewers_id", "candidates_id", "notes_1", "notes_2","notes_3", "problem_1_rating", "problem_2_rating", "problem_3_rating","date", "attempt", "pass", "code", "complete") values 
+('3', '1', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-17', '1', 'false', '//Write your code here', false),
+('3', '1', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-27', '2','false', '//Write your code here', true),
+('2', '2', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-17', '1','true', '//Write your code here', false),
+('2', '3', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-17', '1','true', '//Write your code here', true),
+('2', '4', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-17', '1','true', '//Write your code here', false),
+('2', '5', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-17', '1','true', '//Write your code here', true),
+('2', '6', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-17', '1','true', '//Write your code here', false),
+('3', '7', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-17', '1','true', '//Write your code here', true),
+('3', '8', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-17', '1','true', '//Write your code here', false),
+('3', '9', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-17', '1','true', '//Write your code here', true),
+('3', '10', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-17', '1','true', '//Write your code here', false),
+('2', '11', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-17', '1','true', '//Write your code here', true),
+('2', '12', 'Needs work with functions', 'Good job here','Nice work', '2', '2', '2', '2022-06-17', '1','true', '//Write your code here', false);

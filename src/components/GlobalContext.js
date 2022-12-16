@@ -9,6 +9,7 @@ export function AppWrapper({ children }) {
   const [interviewReport, setInterviewReport] = useState([]);
   const [userRole, setUserRole] = useState("");
   const [students, setStudents] = useState([]);
+  const [interview, setInterview] = useState();
   let displayRole = "";
   if (userRole === "ADMIN") {
     displayRole = "";
@@ -29,6 +30,8 @@ export function AppWrapper({ children }) {
     setInterviewReport,
     students,
     setStudents,
+    interview,
+    setInterview
   };
 
   return (

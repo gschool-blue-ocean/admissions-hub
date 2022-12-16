@@ -14,10 +14,15 @@ const InterviewerReport = () => {
       setUserId(user.id);
     } else {
       if (typeof window !== "undefined") {
+        if (localStorage.getItem('userId') === 'undefined' || !localStorage.getItem('userId')) {
+          //log out
+          localStorage.removeItem('accessToken')
+          return;
+        }   
         let temp = JSON.parse(localStorage.getItem("userId"));
         setUserId(temp);
-      }
     }
+  }
     axios
       .get(`/api/interviews/Interviews`)
       .then(function (response) {

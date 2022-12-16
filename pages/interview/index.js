@@ -7,7 +7,7 @@ import RoomURL from "../../src/components/RoomURL";
 import { useAppContext } from "../../src/components/GlobalContext";
 
 function id({ id }) {
-  const { user } = useAppContext();
+  const { user, info } = useAppContext();
 
   const [userRole, setUserRole] = useState("");
 
@@ -23,7 +23,9 @@ function id({ id }) {
     }
   }, []);
 
-  return (
+  return info.complete ? 
+
+   (
     <>
       <Header />
       <div
@@ -80,6 +82,66 @@ function id({ id }) {
       </div>
       <Footer />
     </>
+  )
+  :
+   (
+  <>
+    <Header />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          position: "relative",
+          zIndex: "1",
+        }}
+      >
+        {userRole === "ADMIN" ? (
+          <div style={{ width: "calc(100% - 450px)" }}>
+            <CodeEditor sessionId={id}  candidateInfo={info.id}/>
+          </div>
+        ) : (
+          <div
+            style={{
+              width: "900px",
+              position: "relative",
+              left: "50%",
+              transform: "translate(-50%, 0%)",
+            }}
+          >
+            <CodeEditor sessionId={id} candidateInfo={info.id}/>
+          </div>
+        )}
+        {userRole === "ADMIN" ? (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              right: 0,
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                backgroundColor: "white",
+                zIndex: "1",
+                right: "0%",
+                height: "100%",
+                width: "450px",
+                marginTop: "15px",
+                color: "#979797",
+              }}
+            >
+              <RoomURL URL={id} />
+              <Dashboard />
+            </div>
+          </div>
+        ) : null}
+      </div>
+      <Footer />
+  </>
+
   );
 }
 

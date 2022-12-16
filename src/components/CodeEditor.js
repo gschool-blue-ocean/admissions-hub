@@ -5,18 +5,30 @@ import axios from "axios";
 import { useState } from "react";
 import styles from "src/components/CodeEditor.module.css";
 import { JsonWebTokenError } from "jsonwebtoken";
+import { InferencePriority } from "typescript";
+import { useAppContext } from "./GlobalContext"; 
+import { userAgent } from "next/server";
 
 let socket;
 
-export default function CodeEditor({sessionId }) {
+export default function CodeEditor({sessionId, candidateInfo }) {
   const [codeReturn, setCodeReturn] = useState([]);
   const [input, setInput] = useState("");
   const [delay, setDelay] = useState(performance.now())
+
+  const {info, setInterview, interview} = useAppContext()
+
+
 
   const onChangeHandler = (e) => {
     if (performance.now() > delay + 250)
     {
       // setTimeout(() => socket.emit("input-change", e, sessionId), 50)
+      // Fetch update
+      console.log("interview id", interview.id)
+      axios.patch('/api/interviews/Interviews', {code:e, id:interview.id})
+      .then(console.log)
+      .catch(console.log)
       socket.emit("input-change", e, sessionId)
     
     setDelay(performance.now())
@@ -33,9 +45,17 @@ export default function CodeEditor({sessionId }) {
   };
 
   useEffect(() => {
+    axios.get('/api/candidate/Candidate').then(data => {
+      console.log('data in info', data.data.find(el => el.id === candidateInfo))
+      setInterview(data.data.find(el => el.id === candidateInfo))
+    }).catch(console.log)
     console.log("internal sessionID:", sessionId);
     socketInitializer();
   }, []);
+
+  useEffect(()=> {
+    console.log('interview changed', interview ? interview.code : 'no interview code')
+  },[interview])
 
   //evaluates input from code editor, sends to backend for processing, and sets return in codeReturn state
   const handleRun = async (input) => {
@@ -74,9 +94,9 @@ export default function CodeEditor({sessionId }) {
       <Editor
         height="650px"
         defaultLanguage="javascript"
-        defaultValue="//start typing code here"
+        defaultValue={info.code}
         theme="vs-dark"
-        value={input}
+        value={interview ? interview.code : "//interview is empty"}
         onChange={(e) => onChangeHandler(e)}
         className={styles.editor}
       />

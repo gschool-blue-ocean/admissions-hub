@@ -18,7 +18,7 @@ const Dashboard = () => {
   const [problem1Rating, setProblem1Rating] = useState("");
   const [problem2Rating, setProblem2Rating] = useState("");
   const [problem3Rating, setProblem3Rating] = useState("");
-  const { info, user, setStudents } = useAppContext();
+  const { info, user, setStudents, interview } = useAppContext();
 
   const [variables, setVariables] = useState(false);
   const [arrays, setArrays] = useState(false);
@@ -90,6 +90,7 @@ const Dashboard = () => {
   };
 
   let interviewObj = {
+    id:interview.id,  //Add interview
     interviewers_id: userId,
     candidates_id: info.candidates_id,
     notes_1: problem1Notes,
@@ -101,6 +102,7 @@ const Dashboard = () => {
     date: today,
     attempt: numAttempt + 1,
     pass: passOrFail,
+    complete: true
   };
 
   const router = useRouter();
@@ -117,7 +119,7 @@ const Dashboard = () => {
   };
   const completeInterviews = () => {
     axios
-      .post(`/api/interviews/Interviews`, interviewObj)
+      .patch(`/api/interviews/Interviews`, interviewObj)
       .then(function (response) {
         console.log(response);
       })
@@ -149,6 +151,7 @@ const Dashboard = () => {
   if (extraResources !== "") {
     studyMaterial.extraResources = extraResources;
   }
+
   return (
     <div
       className={styles}

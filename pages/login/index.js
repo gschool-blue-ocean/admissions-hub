@@ -7,11 +7,14 @@ import styles from "./LoginPageStyle.module.css";
 import HeaderLogin from "../../src/components/HeaderLogin";
 
 export default function Login() {
-  const { showWarning } = useAppContext();
+  const { showWarning, user, setUser } = useAppContext();
   //if local storage has accessToken, redirect to dashboard
 
   useEffect(() => {
     if (localStorage.getItem("accessToken")) {
+      setUser(localStorage.getItem("userId"))
+      alert('works')
+      console.log('test')
       router.push("/dashboard");
     }
   }, []);

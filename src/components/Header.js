@@ -29,6 +29,11 @@ function Header() {
       // userInfo = JSON.parse(JSON.stringify(user));
     } else {
       if (typeof window !== "undefined") {
+        if (localStorage.getItem('userRole') === 'undefined' || !localStorage.getItem('userRole')) {
+          //log out
+          localStorage.removeItem('accessToken')
+          return;
+        }
         let temp = JSON.parse(localStorage.getItem("userRole"));
         setUserRole(temp);
       }
