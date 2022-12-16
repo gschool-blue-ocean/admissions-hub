@@ -366,15 +366,6 @@ const StudentInfo = () => {
         >
           {students.map((student) =>
           {
-            
-            if (user){
-              console.log('running')
-              if (student.interviewers_id !== user.id) {
-                return null;
-              }
-            } else {
-              console.log('not running')
-            }
             // console.log('interviewer id', user ? user.id : 'no user', 'students interviewer', student.interviewers_id)
             //console.log(user)
             const months = [

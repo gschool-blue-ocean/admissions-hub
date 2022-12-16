@@ -90,7 +90,7 @@ const Dashboard = () => {
   };
 
   let interviewObj = {
-    id:interview.id,  //Add interview
+    //id:interview.id,  //Add interview
     interviewers_id: userId,
     candidates_id: info.candidates_id,
     notes_1: problem1Notes,
