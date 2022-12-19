@@ -70,6 +70,8 @@ const StudentInfo = () => {
   const [showAddStudent, setShowAddStudent] = useState(false);
 
   const [seeNotes, setSeeNotes] = useState(false);
+
+
   const updateInfo = (candidateInfo) => {
 
     axios.get('/api/candidate/Candidate').then(data => {
@@ -453,7 +455,12 @@ const StudentInfo = () => {
                       // console.log('student' , student)
                       
                       setInfo(student);
-                      updateInfo(student.id);
+                      axios.get('/api/candidate/Candidate').then(data => {
+                        // console.log('data in info', candidateInfo)
+                        console.log('candidate info', student.id)
+                        setInterview(data.data.find(el => el.id === student.id))
+                      }).catch(console.log)
+                      // updateInfo(student.id);
                     }
                   }}
                 >
