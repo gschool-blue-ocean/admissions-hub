@@ -85,15 +85,22 @@ export default function handler(req, res) {
     })
     .catch();
   } else if (method === "PATCH") {
+    let {complete,code, id} = req.body;
+    console.log('request body' ,req.body)
+    if(complete !== undefined) {
+      console.log('patch requested')
+      return pool.query(`UPDATE interviews SET complete = $1 WHERE id = $2`, [complete, id])
+    } else {
 
-    let {code, id} = req.body;
-
-    // console.log('id', id)
-
-    return pool.query(`UPDATE interviews SET code = $1 WHERE id = $2`, [code, id])
-    .then((data)=> {
-      res.send(data)
-    })
-    .catch(console.log)
+      
+      
+      // console.log('id', id)
+      
+      return pool.query(`UPDATE interviews SET code = $1 WHERE id = $2`, [code, id])
+      .then((data)=> {
+        res.send(data)
+      })
+      .catch(console.log)
+    }
   }
 }

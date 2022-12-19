@@ -49,7 +49,7 @@ const StudentInfo = () => {
 
     axios.post('/api/interviews/Interviews', newInterview)
       .then((returnedInfo) => {
-        console.log('returned info',returnedInfo)
+        // console.log('returned info',returnedInfo)
 
       })
       .catch(error => console.log(error.response))
@@ -70,6 +70,15 @@ const StudentInfo = () => {
   const [showAddStudent, setShowAddStudent] = useState(false);
 
   const [seeNotes, setSeeNotes] = useState(false);
+  const updateInfo = () => {
+    setInfo({
+      ...info,
+      complete:false
+    })
+    axios.patch('/api/interviews/Interviews',{id:info.id,complete:false})
+    .then(console.log)
+    .catch(console.log)
+  }
   const handleChange = (event) => {
     setSearch(event.target.value);
   };
@@ -91,7 +100,7 @@ const StudentInfo = () => {
         console.log(error);
       });
   };
-  console.log('complete?',  info)
+  // console.log('complete?',  info)
 
   return (
     <div
@@ -252,12 +261,9 @@ const StudentInfo = () => {
                 <button
                   className={styles.bob}
                   onClick={() => {
-                    console.log('complete?', typeof info)
+                    // console.log('complete?', typeof info)
                     changeUserRoleNew()
-                       return setInfo({
-                        ...info,
-                        complete: false
-                      })
+                     updateInfo()
                     }
                   }
                   style={{
@@ -425,14 +431,9 @@ const StudentInfo = () => {
                     if (info.id === student.id) {
                       setInfo("");
                     } else {
-                      console.log('student' , student)
+                      // console.log('student' , student)
                      
-                      setInfo({
-                        ...student,
-                        complete: false
-                      }
-                        
-                        );
+                      setInfo(student);
                     }
                   }}
                 >
