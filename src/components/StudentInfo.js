@@ -14,7 +14,7 @@ import ViewProblems from "./viewProblems";
 import axios, { AxiosError } from "axios";
 
 const StudentInfo = () => {
-  const { info, setInfo, setUserRole, setStudents, students, user } = useAppContext();
+  const { info, setInfo, setUserRole, setStudents, students, user, interview, setInterview } = useAppContext();
 
   const changeUserRole = (e) => {
     setUserRole("ADMIN")
@@ -70,7 +70,15 @@ const StudentInfo = () => {
   const [showAddStudent, setShowAddStudent] = useState(false);
 
   const [seeNotes, setSeeNotes] = useState(false);
-  const updateInfo = () => {
+  const updateInfo = (candidateInfo) => {
+
+    axios.get('/api/candidate/Candidate').then(data => {
+      // console.log('data in info', candidateInfo)
+      console.log('candidate info', candidateInfo)
+      setInterview(data.data.find(el => el.id === candidateInfo))
+    }).catch(console.log)
+    
+  
     setInfo({
       ...info,
       complete:false
@@ -279,11 +287,22 @@ const StudentInfo = () => {
                   <a style={{ color: "white" }}>Launch Interview</a>
                 </button>
               </Link>
-            ) : info.length !== 0 && !info.complete ? (
+            ) : info.length !== 0 && !info.complete && interview ? (
               <Link href={{ pathname: "/interview", query: { id: uuid() } }}>
+                {/* When Resume Interview is clicked, needs to check if interview is undefined,
+                    If interview === undefined, do nothing
+                    Else, Go to the link
+
+                    Options to fix this: 
+                    1. When a student is clicked, it will pull up latest interview
+                    2. 
+                */}
                 <button
                   className={styles.bob}
-                  onClick={changeUserRole}
+                  onClick={(e) => {
+                    changeUserRole(e)
+                    updateInfo()
+                  }}
                   style={{
                     color: "white",
                     backgroundColor: "#DD8D43",
@@ -432,8 +451,9 @@ const StudentInfo = () => {
                       setInfo("");
                     } else {
                       // console.log('student' , student)
-                     
+                      
                       setInfo(student);
+                      updateInfo(student.id);
                     }
                   }}
                 >

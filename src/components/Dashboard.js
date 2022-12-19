@@ -88,9 +88,9 @@ const Dashboard = () => {
   let newPatchRequest = {
     pass: passOrFail,
   };
-
+  
   let interviewObj = {
-    //id:interview.id,  //Add interview
+    id:interview.id,  //Add interview
     interviewers_id: userId,
     candidates_id: info.candidates_id,
     notes_1: problem1Notes,
@@ -118,6 +118,7 @@ const Dashboard = () => {
       });
   };
   const completeInterviews = () => {
+    console.log('interview object', interviewObj)
     axios
       .patch(`/api/interviews/Interviews`, interviewObj)
       .then(function (response) {

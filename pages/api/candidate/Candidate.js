@@ -27,8 +27,8 @@ export default function handler(req, res) {
 
     return pool
     .query(
-      "INSERT INTO candidates( first_name, last_name, email, cohort, pass) VALUES ($1, $2, $3, $4, $5) RETURNING *;"//,
-      [first_name, last_name, email, cohort, pass],
+      "INSERT INTO candidates( first_name, last_name, email, cohort, pass) VALUES ($1, $2, $3, $4, $5) RETURNING *;",//,
+      [first_name, last_name, email, cohort, pass]
       // (err, result) => {
       //   if (err) {
       //     console.error(err);
