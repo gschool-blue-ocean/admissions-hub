@@ -46,7 +46,7 @@ export default function CodeEditor({sessionId, candidateInfo }) {
 
   useEffect(() => {
     axios.get('/api/candidate/Candidate').then(data => {
-      console.log('data in info', data.data.find(el => el.id === candidateInfo))
+      // console.log('data in info', candidateInfo)
       setInterview(data.data.find(el => el.id === candidateInfo))
     }).catch(console.log)
     console.log("internal sessionID:", sessionId);
@@ -55,6 +55,7 @@ export default function CodeEditor({sessionId, candidateInfo }) {
 
   useEffect(()=> {
     console.log('interview changed', interview ? interview.code : 'no interview code')
+    
   },[interview])
 
   //evaluates input from code editor, sends to backend for processing, and sets return in codeReturn state

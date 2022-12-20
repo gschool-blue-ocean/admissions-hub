@@ -12,17 +12,20 @@ function id({ id }) {
   const [userRole, setUserRole] = useState("");
 
   useEffect(() => {
-    if (user !== undefined) {
+    if (!user)return;
+    if (user.role) {
+      console.log('user', user.role)
       localStorage.setItem("userRole", JSON.stringify(user.role));
       setUserRole(user.role);
     } else {
       if (typeof window !== "undefined") {
         let temp = JSON.parse(localStorage.getItem("userRole"));
+        console.log('user role', temp)
         setUserRole(temp);
       }
     }
   }, []);
-
+  
   return info.complete ? 
 
    (
@@ -38,7 +41,7 @@ function id({ id }) {
       >
         {userRole === "ADMIN" ? (
           <div style={{ width: "calc(100% - 450px)" }}>
-            <CodeEditor sessionId={id} />
+            <CodeEditor sessionId={id} candidateInfo={info.id} />
           </div>
         ) : (
           <div
@@ -49,7 +52,7 @@ function id({ id }) {
               transform: "translate(-50%, 0%)",
             }}
           >
-            <CodeEditor sessionId={id} />
+            <CodeEditor sessionId={id} candidateInfo={info.id} />
           </div>
         )}
         {userRole === "ADMIN" ? (

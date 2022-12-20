@@ -5,6 +5,14 @@ import * as AiIcons from "react-icons/ai";
 import styles from "./AllRatings.module.css";
 import { useAppContext } from "./GlobalContext";
 const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
+
+  
+  var today = new Date();
+    var dd = String(today.getDate()).padStart(2, "0");
+    var mm = today.getMonth();
+    var yy = String(today.getFullYear());
+    today = yy + "-" + mm + "-" + dd;
+    
   const { students, setStudents } = useAppContext();
 
   const addCandidate = (newStudent, interviewObj) => {
@@ -21,7 +29,7 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
           problem_1_rating: null,
           problem_2_rating: null,
           problem_3_rating: null,
-          date: "1776-07-04T07:00:00.000Z",
+          date: today,
           attempt: 0,
           pass: "TBD",
         };
@@ -31,7 +39,7 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
           .then(function (res) {
             ///////////////
             axios.get(`/api/candidate/Candidate`).then((result) => {
-              console.log("ReRead new data", result);
+              // console.log("ReRead new data", result);
               let temp = result.data;
 
               const arr = temp.reduce((result, obj) => {
@@ -122,7 +130,7 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
     problem_1_rating: null,
     problem_2_rating: null,
     problem_3_rating: null,
-    date: "1776-07-04T07:00:00.000Z",
+    date: today,
     attempt: 0,
     pass: "TBD",
   };

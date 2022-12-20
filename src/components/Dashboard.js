@@ -29,7 +29,9 @@ const Dashboard = () => {
   const [extraResources, setExtraResources] = useState("");
 
   useEffect(() => {
-    if (user !== undefined) {
+    if (!user)return;
+    if (user.id) {
+      console.log('user id', user.id)
       localStorage.setItem("userId", JSON.stringify(user.id));
 
       setUserId(user.id);
@@ -88,9 +90,9 @@ const Dashboard = () => {
   let newPatchRequest = {
     pass: passOrFail,
   };
-
+  
   let interviewObj = {
-    //id:interview.id,  //Add interview
+    id:interview ? interview.id : null,  //Add interview
     interviewers_id: userId,
     candidates_id: info.candidates_id,
     notes_1: problem1Notes,
@@ -118,8 +120,9 @@ const Dashboard = () => {
       });
   };
   const completeInterviews = () => {
+    console.log('interview object', interviewObj)
     axios
-      .patch(`/api/interviews/Interviews`, interviewObj)
+      .patch(`/api/interviews/update`, interviewObj)
       .then(function (response) {
         console.log(response);
       })

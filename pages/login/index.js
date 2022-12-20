@@ -13,8 +13,8 @@ export default function Login() {
   useEffect(() => {
     if (localStorage.getItem("accessToken")) {
       setUser(localStorage.getItem("userId"))
-      alert('works')
-      console.log('test')
+      
+      // console.log('test')
       router.push("/dashboard");
     }
   }, []);

@@ -14,7 +14,7 @@ import ViewProblems from "./viewProblems";
 import axios, { AxiosError } from "axios";
 
 const StudentInfo = () => {
-  const { info, setInfo, setUserRole, setStudents, students, user } = useAppContext();
+  const { info, setInfo, setUserRole, setStudents, students, user, interview, setInterview } = useAppContext();
 
   const changeUserRole = (e) => {
     setUserRole("ADMIN")
@@ -40,7 +40,7 @@ const StudentInfo = () => {
       "problem_2_rating": null,
       "problem_3_rating": null,
       "date": today,
-      "attempt": 0,
+
       "pass": 'false',
       "code": '//Type code here',
       "complete": false
@@ -49,7 +49,7 @@ const StudentInfo = () => {
 
     axios.post('/api/interviews/Interviews', newInterview)
       .then((returnedInfo) => {
-        console.log(returnedInfo)
+        // console.log('returned info',returnedInfo)
 
       })
       .catch(error => console.log(error.response))
@@ -59,17 +59,36 @@ const StudentInfo = () => {
 
   }, [user])
 
-  useEffect(() => {
-    setInfo("");
+  // useEffect(() => {
+  //   setInfo("");
     
-    //userid = user.id
-  }, []);
+  //   //userid = user.id
+  // }, []);
 
   const [search, setSearch] = useState("");
   const [value, setValue] = useState(0);
   const [showAddStudent, setShowAddStudent] = useState(false);
 
   const [seeNotes, setSeeNotes] = useState(false);
+
+
+  const updateInfo = (candidateInfo) => {
+
+    axios.get('/api/candidate/Candidate').then(data => {
+      // console.log('data in info', candidateInfo)
+      console.log('candidate info', candidateInfo)
+      setInterview(data.data.find(el => el.id === candidateInfo))
+    }).catch(console.log)
+    
+  
+    setInfo({
+      ...info,
+      complete:false
+    })
+    axios.patch('/api/interviews/Interviews',{id:info.id,complete:false})
+    .then(console.log)
+    .catch(console.log)
+  }
   const handleChange = (event) => {
     setSearch(event.target.value);
   };
@@ -91,6 +110,7 @@ const StudentInfo = () => {
         console.log(error);
       });
   };
+  // console.log('complete?',  info)
 
   return (
     <div
@@ -250,7 +270,13 @@ const StudentInfo = () => {
               <Link href={{ pathname: "/interview", query: { id: uuid() } }}>
                 <button
                   className={styles.bob}
-                  onClick={changeUserRoleNew}
+                  onClick={(e) => {
+                    // console.log('complete?', typeof info)
+                    // changeUserRoleNew()
+                    changeUserRole(e)
+                     updateInfo()
+                    }
+                  }
                   style={{
                     color: "white",
                     backgroundColor: "#EF6E47",
@@ -264,11 +290,22 @@ const StudentInfo = () => {
                   <a style={{ color: "white" }}>Launch Interview</a>
                 </button>
               </Link>
-            ) : info.length !== 0 ? (
+            ) : info.length !== 0 && !info.complete && interview ? (
               <Link href={{ pathname: "/interview", query: { id: uuid() } }}>
+                {/* When Resume Interview is clicked, needs to check if interview is undefined,
+                    If interview === undefined, do nothing
+                    Else, Go to the link
+
+                    Options to fix this: 
+                    1. When a student is clicked, it will pull up latest interview
+                    2. 
+                */}
                 <button
                   className={styles.bob}
-                  onClick={changeUserRole}
+                  onClick={(e) => {
+                    changeUserRole(e)
+                    updateInfo()
+                  }}
                   style={{
                     color: "white",
                     backgroundColor: "#EF6E47",
@@ -416,7 +453,15 @@ const StudentInfo = () => {
                     if (info.id === student.id) {
                       setInfo("");
                     } else {
+                      // console.log('student' , student)
+                      
                       setInfo(student);
+                      axios.get('/api/candidate/Candidate').then(data => {
+                        // console.log('data in info', candidateInfo)
+                        console.log('candidate info', student.id)
+                        setInterview(data.data.find(el => el.id === student.id))
+                      }).catch(console.log)
+                      // updateInfo(student.id);
                     }
                   }}
                 >
