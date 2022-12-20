@@ -7,6 +7,7 @@
     font-family: "Roboto";
     src: url(../public/fonts/Roboto/Roboto-Thin.ttf);
 }
+
 .form-control:focus {
     border-color: #EF6E47;
     box-shadow: 0 0 0 0.1rem #EF6E47;

@@ -170,7 +170,7 @@ const StudentInfo = () => {
               }}
             >
               <div
-                style={{ display: "flex", paddingBottom: 10, color: "#979797" }}
+                style={{ display: "flex", paddingBottom: 10, color: "black" }}
               >
                 <span
                   style={{ fontSize: 20 }}
@@ -232,7 +232,7 @@ const StudentInfo = () => {
                   color: "white",
                   backgroundColor: "#EF6E47",
                   border: "none",
-                  height: 40,
+                  height: 30,
                   width: 100,
                   fontFamily: "League Spartan",
                   fontSize: 16,
@@ -247,10 +247,10 @@ const StudentInfo = () => {
             ) : (
               <button
                 style={{
-                  color: "#979797",
+                  color: "",
                   backgroundColor: "#FFE8D3",
                   border: "none",
-                  height: 40,
+                  height: 30,
                   width: 100,
                   fontFamily: "League Spartan",
                   fontSize: 16,
@@ -263,7 +263,7 @@ const StudentInfo = () => {
           </div>
           <div
             style={{
-              paddingRight: 0,
+              paddingRight: 0
             }}
           >
             {info.length !== 0 && info.complete ? (
@@ -310,7 +310,7 @@ const StudentInfo = () => {
                     color: "white",
                     backgroundColor: "#EF6E47",
                     border: "none",
-                    height: 40,
+                    height: 30,
                     width: 150,
                     fontFamily: "League Spartan",
                     fontSize: 16,
@@ -326,7 +326,7 @@ const StudentInfo = () => {
                     color: "#979797",
                     backgroundColor: "#FFE8D3",
                     border: "none",
-                    height: 40,
+                    height: 30,
                     width: 150,
                     fontFamily: "League Spartan",
                     fontSize: 16,
@@ -349,7 +349,7 @@ const StudentInfo = () => {
             marginTop: "-5px",
             paddingLeft: 10,
             paddingRight: 10,
-            color: "#979797",
+            color: "black",
           }}
         >
           <span
@@ -446,7 +446,7 @@ const StudentInfo = () => {
                     paddingTop: 3,
                     borderBottom: "solid 1px #979797",
                     backgroundColor: info.id === student.id ? "#EF6E47" : "",
-                    color: info.id === student.id ? "white" : "#979797",
+                    color: info.id === student.id ? "white" : "black",
                   }}
                   key={uuid()}
                   onClick={() => {
@@ -493,7 +493,7 @@ const StudentInfo = () => {
                     <div style={{ width: 30 }}>
                       <AiIcons.AiOutlineClose
                         color={
-                          info.email === student.email ? "white" : "#979797"
+                          info.email === student.email ? "white" : "black"
                         }
                       />
                     </div>
