@@ -122,7 +122,7 @@ const Dashboard = () => {
   const completeInterviews = () => {
     console.log('interview object', interviewObj)
     axios
-      .patch(`/api/interviews/Interviews`, interviewObj)
+      .patch(`/api/interviews/update`, interviewObj)
       .then(function (response) {
         console.log(response);
       })

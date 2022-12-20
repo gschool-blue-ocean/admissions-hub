@@ -85,7 +85,7 @@ export default function handler(req, res) {
     })
     .catch();
   } else if (method === "PATCH") {
-    let {complete ,code, id, pass} = req.body;
+    let {complete, code, id, pass} = req.body;
     console.log('request body' ,req.body)
     if(complete !== undefined) {
       console.log('patch requested')
@@ -95,8 +95,10 @@ export default function handler(req, res) {
       })
       .catch(console.log());
     } 
-    else if(pass) {
+    if(pass !== undefined) {
+
       let {notes_1, notes_2, notes_3, problem_1_rating, problem_2_rating, attempt, pass, date, complete, code, id} = req.body;
+      
       return pool.query(`UPDATE interviews SET 
       notes_1 = $1, 
       notes_2 =$2,
@@ -110,8 +112,13 @@ export default function handler(req, res) {
       code = $10
 
       WHERE id = $11 `, [notes_1, notes_2, notes_3, problem_1_rating, problem_2_rating, attempt, pass, date, complete, code, id])
+      .then(()=>{
+        console.log('updated everything')
+        res.send('updated everything')
+      })
+      .catch(console.log)
     }
-    else {
+    else if (code){
       // console.log('id', id)
       return pool.query(`UPDATE interviews SET code = $1 WHERE id = $2`, [code, id])
       .then((data)=> {

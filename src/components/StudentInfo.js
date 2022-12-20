@@ -40,7 +40,7 @@ const StudentInfo = () => {
       "problem_2_rating": null,
       "problem_3_rating": null,
       "date": today,
-      "attempt": 0,
+
       "pass": 'false',
       "code": '//Type code here',
       "complete": false
@@ -270,9 +270,10 @@ const StudentInfo = () => {
               <Link href={{ pathname: "/interview", query: { id: uuid() } }}>
                 <button
                   className={styles.bob}
-                  onClick={() => {
+                  onClick={(e) => {
                     // console.log('complete?', typeof info)
-                    changeUserRoleNew()
+                    // changeUserRoleNew()
+                    changeUserRole(e)
                      updateInfo()
                     }
                   }
