@@ -68,9 +68,9 @@ return newStr;
               justifyContent: "center",
               width: 220,
               backgroundColor: "#FFE8D3",
-              borderTop: "1px solid #DD8D43",
-              borderLeft: "1px solid #DD8D43",
-              borderRight: "1px solid #DD8D43",
+              borderTop: "1px solid #EF6E47",
+              borderLeft: "1px solid #EF6E47",
+              borderRight: "1px solid #EF6E47",
               borderTopLeftRadius: "10px 10px",
               borderTopRightRadius: "10px 10px",
               paddingTop: 5,
@@ -96,7 +96,7 @@ return newStr;
               justifyContent: "center",
               width: 140,
               backgroundColor: "#FFE8D3",
-              border: "1px solid #DD8D43",
+              border: "1px solid #EF6E47",
               borderTopLeftRadius: "10px 10px",
               borderTopRightRadius: "10px 10px",
               paddingTop: 5,
@@ -124,9 +124,9 @@ return newStr;
               justifyContent: "center",
               width: 220,
               backgroundColor: "#FFE8D3",
-              borderTop: "1px solid #DD8D43",
-              borderLeft: "1px solid #DD8D43",
-              borderRight: "1px solid #DD8D43",
+              borderTop: "1px solid #EF6E47",
+              borderLeft: "1px solid #EF6E47",
+              borderRight: "1px solid #EF6E47",
               borderTopLeftRadius: "10px 10px",
               borderTopRightRadius: "10px 10px",
               paddingTop: 5,
@@ -152,7 +152,7 @@ return newStr;
               justifyContent: "center",
               width: 140,
               backgroundColor: "#FFE8D3",
-              border: "1px solid #DD8D43",
+              border: "1px solid #EF6E47",
               borderTopLeftRadius: "10px 10px",
               borderTopRightRadius: "10px 10px",
               paddingTop: 5,
@@ -180,9 +180,9 @@ return newStr;
               justifyContent: "center",
               width: 220,
               backgroundColor: "#FFE8D3",
-              borderTop: "1px solid #DD8D43",
-              borderLeft: "1px solid #DD8D43",
-              borderRight: "1px solid #DD8D43",
+              borderTop: "1px solid #EF6E47",
+              borderLeft: "1px solid #EF6E47",
+              borderRight: "1px solid #EF6E47",
               borderTopLeftRadius: "10px 10px",
               borderTopRightRadius: "10px 10px",
               paddingTop: 5,
@@ -208,7 +208,7 @@ return newStr;
               justifyContent: "center",
               width: 140,
               backgroundColor: "#FFE8D3",
-              border: "1px solid #DD8D43",
+              border: "1px solid #EF6E47",
               borderTopLeftRadius: "10px 10px",
               borderTopRightRadius: "10px 10px",
               paddingTop: 5,
@@ -233,9 +233,9 @@ return newStr;
         <div
           style={{
             backgroundColor: "#FFE8D3",
-            borderLeft: "1px solid #DD8D43",
-            borderRight: "1px solid #DD8D43",
-            borderBottom: "1px solid #DD8D43",
+            borderLeft: "1px solid #EF6E47",
+            borderRight: "1px solid #EF6E47",
+            borderBottom: "1px solid #EF6E47",
             padding: 5,
           }}
         >
@@ -259,7 +259,7 @@ return newStr;
                 backgroundColor: "#FFFAF5",
                 display: "block",
                 paddingLeft: "5px",
-                color: "#DD8D43",
+                color: "#EF6E47",
               }}
             >
               {problem1}
@@ -281,7 +281,7 @@ return newStr;
                         style={{
                           zIndex: 1,
                           display: "flex",
-                          background: "#DD8D43",
+                          background: "#EF6E47",
                           color: "white",
                           width: 50,
                           justifyContent: "center",
@@ -334,7 +334,7 @@ return newStr;
                 border: "none",
                 height: 175,
                 resize: "none",
-                scrollbarColor: "#ffe8d3 #dd8d43",
+                scrollbarColor: "#ffe8d3 #EF6E47",
               }}
               readOnly={true}
             ></textarea>
@@ -343,7 +343,7 @@ return newStr;
               style={{
                 width: "auto",
                 height: 175,
-                scrollbarColor: "#ffe8d3 #dd8d43",
+                scrollbarColor: "#ffe8d3 #EF6E47",
               }}
               dangerouslySetInnerHTML={{ __html: renderedHTML }}
               className={Style.ProblemsOneMarkdown}
@@ -355,9 +355,9 @@ return newStr;
         <div
           style={{
             backgroundColor: "#FFE8D3",
-            borderLeft: "1px solid #DD8D43",
-            borderRight: "1px solid #DD8D43",
-            borderBottom: "1px solid #DD8D43",
+            borderLeft: "1px solid #EF6E47",
+            borderRight: "1px solid #EF6E47",
+            borderBottom: "1px solid #EF6E47",
             padding: 5,
           }}
         >
@@ -379,7 +379,7 @@ return newStr;
           >
             <code
               style={{
-                color: "#DD8D43",
+                color: "#EF6E47",
                 backgroundColor: "#FFFAF5",
                 display: "block",
                 paddingLeft: "5px",
@@ -403,7 +403,7 @@ return newStr;
                         style={{
                           zIndex: 1,
                           display: "flex",
-                          background: "#DD8D43",
+                          background: "#EF6E47",
                           color: "white",
                           width: 50,
                           justifyContent: "center",
@@ -472,9 +472,9 @@ return newStr;
         <div
           style={{
             backgroundColor: "#FFE8D3",
-            borderLeft: "1px solid #DD8D43",
-            borderRight: "1px solid #DD8D43",
-            borderBottom: "1px solid #DD8D43",
+            borderLeft: "1px solid #EF6E47",
+            borderRight: "1px solid #EF6E47",
+            borderBottom: "1px solid #EF6E47",
             padding: 5,
           }}
         >
@@ -496,7 +496,7 @@ return newStr;
           >
             <code
               style={{
-                color: "#DD8D43",
+                color: "#EF6E47",
                 backgroundColor: "#FFFAF5",
                 display: "block",
                 paddingLeft: "5px",
@@ -520,7 +520,7 @@ return newStr;
                         style={{
                           zIndex: 1,
                           display: "flex",
-                          background: "#DD8D43",
+                          background: "#EF6E47",
                           color: "white",
                           width: 50,
                           justifyContent: "center",

@@ -108,7 +108,7 @@ export default function AdminLogin() {
                   variant="primary"
                   type="submit"
                   style={{
-                    backgroundColor: "#DD8D43",
+                    backgroundColor: "#EF6E47",
                     width: 116,
                   }}
                 >

@@ -108,12 +108,12 @@ export default function CodeEditor({sessionId, candidateInfo }) {
           margin: "-34px 10px 0px",
           zIndex: 3,
           position: "sticky",
-          color: "#dd8d43",
+          color: "#EF6E47",
           left: "100%",
           top: "100%",
           transform: "translate(-10%, -50%)",
           backgroundColor: "black",
-          border: "2px solid #dd8d43",
+          border: "2px solid #EF6E47",
           fontFamily: "League Spartan",
         }}
       >

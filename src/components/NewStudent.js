@@ -311,7 +311,7 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
             style={{
               color: "white",
               fontFamily: "League Spartan",
-              backgroundColor: "#DD8D43",
+              backgroundColor: "#EF6E47",
               border: "none",
               width: 75,
             }}

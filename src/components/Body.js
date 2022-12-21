@@ -3,7 +3,7 @@ import Dashboard from "./Dashboard";
 
 function Body() {
   return (
-    <div className={styles.body}>
+    <div className={styles.body} >
       <div>Body here</div>
       <Dashboard />
     </div>

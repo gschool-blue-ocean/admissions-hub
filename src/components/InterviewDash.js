@@ -30,7 +30,7 @@ const InterviewDash = () => {
   }, []);
 
   return (
-    <div style={{ width: 730, margin: "5% auto" }}>
+    <div style={{ width: 730, margin: "5% auto", textColor: 'black'}}>
       <AllRatings />
       <StudentInfo />
       <InterviewerReport />

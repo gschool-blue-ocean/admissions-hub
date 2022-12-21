@@ -243,7 +243,7 @@ const Dashboard = () => {
             width: 220,
             height: 40,
             color: "white",
-            backgroundColor: "#DD8D43",
+            backgroundColor: "#EF6E47",
             border: "none",
             fontSize: 16,
             fontFamily: "League Spartan",

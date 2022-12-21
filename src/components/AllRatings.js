@@ -33,14 +33,14 @@ const AllRatings = () => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          borderRight: "1px solid #979797",
+          borderRight: "1px solid #black",
         }}
       >
-        <span style={{ fontSize: 20, color: "#979797" }}>Fiscal QTR</span>
+        <span style={{ fontSize: 20, color: "#black" }}>Fiscal QTR</span>
         <div className={styles.circles}>
           <svg height={radius * 2} width={radius * 2}>
             <circle
-              stroke="#ffd8a7"
+              stroke="#babcf5"
               fill="none"
               strokeWidth={stroke}
               r={normalizedRadius}
@@ -48,7 +48,7 @@ const AllRatings = () => {
               cy={radius}
             />
             <circle
-              stroke="#DD8D43"
+              stroke="https://github.com/gschool-blue-ocean/admissions-hub/pull/new/css_version_1"
               fill="transparent"
               strokeWidth={stroke}
               strokeDasharray={circumference + " " + circumference}
@@ -66,7 +66,7 @@ const AllRatings = () => {
               x="50%"
               y="56%"
               textAnchor="middle"
-              fill="#DD8D43"
+              fill="#0D0F4A"
               strokeWidth="1px"
               fontSize={36}
               fontFamily={"League Spartan"}
@@ -77,10 +77,10 @@ const AllRatings = () => {
           </svg>
         </div>
         <div style={{ display: "flex", justifyContent: "space-around" }}>
-          <div style={{ fontSize: 15, paddingRight: 30, color: "#979797" }}>
+          <div style={{ fontSize: 15, paddingRight: 30, color: "#black" }}>
             Total Interviews: {totalInterviews}
           </div>
-          <div style={{ fontSize: 15, color: "#979797" }}>
+          <div style={{ fontSize: 15, color: "#black" }}>
             Passing Interviews: {passing}
           </div>
         </div>
@@ -106,7 +106,7 @@ const AllRatings = () => {
           alignItems: "center",
         }}
       >
-        <span style={{ fontSize: 20, color: "#979797" }}>Fiscal Year</span>
+        <span style={{ fontSize: 20, color: "#black" }}>Fiscal Year</span>
         <div>
           <svg height={radius2 * 2} width={radius2 * 2}>
             <circle
@@ -118,7 +118,7 @@ const AllRatings = () => {
               cy={radius2}
             />
             <circle
-              stroke="#DD8D43"
+              stroke="#EF6E47"
               fill="transparent"
               strokeWidth={stroke2}
               strokeDasharray={circumference2 + " " + circumference2}
@@ -135,7 +135,7 @@ const AllRatings = () => {
               x="50%"
               y="56%"
               textAnchor="middle"
-              fill="#DD8D43"
+              fill="#EF6E47"
               strokeWidth="1px"
               fontSize={36}
               fontFamily={"League Spartan"}
@@ -149,13 +149,13 @@ const AllRatings = () => {
         <div style={{ display: "flex", justifyContent: "space-around" }}>
           <div
             id="totalInterviews"
-            style={{ fontSize: 15, paddingRight: 30, color: "#979797" }}
+            style={{ fontSize: 15, paddingRight: 30, color: "#black" }}
           >
             Total Interviews: {totalInterviews}
           </div>
           <div
             id="passingInterviews"
-            style={{ fontSize: 15, color: "#979797" }}
+            style={{ fontSize: 15, color: "#black" }}
           >
             Passing Interviews: {passing}
           </div>

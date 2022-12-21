@@ -16,7 +16,7 @@ export default function index() {
   }, []);
 
   return (
-    <div>
+    <div style={{backgroundColor: "#0d0f4ae3"}}>
       <Header />
       <InterviewDash />
       <Footer />
