@@ -48,7 +48,7 @@ const AllRatings = () => {
               cy={radius}
             />
             <circle
-              stroke="https://github.com/gschool-blue-ocean/admissions-hub/pull/new/css_version_1"
+              stroke="#0D0F4A"
               fill="transparent"
               strokeWidth={stroke}
               strokeDasharray={circumference + " " + circumference}

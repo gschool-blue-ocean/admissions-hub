@@ -493,7 +493,7 @@ const StudentInfo = () => {
                     <div style={{ width: 30 }}>
                       <AiIcons.AiOutlineClose
                         color={
-                          info.email === student.email ? "white" : "black"
+                          info.email === student.email ? "white" : "#979797"
                         }
                       />
                     </div>

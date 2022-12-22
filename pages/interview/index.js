@@ -74,7 +74,7 @@ function id({ id }) {
                 height: "100%",
                 width: "450px",
                 marginTop: "15px",
-                color: "black",
+                color: "#979797",
               }}
             >
               <RoomURL URL={id} />
