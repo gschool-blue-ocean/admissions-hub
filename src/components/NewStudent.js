@@ -20,7 +20,7 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
       .post(`/api/candidate/Candidate`, newStudent)
       .then(function (response) {
         let tempId = response.data[0].id;
-
+        console.log("response ", response)
         interviewObj = {
           candidates_id: tempId,
           notes_1: null,

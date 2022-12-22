@@ -3,6 +3,8 @@ import * as BsIcons from "react-icons/bs";
 import * as BiIcons from "react-icons/bi";
 import * as AiIcons from "react-icons/ai";
 import * as TiIcons from "react-icons/ti";
+import Downloader from "./email/Downloadcsv"
+
 
 import NewStudent from "./NewStudent";
 import Link from "next/link";
@@ -16,6 +18,8 @@ import axios, { AxiosError } from "axios";
 const StudentInfo = () => {
   const { info, setInfo, setUserRole, setStudents, students, user, interview, setInterview } = useAppContext();
 
+  const [csv, setCsv] = useState({})
+  const [showExports, setShowExports] = useState(false)
   const changeUserRole = (e) => {
     setUserRole("ADMIN")
   }
@@ -170,7 +174,7 @@ const StudentInfo = () => {
               }}
             >
               <div
-                style={{ display: "flex", paddingBottom: 10, color: "black" }}
+                style={{ display: "flex", paddingBottom: 10, color: "#979797" }}
               >
                 <span
                   style={{ fontSize: 20 }}
@@ -230,9 +234,9 @@ const StudentInfo = () => {
               <button
                 style={{
                   color: "white",
-                  backgroundColor: "#EF6E47",
+                  backgroundColor: "#DD8D43",
                   border: "none",
-                  height: 30,
+                  height: 40,
                   width: 100,
                   fontFamily: "League Spartan",
                   fontSize: 16,
@@ -247,10 +251,10 @@ const StudentInfo = () => {
             ) : (
               <button
                 style={{
-                  color: "",
+                  color: "#979797",
                   backgroundColor: "#FFE8D3",
                   border: "none",
-                  height: 30,
+                  height: 40,
                   width: 100,
                   fontFamily: "League Spartan",
                   fontSize: 16,
@@ -263,7 +267,7 @@ const StudentInfo = () => {
           </div>
           <div
             style={{
-              paddingRight: 0
+              paddingRight: 0,
             }}
           >
             {info.length !== 0 && info.complete ? (
@@ -279,7 +283,7 @@ const StudentInfo = () => {
                   }
                   style={{
                     color: "white",
-                    backgroundColor: "#EF6E47",
+                    backgroundColor: "#DD8D43",
                     border: "none",
                     height: 40,
                     width: 150,
@@ -308,9 +312,9 @@ const StudentInfo = () => {
                   }}
                   style={{
                     color: "white",
-                    backgroundColor: "#EF6E47",
+                    backgroundColor: "#DD8D43",
                     border: "none",
-                    height: 30,
+                    height: 40,
                     width: 150,
                     fontFamily: "League Spartan",
                     fontSize: 16,
@@ -326,7 +330,7 @@ const StudentInfo = () => {
                     color: "#979797",
                     backgroundColor: "#FFE8D3",
                     border: "none",
-                    height: 30,
+                    height: 40,
                     width: 150,
                     fontFamily: "League Spartan",
                     fontSize: 16,
@@ -349,7 +353,7 @@ const StudentInfo = () => {
             marginTop: "-5px",
             paddingLeft: 10,
             paddingRight: 10,
-            color: "black",
+            color: "#979797",
           }}
         >
           <span
@@ -445,8 +449,8 @@ const StudentInfo = () => {
                     paddingBottom: 3,
                     paddingTop: 3,
                     borderBottom: "solid 1px #979797",
-                    backgroundColor: info.id === student.id ? "#EF6E47" : "",
-                    color: info.id === student.id ? "white" : "black",
+                    backgroundColor: info.id === student.id ? "#DD8D43" : "",
+                    color: info.id === student.id ? "white" : "#979797",
                   }}
                   key={uuid()}
                   onClick={() => {
@@ -485,7 +489,7 @@ const StudentInfo = () => {
                     <div style={{ width: 30 }}>
                       <AiIcons.AiOutlineCheck
                         color={
-                          info.email === student.email ? "white" : "#EF6E47"
+                          info.email === student.email ? "white" : "#DD8D43"
                         }
                       />
                     </div>
@@ -493,7 +497,7 @@ const StudentInfo = () => {
                     <div style={{ width: 30 }}>
                       <AiIcons.AiOutlineClose
                         color={
-                          info.email === student.email ? "white" : "black"
+                          info.email === student.email ? "white" : "#979797"
                         }
                       />
                     </div>
@@ -521,14 +525,14 @@ const StudentInfo = () => {
               onClick={() => setShowAddStudent(!showAddStudent)}
               style={{ paddingRight: 10 }}
             >
-              <TiIcons.TiUserAddOutline size={22} color="#EF6E47" />
+              <TiIcons.TiUserAddOutline size={22} color="#DD8D43" />
               <span style={{ paddingLeft: 5, color: "#979797" }}>
                 add student
               </span>
             </div>
             {info.length === 0 ? (
               <div style={{ cursor: "not-allowed" }}>
-                <TiIcons.TiUserDeleteOutline size={22} color="#EF6E47" />
+                <TiIcons.TiUserDeleteOutline size={22} color="#FFE8D3" />
                 <span style={{ paddingLeft: 5, color: "#979797" }}>
                   delete student
                 </span>
@@ -541,7 +545,7 @@ const StudentInfo = () => {
                   setInfo("");
                 }}
               >
-                <TiIcons.TiUserDeleteOutline size={22} color="#EF6E47" />
+                <TiIcons.TiUserDeleteOutline size={22} color="#DD8D43" />
                 <span style={{ paddingLeft: 5, color: "#979797" }}>
                   delete student
                 </span>
@@ -570,7 +574,7 @@ const StudentInfo = () => {
               onClick={() => {
                 ////"Borrowed Code"/////
                 let csv;
-
+                
                 // Loop the array of objects
                 for (let row = 0; row < students.length; row++) {
                   let keysAmount = Object.keys(students[row]).length;
@@ -596,24 +600,27 @@ const StudentInfo = () => {
                   }
 
                   keysCounter = 0;
+                  setCsv(csv)
                 }
+                setShowExports(true)
 
                 // Once we are done looping, download the .csv by creating a link
-                let link = document.createElement("a");
-                link.id = "download-csv";
-                link.setAttribute(
-                  "href",
-                  "data:text/plain;charset=utf-8," + encodeURIComponent(csv)
-                );
-                link.setAttribute("download", "StudentsInfo.csv");
-                document.body.appendChild(link);
-                document.querySelector("#download-csv").click();
+                // let link = document.createElement("a");
+                // link.id = "download-csv";
+                // link.setAttribute(
+                //   "href",
+                //   "data:text/plain;charset=utf-8," + encodeURIComponent(csv)
+                // );
+                // link.setAttribute("download", "StudentsInfo.csv");
+                // document.body.appendChild(link);
+                // document.querySelector("#download-csv").click();
 
                 ////"Borrowed Code"/////
               }}
             >
-              export .csv
+              export/email student info
             </button>
+            < Downloader showExport={showExports} setExport={setShowExports}/> 
           </div>
         </div>
       </div>
