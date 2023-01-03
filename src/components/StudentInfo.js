@@ -620,7 +620,7 @@ const StudentInfo = () => {
             >
               export/email student info
             </button>
-            < Downloader showExport={showExports} setExport={setShowExports}/> 
+            < Downloader students={students} showExport={showExports} setExport={setShowExports} csv= {csv}/> 
           </div>
         </div>
       </div>

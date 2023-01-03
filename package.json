@@ -10,6 +10,7 @@
     "cypress:open": "cypress open"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.10.0",
     "@monaco-editor/react": "^4.4.6",
     "@prisma/client": "^4.4.0",
     "@sendgrid/mail": "^7.7.0",

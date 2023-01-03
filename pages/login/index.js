@@ -48,7 +48,7 @@ export default function Login() {
           class="fixed-bottom text-center p-4"
           style={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
         >
-          © 2022 Copyright: Team A+
+          © 2023 Copyright: Team Exterminators
         </div>
       </MDBFooter>
     </>

@@ -10,7 +10,7 @@ function Footer() {
         class="text-center p-4"
         style={{ backgroundColor: "#f0f0f0", position: "relative",  zIndex: 4 }}
       >
-        © 2022 Copyright: Team A+
+        © 2022 Copyright: Team Exterminators
       </div>
     </MDBFooter>
   );

@@ -9,7 +9,7 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
   
   var today = new Date();
     var dd = String(today.getDate()).padStart(2, "0");
-    var mm = today.getMonth();
+    var mm = today.getMonth() + 1;
     var yy = String(today.getFullYear());
     today = yy + "-" + mm + "-" + dd;
     
