@@ -28,7 +28,7 @@ const InterviewerReport = () => {
     axios
       .get(`/api/interviews/Interviews`)
       .then(function (response) {
-        // console.log(response.data);
+        //console.log('request data for interview report',response.data);
         setInterviewReport(response.data);
       })
       .catch(function (error) {

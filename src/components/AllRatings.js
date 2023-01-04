@@ -1,21 +1,35 @@
 import React from "react";
 import styles from "./AllRatings.module.css";
 import { useAppContext } from "./GlobalContext";
+import { useRouter } from 'next/router'
+import { useEffect } from "react";
 
 const AllRatings = () => {
+  let router = useRouter();
   ////// Circle 1
   let passing = 0;
   let totalInterviews = 0;
   const { interviewReport } = useAppContext();
-
+  
   interviewReport.forEach((el) => {
-    if (el.pass === "true") {
-      passing++;
-      totalInterviews++;
-    } else if (el.pass === "false") {
-      totalInterviews++;
+      if (el.pass === "true") {
+        passing++;
+        totalInterviews++;
+      } else if (el.pass === "false") {
+        totalInterviews++;
+      }
+    });
+
+  useEffect(() => {
+
+
+    
+
+    if (interviewReport[0] === -1) {
+      router.push("/login");
     }
-  });
+  })
+
 
   const Qtr = () => {
     let radius = 92;

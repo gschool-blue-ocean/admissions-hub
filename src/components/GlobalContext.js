@@ -6,7 +6,7 @@ export function AppWrapper({ children }) {
   const [info, setInfo] = useState([]);
   const [showWarning, setShowWarning] = useState(false);
   const [user, setUser] = useState();
-  const [interviewReport, setInterviewReport] = useState([]);
+  const [interviewReport, setInterviewReport] = useState([-1]);
   const [userRole, setUserRole] = useState("");
   const [students, setStudents] = useState([]);
   const [interview, setInterview] = useState();

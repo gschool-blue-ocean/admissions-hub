@@ -6,7 +6,7 @@ import StudentInfo from "./StudentInfo";
 import { useAppContext } from "./GlobalContext";
 
 const InterviewDash = () => {
-  const [newTest, setNewTest] = useState();
+  // const [newTest, setNewTest] = useState();
   const { students, setStudents } = useAppContext();
   useEffect(() => {
     axios.get(`/api/candidate/Candidate`).then((result) => {
