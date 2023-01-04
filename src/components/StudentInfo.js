@@ -234,7 +234,6 @@ const StudentInfo = () => {
               <button
                 style={{
                   color: "white",
-                  backgroundColor: "#DD8D43",
                   border: "none",
                   height: 40,
                   width: 100,
@@ -283,7 +282,6 @@ const StudentInfo = () => {
                   }
                   style={{
                     color: "white",
-                    backgroundColor: "#DD8D43",
                     border: "none",
                     height: 40,
                     width: 150,
@@ -312,7 +310,6 @@ const StudentInfo = () => {
                   }}
                   style={{
                     color: "white",
-                    backgroundColor: "#DD8D43",
                     border: "none",
                     height: 40,
                     width: 150,
@@ -449,7 +446,7 @@ const StudentInfo = () => {
                     paddingBottom: 3,
                     paddingTop: 3,
                     borderBottom: "solid 1px #979797",
-                    backgroundColor: info.id === student.id ? "#DD8D43" : "",
+                    backgroundColor: info.id === student.id ? "#EF6E47" : "",
                     color: info.id === student.id ? "white" : "#979797",
                   }}
                   key={uuid()}
@@ -489,7 +486,7 @@ const StudentInfo = () => {
                     <div style={{ width: 30 }}>
                       <AiIcons.AiOutlineCheck
                         color={
-                          info.email === student.email ? "white" : "#DD8D43"
+                          info.email === student.email ? "white" : "#EF6E47;"
                         }
                       />
                     </div>
@@ -521,11 +518,11 @@ const StudentInfo = () => {
             style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
           >
             <div
-              className={styles.bob}
+              className={styles.icon}
               onClick={() => setShowAddStudent(!showAddStudent)}
               style={{ paddingRight: 10 }}
             >
-              <TiIcons.TiUserAddOutline size={22} color="#DD8D43" />
+              <TiIcons.TiUserAddOutline size={22} color="#EF6E47" />
               <span style={{ paddingLeft: 5, color: "#979797" }}>
                 add student
               </span>
@@ -539,13 +536,13 @@ const StudentInfo = () => {
               </div>
             ) : (
               <div
-                className={styles.bob}
+                className={styles.icon}
                 onClick={() => {
                   deleteStudent();
                   setInfo("");
                 }}
               >
-                <TiIcons.TiUserDeleteOutline size={22} color="#DD8D43" />
+                <TiIcons.TiUserDeleteOutline size={22} color="#EF6E47" />
                 <span style={{ paddingLeft: 5, color: "#979797" }}>
                   delete student
                 </span>

@@ -38,3 +38,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ## ToDo
 
 -User/Candidate can see/change anyones code by typing interview id into the url
+-BUG: When a new student is created, Button says 'Resume Interview' vs 'Launch Interview'
