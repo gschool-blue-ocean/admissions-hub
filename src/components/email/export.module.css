@@ -1,0 +1,22 @@
+.export {
+    padding-left:3em;
+    padding-right: 3em;
+    color:#ef6e47;
+}
+.export:hover{
+    color:rgba(13,15,74,.89)
+}
+.exportContainer{
+    display: flex;
+    font-size: 1.3em;
+    font-weight: bold;
+    justify-content: center;
+    
+}
+
+.close{
+    background-color:rgb(221,141,67);
+}
+.close:hover {
+
+}

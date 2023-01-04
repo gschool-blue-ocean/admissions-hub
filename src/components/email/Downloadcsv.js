@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import emailjs from '@emailjs/browser';
+import styles from './export.module.css'
 
 
 function Downloader({ showExport, setExport, csv, students }) {
@@ -24,38 +25,37 @@ function Downloader({ showExport, setExport, csv, students }) {
   return (
     <>
       <Modal show={showExport} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+        {/* <Modal.Header closeButton>
+          <Modal.Title></Modal.Title>
+        </Modal.Header> */}
+        <Modal.Body >
+          <div className={styles.exportContainer}>
 
-          <a href={'#0'} onClick={
+          <a href={'#0'} className={styles.export} onClick={
             () => {
               organizeStudents()
               emailjs.send('service_q7ydff5', 'template_eyggsr3', {message: studentString}, 'fVpXVYOcSjiWblEjw')
-                .then((result) => {
-                  alert("Email sent successfully!")
-                }, (error) => {
-                  alert("Unable to send email");
-                });
+              .then((result) => {
+                alert("Email sent successfully!")
+              }, (error) => {
+                alert("Unable to send email");
+              });
             }
           }>
             Email .csv
 
           </a>
-          <br></br>
-          <a href={"data:text/plain;charset=utf-8," + encodeURIComponent(csv)} download="studentinfo.csv">
+    
+          <a href={"data:text/plain;charset=utf-8," + encodeURIComponent(csv)} download="studentinfo.csv" className={styles.export}>
             Export .csv
           </a>
+          </div>
         </Modal.Body>
-        {/* <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
+        <Modal.Footer>
+            <button className={styles.close} onClick={handleClose}>
               Close
-            </Button>
-            <Button variant="primary" onClick={handleClose}>
-              Save Changes
-            </Button>
-          </Modal.Footer> */}
+            </button>
+          </Modal.Footer>
       </Modal>
     </>
   );

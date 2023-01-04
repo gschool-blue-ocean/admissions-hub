@@ -569,7 +569,7 @@ const StudentInfo = () => {
                 backgroundColor: "#979797",
                 color: "white",
                 border: "none",
-                width: 80,
+                width: 169,
               }}
               onClick={() => {
                 ////"Borrowed Code"/////
