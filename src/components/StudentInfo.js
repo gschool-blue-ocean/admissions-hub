@@ -271,7 +271,7 @@ const StudentInfo = () => {
             }}
           >
             {info.length !== 0 && info.complete ? (
-              <Link href={{ pathname: "/interview", query: { id: uuid() } }}>
+              <Link href={{ pathname: "/interview", query: { id: interview.id } }}>
                 <button
                   className={styles.bob}
                   onClick={(e) => {
@@ -295,7 +295,7 @@ const StudentInfo = () => {
                 </button>
               </Link>
             ) : info.length !== 0 && !info.complete && interview ? (
-              <Link href={{ pathname: "/interview", query: { id: uuid() } }}>
+              <Link href={{ pathname: "/interview", query: { id: interview.id } }}>
                 {/* When Resume Interview is clicked, needs to check if interview is undefined,
                     If interview === undefined, do nothing
                     Else, Go to the link

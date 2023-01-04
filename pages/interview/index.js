@@ -5,14 +5,24 @@ import Footer from "../../src/components/Footer";
 import { useEffect, useState } from "react";
 import RoomURL from "../../src/components/RoomURL";
 import { useAppContext } from "../../src/components/GlobalContext";
+import axios from 'axios';
+//import {importStudent} from "../../lib/importStudent";
 
 function id({ id }) {
-  const { user, info } = useAppContext();
+  const { user, info, setInterview } = useAppContext();
 
   const [userRole, setUserRole] = useState("");
 
   useEffect(() => {
-    if (!user)return;
+    axios.get(`/api/interviews/${id}`)
+      .then((result) => {
+        console.log('got id', result.data[0])
+        setInterview(result.data[0]);
+      })
+      .catch(console.log)
+
+
+    if (!user) return;
     if (user.role) {
       console.log('user', user.role)
       localStorage.setItem("userRole", JSON.stringify(user.role));
@@ -25,127 +35,127 @@ function id({ id }) {
       }
     }
   }, []);
-  
-  return info.complete ? 
 
-   (
-    <>
-      <Header />
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          position: "relative",
-          zIndex: "1",
-        }}
-      >
-        {userRole === "ADMIN" ? (
-          <div style={{ width: "calc(100% - 450px)" }}>
-            <CodeEditor sessionId={id} candidateInfo={info.id} />
-          </div>
-        ) : (
-          <div
-            style={{
-              width: "900px",
-              position: "relative",
-              left: "50%",
-              transform: "translate(-50%, 0%)",
-            }}
-          >
-            <CodeEditor sessionId={id} candidateInfo={info.id} />
-          </div>
-        )}
-        {userRole === "ADMIN" ? (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              right: 0,
-            }}
-          >
+  return info.complete ?
+
+    (
+      <>
+        <Header />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            position: "relative",
+            zIndex: "1",
+          }}
+        >
+          {userRole === "ADMIN" ? (
+            <div style={{ width: "calc(100% - 450px)" }}>
+              <CodeEditor sessionId={id} candidateInfo={info.id} />
+            </div>
+          ) : (
+            <div
+              style={{
+                width: "900px",
+                position: "relative",
+                left: "50%",
+                transform: "translate(-50%, 0%)",
+              }}
+            >
+              <CodeEditor sessionId={id} candidateInfo={info.id} />
+            </div>
+          )}
+          {userRole === "ADMIN" ? (
             <div
               style={{
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "center",
-                backgroundColor: "white",
-                zIndex: "1",
-                right: "0%",
-                height: "100%",
-                width: "450px",
-                marginTop: "15px",
-                color: "black",
+                right: 0,
               }}
             >
-              <RoomURL URL={id} />
-              <Dashboard />
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  backgroundColor: "white",
+                  zIndex: "1",
+                  right: "0%",
+                  height: "100%",
+                  width: "450px",
+                  marginTop: "15px",
+                  color: "black",
+                }}
+              >
+                <RoomURL URL={id} />
+                <Dashboard />
+              </div>
             </div>
-          </div>
-        ) : null}
-      </div>
-      <Footer />
-    </>
-  )
-  :
-   (
-  <>
-    <Header />
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          position: "relative",
-          zIndex: "1",
-        }}
-      >
-        {userRole === "ADMIN" ? (
-          <div style={{ width: "calc(100% - 450px)" }}>
-            <CodeEditor sessionId={id}  candidateInfo={info.id}/>
-          </div>
-        ) : (
-          <div
-            style={{
-              width: "900px",
-              position: "relative",
-              left: "50%",
-              transform: "translate(-50%, 0%)",
-            }}
-          >
-            <CodeEditor sessionId={id} candidateInfo={info.id}/>
-          </div>
-        )}
-        {userRole === "ADMIN" ? (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              right: 0,
-            }}
-          >
+          ) : null}
+        </div>
+        <Footer />
+      </>
+    )
+    :
+    (
+      <>
+        <Header />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            position: "relative",
+            zIndex: "1",
+          }}
+        >
+          {userRole === "ADMIN" ? (
+            <div style={{ width: "calc(100% - 450px)" }}>
+              <CodeEditor sessionId={id} candidateInfo={info.id} />
+            </div>
+          ) : (
+            <div
+              style={{
+                width: "900px",
+                position: "relative",
+                left: "50%",
+                transform: "translate(-50%, 0%)",
+              }}
+            >
+              <CodeEditor sessionId={id} candidateInfo={info.id} />
+            </div>
+          )}
+          {userRole === "ADMIN" ? (
             <div
               style={{
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "center",
-                backgroundColor: "white",
-                zIndex: "1",
-                right: "0%",
-                height: "100%",
-                width: "450px",
-                marginTop: "15px",
-                color: "#979797",
+                right: 0,
               }}
             >
-              <RoomURL URL={id} />
-              <Dashboard />
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  backgroundColor: "white",
+                  zIndex: "1",
+                  right: "0%",
+                  height: "100%",
+                  width: "450px",
+                  marginTop: "15px",
+                  color: "#979797",
+                }}
+              >
+                <RoomURL URL={id} />
+                <Dashboard />
+              </div>
             </div>
-          </div>
-        ) : null}
-      </div>
-      <Footer />
-  </>
+          ) : null}
+        </div>
+        <Footer />
+      </>
 
-  );
+    );
 }
 
 export default id;

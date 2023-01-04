@@ -25,13 +25,13 @@ export default function CodeEditor({sessionId, candidateInfo }) {
     {
       // setTimeout(() => socket.emit("input-change", e, sessionId), 50)
       // Fetch update
-      console.log("interview id", interview.id)
+      //console.log("interview", interview)
       axios.patch('/api/interviews/Interviews', {code:e, id:interview.id})
       .then(console.log)
       .catch(console.log)
       socket.emit("input-change", e, sessionId)
-    
-    setDelay(performance.now())
+          
+    //setDelay(performance.now())
     }
     // console.log(e)
     // fetch('http://localhost:3050/truth',{
@@ -45,10 +45,10 @@ export default function CodeEditor({sessionId, candidateInfo }) {
   };
 
   useEffect(() => {
-    axios.get('/api/candidate/Candidate').then(data => {
-      // console.log('data in info', candidateInfo)
-      setInterview(data.data.find(el => el.id === candidateInfo))
-    }).catch(console.log)
+    // axios.get('/api/candidate/Candidate').then(data => {
+    //   // console.log('data in info', candidateInfo)
+    //   setInterview(data.data.find(el => el.id === candidateInfo))
+    // }).catch(console.log)
     console.log("internal sessionID:", sessionId);
     socketInitializer();
   }, []);
@@ -97,7 +97,7 @@ export default function CodeEditor({sessionId, candidateInfo }) {
         defaultLanguage="javascript"
         defaultValue={info.code}
         theme="vs-dark"
-        value={interview ? interview.code : "//interview is empty"}
+        value={input ? input : interview ? interview.code : "//No Code" }
         onChange={(e) => onChangeHandler(e)}
         className={styles.editor}
       />
