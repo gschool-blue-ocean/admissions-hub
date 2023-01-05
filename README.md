@@ -42,3 +42,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 -Create the profile page 
 -Allow for more instructors to be added
 -Set up the user name at the top right to be dynamic
+-Move all the styling to css docs
