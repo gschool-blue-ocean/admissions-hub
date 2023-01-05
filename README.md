@@ -38,3 +38,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ## ToDo
 
 -User/Candidate can see/change anyones code by typing interview id into the url
+-Create the profile page 
+-Allow for more instructors to be added
+-Set up the user name at the top right to be dynamic

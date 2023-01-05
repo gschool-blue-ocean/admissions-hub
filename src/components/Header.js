@@ -43,7 +43,7 @@ function Header() {
     switch (asPath) {
       case asPath.match("/interview")?.input:
         currentPage = "Interview App";
-        currentUser = `Danny Andrews`;
+        currentUser = `Jeff The Pirate`;
         break;
       case "/login":
         currentPage = "Interview Login";
@@ -51,7 +51,7 @@ function Header() {
         break;
       case `/dashboard?access=${accessToken}`:
         currentPage = "Interview Dashboard";
-        currentUser = "Danny Andrews";
+        currentUser = "Jeff The Pirate";
         break;
     }
   }, []);
@@ -109,7 +109,7 @@ function Header() {
           <div className={styles.dropdownmenu}>
             <NavDropdown
               id="nav-dropdown-dark-example"
-              title={currentUser ? currentUser : "Danny Andrews"}
+              title={currentUser ? currentUser : "Jeff The Pirate"}
               menuVariant="light"
             >
               <NavDropdown.Item eventKey="1">Profile</NavDropdown.Item>

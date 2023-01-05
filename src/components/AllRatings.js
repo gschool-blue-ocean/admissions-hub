@@ -21,10 +21,6 @@ const AllRatings = () => {
     });
 
   useEffect(() => {
-
-
-    
-
     if (interviewReport[0] === -1) {
       router.push("/login");
     }
