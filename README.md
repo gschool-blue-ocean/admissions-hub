@@ -42,3 +42,25 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 -Allow for more instructors to be added
 -Set up the user name at the top right to be dynamic
 -Move all the styling to css docs
+
+## Client Requests:
+
+App is used for everything admissions why
+
+Cleaning up, and general bug fixes
+
+Priorities:
+
+- Glitches and Errors
+- Different Test Framework
+- New Features
+  -'CSSing'
+
+Specific issues: live coding aspect glitches out sometimes, can be delayed
+Resume Interview / Launch new interview issues
+
+Would like to move away from cypress, use a different testing framework
+
+Forgot password functionality
+Profile Page
+New Instructor Page

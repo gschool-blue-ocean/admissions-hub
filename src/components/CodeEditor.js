@@ -19,13 +19,13 @@ export default function CodeEditor({ sessionId, candidateInfo }) {
   const { info, setInterview, interview } = useAppContext();
 
   const onChangeHandler = (e) => {
-    setInput(e.target.value);
     if (performance.now() > delay + 250) {
       // setTimeout(() => socket.emit("input-change", e, sessionId), 50)
       // Fetch update
       //console.log("interview", interview)
-      // axios.patch('/api/interviews/Interviews', { code: e, id: interview.id }).then(console.log).catch(console.log);
-      // socket.emit('input-change', e, sessionId);
+      axios.patch('/api/interviews/Interviews', { code: e, id: interview.id }).then(console.log).catch(console.log);
+      socket.emit('input-change', e, sessionId);
+
       //setDelay(performance.now())
     }
     // console.log(e)
@@ -56,8 +56,8 @@ export default function CodeEditor({ sessionId, candidateInfo }) {
     const data = await axios.post('/api/codeEval', {
       code: input,
     });
-    console.log(JSON.stringify(data));
-    setCodeReturn(data);
+    //console.log(data.data);
+    setCodeReturn(data.data);
   };
 
   //initialized socket session
@@ -90,7 +90,7 @@ export default function CodeEditor({ sessionId, candidateInfo }) {
         defaultLanguage="javascript"
         defaultValue={info.code}
         theme="vs-dark"
-        value={input}
+        value={input ? input : interview ? interview.code : '//No Code'}
         onChange={(e) => onChangeHandler(e)}
         className={styles.editor}
       />
@@ -124,7 +124,9 @@ export default function CodeEditor({ sessionId, candidateInfo }) {
           zIndex: 2,
         }}
       >
-        <span style={{ color: 'white' }}>{`> ${codeReturn}`}</span>
+        {codeReturn.map((line) => (
+          <span style={{ color: 'white' }}>{`> ${line}`}</span>
+        ))}
       </code>
     </div>
   );
