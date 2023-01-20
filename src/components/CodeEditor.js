@@ -4,45 +4,21 @@ import io from 'socket.io-client';
 import axios from 'axios';
 import { useState } from 'react';
 import styles from 'src/components/CodeEditor.module.css';
-import { JsonWebTokenError } from 'jsonwebtoken';
-import { InferencePriority } from 'typescript';
 import { useAppContext } from './GlobalContext';
-import { userAgent } from 'next/server';
 
 let socket;
 
 export default function CodeEditor({ sessionId, candidateInfo }) {
   const [codeReturn, setCodeReturn] = useState([]);
   const [input, setInput] = useState('');
-  const [delay, setDelay] = useState(performance.now());
-
   const { info, setInterview, interview } = useAppContext();
 
-  const onChangeHandler = (e) => {
-    if (performance.now() > delay + 250) {
-      // setTimeout(() => socket.emit("input-change", e, sessionId), 50)
-      // Fetch update
-      //console.log("interview", interview)
-      axios.patch('/api/interviews/Interviews', { code: e, id: interview.id }).then(console.log).catch(console.log);
-      socket.emit('input-change', e, sessionId);
-
-      //setDelay(performance.now())
-    }
-    // console.log(e)
-    // fetch('http://localhost:3050/truth',{
-    //   method:'POST',
-    //   mode:'cors',
-    //   headers:{'Content-Type': 'application/json'},
-    //   body:JSON.stringify({truth:e})
-    // })
-    // .then().catch(console.error)
+  const onChangeHandler = (content) => {
+    socket.emit('input-change', content, sessionId);
+    setInput(content);
   };
 
   useEffect(() => {
-    // axios.get('/api/candidate/Candidate').then(data => {
-    //   // console.log('data in info', candidateInfo)
-    //   setInterview(data.data.find(el => el.id === candidateInfo))
-    // }).catch(console.log)
     console.log('internal sessionID:', sessionId);
     socketInitializer();
   }, []);
@@ -91,7 +67,7 @@ export default function CodeEditor({ sessionId, candidateInfo }) {
         defaultValue={info.code}
         theme="vs-dark"
         value={input ? input : interview ? interview.code : '//No Code'}
-        onChange={(e) => onChangeHandler(e)}
+        onChange={(data) => onChangeHandler(data)}
         className={styles.editor}
       />
       <button

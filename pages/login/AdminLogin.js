@@ -83,7 +83,6 @@ export default function AdminLogin() {
       >
         <div className="row no-gutters">
           <div className="col-7">
-            <button onClick={getJarrett}>{buttonText}</button>
             <Card.Body className={`${styles.loginCardBody} text-center`}>
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">

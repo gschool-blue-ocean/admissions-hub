@@ -13,8 +13,8 @@ export default function handler(req, res) {
   let logs = [];
   // console.log(req.body.code);
   //overwrite console.log behavior to output to custom stdout
-  console.log = function (d) {
-    logs.push(JSON.stringify(d));
+  console.log = function (data) {
+    logs.push(JSON.stringify(data));
   };
   //run code supplied by req
   try {
