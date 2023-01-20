@@ -1,28 +1,30 @@
+import { application } from 'express';
+
 //set up a nodeVM sandbox
-const { NodeVM } = require("vm2");
+const { NodeVM } = require('vm2');
 const vm = new NodeVM({
   eval: true,
   require: {
     external: true,
-    root: "./",
+    root: './',
   },
 });
 
 export default function handler(req, res) {
   //set store for console.log
-  let logs = [];
+  let logs = '';
   // console.log(req.body.code);
   //overwrite console.log behavior to output to custom stdout
-  console.log = function (d) {
-    logs.push(JSON.stringify(d))
-  };
+  // console.log = function (d) {
+  //   logs.push(JSON.stringify(d));
+  // };
   //run code supplied by req
+  console.log('received code ', req.body.code);
   try {
-    vm.run(req.body.code);
+    logs = vm.run(req.body.code);
   } catch (err) {
-   console.log('error')
+    console.log('error');
   }
-  
 
   res.send(logs);
 }

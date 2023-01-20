@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "CONNECTION_STRING=postgresql://postgres:docker@localhost:5432/database next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "cypress:open": "cypress open"
+    "docker": "docker run --rm --name pg-docker -e POSTGRES_PASSWORD=docker -d -p 5432:5432 -v $HOME/docker/volumes/postgres:/var/lib/postgresql/data postgres",
+    "cypress": "cypress run"
   },
   "dependencies": {
     "@emailjs/browser": "^3.10.0",
@@ -34,7 +34,7 @@
     "react-icons": "^4.4.0",
     "react-uuid": "^1.0.3",
     "socket.io": "^4.5.2",
-    "socket.io-client": "^4.5.2",
+    "socket.io-client": "^4.5.4",
     "typescript": "^4.8.4",
     "vm2": "^3.9.11"
   },
