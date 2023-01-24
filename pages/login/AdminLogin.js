@@ -28,6 +28,10 @@ export default function AdminLogin() {
       const response = await axios.post('/api/admin', loginForm);
       if (response.data.connect) {
         setUser(response.data);
+        //save accessToken to local storage
+        localStorage.setItem('accessToken', response.data.accessToken);
+         //if login is successful, redirect to home page dashboard
+        router.push(`/dashboard?access=${response.data.accessToken}`);
         return response.data;
       } else {
         return 'Wrong username or password';
@@ -42,32 +46,20 @@ export default function AdminLogin() {
     try {
       //get data from loginUser, login form is user's input
       const loginData = await loginAdmin(loginForm);
-      // console.log("login data ", loginData.accessToken);
-      //save accessToken to local storage
-      localStorage.setItem('accessToken', loginData.accessToken);
-      //if login is successful, redirect to home page dashboard
       if (loginData.connect) {
-        router.push('/dashboard');
-        //add accessToken to url
-        router.push(`/dashboard?access=${loginData.accessToken}`);
-      } else {
+        //router.push('/dashboard');
+      } else if (!loginData.connect) {
         setShowWarning(true);
         setTimeout(() => {
           setShowWarning(false);
         }, 3000);
+      } else {
+        router.push('/login')
       }
     } catch (error) {
       throw error;
     }
   };
-
-  function getJarrett() {
-    axios
-      .get('/api/jarrett')
-      .then((result) => result.data)
-      .then((data) => setButtonText(data.email))
-      .catch((err) => console.log(err));
-  }
 
   return (
     <>
@@ -129,7 +121,6 @@ export default function AdminLogin() {
             <img
               src="https://cdn.discordapp.com/attachments/1011712154480680960/1025120519961444472/unknown.png"
               className="img-fluid"
-              alt
             />
           </div>
         </div>

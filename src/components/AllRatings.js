@@ -34,8 +34,8 @@ const AllRatings = () => {
     let normalizedRadius = radius - stroke * 2;
     let circumference = normalizedRadius * 2 * Math.PI;
 
-    const strokeDashoffset =
-      circumference - (value / totalInterviews) * circumference;
+    let strokeDashoffset;
+    (circumference - (value / totalInterviews) * circumference) ? strokeDashoffset = circumference - (value / totalInterviews) * circumference : 0
 
     return (
       <div
@@ -105,8 +105,8 @@ const AllRatings = () => {
     let normalizedRadius2 = radius2 - stroke2 * 2;
     let circumference2 = normalizedRadius2 * 2 * Math.PI;
 
-    const strokeDashoffset =
-      circumference2 - (value2 / totalInterviews) * circumference2;
+    let strokeDashoffset;
+    (circumference2 - (value2 / totalInterviews) * circumference2) ? strokeDashoffset = (circumference2 - (value2 / totalInterviews) * circumference2) : 0
 
     return (
       <div
