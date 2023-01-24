@@ -46,6 +46,12 @@ export default function AdminLogin() {
     try {
       //get data from loginUser, login form is user's input
       const loginData = await loginAdmin(loginForm);
+      // console.log("login data ", loginData.accessToken);
+      //save accessToken to local storage
+      localStorage.setItem('accessToken', loginData.accessToken);
+      localStorage.setItem('firstName', loginData.first_name);
+      localStorage.setItem('lastName', loginData.last_name);
+      //if login is successful, redirect to home page dashboard
       if (loginData.connect) {
         //router.push('/dashboard');
       } else if (!loginData.connect) {

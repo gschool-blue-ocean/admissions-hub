@@ -18,7 +18,7 @@
   background-image: url("https://www.galvanize.com/wp-content/uploads/2022/11/galvanize_logo_full-color_light-background-311x60.png");
   background-size: cover;
   background-position: left;
-  width: 450px;
+  min-width: 450px;
   background-color: #ffffff;
   border: none;
   position: relative;
