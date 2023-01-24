@@ -15,6 +15,7 @@ import { useAppContext } from "./GlobalContext";
 import ViewProblems from "./viewProblems";
 import axios, { AxiosError } from "axios";
 
+
 const StudentInfo = () => {
   const { info, setInfo, setUserRole, setStudents, students, user, interview, setInterview } = useAppContext();
 
@@ -469,12 +470,15 @@ const StudentInfo = () => {
                   <span
                     style={{
                       minWidth: 120,
+                      maxWidth: 120,
                       paddingLeft: 10,
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
                     }}
                   >
                     {`${student.last_name}, ${student.first_name}`}
                   </span>
-                  <span style={{ width: 186 }}>{student.email}</span>
+                  <span style={{ minWidth: 186, maxWidth: 186, overflow: "hidden", textOverflow: "ellipsis" }}>{student.email}</span>
                   <span style={{ width: 70 }}>{student.cohort}</span>
                   {testDate === "04-JUL-1776" ? (
                     <span style={{ width: 85 }}>TBD</span>
