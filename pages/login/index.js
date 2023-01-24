@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import router from 'next/router';
 import AdminLogin from './AdminLogin';
 import { useAppContext } from '../../src/components/GlobalContext';
 import { MDBFooter } from 'mdb-react-ui-kit';
@@ -8,16 +7,6 @@ import HeaderLogin from '../../src/components/HeaderLogin';
 
 export default function Login() {
   const { showWarning, user, setUser } = useAppContext();
-  //if local storage has accessToken, redirect to dashboard
-
-  useEffect(() => {
-    if (localStorage.getItem('accessToken')) {
-      setUser(localStorage.getItem('userId'));
-
-      // console.log('test')
-      router.push('/dashboard');
-    }
-  }, []);
 
   return (
     <>

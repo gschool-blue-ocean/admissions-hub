@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAppContext } from '../../src/components/GlobalContext';
 import axios from 'axios';
 import { Form, Button, Card } from 'react-bootstrap';
@@ -7,22 +7,26 @@ import styles from './LoginPageStyle.module.css';
 
 export default function AdminLogin() {
   const router = useRouter();
-  const [buttonText, setButtonText] = useState('click');
-
   const { setShowWarning, setUser } = useAppContext();
-
   const [loginForm, setLoginForm] = useState({
     email: '',
     password: '',
   });
-
   const { email, password } = loginForm;
+
+  //if local storage has accessToken, redirect to dashboard
+  useEffect(() => {
+    if (localStorage.getItem('accessToken')) {
+      setUser(localStorage.getItem('userId'));
+    }
+  }, []);
+
   const onChangeLoginForm = (event) =>
     setLoginForm(
-      //se computed property to update properties in state loginForm
+      //update properties in state loginForm
       { ...loginForm, [event.target.name]: event.target.value }
-      //console log to see if it works
     );
+
   const loginAdmin = async (loginForm) => {
     try {
       const response = await axios.post('/api/admin', loginForm);
@@ -31,10 +35,14 @@ export default function AdminLogin() {
         //save accessToken to local storage
         localStorage.setItem('accessToken', response.data.accessToken);
          //if login is successful, redirect to home page dashboard
-        router.push(`/dashboard?access=${response.data.accessToken}`);
+         //router.push('/dashboard')
+        setTimeout(() => {
+          console.log("connection test")
+          let accessToken = localStorage.getItem("accessToken");
+          console.log(accessToken)
+          router.push('/dashboard?access=', accessToken)
+        }, 200)
         return response.data;
-      } else {
-        return 'Wrong username or password';
       }
     } catch (error) {
       throw error;
@@ -52,15 +60,11 @@ export default function AdminLogin() {
       localStorage.setItem('firstName', loginData.first_name);
       localStorage.setItem('lastName', loginData.last_name);
       //if login is successful, redirect to home page dashboard
-      if (loginData.connect) {
-        //router.push('/dashboard');
-      } else if (!loginData.connect) {
+      if (!loginData.connect) {
         setShowWarning(true);
         setTimeout(() => {
           setShowWarning(false);
         }, 3000);
-      } else {
-        router.push('/login')
       }
     } catch (error) {
       throw error;
