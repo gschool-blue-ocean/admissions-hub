@@ -258,7 +258,6 @@ const Ratings = ({
                   stroke="#ffd8a7"
                   fill="none"
                   strokeWidth={stroke}
-                  stroke-width={stroke}
                   r={normalizedRadius}
                   cx={radius}
                   cy={radius}
@@ -272,7 +271,6 @@ const Ratings = ({
                     strokeDashoffset,
                     transition: "stroke-dashoffset 0.35s",
                   }}
-                  stroke-width={stroke}
                   r={normalizedRadius}
                   cx={radius}
                   cy={radius}
@@ -280,7 +278,7 @@ const Ratings = ({
                 <text
                   x="50%"
                   y="56%"
-                  text-anchor="middle"
+                  textAnchor="middle"
                   fill="#EF6E47"
                   fontSize="23"
                   fontFamily="League Spartan"
@@ -602,7 +600,6 @@ const Ratings = ({
                   stroke="#ffd8a7"
                   fill="none"
                   strokeWidth={stroke}
-                  stroke-width={stroke}
                   r={normalizedRadius}
                   cx={radius}
                   cy={radius}
@@ -616,7 +613,6 @@ const Ratings = ({
                     strokeDashoffset,
                     transition: "stroke-dashoffset 0.35s",
                   }}
-                  stroke-width={stroke}
                   r={normalizedRadius}
                   cx={radius}
                   cy={radius}
@@ -624,7 +620,7 @@ const Ratings = ({
                 <text
                   x="50%"
                   y="56%"
-                  text-anchor="middle"
+                  textAnchor="middle"
                   fill="#EF6E47"
                   fontSize="23"
                   fontFamily="League Spartan"
