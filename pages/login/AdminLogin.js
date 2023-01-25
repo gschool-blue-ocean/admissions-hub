@@ -112,17 +112,38 @@ export default function AdminLogin() {
                     onChange={onChangeLoginForm}
                   />
                 </Form.Group>
-
+                <div
+                  style={{
+                    // display: 'flex',
+                 
+                    // width: 'auto', 
+                  }}>
+                <Button
+                  variant="primary"
+                  type="submit"
+                  style={{
+                    backgroundColor: '#EF6E47',
+                    // alignItems: 'flex-start',
+                    height: 50,
+                    width: 116,
+                    padding: 10,
+                  }}
+                >
+                  forgot password
+                </Button>
                 <Button
                   variant="primary"
                   type="submit"
                   style={{
                     backgroundColor: '#EF6E47',
                     width: 116,
+                    padding: 10,
                   }}
                 >
                   login
                 </Button>
+                </div>
+
               </Form>
             </Card.Body>
           </div>

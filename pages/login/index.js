@@ -30,8 +30,8 @@ export default function Login() {
         <AdminLogin />
       </div>
       <MDBFooter bgColor="light" className="text-center text-lg-start text-muted">
+          © 2023 Copyright: Team 3
         <div className="fixed-bottom text-center p-4" style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
-          © 2023 Copyright: Team Exterminators
         </div>
       </MDBFooter>
     </>
