@@ -1,35 +1,9 @@
-import { useState, useEffect } from "react";
 import styles from "./Header.module.css";
-import Image from "next/image";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import { useRouter } from "next/router";
-import BtnLogin from "./BtnLogin";
-import Button from "react-bootstrap/Button";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
-import Dropdown from "react-bootstrap/Dropdown";
 
 function HeaderLogin() {
   let currentPage = "";
-  let currentUser = "";
   let { asPath } = useRouter();
-  //get current access token from local storage
-  // useEffect(() => {
-  //   let accessToken = localStorage.getItem("accessToken");
-
-  //   switch (asPath) {
-  //     case `/dashboard?access=${accessToken}`:
-  //       currentPage = "Interview Dashboard";
-  //       currentUser = "Danny Andrews";
-  //       break;
-  //     case "/login":
-  //       currentPage = "Interview Login";
-  //       currentUser = "";
-  //       break;
-  //   }
-  // }, []);
 
   const monthNames = [
     "January",
@@ -53,11 +27,6 @@ function HeaderLogin() {
   today = mm + ", " + dd + " " + yyyy;
 
   const router = useRouter();
-  function goLink(event, data) {
-    if (event.target.name === "dashboard") {
-      router.push("../dashboard");
-    }
-  }
 
   return (
     <>
