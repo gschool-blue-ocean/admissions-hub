@@ -11,7 +11,7 @@ export default function index() {
     if (!accessToken) {
       router.push("/login");
     } else {
-      router.push(`/dashboard?access=${accessToken}`);
+      router.push(`/dashboard`);
     }
   }, []);
 
