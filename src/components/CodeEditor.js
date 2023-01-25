@@ -14,12 +14,12 @@ export default function CodeEditor({ sessionId, candidateInfo }) {
   const { info, setInterview, interview } = useAppContext();
 
   const onChangeHandler = (content) => {
-    socket.emit('input-change', content, sessionId);
     setInput(content);
+    socket.emit('input-change', content, sessionId);
   };
 
   useEffect(() => {
-    console.log('internal sessionID:', sessionId);
+    // console.log('internal sessionID:', sessionId);
     socketInitializer();
   }, []);
 
