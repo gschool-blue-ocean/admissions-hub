@@ -1,20 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Editor from '@monaco-editor/react';
 import io from 'socket.io-client';
-import axios from 'axios';
-import { useState } from 'react';
 import styles from 'src/components/CodeEditor.module.css';
-import { useAppContext } from './GlobalContext';
 
 let socket;
 
 export default function CodeEditor({ sessionId, candidateInfo }) {
   const [codeReturn, setCodeReturn] = useState([]);
   const [input, setInput] = useState('');
-  const { info, interview } = useAppContext();
+  const [room, setRoom] = useState(sessionId);
 
   const onChangeHandler = (content) => {
-    socket.emit('input-change', content, sessionId);
+    // setInput(content);
+    socket.emit('input-change', content, room);
   };
 
   useEffect(() => {
@@ -23,25 +21,22 @@ export default function CodeEditor({ sessionId, candidateInfo }) {
 
   //evaluates input from code editor, sends to backend for processing, and sets return in codeReturn state
   function handleRun() {
-    let logs = [];
+    let outputs = [];
     try {
-      logs = new Function(editCode(input))();
+      outputs = new Function(editCode(input))();
     } catch (err) {
-      logs = [err + ''];
+      outputs = [err + ''];
     }
-    setCodeReturn(logs);
+    setCodeReturn(outputs);
   }
 
-  // Here is a function that alters the input code by changing all console logs and handles infinite loops.
+  // Here is a function that alters the input code by changing all console logs and handles infinite loops by inserting a check variable.
   function editCode(str) {
-    // change console logs, and init breaker variable for checking loops
     let output = `let breaker = 0; logs=[];` + str.replace(/console.log/g, 'logs.push');
-    //place check statement into while loops
     output = output.replace(
       /while.*({)/g,
       `$& if (breaker > 10000) {logs.push('infinite loop error');return logs;}breaker++;`
     );
-    //place check statement into for loops
     output = output.replace(
       /for.*({)/g,
       `$& if (breaker > 10000) {logs.push('Error: 10,000 loops reached');return logs;}breaker++;`
@@ -54,12 +49,19 @@ export default function CodeEditor({ sessionId, candidateInfo }) {
     await fetch('/api/socket');
     socket = io();
 
-    socket.emit('join-room', sessionId);
+    socket.on('connect', () => {
+      console.log('connected to socket');
+    });
 
     socket.on('update-input', (msg) => {
       setInput(msg);
     });
+    socket.emit('join', room, (str) => logRoomStatus(str));
   };
+
+  function logRoomStatus(str) {
+    console.log(str);
+  }
 
   return (
     <div
@@ -74,11 +76,10 @@ export default function CodeEditor({ sessionId, candidateInfo }) {
       <Editor
         height="650px"
         defaultLanguage="javascript"
-        defaultValue={info.code}
         theme="vs-dark"
-        value={input}
-        onChange={(data) => onChangeHandler(data)}
+        onChange={onChangeHandler}
         className={styles.editor}
+        value={input}
       />
       <button
         onClick={handleRun}
@@ -110,8 +111,8 @@ export default function CodeEditor({ sessionId, candidateInfo }) {
           zIndex: 2,
         }}
       >
-        {codeReturn.map((line) => (
-          <span style={{ color: 'white' }}>{`> ${line}`}</span>
+        {codeReturn.map((line, index) => (
+          <span key={index} style={{ color: 'white' }}>{`> ${line}`}</span>
         ))}
       </code>
     </div>
