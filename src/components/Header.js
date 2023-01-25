@@ -97,11 +97,10 @@ function Header() {
           <div className={styles.dropdownmenu}>
             <NavDropdown
               id="nav-dropdown-dark-example"
-              title={localStorage.firstName}
+              title={`Welcome, ${localStorage.firstName}`}
               menuVariant="light"
             >
-              <NavDropdown.Item eventKey="1">Profile</NavDropdown.Item>
-              <NavDropdown.Item eventKey="2">Extra page</NavDropdown.Item>
+              <NavDropdown.Item> View Profile </NavDropdown.Item>
               <NavDropdown.Item>
                 <BtnLogin />
               </NavDropdown.Item>
