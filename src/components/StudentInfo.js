@@ -490,7 +490,7 @@ const StudentInfo = () => {
                     <div style={{ width: 30 }}>
                       <AiIcons.AiOutlineCheck
                         color={
-                          info.email === student.email ? "white" : "#EF6E47;"
+                          info.email === student.email ? "white" : "#EF6E47"
                         }
                       />
                     </div>
