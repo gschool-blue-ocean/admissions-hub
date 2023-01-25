@@ -31,6 +31,11 @@ const fs = require("fs");
 
     console.log(passingInterviews);
     console.log(totalInterviews);
+    fs.writeFileSync(
+      "interview_data.txt",
+      `passing interviews: ${passingInterviews}\ntotal interviews: ${totalInterviews}`
+    );
+    console.log("Data written to file successfully!");
   } catch (error) {
     console.log(error);
   } finally {

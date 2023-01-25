@@ -114,6 +114,7 @@ export default function AdminLogin() {
                 </Form.Group>
 
                 <Button
+                  id="loginButton"
                   variant="primary"
                   type="submit"
                   style={{

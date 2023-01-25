@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./AllRatings.module.css";
 import { useAppContext } from "./GlobalContext";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 const AllRatings = () => {
@@ -10,22 +10,21 @@ const AllRatings = () => {
   let passing = 0;
   let totalInterviews = 0;
   const { interviewReport } = useAppContext();
-  
+
   interviewReport.forEach((el) => {
-      if (el.pass === "true") {
-        passing++;
-        totalInterviews++;
-      } else if (el.pass === "false") {
-        totalInterviews++;
-      }
-    });
+    if (el.pass === "true") {
+      passing++;
+      totalInterviews++;
+    } else if (el.pass === "false") {
+      totalInterviews++;
+    }
+  });
 
   // useEffect(() => {
   //   if (interviewReport[0] === -1) {
   //     router.push("/login");
   //   }
   // })
-
 
   const Qtr = () => {
     let radius = 92;
@@ -35,7 +34,10 @@ const AllRatings = () => {
     let circumference = normalizedRadius * 2 * Math.PI;
 
     let strokeDashoffset;
-    (circumference - (value / totalInterviews) * circumference) ? strokeDashoffset = circumference - (value / totalInterviews) * circumference : 0
+    circumference - (value / totalInterviews) * circumference
+      ? (strokeDashoffset =
+          circumference - (value / totalInterviews) * circumference)
+      : 0;
 
     return (
       <div
@@ -106,7 +108,10 @@ const AllRatings = () => {
     let circumference2 = normalizedRadius2 * 2 * Math.PI;
 
     let strokeDashoffset;
-    (circumference2 - (value2 / totalInterviews) * circumference2) ? strokeDashoffset = (circumference2 - (value2 / totalInterviews) * circumference2) : 0
+    circumference2 - (value2 / totalInterviews) * circumference2
+      ? (strokeDashoffset =
+          circumference2 - (value2 / totalInterviews) * circumference2)
+      : 0;
 
     return (
       <div
@@ -163,10 +168,7 @@ const AllRatings = () => {
           >
             Total Interviews: {totalInterviews}
           </div>
-          <div
-            id="passingInterviews"
-            style={{ fontSize: 15, color: "#black" }}
-          >
+          <div id="passingInterviews" style={{ fontSize: 15, color: "#black" }}>
             Passing Interviews: {passing}
           </div>
         </div>

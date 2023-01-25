@@ -5,14 +5,12 @@ import * as AiIcons from "react-icons/ai";
 import styles from "./AllRatings.module.css";
 import { useAppContext } from "./GlobalContext";
 const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
-
-  
   var today = new Date();
-    var dd = String(today.getDate()).padStart(2, "0");
-    var mm = today.getMonth() + 1;
-    var yy = String(today.getFullYear());
-    today = yy + "-" + mm + "-" + dd;
-    
+  var dd = String(today.getDate()).padStart(2, "0");
+  var mm = today.getMonth() + 1;
+  var yy = String(today.getFullYear());
+  today = yy + "-" + mm + "-" + dd;
+
   const { students, setStudents } = useAppContext();
 
   const addCandidate = (newStudent, interviewObj) => {
@@ -20,7 +18,7 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
       .post(`/api/candidate/Candidate`, newStudent)
       .then(function (response) {
         let tempId = response.data[0].id;
-        console.log("response ", response)
+        console.log("response ", response);
         interviewObj = {
           candidates_id: tempId,
           notes_1: null,
@@ -196,6 +194,7 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
             }}
           >
             <input
+              id="first-name"
               className={styles.input}
               placeholder="First name"
               onChange={handleFirstNameChange}
@@ -222,6 +221,7 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
             }}
           >
             <input
+              id="last-name"
               className={styles.input}
               placeholder="Last name"
               onChange={handleLastNameChange}
@@ -248,6 +248,7 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
             }}
           >
             <input
+              id="email"
               className={styles.input}
               placeholder="Email"
               onChange={handleEmailChange}
@@ -295,7 +296,7 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
             <option> MCSP-15 </option>
             <option> MCSP-16 </option>
             <option> MCSP-17 </option>
-            <option> MCSP-18 </option>
+            <option id="mscp"> MCSP-18 </option>
           </select>
         </div>
         <div

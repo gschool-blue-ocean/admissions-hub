@@ -3,8 +3,7 @@ import * as BsIcons from "react-icons/bs";
 import * as BiIcons from "react-icons/bi";
 import * as AiIcons from "react-icons/ai";
 import * as TiIcons from "react-icons/ti";
-import Downloader from "./email/Downloadcsv"
-
+import Downloader from "./email/Downloadcsv";
 
 import NewStudent from "./NewStudent";
 import Link from "next/link";
@@ -16,14 +15,23 @@ import ViewProblems from "./viewProblems";
 import axios, { AxiosError } from "axios";
 
 const StudentInfo = () => {
-  const { info, setInfo, setUserRole, setStudents, students, user, interview, setInterview } = useAppContext();
+  const {
+    info,
+    setInfo,
+    setUserRole,
+    setStudents,
+    students,
+    user,
+    interview,
+    setInterview,
+  } = useAppContext();
 
-  const [csv, setCsv] = useState({})
-  const [showExports, setShowExports] = useState(false)
+  const [csv, setCsv] = useState({});
+  const [showExports, setShowExports] = useState(false);
   const changeUserRole = (e) => {
-    setUserRole("ADMIN")
-  }
-  let userid
+    setUserRole("ADMIN");
+  };
+  let userid;
 
   const changeUserRoleNew = (e) => {
     var today = new Date();
@@ -32,40 +40,37 @@ const StudentInfo = () => {
     var yy = String(today.getFullYear());
     today = yy + "-" + mm + "-" + dd;
 
-    userid = localStorage.getItem('userId')
+    userid = localStorage.getItem("userId");
 
     let newInterview = {
-      "interviewers_id": userid,
-      "candidates_id": info.id,
-      "notes_1": '',
-      "notes_2": '',
-      "notes_3": '',
-      "problem_1_rating": null,
-      "problem_2_rating": null,
-      "problem_3_rating": null,
-      "date": today,
+      interviewers_id: userid,
+      candidates_id: info.id,
+      notes_1: "",
+      notes_2: "",
+      notes_3: "",
+      problem_1_rating: null,
+      problem_2_rating: null,
+      problem_3_rating: null,
+      date: today,
 
-      "pass": 'false',
-      "code": '//Type code here',
-      "complete": false
-    }
+      pass: "false",
+      code: "//Type code here",
+      complete: false,
+    };
 
-
-    axios.post('/api/interviews/Interviews', newInterview)
+    axios
+      .post("/api/interviews/Interviews", newInterview)
       .then((returnedInfo) => {
         // console.log('returned info',returnedInfo)
-
       })
-      .catch(error => console.log(error.response))
+      .catch((error) => console.log(error.response));
     setUserRole("ADMIN");
   };
-  useEffect(()=>{
-
-  }, [user])
+  useEffect(() => {}, [user]);
 
   // useEffect(() => {
   //   setInfo("");
-    
+
   //   //userid = user.id
   // }, []);
 
@@ -75,24 +80,25 @@ const StudentInfo = () => {
 
   const [seeNotes, setSeeNotes] = useState(false);
 
-
   const updateInfo = (candidateInfo) => {
+    axios
+      .get("/api/candidate/Candidate")
+      .then((data) => {
+        // console.log('data in info', candidateInfo)
+        console.log("candidate info", candidateInfo);
+        setInterview(data.data.find((el) => el.id === candidateInfo));
+      })
+      .catch(console.log);
 
-    axios.get('/api/candidate/Candidate').then(data => {
-      // console.log('data in info', candidateInfo)
-      console.log('candidate info', candidateInfo)
-      setInterview(data.data.find(el => el.id === candidateInfo))
-    }).catch(console.log)
-    
-  
     setInfo({
       ...info,
-      complete:false
-    })
-    axios.patch('/api/interviews/Interviews',{id:info.id,complete:false})
-    .then(console.log)
-    .catch(console.log)
-  }
+      complete: false,
+    });
+    axios
+      .patch("/api/interviews/Interviews", { id: info.id, complete: false })
+      .then(console.log)
+      .catch(console.log);
+  };
   const handleChange = (event) => {
     setSearch(event.target.value);
   };
@@ -270,16 +276,17 @@ const StudentInfo = () => {
             }}
           >
             {info.length !== 0 && info.complete ? (
-              <Link href={{ pathname: "/interview", query: { id: interview.id } }}>
+              <Link
+                href={{ pathname: "/interview", query: { id: interview.id } }}
+              >
                 <button
                   className={styles.bob}
                   onClick={(e) => {
                     // console.log('complete?', typeof info)
                     // changeUserRoleNew()
-                    changeUserRole(e)
-                     updateInfo()
-                    }
-                  }
+                    changeUserRole(e);
+                    updateInfo();
+                  }}
                   style={{
                     color: "white",
                     border: "none",
@@ -293,7 +300,9 @@ const StudentInfo = () => {
                 </button>
               </Link>
             ) : info.length !== 0 && !info.complete && interview ? (
-              <Link href={{ pathname: "/interview", query: { id: interview.id } }}>
+              <Link
+                href={{ pathname: "/interview", query: { id: interview.id } }}
+              >
                 {/* When Resume Interview is clicked, needs to check if interview is undefined,
                     If interview === undefined, do nothing
                     Else, Go to the link
@@ -305,8 +314,8 @@ const StudentInfo = () => {
                 <button
                   className={styles.bob}
                   onClick={(e) => {
-                    changeUserRole(e)
-                    updateInfo()
+                    changeUserRole(e);
+                    updateInfo();
                   }}
                   style={{
                     color: "white",
@@ -320,24 +329,22 @@ const StudentInfo = () => {
                   <a style={{ color: "white" }}>Resume Interview</a>
                 </button>
               </Link>
-            ) :
-              (
-                <button
-                  style={{
-                    color: "#979797",
-                    backgroundColor: "#FFE8D3",
-                    border: "none",
-                    height: 40,
-                    width: 150,
-                    fontFamily: "League Spartan",
-                    fontSize: 16,
-                  }}
-                  disabled
-                >
-                  Launch Interview
-                </button>
-              )
-            }
+            ) : (
+              <button
+                style={{
+                  color: "#979797",
+                  backgroundColor: "#FFE8D3",
+                  border: "none",
+                  height: 40,
+                  width: 150,
+                  fontFamily: "League Spartan",
+                  fontSize: 16,
+                }}
+                disabled
+              >
+                Launch Interview
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -402,8 +409,7 @@ const StudentInfo = () => {
             backgroundColor: "white",
           }}
         >
-          {students.map((student) =>
-          {
+          {students.map((student) => {
             // console.log('interviewer id', user ? user.id : 'no user', 'students interviewer', student.interviewers_id)
             //console.log(user)
             const months = [
@@ -455,13 +461,18 @@ const StudentInfo = () => {
                       setInfo("");
                     } else {
                       // console.log('student' , student)
-                      
+
                       setInfo(student);
-                      axios.get('/api/candidate/Candidate').then(data => {
-                        // console.log('data in info', candidateInfo)
-                        console.log('candidate info', student.id)
-                        setInterview(data.data.find(el => el.id === student.id))
-                      }).catch(console.log)
+                      axios
+                        .get("/api/candidate/Candidate")
+                        .then((data) => {
+                          // console.log('data in info', candidateInfo)
+                          console.log("candidate info", student.id);
+                          setInterview(
+                            data.data.find((el) => el.id === student.id)
+                          );
+                        })
+                        .catch(console.log);
                       // updateInfo(student.id);
                     }
                   }}
@@ -523,7 +534,10 @@ const StudentInfo = () => {
               style={{ paddingRight: 10 }}
             >
               <TiIcons.TiUserAddOutline size={22} color="#EF6E47" />
-              <span style={{ paddingLeft: 5, color: "#979797" }}>
+              <span
+                id="add-student"
+                style={{ paddingLeft: 5, color: "#979797" }}
+              >
                 add student
               </span>
             </div>
@@ -571,7 +585,7 @@ const StudentInfo = () => {
               onClick={() => {
                 ////"Borrowed Code"/////
                 let csv;
-                
+
                 // Loop the array of objects
                 for (let row = 0; row < students.length; row++) {
                   let keysAmount = Object.keys(students[row]).length;
@@ -597,9 +611,9 @@ const StudentInfo = () => {
                   }
 
                   keysCounter = 0;
-                  setCsv(csv)
+                  setCsv(csv);
                 }
-                setShowExports(true)
+                setShowExports(true);
 
                 // Once we are done looping, download the .csv by creating a link
                 // let link = document.createElement("a");
@@ -617,7 +631,12 @@ const StudentInfo = () => {
             >
               export/email student info
             </button>
-            < Downloader students={students} showExport={showExports} setExport={setShowExports} csv= {csv}/> 
+            <Downloader
+              students={students}
+              showExport={showExports}
+              setExport={setShowExports}
+              csv={csv}
+            />
           </div>
         </div>
       </div>
