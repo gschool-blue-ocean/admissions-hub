@@ -44,11 +44,6 @@ export default function AdminLogin() {
           const accessToken = sessionStorage.getItem("accessToken");
           console.log(accessToken)
           router.push('/dashboard')
-        //   const headers = {
-        //     'Content-Type': 'application/json',
-        //     'Authorization': `Bearer ${accessToken}`
-        // };
-        // axios.get('/dashboard', { headers });
         }, 200)
         return response.data;
       }
