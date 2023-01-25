@@ -16,7 +16,7 @@ const SocketHandler = (req, res) => {
       });
       //keeps messages synced between conntected clients
       socket.on('input-change', (msg, id) => {
-        socket.broadcast.to(id).emit('update-input', msg);
+        socket.to(id).emit('update-input', msg);
       });
     });
   }

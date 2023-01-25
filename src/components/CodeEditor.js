@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import Editor from '@monaco-editor/react';
 import io from 'socket.io-client';
-import axios from 'axios';
 import { useState } from 'react';
 import styles from 'src/components/CodeEditor.module.css';
 import { useAppContext } from './GlobalContext';
@@ -14,6 +13,7 @@ export default function CodeEditor({ sessionId, candidateInfo }) {
   const { info, interview } = useAppContext();
 
   const onChangeHandler = (content) => {
+    // setInput(content);
     socket.emit('input-change', content, sessionId);
   };
 
@@ -23,25 +23,22 @@ export default function CodeEditor({ sessionId, candidateInfo }) {
 
   //evaluates input from code editor, sends to backend for processing, and sets return in codeReturn state
   function handleRun() {
-    let logs = [];
+    let outputs = [];
     try {
-      logs = new Function(editCode(input))();
+      outputs = new Function(editCode(input))();
     } catch (err) {
-      logs = [err + ''];
+      outputs = [err + ''];
     }
-    setCodeReturn(logs);
+    setCodeReturn(outputs);
   }
 
-  // Here is a function that alters the input code by changing all console logs and handles infinite loops.
+  // Here is a function that alters the input code by changing all console logs and handles infinite loops by inserting a check variable.
   function editCode(str) {
-    // change console logs, and init breaker variable for checking loops
     let output = `let breaker = 0; logs=[];` + str.replace(/console.log/g, 'logs.push');
-    //place check statement into while loops
     output = output.replace(
       /while.*({)/g,
       `$& if (breaker > 10000) {logs.push('infinite loop error');return logs;}breaker++;`
     );
-    //place check statement into for loops
     output = output.replace(
       /for.*({)/g,
       `$& if (breaker > 10000) {logs.push('Error: 10,000 loops reached');return logs;}breaker++;`
@@ -53,10 +50,9 @@ export default function CodeEditor({ sessionId, candidateInfo }) {
   const socketInitializer = async () => {
     await fetch('/api/socket');
     socket = io();
-
     socket.emit('join-room', sessionId);
-
     socket.on('update-input', (msg) => {
+      console.log('received code update');
       setInput(msg);
     });
   };
@@ -74,7 +70,6 @@ export default function CodeEditor({ sessionId, candidateInfo }) {
       <Editor
         height="650px"
         defaultLanguage="javascript"
-        defaultValue={info.code}
         theme="vs-dark"
         value={input}
         onChange={(data) => onChangeHandler(data)}
