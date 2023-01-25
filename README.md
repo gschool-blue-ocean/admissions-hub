@@ -7,9 +7,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 First, run the development server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -39,7 +38,29 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 -User/Candidate can see/change anyones code by typing interview id into the url
 -BUG: When a new student is created, Button says 'Resume Interview' vs 'Launch Interview'
--Create the profile page 
+-Create the profile page
 -Allow for more instructors to be added
 -Set up the user name at the top right to be dynamic
 -Move all the styling to css docs
+
+## Client Requests:
+
+App is used for everything admissions why
+
+Cleaning up, and general bug fixes
+
+Priorities:
+
+- Glitches and Errors
+- Different Test Framework
+- New Features
+  -'CSSing'
+
+Specific issues: live coding aspect glitches out sometimes, can be delayed
+Resume Interview / Launch new interview issues
+
+Would like to move away from cypress, use a different testing framework
+
+Forgot password functionality
+Profile Page
+New Instructor Page

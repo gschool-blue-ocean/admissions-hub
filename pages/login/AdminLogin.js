@@ -1,36 +1,48 @@
-import { useRouter } from "next/router";
-import { useState } from "react";
-import { useAppContext } from "../../src/components/GlobalContext";
-import axios from "axios";
-import { Form, Button, Card } from "react-bootstrap";
-import styles from "./LoginPageStyle.module.css";
+import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
+import { useAppContext } from '../../src/components/GlobalContext';
+import axios from 'axios';
+import { Form, Button, Card } from 'react-bootstrap';
+import styles from './LoginPageStyle.module.css';
 
 export default function AdminLogin() {
   const router = useRouter();
-
   const { setShowWarning, setUser } = useAppContext();
-
   const [loginForm, setLoginForm] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
-
   const { email, password } = loginForm;
+
+  //if local storage has accessToken, redirect to dashboard
+  useEffect(() => {
+    if (localStorage.getItem('accessToken')) {
+      setUser(localStorage.getItem('userId'));
+    }
+  }, []);
+
   const onChangeLoginForm = (event) =>
     setLoginForm(
-      //se computed property to update properties in state loginForm
+      //update properties in state loginForm
       { ...loginForm, [event.target.name]: event.target.value }
-      //console log to see if it works
     );
+
   const loginAdmin = async (loginForm) => {
     try {
-      const response = await axios.post("/api/admin", loginForm);
-
+      const response = await axios.post('/api/admin', loginForm);
       if (response.data.connect) {
         setUser(response.data);
+        //save accessToken to local storage
+        localStorage.setItem('accessToken', response.data.accessToken);
+         //if login is successful, redirect to home page dashboard
+         //router.push('/dashboard')
+        setTimeout(() => {
+          console.log("connection test")
+          let accessToken = localStorage.getItem("accessToken");
+          console.log(accessToken)
+          router.push('/dashboard?access=', accessToken)
+        }, 200)
         return response.data;
-      } else {
-        return "Wrong username or password";
       }
     } catch (error) {
       throw error;
@@ -44,14 +56,11 @@ export default function AdminLogin() {
       const loginData = await loginAdmin(loginForm);
       // console.log("login data ", loginData.accessToken);
       //save accessToken to local storage
-      localStorage.setItem("accessToken", loginData.accessToken);
-
+      localStorage.setItem('accessToken', loginData.accessToken);
+      localStorage.setItem('firstName', loginData.first_name);
+      localStorage.setItem('lastName', loginData.last_name);
       //if login is successful, redirect to home page dashboard
-      if (loginData.connect) {
-        router.push("/dashboard");
-        //add accessToken to url
-        router.push(`/dashboard?access=${loginData.accessToken}`);
-      } else {
+      if (!loginData.connect) {
         setShowWarning(true);
         setTimeout(() => {
           setShowWarning(false);
@@ -66,8 +75,8 @@ export default function AdminLogin() {
     <>
       <Card
         style={{
-          width: "35%",
-          backgroundColor: "#f0f0f0",
+          width: '35%',
+          backgroundColor: '#f0f0f0',
           width: 600,
           height: 230,
           paddingTop: 25,
@@ -84,7 +93,7 @@ export default function AdminLogin() {
                     placeholder="Email"
                     name="email"
                     style={{
-                      backgroundColor: "#D9D9D9",
+                      backgroundColor: '#D9D9D9',
                     }}
                     value={email}
                     onChange={onChangeLoginForm}
@@ -97,7 +106,7 @@ export default function AdminLogin() {
                     placeholder="Password"
                     name="password"
                     style={{
-                      backgroundColor: "#D9D9D9",
+                      backgroundColor: '#D9D9D9',
                     }}
                     value={password}
                     onChange={onChangeLoginForm}
@@ -108,7 +117,7 @@ export default function AdminLogin() {
                   variant="primary"
                   type="submit"
                   style={{
-                    backgroundColor: "#EF6E47",
+                    backgroundColor: '#EF6E47',
                     width: 116,
                   }}
                 >
@@ -122,7 +131,6 @@ export default function AdminLogin() {
             <img
               src="https://cdn.discordapp.com/attachments/1011712154480680960/1025120519961444472/unknown.png"
               className="img-fluid"
-              alt
             />
           </div>
         </div>
