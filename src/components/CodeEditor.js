@@ -25,7 +25,7 @@ export default function CodeEditor({ sessionId, candidateInfo }) {
   function handleRun() {
     let logs = [];
     try {
-      logs = new Function(editCode(req.body.code))();
+      logs = new Function(editCode(input))();
     } catch (err) {
       logs = [err + ''];
     }
