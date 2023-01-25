@@ -4,6 +4,7 @@ import { useAppContext } from '../../src/components/GlobalContext';
 import axios from 'axios';
 import { Form, Button, Card } from 'react-bootstrap';
 import styles from './LoginPageStyle.module.css';
+import { auto } from '@popperjs/core';
 
 export default function AdminLogin() {
   const router = useRouter();
@@ -114,33 +115,34 @@ export default function AdminLogin() {
                 </Form.Group>
                 <div
                   style={{
-                    // display: 'flex',
-                 
-                    // width: 'auto', 
+                    height: 50,
+                    width: 'auto',
+                   display: 'block',
+
                   }}>
                 <Button
                   variant="primary"
                   type="submit"
                   style={{
                     backgroundColor: '#EF6E47',
-                    // alignItems: 'flex-start',
+                    float: 'left',
                     height: 50,
-                    width: 116,
-                    padding: 10,
+                    width: 115,
                   }}
                 >
-                  forgot password
+                  login
                 </Button>
                 <Button
                   variant="primary"
                   type="submit"
                   style={{
                     backgroundColor: '#EF6E47',
-                    width: 116,
-                    padding: 10,
+                    float: 'right',
+                    height: 50,
+                    width: 115,
                   }}
                 >
-                  login
+                  forgot password
                 </Button>
                 </div>
 
