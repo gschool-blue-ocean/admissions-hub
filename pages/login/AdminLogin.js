@@ -4,10 +4,6 @@ import { useAppContext } from '../../src/components/GlobalContext';
 import axios from 'axios';
 import { Form, Button, Card } from 'react-bootstrap';
 import styles from './LoginPageStyle.module.css';
-<<<<<<< HEAD
-import { left } from '@popperjs/core';
-=======
->>>>>>> main
 
 export default function AdminLogin() {
   const router = useRouter();
@@ -61,11 +57,8 @@ export default function AdminLogin() {
       // console.log("login data ", loginData.accessToken);
       //save accessToken to local storage
       localStorage.setItem('accessToken', loginData.accessToken);
-<<<<<<< HEAD
-=======
       localStorage.setItem('firstName', loginData.first_name);
       localStorage.setItem('lastName', loginData.last_name);
->>>>>>> main
       //if login is successful, redirect to home page dashboard
       if (!loginData.connect) {
         setShowWarning(true);
@@ -143,13 +136,6 @@ export default function AdminLogin() {
                   type="submit"
                   style={{
                     backgroundColor: '#EF6E47',
-<<<<<<< HEAD
-                    // display: 'flex',
-                    // float: 'left',
-                    // justifyContent: 'flex-end',
-                    height: 50,
-=======
->>>>>>> main
                     width: 116,
                     padding: 10,
                   }}
