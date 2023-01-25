@@ -1,10 +1,10 @@
 //set up a nodeVM sandbox
-const { NodeVM } = require("vm2");
+const { NodeVM } = require('vm2');
 const vm = new NodeVM({
   eval: true,
   require: {
     external: true,
-    root: "./",
+    root: './',
   },
 });
 
@@ -13,16 +13,15 @@ export default function handler(req, res) {
   let logs = [];
   // console.log(req.body.code);
   //overwrite console.log behavior to output to custom stdout
-  console.log = function (d) {
-    logs.push(JSON.stringify(d))
+  console.log = function (data) {
+    logs.push(JSON.stringify(data));
   };
   //run code supplied by req
   try {
     vm.run(req.body.code);
   } catch (err) {
-   console.log('error')
+    console.log('error');
   }
-  
 
   res.send(logs);
 }
