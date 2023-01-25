@@ -42,7 +42,11 @@ export default function Login() {
       </div>
       <MDBFooter bgColor="light" className="text-center text-lg-start text-muted">
         <div class="fixed-bottom text-center p-4" style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
+<<<<<<< HEAD
           © 2023 Copyright: Team 3
+=======
+          © 2023 Copyright: Team Exterminators
+>>>>>>> main
         </div>
       </MDBFooter>
     </>
