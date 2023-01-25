@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import router from 'next/router';
 import AdminLogin from './AdminLogin';
 import { useAppContext } from '../../src/components/GlobalContext';
 import { MDBFooter } from 'mdb-react-ui-kit';
@@ -8,16 +7,6 @@ import HeaderLogin from '../../src/components/HeaderLogin';
 
 export default function Login() {
   const { showWarning, user, setUser } = useAppContext();
-  //if local storage has accessToken, redirect to dashboard
-
-  useEffect(() => {
-    if (localStorage.getItem('accessToken')) {
-      setUser(localStorage.getItem('userId'));
-
-      // console.log('test')
-      router.push('/dashboard');
-    }
-  }, []);
 
   return (
     <>
@@ -41,12 +30,8 @@ export default function Login() {
         <AdminLogin />
       </div>
       <MDBFooter bgColor="light" className="text-center text-lg-start text-muted">
-        <div class="fixed-bottom text-center p-4" style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
-<<<<<<< HEAD
           © 2023 Copyright: Team 3
-=======
-          © 2023 Copyright: Team Exterminators
->>>>>>> main
+        <div className="fixed-bottom text-center p-4" style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
         </div>
       </MDBFooter>
     </>

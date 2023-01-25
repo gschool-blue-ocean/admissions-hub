@@ -97,7 +97,7 @@ const Ratings = ({
       setProblem3Rating(rating3);
     }, [totalRating]);
   }
-  const strokeDashoffset = circumference - (totalRating / 12) * circumference;
+  const strokeDashoffset = 0 || circumference - (totalRating / 12) * circumference;
 
   ///////////CIRCLE///////////////
 
