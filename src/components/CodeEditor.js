@@ -11,10 +11,10 @@ let socket;
 export default function CodeEditor({ sessionId, candidateInfo }) {
   const [codeReturn, setCodeReturn] = useState([]);
   const [input, setInput] = useState('');
-  const { info, setInterview, interview } = useAppContext();
+  const { info, interview } = useAppContext();
 
   const onChangeHandler = (content) => {
-    setInput(content);
+    // setInput(content);
     socket.emit('input-change', content, sessionId);
   };
 
@@ -23,12 +23,12 @@ export default function CodeEditor({ sessionId, candidateInfo }) {
     socketInitializer();
   }, []);
 
-  useEffect(() => {
-    console.log('interview changed', interview ? interview.code : 'no interview code');
-  }, [interview]);
+  // useEffect(() => {
+  //   console.log('interview changed', interview ? interview.code : 'no interview code');
+  // }, [interview]);
 
   //evaluates input from code editor, sends to backend for processing, and sets return in codeReturn state
-  const handleRun = async (input) => {
+  const handleRun = async () => {
     const data = await axios.post('/api/codeEval', {
       code: input,
     });
@@ -42,9 +42,7 @@ export default function CodeEditor({ sessionId, candidateInfo }) {
     socket = io();
 
     socket.emit('join-room', sessionId);
-    socket.on('connect', () => {
-      console.log(`connected with user ${sessionId}`);
-    });
+
     socket.on('update-input', (msg) => {
       setInput(msg);
     });
@@ -66,12 +64,12 @@ export default function CodeEditor({ sessionId, candidateInfo }) {
         defaultLanguage="javascript"
         defaultValue={info.code}
         theme="vs-dark"
-        value={input ? input : interview ? interview.code : '//No Code'}
+        value={input}
         onChange={(data) => onChangeHandler(data)}
         className={styles.editor}
       />
       <button
-        onClick={() => handleRun(input)}
+        onClick={handleRun}
         style={{
           width: 100,
           margin: '-34px 10px 0px',
