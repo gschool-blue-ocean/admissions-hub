@@ -8,23 +8,26 @@ const InterviewerReport = () => {
 
   const [userId, setUserId] = useState("");
   useEffect(() => {
-    if (!user)return;
+    if (!user) return;
     if (user.id) {
-      console.log('user id interview report', user.id)
+      console.log("user id interview report", user.id);
       localStorage.setItem("userId", JSON.stringify(user.id));
 
       setUserId(user.id);
     } else {
       if (typeof window !== "undefined") {
-        if (localStorage.getItem('userId') === 'undefined' || !localStorage.getItem('userId')) {
+        if (
+          localStorage.getItem("userId") === "undefined" ||
+          !localStorage.getItem("userId")
+        ) {
           //log out
-          localStorage.removeItem('accessToken')
+          localStorage.removeItem("accessToken");
           return;
-        }   
+        }
         let temp = JSON.parse(localStorage.getItem("userId"));
         setUserId(temp);
+      }
     }
-  }
     axios
       .get(`/api/interviews/Interviews`)
       .then(function (response) {
@@ -52,7 +55,7 @@ const InterviewerReport = () => {
         color: "#979797",
       }}
     >
-      <span style={{ fontSize: 15, marginLeft: "10px" }}>
+      <span id="message" style={{ fontSize: 15, marginLeft: "10px" }}>
         Danny Andrew's Interview Report
       </span>
       <div
