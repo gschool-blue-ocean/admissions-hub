@@ -6,13 +6,6 @@ const pageUrl = "http://localhost:3000/login";
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
   await page.goto(pageUrl);
-  await page.screenshot({ path: "loginpage.png" });
-
-  //   const grabTechologies = await page.evaluate(() => {
-  //     const
-  //     const pgTag = document.querySelectorAll(".Header_para2__OCRsC div");
-  //     return pgTag.innerHTML;
-  //   });
-  //   console.log(grabTechologies);
+  await page.screenshot({ path: "logInPage.png" });
   await browser.close();
 })();
