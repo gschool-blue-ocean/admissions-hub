@@ -87,7 +87,7 @@ export default function AdminLogin() {
         <div className="row no-gutters">
           <div className="col-7">
             <Card.Body className={`${styles.loginCardBody} text-center`}>
-              <div onSubmit={handleSubmit}>
+              <div>
                 <div className="mb-3">
                   <input
                     type="text"
@@ -123,6 +123,7 @@ export default function AdminLogin() {
                   <Button
                     variant="primary"
                     type="submit"
+                    onClick={handleSubmit}
                     style={{
                       backgroundColor: '#EF6E47',
                       float: 'left',
@@ -134,7 +135,7 @@ export default function AdminLogin() {
                   </Button>
                   <Button
                     variant="primary"
-                    type="submit"
+                    type="forgot"
                     style={{
                       backgroundColor: '#EF6E47',
                       float: 'right',
