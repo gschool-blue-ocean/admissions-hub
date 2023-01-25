@@ -269,7 +269,7 @@ const StudentInfo = () => {
               paddingRight: 0,
             }}
           >
-            {info.length !== 0 && info.complete ? (
+            {info.length !== 0 && info.complete && interview ? (
               <Link href={{ pathname: "/interview", query: { id: interview.id } }}>
                 <button
                   className={styles.bob}
@@ -292,7 +292,7 @@ const StudentInfo = () => {
                   <a style={{ color: "white" }}>Launch Interview</a>
                 </button>
               </Link>
-            ) : info.length !== 0 && !info.complete && interview ? (
+            ) : info.length !== 0 && !info.complete && info.attempt !== "0" && interview ? (
               <Link href={{ pathname: "/interview", query: { id: interview.id } }}>
                 {/* When Resume Interview is clicked, needs to check if interview is undefined,
                     If interview === undefined, do nothing
@@ -320,23 +320,35 @@ const StudentInfo = () => {
                   <a style={{ color: "white" }}>Resume Interview</a>
                 </button>
               </Link>
-            ) :
-              (
+            ) : info.length !== 0 && !info.complete && info.attempt === "0" && interview ? (
+              <Link href={{ pathname: "/interview", query: { id: interview.id } }}>
+                {/* When Resume Interview is clicked, needs to check if interview is undefined,
+                    If interview === undefined, do nothing
+                    Else, Go to the link
+
+                    Options to fix this: 
+                    1. When a student is clicked, it will pull up latest interview
+                    2. 
+                */}
                 <button
+                  className={styles.bob}
+                  onClick={(e) => {
+                    changeUserRole(e)
+                    updateInfo()
+                  }}
                   style={{
-                    color: "#979797",
-                    backgroundColor: "#FFE8D3",
+                    color: "white",
                     border: "none",
                     height: 40,
                     width: 150,
                     fontFamily: "League Spartan",
                     fontSize: 16,
                   }}
-                  disabled
                 >
-                  Launch Interview
+                  <a style={{ color: "white" }}>New Interview</a>
                 </button>
-              )
+              </Link>
+            ) : ( console.log("error") )
             }
           </div>
         </div>
