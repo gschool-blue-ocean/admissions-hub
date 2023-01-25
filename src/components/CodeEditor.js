@@ -1,20 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Editor from '@monaco-editor/react';
 import io from 'socket.io-client';
-import { useState } from 'react';
 import styles from 'src/components/CodeEditor.module.css';
-import { useAppContext } from './GlobalContext';
 
 let socket;
 
 export default function CodeEditor({ sessionId, candidateInfo }) {
   const [codeReturn, setCodeReturn] = useState([]);
   const [input, setInput] = useState('');
-  const { info, interview } = useAppContext();
+  const [room, setRoom] = useState(sessionId);
 
   const onChangeHandler = (content) => {
     // setInput(content);
-    socket.emit('input-change', content, sessionId);
+    socket.emit('input-change', content, room);
   };
 
   useEffect(() => {
@@ -50,12 +48,20 @@ export default function CodeEditor({ sessionId, candidateInfo }) {
   const socketInitializer = async () => {
     await fetch('/api/socket');
     socket = io();
-    socket.emit('join-room', sessionId);
+
+    socket.on('connect', () => {
+      console.log('connected to socket');
+    });
+
     socket.on('update-input', (msg) => {
-      console.log('received code update');
       setInput(msg);
     });
+    socket.emit('join', room, (str) => logRoomStatus(str));
   };
+
+  function logRoomStatus(str) {
+    console.log(str);
+  }
 
   return (
     <div
@@ -71,9 +77,9 @@ export default function CodeEditor({ sessionId, candidateInfo }) {
         height="650px"
         defaultLanguage="javascript"
         theme="vs-dark"
-        value={input}
-        onChange={(data) => onChangeHandler(data)}
+        onChange={onChangeHandler}
         className={styles.editor}
+        value={input}
       />
       <button
         onClick={handleRun}
@@ -105,8 +111,8 @@ export default function CodeEditor({ sessionId, candidateInfo }) {
           zIndex: 2,
         }}
       >
-        {codeReturn.map((line) => (
-          <span style={{ color: 'white' }}>{`> ${line}`}</span>
+        {codeReturn.map((line, index) => (
+          <span key={index} style={{ color: 'white' }}>{`> ${line}`}</span>
         ))}
       </code>
     </div>
