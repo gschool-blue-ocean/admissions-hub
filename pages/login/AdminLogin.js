@@ -36,15 +36,17 @@ export default function AdminLogin() {
       if (response.data.connect) {
         setUser(response.data);
         //save accessToken to local storage
-        sessionStorage.setItem('accessToken', response.data.accessToken);
-         //if login is successful, redirect to home page dashboard
-         //router.push('/dashboard')
+
+        localStorage.setItem('accessToken', response.data.accessToken);
+        //if login is successful, redirect to home page dashboard
+        //router.push('/dashboard')
         setTimeout(() => {
-          console.log("connection test")
-          const accessToken = sessionStorage.getItem("accessToken");
-          console.log(accessToken)
-          router.push('/dashboard')
-        }, 200)
+          console.log('connection test');
+          let accessToken = localStorage.getItem('accessToken');
+          console.log(accessToken);
+          router.push('/dashboard);
+        }, 200);
+
         return response.data;
       }
     } catch (error) {
@@ -91,9 +93,9 @@ export default function AdminLogin() {
         <div className="row no-gutters">
           <div className="col-7">
             <Card.Body className={`${styles.loginCardBody} text-center`}>
-              <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Control
+              <div>
+                <div className="mb-3">
+                  <input
                     type="text"
                     placeholder="Email"
                     name="email"
@@ -103,10 +105,10 @@ export default function AdminLogin() {
                     value={email}
                     onChange={onChangeLoginForm}
                   />
-                </Form.Group>
+                </div>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                  <Form.Control
+                <div className="mb-3">
+                  <input
                     type="password"
                     placeholder="Password"
                     name="password"
@@ -116,20 +118,25 @@ export default function AdminLogin() {
                     value={password}
                     onChange={onChangeLoginForm}
                   />
-                </Form.Group>
+                </div>
                 <div
                   style={{
                     height: 50,
+
                     width: "auto",
                     display: "block",
+
                   }}
                 >
                   <Button
                     variant="primary"
                     type="submit"
+
+                    onClick={handleSubmit}
                     style={{
-                      backgroundColor: "#EF6E47",
-                      float: "left",
+                      backgroundColor: '#EF6E47',
+                      float: 'left',
+
                       height: 50,
                       width: 115,
                     }}
@@ -138,10 +145,12 @@ export default function AdminLogin() {
                   </Button>
                   <Button
                     variant="primary"
-                    type="submit"
+
+                    type="forgot"
                     style={{
-                      backgroundColor: "#EF6E47",
-                      float: "right",
+                      backgroundColor: '#EF6E47',
+                      float: 'right',
+
                       height: 50,
                       width: 115,
                     }}
@@ -149,7 +158,9 @@ export default function AdminLogin() {
                     forgot password
                   </Button>
                 </div>
-              </Form>
+
+              </div>
+
             </Card.Body>
           </div>
 

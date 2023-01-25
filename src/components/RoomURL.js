@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import Router, { useRouter } from 'next/router';
-import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import { useAppContext } from './GlobalContext';
-// import connectionStrings from "../../lib/connection";
 
-export default function RoomURL({ URL }) {
+export default function RoomURL() {
   const [clicked, setClicked] = useState(false);
   const { asPath } = useRouter();
   const { info, interview } = useAppContext();
 
+  const baseURL = 'http://localhost:3000';
+
   const handleCopy = () => {
     // let url = process.env.ROOT_URL
-    let url =
-      process.env.NODE_ENV === 'production' ? connectionStrings.rootUrl + asPath : 'http://localhost:3000/' + asPath;
+    let url = process.env.NODE_ENV === 'production' ? connectionStrings.rootUrl + asPath : baseURL + asPath;
     navigator.clipboard.writeText(url);
     setClicked(true);
   };
@@ -30,72 +29,29 @@ export default function RoomURL({ URL }) {
     }
   }, []);
 
-  if (clicked) {
-    return (
-      <>
-        <span
-          style={{ fontSize: 20 }}
-        >{`${studentInfo.first_name} ${studentInfo.last_name}, ${studentInfo.cohort}, Attempt #: ${studentInfo.attempt}`}</span>
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            backgroundColor: '#F0F0F0',
-            borderRadius: 5,
-            fontSize: 12,
-            height: 35,
-            width: 400,
-            justifyContent: 'center',
-          }}
-        >
-          <div>Room URL: {asPath}</div>
-          <button
-            style={{
-              border: 'none',
-              display: 'flex',
-              height: 15,
-              alignItems: 'center',
-              backgroundColor: '#F0F0F0',
-              overflowX: 'scroll',
-            }}
-            onClick={handleCopy}
-          >
-            Copied!
-          </button>
-        </div>
-      </>
-    );
-  }
   return (
-    <div>
+    <>
       <span
         style={{ fontSize: 20 }}
-      >{`${studentInfo.first_name} ${studentInfo.last_name}, ${studentInfo.cohort}, Attempt #: ${studentInfo.attempt}`}</span>
+      >{`${studentInfo.first_name} ${studentInfo.last_name}, ${studentInfo.cohort}, Attempt #${studentInfo.attempt}`}</span>
       <div
+        onClick={handleCopy}
         style={{
           display: 'flex',
-          backgroundColor: '#F0F0F0',
-          color: '#979797',
-          overflowX: 'scroll',
           alignItems: 'center',
+          backgroundColor: '#F0F0F0',
           borderRadius: 5,
           fontSize: 12,
           height: 35,
-          width: 370,
+          width: 400,
           justifyContent: 'center',
+          cursor: 'pointer',
         }}
       >
-        <div>Room URL: {asPath}</div>
-        <button
-          style={{
-            border: 'none',
-            display: 'flex',
-            height: 15,
-            backgroundColor: '#F0F0F0',
-          }}
-          onClick={handleCopy}
-        >
-          <Image
+        {clicked ? (
+          'Copied!'
+        ) : (
+          <img
             src={'/images/copy.svg'}
             alt="/"
             objectFit="contain"
@@ -103,8 +59,22 @@ export default function RoomURL({ URL }) {
             width={15}
             height={15}
           />
-        </button>
+        )}
+        <div style={{ marginInline: '4px' }}>Click here to copy student URL</div>
+
+        {clicked ? (
+          'Copied!'
+        ) : (
+          <img
+            src={'/images/copy.svg'}
+            alt="/"
+            objectFit="contain"
+            objectPosition="bottom center"
+            width={15}
+            height={15}
+          />
+        )}
       </div>
-    </div>
+    </>
   );
 }
