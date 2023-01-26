@@ -9,6 +9,7 @@ function ProfilePage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [currentPassword, setCurrentPassword] = useState("");
+    const [updateSuccess, setUpdateSuccess] = useState(false)
   //////////////////////////////// handle submit and axios put request to update database /////////////////////////////
     const handleSubmit = (event) => {
       event.preventDefault();
@@ -18,6 +19,7 @@ function ProfilePage() {
       axios.put('/api/interviewers/put', user)
         .then(response => {
           console.log(response);
+          setUpdateSuccess(true)
           // handle the successful response here, e.g. show a message to the user
         })
         .catch(error => {
@@ -83,6 +85,7 @@ function ProfilePage() {
             <div className="form_actions">
               <input type="submit" value="Update Account" className="btn btn-primary" />
             </div>
+            {updateSuccess ? <p>Account Updated</p> : null}
           </form>
           <hr />
           <h3>Third Party Services</h3>
