@@ -17,8 +17,8 @@ export default function AdminLogin() {
 
   //if local storage has accessToken, redirect to dashboard
   useEffect(() => {
-    if (sessionStorage.getItem("accessToken")) {
-      setUser(sessionStorage.getItem("userId"));
+    if (localStorage.getItem("accessToken")) {
+      setUser(localStorage.getItem("userId"));
     }
   }, []);
 
@@ -34,7 +34,7 @@ export default function AdminLogin() {
       if (response.data.connect) {
         setUser(response.data);
         //save accessToken to local storage
-        sessionStorage.setItem("accessToken", response.data.accessToken);
+        localStorage.setItem("accessToken", response.data.accessToken);
         //if login is successful, redirect to home page dashboard
         //router.push('/dashboard')
         setTimeout(() => {
@@ -63,9 +63,9 @@ export default function AdminLogin() {
       const loginData = await loginAdmin(loginForm);
       //console.log("login data ", loginData.accessToken);
       //save accessToken to local storage
-      sessionStorage.setItem("accessToken", loginData.accessToken);
-      sessionStorage.setItem("firstName", loginData.first_name);
-      sessionStorage.setItem("lastName", loginData.last_name);
+      localStorage.setItem("accessToken", loginData.accessToken);
+      localStorage.setItem("firstName", loginData.first_name);
+      localStorage.setItem("lastName", loginData.last_name);
       //if login is successful, redirect to home page dashboard
       if (!loginData.connect) {
         setShowWarning(true);
