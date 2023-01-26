@@ -41,7 +41,7 @@ export default function AdminLogin() {
           console.log('connection test');
           let accessToken = localStorage.getItem('accessToken');
           console.log(accessToken);
-          router.push('/dashboard?access=', accessToken);
+          router.push('/dashboard');
         }, 200);
         return response.data;
       }
