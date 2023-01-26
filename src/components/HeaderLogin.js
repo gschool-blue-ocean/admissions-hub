@@ -1,9 +1,17 @@
 import styles from "./Header.module.css";
 import { useRouter } from "next/router";
+import React, { useState } from 'react';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+
+
 
 function HeaderLogin() {
   let currentPage = "";
   let { asPath } = useRouter();
+  const [value, onChange] = useState(new Date());
+  const [isCalendarExpanded, setIsCalendarExpanded] = useState(false);
+
 
   const monthNames = [
     "January",
@@ -26,8 +34,6 @@ function HeaderLogin() {
   var yyyy = today.getFullYear();
   today = mm + ", " + dd + " " + yyyy;
 
-  const router = useRouter();
-
   return (
     <>
       <div className={styles.header}>
@@ -48,8 +54,13 @@ function HeaderLogin() {
             <div className={styles.innerLoginPara}>{currentPage}</div>
           )}
         </div>
-        <div className={styles.para2}>{today}</div>
+      
+        <div className={styles.para2} onClick={() => setIsCalendarExpanded(!isCalendarExpanded)}>{today}</div>
+
+        {isCalendarExpanded && <Calendar onChange={onChange} value={value}/>}
+
       </div>
+      
     </>
   );
 }
