@@ -95,6 +95,8 @@ export default function AdminLogin() {
                     name="email"
                     style={{
                       backgroundColor: '#D9D9D9',
+                      display: 'block',
+                      width: '100%',
                     }}
                     value={email}
                     onChange={onChangeLoginForm}
@@ -108,6 +110,8 @@ export default function AdminLogin() {
                     name="password"
                     style={{
                       backgroundColor: '#D9D9D9',
+                      display: 'block',
+                      width: '100%',
                     }}
                     value={password}
                     onChange={onChangeLoginForm}
