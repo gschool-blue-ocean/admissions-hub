@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import styles from "./Header.module.css";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { useRouter } from "next/router";
+import { useRouter} from "next/router";
 import BtnLogin from "./BtnLogin";
 import { useAppContext } from "./GlobalContext";
 
@@ -12,11 +12,14 @@ function Header() {
   //get current access token from local storage
   const [userRole, setUserRole] = useState("");
 
+function toProfile () {
+  router.push('/profile', '/my-profile')
+}
   useEffect(() => {
     let accessToken = localStorage.getItem("accessToken");
     if (!user) return;
     if (user.role) {
-      console.log("user role in header", user.role);
+      //console.log("user role in header", user.role);
       localStorage.setItem("userRole", JSON.stringify(user.role));
       setUserRole(user.role);
       // userInfo = JSON.parse(JSON.stringify(user));
@@ -44,6 +47,9 @@ function Header() {
         break;
       case `/dashboard?access=${accessToken}`:
         currentPage = "Interview Dashboard";
+        break;
+      case '/my-profile':
+        setUserRole(null)
         break;
     }
   }, []);
@@ -101,10 +107,12 @@ function Header() {
           <div className={styles.dropdownmenu}>
             <NavDropdown
               id="nav-dropdown-dark-example"
-              title={`Welcome, ${localStorage.firstName}`}
+              title={`Welcome, ${localStorage.getItem('firstName')}`}
               menuVariant="light"
             >
-              <NavDropdown.Item> View Profile </NavDropdown.Item>
+            <NavDropdown.Item onClick={toProfile}> 
+                  View Profile 
+                  </NavDropdown.Item>
               <NavDropdown.Item>
                 <BtnLogin />
               </NavDropdown.Item>

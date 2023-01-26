@@ -50,7 +50,7 @@ export default function CodeEditor({ sessionId, candidateInfo }) {
     socket = io();
 
     socket.on('connect', () => {
-      console.log('connected to socket');
+      //console.log('connected to socket');
     });
 
     socket.on('update-input', (msg) => {
@@ -60,7 +60,7 @@ export default function CodeEditor({ sessionId, candidateInfo }) {
   };
 
   function logRoomStatus(str) {
-    console.log(str);
+    //console.log(str);
   }
 
   return (

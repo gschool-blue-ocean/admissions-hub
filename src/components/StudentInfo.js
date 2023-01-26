@@ -77,16 +77,20 @@ const StudentInfo = () => {
       .get('/api/candidate/Candidate')
       .then((data) => {
         // console.log('data in info', candidateInfo)
-        console.log('candidate info', candidateInfo);
+        //console.log('candidate info', candidateInfo);
         setInterview(data.data.find((el) => el.id === candidateInfo));
       })
-      .catch(console.log);
+      .catch((error) => console.log(error.response));
 
     setInfo({
       ...info,
       complete: false,
     });
-    axios.patch('/api/interviews/Interviews', { id: info.id, complete: false }).then(console.log).catch(console.log);
+    axios.patch('/api/interviews/Interviews', { id: info.id, complete: false })
+      .then(
+        //console.log
+        )
+      .catch((error) => console.log(error.response));
   };
   const handleChange = (event) => {
     setSearch(event.target.value);
@@ -103,7 +107,7 @@ const StudentInfo = () => {
     axios
       .delete(`/api/candidate/${info.email}`, info.email)
       .then(function (response) {
-        console.log(response);
+        //console.log(response);
       })
       .catch(function (error) {
         console.log(error);
@@ -337,7 +341,7 @@ const StudentInfo = () => {
                   <a style={{ color: "white" }}>New Interview</a>
                 </button>
               </Link>
-            ) : ( console.log("error") )
+            ) : null
             }
           </div>
         </div>
@@ -448,10 +452,10 @@ const StudentInfo = () => {
                         .get('/api/candidate/Candidate')
                         .then((data) => {
                           // console.log('data in info', candidateInfo)
-                          console.log('candidate info', student.id);
+                          //console.log('candidate info', student.id);
                           setInterview(data.data.find((el) => el.id === student.id));
                         })
-                        .catch(console.log);
+                        .catch((error) => console.log(error.response));
                       // updateInfo(student.id);
                     }
                   }}

@@ -38,10 +38,10 @@ export default function AdminLogin() {
         //if login is successful, redirect to home page dashboard
         //router.push('/dashboard')
         setTimeout(() => {
-          console.log('connection test');
+          //console.log('connection test');
           let accessToken = localStorage.getItem('accessToken');
-          console.log(accessToken);
-          router.push('/dashboard?access=', accessToken);
+          //console.log(accessToken);
+          router.push('/dashboard');
         }, 200);
         return response.data;
       }

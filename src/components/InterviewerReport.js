@@ -10,7 +10,7 @@ const InterviewerReport = () => {
   useEffect(() => {
     if (!user)return;
     if (user.id) {
-      console.log('user id interview report', user.id)
+      //console.log('user id interview report', user.id)
       localStorage.setItem("userId", JSON.stringify(user.id));
 
       setUserId(user.id);
