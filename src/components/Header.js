@@ -10,21 +10,25 @@ function Header() {
   let currentPage = "";
   let { asPath } = useRouter();
   //get current access token from local storage
-  const [userRole, setUserRole] = useState('');
+  const [userRole, setUserRole] = useState("");
 
   useEffect(() => {
     let accessToken = localStorage.getItem("accessToken");
-    if (!user)return;
+    if (!user) return;
     if (user.role) {
-      console.log('user role in header', user.role)
+      console.log("user role in header", user.role);
       localStorage.setItem("userRole", JSON.stringify(user.role));
       setUserRole(user.role);
       // userInfo = JSON.parse(JSON.stringify(user));
     } else {
       if (typeof window !== "undefined") {
-        if (localStorage.getItem('userRole') !== 'ADMIN' || !localStorage.getItem('userRole') || localStorage.getItem('accessToken') === 'undefined') {
+        if (
+          localStorage.getItem("userRole") !== "ADMIN" ||
+          !localStorage.getItem("userRole") ||
+          localStorage.getItem("accessToken") === "undefined"
+        ) {
           //log out
-          localStorage.removeItem('accessToken')
+          localStorage.removeItem("accessToken");
           return;
         }
         let temp = JSON.parse(localStorage.getItem("userRole"));
