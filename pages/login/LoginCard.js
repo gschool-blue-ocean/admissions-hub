@@ -44,74 +44,48 @@ export default function AdminLogin(props) {
     <div className={styles.logincard}>
       <div className={styles.cardLeft}>
         <div className={styles.cardForm}>
-          <div>
-            <input
-              type="text"
-              placeholder="Email"
-              style={{
-                backgroundColor: '#D9D9D9',
-                display: 'block',
-                width: '100%',
-                borderRadius: '4px'
-              }}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              onKeyDown={handleEnter}
-            />
-            <input
-              type="text"
-              placeholder="Password"
-              style={{
-                backgroundColor: '#D9D9D9',
-                display: 'block',
-                width: '100%',
-                borderRadius: '4px'
-              }}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              onKeyDown={handleEnter}
-            />
-            <div className={styles.buttonRow}>
-              <div
-                className={styles.button}
-                onClick={handleSubmit}
-                style={{
-                  backgroundColor: '#EF6E47',
-                  fontWeight: 'bold',
-                  fontSize: 14,
-                  float: 'left',
-                  height: 40,
-                  width: 100,
-                  paddingLeft: 10,
-                  paddingRight: 10,
-                  paddingTop: 0,
-                  paddingBottom: 0
-                }}
-              >
-                LOGIN
-              </div>
-              <div
-                className={styles.button}
-                style={{
-                  backgroundColor: '#EF6E47',
-                  fontWeight: 'bold',
-                  fontSize: 14,
-                  float: 'right',
-                  height: 40,
-                  width: 100,
-                  paddingLeft: 10,
-                  paddingRight: 10,
-                  paddingTop: 0,
-                  paddingBottom: 0
-                }}
-              >
-                FORGOT PASSWORD
-              </div>
+          <input
+            className={styles.input}
+            type="text"
+            placeholder="Email"
+            style={{
+              backgroundColor: '#D9D9D9',
+              display: 'block',
+              width: '100%',
+              borderRadius: '4px'
+            }}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            onKeyDown={handleEnter}
+          />
+          <input
+            className={styles.input}
+            type="text"
+            placeholder="Password"
+            style={{
+              backgroundColor: '#D9D9D9',
+              display: 'block',
+              width: '100%',
+              borderRadius: '4px'
+            }}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            onKeyDown={handleEnter}
+          />
+          <div className={styles.buttonRow}>
+            <div
+              className={styles.button}
+              onClick={handleSubmit}
+            >
+              <span className={styles.buttonText}>Login!</span>
+            </div>
+            <div className={styles.button}>
+              <span className={styles.buttonText}>Forgot?</span>
             </div>
           </div>
         </div>
       </div>
-
+      <div className={styles.cardDivider}></div>
       <div className={styles.cardRight}>
         <img src="https://cdn.discordapp.com/attachments/1011712154480680960/1025120519961444472/unknown.png" />
       </div>
