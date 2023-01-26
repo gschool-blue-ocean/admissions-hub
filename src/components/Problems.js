@@ -376,7 +376,7 @@ return newStr;
           {showNotes ? (
             <textarea
               rows={20}
-              value={problem1Notes}
+              value={ problem1Notes ? problem1Notes : ""}
               onChange={handleTextInput}
               onBlur={handleFocus2}
               autoFocus
@@ -500,7 +500,7 @@ return newStr;
           {showNotes ? (
             <textarea
               rows={20}
-              value={problem2Notes}
+              value={ problem2Notes ? problem2Notes : ""}
               onChange={handleTextInput2}
               onBlur={handleFocus2}
               autoFocus
@@ -624,7 +624,7 @@ return newStr;
           {showNotes ? (
             <textarea
               rows={20}
-              value={problem3Notes}
+              value={ problem3Notes ? problem3Notes : ""}
               onChange={handleTextInput3}
               onBlur={handleFocus2}
               autoFocus
