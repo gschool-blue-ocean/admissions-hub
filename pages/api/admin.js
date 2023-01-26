@@ -4,23 +4,23 @@ import jwt from 'jsonwebtoken';
 import pool from '../../lib/db';
 
 export default function handler(req, res) {
+  console.log(req.body);
   const { email, password } = req.body;
-
-  console.log(email, password);
   pool
-    .query(`SELECT (phash = crypt($2, phash)) AS valid, first_name, last_name FROM interviewers WHERE email = $1`, [
+    .query(`SELECT (phash = crypt($2, phash)) AS valid, first_name, last_name, id FROM interviewers WHERE email = $1`, [
       email,
       password
     ])
-    .then((result) => {
-      if (result.rows[0].valid) {
+    .then((result) => result.rows[0])
+    .then((data) => {
+      if (data.valid) {
         let token = jwt.sign({ email: email }, 'secret', { expiresIn: '1d' });
         let packet = {
           valid: true,
           token: token,
-          id: result.rows[0].id,
-          first_name: result.rows[0].first_name,
-          last_name: result.rows[0].last_name
+          id: data.id,
+          first_name: data.first_name,
+          last_name: data.last_name
         };
         res.send(packet);
       } else {

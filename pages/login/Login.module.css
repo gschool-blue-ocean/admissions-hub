@@ -1,0 +1,14 @@
+.warning {
+  color: #ef6e47;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.Login {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: center;
+}

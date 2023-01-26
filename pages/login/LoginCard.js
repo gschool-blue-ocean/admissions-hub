@@ -1,78 +1,52 @@
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
-import { useAppContext } from '../../src/components/GlobalContext';
 import axios from 'axios';
-import { Form, Button, Card } from 'react-bootstrap';
-import styles from './LoginPageStyle.module.css';
-import { auto } from '@popperjs/core';
+import { Button, Card } from 'react-bootstrap';
+import styles from './Login.module.css';
 
-export default function AdminLogin() {
+export default function AdminLogin(props) {
   const router = useRouter();
-  const { setShowWarning, setUser } = useAppContext();
-  const { email, setEmail } = useState('');
-  const { password, setPassword } = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [correct, setCorrect] = useState(true);
 
   //if local storage has accessToken, redirect to dashboard
-  useEffect(() => {
-    if (localStorage.getItem('accessToken')) {
-      setUser(localStorage.getItem('userId'));
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (localStorage.getItem('accessToken')) {
+  //     setUser(localStorage.getItem('userId'));
+  //   }
+  // }, []);
 
-  const onChangeLoginForm = (event) =>
-    setLoginForm(
-      //update properties in state loginForm
-      { ...loginForm, [event.target.name]: event.target.value }
-    );
-
-  const loginAdmin = async (loginForm) => {
-    try {
-      const response = await axios.post('/api/admin', loginForm);
-      if (response.data.valid) {
-        setUser(response.data);
-        //save accessToken to local storage
-        localStorage.setItem('token', response.data.token);
-        //if login is successful, redirect to home page dashboard
-        //router.push('/dashboard')
-        setTimeout(() => {
-          //console.log('connection test');
-          let accessToken = localStorage.getItem('accessToken');
-          //console.log(accessToken);
+  function login() {
+    setCorrect(true);
+    axios
+      .post('/api/admin', { email: email, password: password })
+      .then((result) => result.data)
+      .then((data) => {
+        setCorrect(true);
+        if (data.valid) {
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('id', data.id);
+          localStorage.setItem('firstName', data.first_name);
+          localStorage.setItem('lastName', data.last_name);
+          localStorage.setItem('lastName', data.last_name);
           router.push('/dashboard');
-        }, 200);
-        return response.data;
-      }
-    } catch (error) {
-      throw error;
-    }
-  };
+        } else {
+          setCorrect(false);
+        }
+      })
+      .catch((err) => console.log(err));
+  }
 
-  const handleEnter = (event) => {
-    if (event.keyCode == 13) {
+  function handleEnter(e) {
+    if (e.keyCode == 13) {
       handleSubmit();
     }
-  };
+  }
 
-  const handleSubmit = async () => {
-    try {
-      //get data from loginUser, login form is user's input
-      const loginData = await loginAdmin(loginForm);
-      //console.log("login data ", loginData.accessToken);
-      //save accessToken to local storage
-      localStorage.setItem('accessToken', loginData.accessToken);
-      localStorage.setItem('firstName', loginData.first_name);
-      localStorage.setItem('lastName', loginData.last_name);
-      //if login is successful, redirect to home page dashboard
-      if (!loginData.connect) {
-        setShowWarning(true);
-        setTimeout(() => {
-          setShowWarning(false);
-        }, 3000);
-      }
-    } catch (error) {
-      throw error;
-    }
-  };
+  function handleSubmit() {
+    login();
+  }
 
   return (
     <>
@@ -90,6 +64,7 @@ export default function AdminLogin() {
           <div className="col-7">
             <Card.Body className={`${styles.loginCardBody} text-center`}>
               <div>
+                {!correct && <div className={styles.warning}>Wrong username or password</div>}
                 <div className="mb-3">
                   <input
                     type="text"
@@ -99,7 +74,7 @@ export default function AdminLogin() {
                       backgroundColor: '#D9D9D9'
                     }}
                     value={email}
-                    onChange={onChangeLoginForm}
+                    onChange={(e) => setEmail(e.target.value)}
                     onKeyDown={handleEnter}
                   />
                 </div>
@@ -113,7 +88,7 @@ export default function AdminLogin() {
                       backgroundColor: '#D9D9D9'
                     }}
                     value={password}
-                    onChange={onChangeLoginForm}
+                    onChange={(e) => setPassword(e.target.value)}
                     onKeyDown={handleEnter}
                   />
                 </div>

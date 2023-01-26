@@ -1,0 +1,7 @@
+.footer {
+  justify-self: flex-end;
+  width: 100vw;
+  text-align: center;
+  line-height: 40px;
+  height: 40px;
+}
