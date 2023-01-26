@@ -19,7 +19,7 @@ function toProfile () {
     let accessToken = localStorage.getItem("accessToken");
     if (!user) return;
     if (user.role) {
-      console.log("user role in header", user.role);
+      //console.log("user role in header", user.role);
       localStorage.setItem("userRole", JSON.stringify(user.role));
       setUserRole(user.role);
       // userInfo = JSON.parse(JSON.stringify(user));

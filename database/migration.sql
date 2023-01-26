@@ -28,7 +28,7 @@ CREATE TABLE "candidates" (
   "email" TEXT NOT NULL,
   "cohort" TEXT NOT NULL,
   "pass" TEXT,
-  "role" "Role" NOT NULL DEFAULT 'BASIC',
+  "role" TEXT NOT NULL DEFAULT 'BASIC',
   PRIMARY KEY ("id")
 );
 
