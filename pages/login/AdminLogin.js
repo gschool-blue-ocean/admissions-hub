@@ -47,12 +47,17 @@ export default function AdminLogin() {
     }
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleEnter = (event) => {
+    if (event.keyCode == 13) {
+      handleSubmit();
+    }
+  };
+
+  const handleSubmit = async () => {
     try {
       //get data from loginUser, login form is user's input
       const loginData = await loginAdmin(loginForm);
-      // console.log("login data ", loginData.accessToken);
+      //console.log("login data ", loginData.accessToken);
       //save accessToken to local storage
       localStorage.setItem('accessToken', loginData.accessToken);
       localStorage.setItem('firstName', loginData.first_name);
@@ -95,6 +100,7 @@ export default function AdminLogin() {
                     }}
                     value={email}
                     onChange={onChangeLoginForm}
+                    onKeyDown={handleEnter}
                   />
                 </div>
 
@@ -108,6 +114,7 @@ export default function AdminLogin() {
                     }}
                     value={password}
                     onChange={onChangeLoginForm}
+                    onKeyDown={handleEnter}
                   />
                 </div>
                 <div
