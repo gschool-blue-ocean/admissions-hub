@@ -64,7 +64,6 @@ export default function AdminLogin(props) {
           <div className="col-7">
             <Card.Body className={`${styles.loginCardBody} text-center`}>
               <div>
-                {!correct && <div className={styles.warning}>Wrong username or password</div>}
                 <div className="mb-3">
                   <input
                     type="text"
@@ -74,7 +73,7 @@ export default function AdminLogin(props) {
                       backgroundColor: '#D9D9D9'
                     }}
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={onChangeLoginForm}
                     onKeyDown={handleEnter}
                   />
                 </div>
@@ -88,7 +87,7 @@ export default function AdminLogin(props) {
                       backgroundColor: '#D9D9D9'
                     }}
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={onChangeLoginForm}
                     onKeyDown={handleEnter}
                   />
                 </div>
@@ -105,9 +104,15 @@ export default function AdminLogin(props) {
                     onClick={handleSubmit}
                     style={{
                       backgroundColor: '#EF6E47',
+                      fontWeight: 'bold',
+                      fontSize: 14,
                       float: 'left',
-                      height: 50,
-                      width: 115
+                      height: 40,
+                      width: 100,
+                      paddingLeft: 10,
+                      paddingRight: 10,
+                      paddingTop: 0,
+                      paddingBottom: 0
                     }}
                   >
                     login
@@ -117,9 +122,15 @@ export default function AdminLogin(props) {
                     type="forgot"
                     style={{
                       backgroundColor: '#EF6E47',
+                      fontWeight: 'bold',
+                      fontSize: 12,
                       float: 'right',
-                      height: 50,
-                      width: 115
+                      height: 40,
+                      width: 100,
+                      paddingLeft: 10,
+                      paddingRight: 10,
+                      paddingTop: 0,
+                      paddingBottom: 0
                     }}
                   >
                     forgot password
