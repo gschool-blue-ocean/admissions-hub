@@ -1,16 +1,24 @@
 import { useState, useEffect } from "react";
 import styles from "./Header.module.css";
+import Image from "next/image";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useRouter } from "next/router";
 import BtnLogin from "./BtnLogin";
+import Button from "react-bootstrap/Button";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import Dropdown from "react-bootstrap/Dropdown";
 import { useAppContext } from "./GlobalContext";
 
 function Header() {
   const { user } = useAppContext();
   let currentPage = "";
+  let currentUser = "";
   let { asPath } = useRouter();
   //get current access token from local storage
-  const [userRole, setUserRole] = useState('');
+  const [userRole, setUserRole] = useState("");
 
   useEffect(() => {
     let accessToken = localStorage.getItem("accessToken");
@@ -35,15 +43,19 @@ function Header() {
         setUserRole(temp);
       }
     }
+
     switch (asPath) {
       case asPath.match("/interview")?.input:
         currentPage = "Interview App";
+        currentUser = `Jeff The Pirate`;
         break;
       case "/login":
         currentPage = "Interview Login";
+        currentUser = "";
         break;
       case `/dashboard?access=${accessToken}`:
         currentPage = "Interview Dashboard";
+        currentUser = "Jeff The Pirate";
         break;
     }
   }, []);
@@ -101,10 +113,11 @@ function Header() {
           <div className={styles.dropdownmenu}>
             <NavDropdown
               id="nav-dropdown-dark-example"
-              title={`Welcome, ${localStorage.firstName}`}
+              title={currentUser ? currentUser : "Jeff The Pirate"}
               menuVariant="light"
             >
-              <NavDropdown.Item> View Profile </NavDropdown.Item>
+              <NavDropdown.Item eventKey="1">Profile</NavDropdown.Item>
+              <NavDropdown.Item eventKey="2">Extra page</NavDropdown.Item>
               <NavDropdown.Item>
                 <BtnLogin />
               </NavDropdown.Item>
