@@ -20,10 +20,6 @@ function MyApp({ Component, pageProps }) {
           rel="icon"
           href="https://learn-2.galvanize.com/assets/galvanize/mobile-logo-149555222a440753ee9c29705f17c6cda1f9ababe51e56fb654d57726ba2d3e2.svg"
         />
-        <link href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" rel="stylesheet" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
-        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500&display=swap" rel="stylesheet" />
       </Head>
       <AppWrapper>
         <Component {...pageProps} />
