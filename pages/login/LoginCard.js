@@ -69,7 +69,9 @@ export default function AdminLogin(props) {
                     type="text"
                     placeholder="Email"
                     style={{
-                      backgroundColor: '#D9D9D9'
+                      backgroundColor: '#D9D9D9',
+                      display: 'block',
+                      width: '100%'
                     }}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -82,7 +84,9 @@ export default function AdminLogin(props) {
                     type="text"
                     placeholder="Password"
                     style={{
-                      backgroundColor: '#D9D9D9'
+                      backgroundColor: '#D9D9D9',
+                      display: 'block',
+                      width: '100%'
                     }}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
