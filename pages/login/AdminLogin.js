@@ -9,11 +9,8 @@ import { auto } from '@popperjs/core';
 export default function AdminLogin() {
   const router = useRouter();
   const { setShowWarning, setUser } = useAppContext();
-  const [loginForm, setLoginForm] = useState({
-    email: '',
-    password: '',
-  });
-  const { email, password } = loginForm;
+  const { email, setEmail } = useState('');
+  const { password, setPassword } = useState('');
 
   //if local storage has accessToken, redirect to dashboard
   useEffect(() => {
@@ -31,10 +28,10 @@ export default function AdminLogin() {
   const loginAdmin = async (loginForm) => {
     try {
       const response = await axios.post('/api/admin', loginForm);
-      if (response.data.connect) {
+      if (response.data.valid) {
         setUser(response.data);
         //save accessToken to local storage
-        localStorage.setItem('accessToken', response.data.accessToken);
+        localStorage.setItem('token', response.data.token);
         //if login is successful, redirect to home page dashboard
         //router.push('/dashboard')
         setTimeout(() => {
@@ -81,7 +78,7 @@ export default function AdminLogin() {
           width: 600,
           height: 230,
           paddingTop: 25,
-          margin: 0,
+          margin: 0
         }}
       >
         <div className="row no-gutters">
@@ -94,7 +91,7 @@ export default function AdminLogin() {
                     placeholder="Email"
                     name="email"
                     style={{
-                      backgroundColor: '#D9D9D9',
+                      backgroundColor: '#D9D9D9'
                     }}
                     value={email}
                     onChange={onChangeLoginForm}
@@ -107,7 +104,7 @@ export default function AdminLogin() {
                     placeholder="Password"
                     name="password"
                     style={{
-                      backgroundColor: '#D9D9D9',
+                      backgroundColor: '#D9D9D9'
                     }}
                     value={password}
                     onChange={onChangeLoginForm}
@@ -117,7 +114,7 @@ export default function AdminLogin() {
                   style={{
                     height: 50,
                     width: 'auto',
-                    display: 'block',
+                    display: 'block'
                   }}
                 >
                   <Button
@@ -128,7 +125,7 @@ export default function AdminLogin() {
                       backgroundColor: '#EF6E47',
                       float: 'left',
                       height: 50,
-                      width: 115,
+                      width: 115
                     }}
                   >
                     login
@@ -140,7 +137,7 @@ export default function AdminLogin() {
                       backgroundColor: '#EF6E47',
                       float: 'right',
                       height: 50,
-                      width: 115,
+                      width: 115
                     }}
                   >
                     forgot password

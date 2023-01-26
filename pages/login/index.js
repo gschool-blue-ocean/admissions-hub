@@ -1,9 +1,8 @@
-import { useEffect } from 'react';
 import AdminLogin from './AdminLogin';
 import { useAppContext } from '../../src/components/GlobalContext';
 import { MDBFooter } from 'mdb-react-ui-kit';
 import styles from './LoginPageStyle.module.css';
-import HeaderLogin from '../../src/components/HeaderLogin';
+import Header from '../../src/components/Header';
 
 export default function Login() {
   const { showWarning, user, setUser } = useAppContext();
@@ -11,7 +10,7 @@ export default function Login() {
   return (
     <>
       <div>
-        <HeaderLogin />
+        <Header />
       </div>
       {showWarning && (
         <div className={styles.warning}>
@@ -24,7 +23,7 @@ export default function Login() {
           top: '34.5%',
           left: '50%',
           width: 600,
-          transform: ' translate(-50%)',
+          transform: ' translate(-50%)'
         }}
       >
         <AdminLogin />
@@ -35,7 +34,7 @@ export default function Login() {
       >
         <div
           className="fixed-bottom text-center p-4"
-          style={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
+          style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}
         >
           © 2023 Copyright: Team 3
         </div>
