@@ -4,7 +4,7 @@ import { useAppContext } from '../../src/components/GlobalContext';
 import axios from 'axios';
 import { Form, Button, Card } from 'react-bootstrap';
 import styles from './LoginPageStyle.module.css';
-import { auto } from '@popperjs/core';
+
 
 export default function AdminLogin() {
   const router = useRouter();
@@ -130,9 +130,15 @@ export default function AdminLogin() {
                     onClick={handleSubmit}
                     style={{
                       backgroundColor: '#EF6E47',
+                      fontWeight: 'bold',
+                      fontSize: 14,
                       float: 'left',
-                      height: 50,
-                      width: 115,
+                      height: 40,
+                      width: 100,
+                      paddingLeft: 10,
+                      paddingRight: 10,
+                      paddingTop: 0,
+                      paddingBottom: 0,
                     }}
                   >
                     login
@@ -142,9 +148,15 @@ export default function AdminLogin() {
                     type="forgot"
                     style={{
                       backgroundColor: '#EF6E47',
+                      fontWeight: 'bold',
+                      fontSize: 12,
                       float: 'right',
-                      height: 50,
-                      width: 115,
+                      height: 40,
+                      width: 100,
+                      paddingLeft: 10,
+                      paddingRight: 10,
+                      paddingTop: 0,
+                      paddingBottom: 0,
                     }}
                   >
                     forgot password
