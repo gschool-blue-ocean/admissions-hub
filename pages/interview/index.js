@@ -16,7 +16,7 @@ function id({ id }) {
   useEffect(() => {
     axios.get(`/api/interviews/${id}`)
       .then((result) => {
-        console.log('got id', result.data[0])
+        //console.log('got id', result.data[0])
         setInterview(result.data[0]);
       })
       .catch(console.log)
@@ -24,13 +24,13 @@ function id({ id }) {
 
     if (!user) return;
     if (user.role) {
-      console.log('user', user.role)
+      //console.log('user', user.role)
       localStorage.setItem("userRole", JSON.stringify(user.role));
       setUserRole(user.role);
     } else {
       if (typeof window !== "undefined") {
         let temp = JSON.parse(localStorage.getItem("userRole"));
-        console.log('user role', temp)
+        //console.log('user role', temp)
         setUserRole(temp);
       }
     }

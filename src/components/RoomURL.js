@@ -54,8 +54,8 @@ export default function RoomURL() {
           <img
             src={'/images/copy.svg'}
             alt="/"
-            objectFit="contain"
-            objectPosition="bottom center"
+            objectfit="contain"
+            objectposition="bottom center"
             width={15}
             height={15}
           />
@@ -68,8 +68,8 @@ export default function RoomURL() {
           <img
             src={'/images/copy.svg'}
             alt="/"
-            objectFit="contain"
-            objectPosition="bottom center"
+            objectfit="contain"
+            objectposition="bottom center"
             width={15}
             height={15}
           />
