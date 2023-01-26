@@ -6,7 +6,7 @@ import styles from './LoginPageStyle.module.css';
 import HeaderLogin from '../../src/components/HeaderLogin';
 
 export default function Login() {
-  const { showWarning, user, setUser } = useAppContext();
+  const { showWarning, showWarningServer, user, setUser } = useAppContext();
 
   return (
     <>
@@ -16,6 +16,11 @@ export default function Login() {
       {showWarning && (
         <div className={styles.warning}>
           <p>***Wrong username or password</p>
+        </div>
+      )}
+      {showWarningServer && (
+        <div className={styles.warning}>
+          <p>***Could connect to server</p>
         </div>
       )}
       <div
