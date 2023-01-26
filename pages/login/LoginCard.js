@@ -71,7 +71,8 @@ export default function AdminLogin(props) {
                     style={{
                       backgroundColor: '#D9D9D9',
                       display: 'block',
-                      width: '100%'
+                      width: '100%',
+                      borderRadius: '4px'
                     }}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -86,7 +87,8 @@ export default function AdminLogin(props) {
                     style={{
                       backgroundColor: '#D9D9D9',
                       display: 'block',
-                      width: '100%'
+                      width: '100%',
+                      borderRadius: '4px'
                     }}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
