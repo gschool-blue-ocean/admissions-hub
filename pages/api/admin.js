@@ -11,16 +11,15 @@ export default function handler(req, res) {
       email,
       password
     ])
-    .then((result) => result.rows[0])
-    .then((data) => {
-      if (data.valid) {
+    .then((result) => {
+      if (result.rows[0].valid) {
         let token = jwt.sign({ email: email }, 'secret', { expiresIn: '1d' });
         let packet = {
           valid: true,
           token: token,
-          id: data.id,
-          first_name: data.first_name,
-          last_name: data.last_name
+          id: result.rows[0].id,
+          first_name: result.rows[0].first_name,
+          last_name: result.rows[0].last_name
         };
         res.send(packet);
       } else {

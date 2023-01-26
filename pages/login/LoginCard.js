@@ -7,12 +7,10 @@ export default function AdminLogin(props) {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [correct, setCorrect] = useState(true);
-  const [serverE, setServerE] = useState(false);
+  const [warning, setWarning] = useState('');
 
   function login() {
-    setCorrect(true);
-    setServerE(false);
+    setWarning('');
     axios
       .post('/api/admin', { email: email, password: password })
       .then((result) => result.data)
@@ -26,11 +24,13 @@ export default function AdminLogin(props) {
           localStorage.setItem('lastName', data.last_name);
           router.push('/dashboard');
         } else {
-          setCorrect(false);
+          setWarning('Incorrect Email or Password');
         }
       })
-      .catch((err) => console.log(err));
-    setServerE(true);
+      .catch((err) => {
+        console.log(err);
+        setWarning('Server Error');
+      });
   }
 
   function handleEnter(e) {
@@ -45,17 +45,10 @@ export default function AdminLogin(props) {
 
   return (
     <div className={styles.logincard}>
-      {!correct && (
-        <div className={styles.warning}>
-          <p>***Wrong username or password</p>
-        </div>
-      )}
-      {serverE && (
-        <div className={styles.warning}>
-          <p>***Could connect to server</p>
-        </div>
-      )}
       <div className={styles.cardLeft}>
+        <div className={styles.warning}>
+          <p>{warning}</p>
+        </div>
         <div className={styles.cardForm}>
           <input
             className={styles.input}
