@@ -31,7 +31,7 @@ const Dashboard = () => {
   useEffect(() => {
     if (!user) return;
     if (user.id) {
-      console.log('user id', user.id);
+      //console.log('user id', user.id);
       localStorage.setItem('userId', JSON.stringify(user.id));
 
       setUserId(user.id);
@@ -96,18 +96,18 @@ const Dashboard = () => {
     axios
       .patch(`/api/candidate/${info.email}`, newPatchRequest)
       .then(function (response) {
-        console.log(response);
+        //console.log(response);
       })
       .catch(function (error) {
         console.log(error);
       });
   };
   const completeInterviews = () => {
-    console.log('interview object', interviewObj);
+    //console.log('interview object', interviewObj);
     axios
       .patch(`/api/interviews/update`, interviewObj)
       .then(function (response) {
-        console.log(response);
+        //console.log(response);
       })
       .catch(function (error) {
         console.log(error);
