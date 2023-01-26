@@ -8,7 +8,7 @@ import styles from './LoginPageStyle.module.css';
 
 export default function AdminLogin() {
   const router = useRouter();
-  const { setShowWarning, setUser } = useAppContext();
+  const { setShowWarning, setShowWarningServer, setUser } = useAppContext();
   const [loginForm, setLoginForm] = useState({
     email: "",
     password: "",
@@ -62,18 +62,25 @@ export default function AdminLogin() {
       //get data from loginUser, login form is user's input
       const loginData = await loginAdmin(loginForm);
       //console.log("login data ", loginData.accessToken);
-      //save accessToken to local storage
-      localStorage.setItem("accessToken", loginData.accessToken);
-      localStorage.setItem("firstName", loginData.first_name);
-      localStorage.setItem("lastName", loginData.last_name);
-      //if login is successful, redirect to home page dashboard
-      if (!loginData.connect) {
+      if(loginData){
+        //save accessToken to local storage
+        localStorage.setItem("accessToken", loginData.accessToken);
+        localStorage.setItem("firstName", loginData.first_name);
+        localStorage.setItem("lastName", loginData.last_name);
+        //if login is successful, redirect to home page dashboard
+      }
+
+      if (!loginData) {
         setShowWarning(true);
         setTimeout(() => {
           setShowWarning(false);
         }, 3000);
       }
     } catch (error) {
+      setShowWarningServer(true);
+      setTimeout(() => {
+        setShowWarningServer(false);
+      }, 3000);
       throw error;
     }
   };

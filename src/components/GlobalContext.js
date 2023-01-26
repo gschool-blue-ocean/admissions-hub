@@ -5,6 +5,7 @@ const AppContext = createContext();
 export function AppWrapper({ children }) {
   const [info, setInfo] = useState([]);
   const [showWarning, setShowWarning] = useState(false);
+  const [showWarningServer, setShowWarningServer] = useState(false);
   const [user, setUser] = useState();
   const [interviewReport, setInterviewReport] = useState([-1]);
   const [userRole, setUserRole] = useState("");
@@ -21,6 +22,8 @@ export function AppWrapper({ children }) {
     setInfo,
     showWarning,
     setShowWarning,
+    showWarningServer,
+    setShowWarningServer,
     user,
     setUser,
     setUserRole,
