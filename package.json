@@ -31,6 +31,7 @@
     "react": "18.2.0",
     "react-bootstrap": "^2.5.0",
     "react-bootstrap-validation": "^0.1.11",
+    "react-calendar": "^4.0.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",
     "react-uuid": "^1.0.3",
