@@ -68,26 +68,24 @@ export default function AdminLogin(props) {
                   <input
                     type="text"
                     placeholder="Email"
-                    name="email"
                     style={{
                       backgroundColor: '#D9D9D9'
                     }}
                     value={email}
-                    onChange={onChangeLoginForm}
+                    onChange={(e) => setEmail(e.target.value)}
                     onKeyDown={handleEnter}
                   />
                 </div>
 
                 <div className="mb-3">
                   <input
-                    type="password"
+                    type="text"
                     placeholder="Password"
-                    name="password"
                     style={{
                       backgroundColor: '#D9D9D9'
                     }}
                     value={password}
-                    onChange={onChangeLoginForm}
+                    onChange={(e) => setPassword(e.target.value)}
                     onKeyDown={handleEnter}
                   />
                 </div>
