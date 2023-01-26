@@ -1,15 +1,8 @@
 import { useState, useEffect } from "react";
 import styles from "./Header.module.css";
-import Image from "next/image";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useRouter } from "next/router";
 import BtnLogin from "./BtnLogin";
-import Button from "react-bootstrap/Button";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
-import Dropdown from "react-bootstrap/Dropdown";
 import { useAppContext } from "./GlobalContext";
 
 function Header() {
