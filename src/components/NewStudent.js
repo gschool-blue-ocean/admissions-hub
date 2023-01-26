@@ -289,8 +289,8 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
           >
             {/*          ///////////////////////////////////// INPUT/DELETE COHORTS HERE */}
             <option> Select Cohort </option>
-            <option disabled>MCSP-11</option>
-            <option disabled>MCSP-12</option>
+            <option> MCSP-11</option>
+            <option> MCSP-12</option>
             <option> MCSP-13 </option>
             <option> MCSP-14 </option>
             <option> MCSP-15 </option>

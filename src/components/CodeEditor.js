@@ -1,54 +1,67 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Editor from '@monaco-editor/react';
 import io from 'socket.io-client';
-import axios from 'axios';
-import { useState } from 'react';
 import styles from 'src/components/CodeEditor.module.css';
-import { useAppContext } from './GlobalContext';
 
 let socket;
 
 export default function CodeEditor({ sessionId, candidateInfo }) {
   const [codeReturn, setCodeReturn] = useState([]);
   const [input, setInput] = useState('');
-  const { info, setInterview, interview } = useAppContext();
+  const [room, setRoom] = useState(sessionId);
 
   const onChangeHandler = (content) => {
-    socket.emit('input-change', content, sessionId);
-    setInput(content);
+    // setInput(content);
+    socket.emit('input-change', content, room);
   };
 
   useEffect(() => {
-    console.log('internal sessionID:', sessionId);
     socketInitializer();
   }, []);
 
-  useEffect(() => {
-    console.log('interview changed', interview ? interview.code : 'no interview code');
-  }, [interview]);
-
   //evaluates input from code editor, sends to backend for processing, and sets return in codeReturn state
-  const handleRun = async (input) => {
-    const data = await axios.post('/api/codeEval', {
-      code: input,
-    });
-    //console.log(data.data);
-    setCodeReturn(data.data);
-  };
+  function handleRun() {
+    let outputs = [];
+    try {
+      outputs = new Function(editCode(input))();
+    } catch (err) {
+      outputs = [err + ''];
+    }
+    setCodeReturn(outputs);
+  }
+
+  // Here is a function that alters the input code by changing all console logs and handles infinite loops by inserting a check variable.
+  function editCode(str) {
+    let output = `let breaker = 0; logs=[];` + str.replace(/console.log/g, 'logs.push');
+    output = output.replace(
+      /while.*({)/g,
+      `$& if (breaker > 10000) {logs.push('infinite loop error');return logs;}breaker++;`
+    );
+    output = output.replace(
+      /for.*({)/g,
+      `$& if (breaker > 10000) {logs.push('Error: 10,000 loops reached');return logs;}breaker++;`
+    );
+    return output + `\nreturn logs;`;
+  }
 
   //initialized socket session
   const socketInitializer = async () => {
     await fetch('/api/socket');
     socket = io();
 
-    socket.emit('join-room', sessionId);
     socket.on('connect', () => {
-      console.log(`connected with user ${sessionId}`);
+      console.log('connected to socket');
     });
+
     socket.on('update-input', (msg) => {
       setInput(msg);
     });
+    socket.emit('join', room, (str) => logRoomStatus(str));
   };
+
+  function logRoomStatus(str) {
+    console.log(str);
+  }
 
   return (
     <div
@@ -56,7 +69,6 @@ export default function CodeEditor({ sessionId, candidateInfo }) {
         display: 'flex',
         flexDirection: 'column',
         margin: '15px 0px 15px 15px',
-        // borderRadius: "10px",
         border: '3px solid #979797',
         overflow: 'hidden',
       }}
@@ -64,14 +76,13 @@ export default function CodeEditor({ sessionId, candidateInfo }) {
       <Editor
         height="650px"
         defaultLanguage="javascript"
-        defaultValue={info.code}
         theme="vs-dark"
-        value={input ? input : interview ? interview.code : '//No Code'}
-        onChange={(data) => onChangeHandler(data)}
+        onChange={onChangeHandler}
         className={styles.editor}
+        value={input}
       />
       <button
-        onClick={() => handleRun(input)}
+        onClick={handleRun}
         style={{
           width: 100,
           margin: '-34px 10px 0px',
@@ -100,8 +111,8 @@ export default function CodeEditor({ sessionId, candidateInfo }) {
           zIndex: 2,
         }}
       >
-        {codeReturn.map((line) => (
-          <span style={{ color: 'white' }}>{`> ${line}`}</span>
+        {codeReturn.map((line, index) => (
+          <span key={index} style={{ color: 'white' }}>{`> ${line}`}</span>
         ))}
       </code>
     </div>

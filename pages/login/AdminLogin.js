@@ -4,6 +4,7 @@ import { useAppContext } from "../../src/components/GlobalContext";
 import axios from "axios";
 import { Form, Button, Card } from "react-bootstrap";
 import styles from "./LoginPageStyle.module.css";
+import { auto } from "@popperjs/core";
 
 export default function AdminLogin() {
   const router = useRouter();
@@ -40,7 +41,7 @@ export default function AdminLogin() {
           console.log("connection test");
           let accessToken = localStorage.getItem("accessToken");
           console.log(accessToken);
-          router.push("/dashboard?access=", accessToken);
+          router.push("/dashboard");
         }, 200);
         return response.data;
       }
@@ -86,9 +87,9 @@ export default function AdminLogin() {
         <div className="row no-gutters">
           <div className="col-7">
             <Card.Body className={`${styles.loginCardBody} text-center`}>
-              <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Control
+              <div>
+                <div className="mb-3">
+                  <input
                     type="text"
                     placeholder="Email"
                     name="email"
@@ -98,10 +99,10 @@ export default function AdminLogin() {
                     value={email}
                     onChange={onChangeLoginForm}
                   />
-                </Form.Group>
+                </div>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                  <Form.Control
+                <div className="mb-3">
+                  <input
                     type="password"
                     placeholder="Password"
                     name="password"
@@ -111,20 +112,42 @@ export default function AdminLogin() {
                     value={password}
                     onChange={onChangeLoginForm}
                   />
-                </Form.Group>
-
-                <Button
-                  id="loginButton"
-                  variant="primary"
-                  type="submit"
+                </div>
+                <div
                   style={{
-                    backgroundColor: "#EF6E47",
-                    width: 116,
+                    height: 50,
+                    width: "auto",
+                    display: "block",
                   }}
                 >
-                  login
-                </Button>
-              </Form>
+                  <Button
+                    id="loginButton"
+                    variant="primary"
+                    type="submit"
+                    onClick={handleSubmit}
+                    style={{
+                      backgroundColor: "#EF6E47",
+                      float: "left",
+                      height: 50,
+                      width: 115,
+                    }}
+                  >
+                    login
+                  </Button>
+                  <Button
+                    variant="primary"
+                    type="forgot"
+                    style={{
+                      backgroundColor: "#EF6E47",
+                      float: "right",
+                      height: 50,
+                      width: 115,
+                    }}
+                  >
+                    forgot password
+                  </Button>
+                </div>
+              </div>
             </Card.Body>
           </div>
 

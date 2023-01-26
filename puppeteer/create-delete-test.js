@@ -45,3 +45,36 @@
 //     }
 //   }
 // })();
+
+// const puppeteer = require("puppeteer");
+// const pageUrl = "http://localhost:3000/login";
+
+// (async () => {
+//   let browser, page;
+//   try {
+//     browser = await puppeteer.launch({ headless: false });
+//     page = await browser.newPage();
+//     await page.goto(pageUrl);
+
+//     // Enter email and password
+//     console.log("Filling Email and Password...");
+//     await page.type("#formBasicEmail", "danny@TEMP.com");
+//     await page.type("#formBasicPassword", "TEMP");
+
+//     // Click login button and wait for navigation
+//     console.log("Clicking login button...");
+//     await page.click(".col-7 button");
+//     await page.waitForSelector("#add-student div", { visible: true });
+
+//     // Click add student button
+//     console.log("Clicking add student button...");
+//     await page.click("#add-student div");
+
+//     //Filling student details
+//     console.log("Filling student details...");
+//     await page.type("#first-name", "fernando");
+//     await page.type("#last-name", "TEMP");
+//     await page.type("#email", "Fcastro958@TEMP.com");
+//     await page.type("#password", "TEMP");
+
+//submitting the form
