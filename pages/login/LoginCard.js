@@ -8,9 +8,11 @@ export default function AdminLogin(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [correct, setCorrect] = useState(true);
+  const [serverE, setServerE] = useState(false);
 
   function login() {
     setCorrect(true);
+    setServerE(false);
     axios
       .post('/api/admin', { email: email, password: password })
       .then((result) => result.data)
@@ -28,6 +30,7 @@ export default function AdminLogin(props) {
         }
       })
       .catch((err) => console.log(err));
+    setServerE(true);
   }
 
   function handleEnter(e) {
@@ -42,18 +45,22 @@ export default function AdminLogin(props) {
 
   return (
     <div className={styles.logincard}>
+      {!correct && (
+        <div className={styles.warning}>
+          <p>***Wrong username or password</p>
+        </div>
+      )}
+      {serverE && (
+        <div className={styles.warning}>
+          <p>***Could connect to server</p>
+        </div>
+      )}
       <div className={styles.cardLeft}>
         <div className={styles.cardForm}>
           <input
             className={styles.input}
             type="text"
             placeholder="Email"
-            style={{
-              backgroundColor: '#D9D9D9',
-              display: 'block',
-              width: '100%',
-              borderRadius: '4px'
-            }}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             onKeyDown={handleEnter}
@@ -62,12 +69,6 @@ export default function AdminLogin(props) {
             className={styles.input}
             type="text"
             placeholder="Password"
-            style={{
-              backgroundColor: '#D9D9D9',
-              display: 'block',
-              width: '100%',
-              borderRadius: '4px'
-            }}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             onKeyDown={handleEnter}
