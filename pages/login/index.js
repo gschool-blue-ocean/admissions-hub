@@ -20,7 +20,7 @@ export default function Login() {
       )}
       {showWarningServer && (
         <div className={styles.warning}>
-          <p>***Could connect to server</p>
+          <p>***Could not connect to server</p>
         </div>
       )}
       <div
