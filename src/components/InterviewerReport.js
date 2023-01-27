@@ -53,7 +53,7 @@ const InterviewerReport = () => {
       }}
     >
       <span style={{ fontSize: 15, marginLeft: "10px" }}>
-        Danny Andrew's Interview Report
+      {user ? user.first_name : "Unknown User"}
       </span>
       <div
         style={{
