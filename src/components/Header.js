@@ -4,6 +4,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useRouter } from 'next/router';
 import BtnLogin from './BtnLogin';
 import { useAppContext } from './GlobalContext';
+import Calendar from 'react-calendar';
 
 function Header() {
   const { user } = useAppContext();
@@ -11,6 +12,8 @@ function Header() {
   let { asPath } = useRouter();
   //get current access token from local storage
   const [userRole, setUserRole] = useState('');
+  // const [value, onChange] = useState(new Date());
+  // const [isCalendarExpanded, setIsCalendarExpanded] = useState(false);
 
   function toProfile() {
     router.push('/profile', '/my-profile');
@@ -104,7 +107,19 @@ function Header() {
           <div className={styles.innerLoginPara}>{currentPage}</div>
         )}
       </div>
-      <div className={styles.para2}>{today}</div>
+      <div
+        className={styles.para2}
+        // onClick={() => setIsCalendarExpanded(!isCalendarExpanded)}
+      >
+        {today}
+      </div>
+
+      {/* {isCalendarExpanded && (
+        <Calendar
+          onChange={onChange}
+          value={value}
+        />
+      )} */}
       {userRole !== 'ADMIN' ? null : (
         <div className={styles.dropdownmenu}>
           <NavDropdown
