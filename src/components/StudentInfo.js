@@ -12,8 +12,7 @@ import Ratings from './Ratings';
 import styles from './AllRatings.module.css';
 import { useAppContext } from './GlobalContext';
 import ViewProblems from './viewProblems';
-import axios, { AxiosError } from 'axios';
-
+import axioss from 'axios';
 
 const StudentInfo = () => {
   const { info, setInfo, setUserRole, setStudents, students, user, interview, setInterview } = useAppContext();
@@ -47,7 +46,7 @@ const StudentInfo = () => {
 
       pass: 'false',
       code: '//Type code here',
-      complete: false,
+      complete: false
     };
 
     axios
@@ -84,12 +83,13 @@ const StudentInfo = () => {
 
     setInfo({
       ...info,
-      complete: false,
+      complete: false
     });
-    axios.patch('/api/interviews/Interviews', { id: info.id, complete: false })
-      .then(
-        //console.log
-        )
+    axios
+      .patch('/api/interviews/Interviews', { id: info.id, complete: false })
+      .then
+      //console.log
+      ()
       .catch((error) => console.log(error.response));
   };
   const handleChange = (event) => {
@@ -122,7 +122,7 @@ const StudentInfo = () => {
         fontSize: 14,
         backgroundColor: '#f0f0f0',
         marginTop: 5,
-        marginBottom: 5,
+        marginBottom: 5
       }}
     >
       {seeNotes ? (
@@ -136,7 +136,7 @@ const StudentInfo = () => {
             height: '100%',
             overflow: 'hidden',
             backgroundColor: 'rgb(0,0,0)',
-            backgroundColor: 'rgba(0,0,0,0.4)',
+            backgroundColor: 'rgba(0,0,0,0.4)'
           }}
         >
           <div
@@ -150,7 +150,7 @@ const StudentInfo = () => {
               height: 'auto',
               display: 'flex',
               flexDirection: 'column',
-              alignItems: 'center',
+              alignItems: 'center'
             }}
           >
             <div
@@ -160,7 +160,7 @@ const StudentInfo = () => {
               style={{
                 padding: 10,
                 position: 'sticky',
-                left: '90%',
+                left: '90%'
               }}
             >
               <AiIcons.AiOutlineClose size={25} />
@@ -169,7 +169,7 @@ const StudentInfo = () => {
               style={{
                 width: 400,
                 height: 'auto',
-                backgroundColor: 'white',
+                backgroundColor: 'white'
               }}
             >
               <div style={{ display: 'flex', paddingBottom: 10, color: '#979797' }}>
@@ -187,12 +187,12 @@ const StudentInfo = () => {
         style={{
           display: 'flex',
           justifyContent: 'space-between',
-          padding: 10,
+          padding: 10
         }}
       >
         <div
           style={{
-            display: 'flex',
+            display: 'flex'
           }}
         >
           <input
@@ -205,23 +205,26 @@ const StudentInfo = () => {
               borderRadius: 5,
               margin: 5,
               border: 'none',
-              paddingLeft: '10px',
+              paddingLeft: '10px'
             }}
             type="text"
           ></input>
           <div style={{ cursor: 'pointer' }}>
-            <BiIcons.BiSearchAlt size={28} style={{ marginTop: 5, color: '#979797' }} />
+            <BiIcons.BiSearchAlt
+              size={28}
+              style={{ marginTop: 5, color: '#979797' }}
+            />
           </div>
         </div>
         <div
           style={{
             display: 'flex',
-            justifyContent: 'space-between',
+            justifyContent: 'space-between'
           }}
         >
           <div
             style={{
-              paddingRight: 8,
+              paddingRight: 8
             }}
           >
             {info.length !== 0 ? (
@@ -232,7 +235,7 @@ const StudentInfo = () => {
                   height: 40,
                   width: 100,
                   fontFamily: 'League Spartan',
-                  fontSize: 16,
+                  fontSize: 16
                 }}
                 className={styles.bob}
                 onClick={() => {
@@ -250,7 +253,7 @@ const StudentInfo = () => {
                   height: 40,
                   width: 100,
                   fontFamily: 'League Spartan',
-                  fontSize: 16,
+                  fontSize: 16
                 }}
                 disabled
               >
@@ -260,11 +263,11 @@ const StudentInfo = () => {
           </div>
           <div
             style={{
-              paddingRight: 0,
+              paddingRight: 0
             }}
           >
             {info.length !== 0 && info.complete && interview ? (
-              <Link href={{ pathname: "/interview", query: { id: interview.id } }}>
+              <Link href={{ pathname: '/interview', query: { id: interview.id } }}>
                 <button
                   className={styles.bob}
                   onClick={(e) => {
@@ -279,14 +282,14 @@ const StudentInfo = () => {
                     height: 40,
                     width: 150,
                     fontFamily: 'League Spartan',
-                    fontSize: 16,
+                    fontSize: 16
                   }}
                 >
                   <a style={{ color: 'white' }}>Launch Interview</a>
                 </button>
               </Link>
-            ) : info.length !== 0 && !info.complete && info.attempt !== "0" && interview ? (
-              <Link href={{ pathname: "/interview", query: { id: interview.id } }}>
+            ) : info.length !== 0 && !info.complete && info.attempt !== '0' && interview ? (
+              <Link href={{ pathname: '/interview', query: { id: interview.id } }}>
                 {/* When Resume Interview is clicked, needs to check if interview is undefined,
                     If interview === undefined, do nothing
                     Else, Go to the link
@@ -307,14 +310,14 @@ const StudentInfo = () => {
                     height: 40,
                     width: 150,
                     fontFamily: 'League Spartan',
-                    fontSize: 16,
+                    fontSize: 16
                   }}
                 >
                   <a style={{ color: 'white' }}>Resume Interview</a>
                 </button>
               </Link>
-            ) : info.length !== 0 && !info.complete && info.attempt === "0" && interview ? (
-              <Link href={{ pathname: "/interview", query: { id: interview.id } }}>
+            ) : info.length !== 0 && !info.complete && info.attempt === '0' && interview ? (
+              <Link href={{ pathname: '/interview', query: { id: interview.id } }}>
                 {/* When Resume Interview is clicked, needs to check if interview is undefined,
                     If interview === undefined, do nothing
                     Else, Go to the link
@@ -326,23 +329,22 @@ const StudentInfo = () => {
                 <button
                   className={styles.bob}
                   onClick={(e) => {
-                    changeUserRole(e)
-                    updateInfo()
+                    changeUserRole(e);
+                    updateInfo();
                   }}
                   style={{
-                    color: "white",
-                    border: "none",
+                    color: 'white',
+                    border: 'none',
                     height: 40,
                     width: 150,
-                    fontFamily: "League Spartan",
-                    fontSize: 16,
+                    fontFamily: 'League Spartan',
+                    fontSize: 16
                   }}
                 >
-                  <a style={{ color: "white" }}>New Interview</a>
+                  <a style={{ color: 'white' }}>New Interview</a>
                 </button>
               </Link>
-            ) : null
-            }
+            ) : null}
           </div>
         </div>
       </div>
@@ -355,12 +357,12 @@ const StudentInfo = () => {
             marginTop: '-5px',
             paddingLeft: 10,
             paddingRight: 10,
-            color: '#979797',
+            color: '#979797'
           }}
         >
           <span
             style={{
-              width: 155,
+              width: 155
             }}
           >
             Last, First name
@@ -368,21 +370,21 @@ const StudentInfo = () => {
           <span
             style={{
               width: 230,
-              overflowX: 'hidden',
+              overflowX: 'hidden'
             }}
           >
             Email Address
           </span>
           <span
             style={{
-              width: 114,
+              width: 114
             }}
           >
             Cohort #
           </span>
           <span
             style={{
-              width: 100,
+              width: 100
             }}
           >
             Date
@@ -390,7 +392,7 @@ const StudentInfo = () => {
           <span style={{ width: 70 }}> Attempt#</span>
           <span
             style={{
-              justifySelf: 'right',
+              justifySelf: 'right'
             }}
           >
             Pass
@@ -404,7 +406,7 @@ const StudentInfo = () => {
             minHeight: 200,
             overflowY: 'auto',
             borderRadius: '5px',
-            backgroundColor: 'white',
+            backgroundColor: 'white'
           }}
         >
           {students.map((student) => {
@@ -438,7 +440,7 @@ const StudentInfo = () => {
                     paddingTop: 3,
                     borderBottom: 'solid 1px #979797',
                     backgroundColor: info.id === student.id ? '#EF6E47' : '',
-                    color: info.id === student.id ? 'white' : '#979797',
+                    color: info.id === student.id ? 'white' : '#979797'
                   }}
                   key={uuid()}
                   onClick={() => {
@@ -465,13 +467,15 @@ const StudentInfo = () => {
                       minWidth: 120,
                       maxWidth: 120,
                       paddingLeft: 10,
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis'
                     }}
                   >
                     {`${student.last_name}, ${student.first_name}`}
                   </span>
-                  <span style={{ minWidth: 186, maxWidth: 186, overflow: "hidden", textOverflow: "ellipsis" }}>{student.email}</span>
+                  <span style={{ minWidth: 186, maxWidth: 186, overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                    {student.email}
+                  </span>
                   <span style={{ width: 70 }}>{student.cohort}</span>
                   {testDate === '04-JUL-1776' ? (
                     <span style={{ width: 85 }}>TBD</span>
@@ -500,7 +504,7 @@ const StudentInfo = () => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            padding: '5px 10px 0px 10px',
+            padding: '5px 10px 0px 10px'
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
@@ -509,12 +513,18 @@ const StudentInfo = () => {
               onClick={() => setShowAddStudent(!showAddStudent)}
               style={{ paddingRight: 10 }}
             >
-              <TiIcons.TiUserAddOutline size={22} color="#EF6E47" />
+              <TiIcons.TiUserAddOutline
+                size={22}
+                color="#EF6E47"
+              />
               <span style={{ paddingLeft: 5, color: '#979797' }}>add student</span>
             </div>
             {info.length === 0 ? (
               <div style={{ cursor: 'not-allowed' }}>
-                <TiIcons.TiUserDeleteOutline size={22} color="#FFE8D3" />
+                <TiIcons.TiUserDeleteOutline
+                  size={22}
+                  color="#FFE8D3"
+                />
                 <span style={{ paddingLeft: 5, color: '#979797' }}>delete student</span>
               </div>
             ) : (
@@ -525,7 +535,10 @@ const StudentInfo = () => {
                   setInfo('');
                 }}
               >
-                <TiIcons.TiUserDeleteOutline size={22} color="#EF6E47" />
+                <TiIcons.TiUserDeleteOutline
+                  size={22}
+                  color="#EF6E47"
+                />
                 <span style={{ paddingLeft: 5, color: '#979797' }}>delete student</span>
               </div>
             )}
@@ -547,7 +560,7 @@ const StudentInfo = () => {
                 backgroundColor: '#979797',
                 color: 'white',
                 border: 'none',
-                width: 169,
+                width: 169
               }}
               onClick={() => {
                 ////"Borrowed Code"/////
@@ -595,7 +608,12 @@ const StudentInfo = () => {
             >
               export/email student info
             </button>
-            <Downloader students={students} showExport={showExports} setExport={setShowExports} csv={csv} />
+            <Downloader
+              students={students}
+              showExport={showExports}
+              setExport={setShowExports}
+              csv={csv}
+            />
           </div>
         </div>
       </div>

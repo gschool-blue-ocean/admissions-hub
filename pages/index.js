@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
-import Router from 'next/router';
+import { useEffect } from 'react';
+import styles from './index.module.css';
+import auth from '../lib/auth';
 
 export default function Home() {
-  //redirect to login page
   useEffect(() => {
-    const { pathname } = Router;
-    if (pathname === '/') {
-      Router.push('/login');
-    }
+    setTimeout(() => auth('/dashboard'), 1000);
   }, []);
-  return <div></div>;
+  return (
+    <div className={styles.wrapper}>
+      <div className={styles.loading}></div>
+    </div>
+  );
 }

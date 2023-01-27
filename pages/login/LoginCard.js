@@ -15,12 +15,11 @@ export default function AdminLogin(props) {
       .post('/api/admin', { email: email, password: password })
       .then((result) => result.data)
       .then((data) => {
-        setCorrect(true);
+        setWarning('');
         if (data.valid) {
           localStorage.setItem('token', data.token);
           localStorage.setItem('id', data.id);
           localStorage.setItem('firstName', data.first_name);
-          localStorage.setItem('lastName', data.last_name);
           localStorage.setItem('lastName', data.last_name);
           router.push('/dashboard');
         } else {
@@ -60,7 +59,7 @@ export default function AdminLogin(props) {
           />
           <input
             className={styles.input}
-            type="text"
+            type="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}

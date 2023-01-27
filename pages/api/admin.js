@@ -12,8 +12,10 @@ export default function handler(req, res) {
       password
     ])
     .then((result) => {
-      if (result.rows[0].valid) {
-        let token = jwt.sign({ email: email }, 'secret', { expiresIn: '1d' });
+      if (!result.rows) {
+        res.send({ valid: false });
+      } else if (result.rows[0].valid) {
+        let token = jwt.sign({ name: result.rows[0].first_name }, 'secret', { expiresIn: '1d' });
         let packet = {
           valid: true,
           token: token,
