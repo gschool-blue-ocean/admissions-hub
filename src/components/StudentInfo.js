@@ -467,7 +467,7 @@ const StudentInfo = () => {
             ) {
               return (
                 <div
-                  className={styles.cell}
+                
                   style={{
                     zIndex: 1,
                     display: "flex",
@@ -501,6 +501,7 @@ const StudentInfo = () => {
                   }}
                 >
                   <span
+                    id="studentName"
                     style={{
                       minWidth: 120,
                       maxWidth: 120,
@@ -564,28 +565,31 @@ const StudentInfo = () => {
             className="col-6"
             style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
           >
-            <div
+            <button
+               id="addStudent"
               className={styles.icon}
               onClick={() => setShowAddStudent(!showAddStudent)}
               style={{ paddingRight: 10 }}
             >
               <TiIcons.TiUserAddOutline size={22} color="#EF6E47" />/
-              <button
-                id="addStudent"
+              <span
+               
                 style={{ paddingLeft: 5, color: "#979797" }}
               >
                 add student
-              </button>
-            </div>
+              </span>
+              {/* working on this start */}
+            </button>
             {info.length === 0 ? (
-              <div style={{ cursor: "not-allowed" }}>
+              <button  style={{ cursor: "not-allowed" }}>
                 <TiIcons.TiUserDeleteOutline size={22} color="#FFE8D3" />
-                <span style={{ paddingLeft: 5, color: "#979797" }}>
+                <span  style={{ paddingLeft: 5, color: "#979797" }}>
                   delete student
                 </span>
-              </div>
+              </button>
             ) : (
-              <div
+              <button
+                id="delete"
                 className={styles.icon}
                 onClick={() => {
                   deleteStudent();
@@ -593,10 +597,10 @@ const StudentInfo = () => {
                 }}
               >
                 <TiIcons.TiUserDeleteOutline size={22} color="#EF6E47" />
-                <span style={{ paddingLeft: 5, color: "#979797" }}>
+                <span  style={{ paddingLeft: 5, color: "#979797" }}>
                   delete student
                 </span>
-              </div>
+              </button>
             )}
           </div>
 
@@ -608,6 +612,7 @@ const StudentInfo = () => {
               setStudents={setStudents}
             />
           ) : null}
+          {/* ///////working on this end////// */}
           <div>
             <button
               className={styles.bob}
