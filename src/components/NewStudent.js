@@ -135,7 +135,7 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
 
   return (
     <div
-      className={styles}
+      className="newStudentModal"
       style={{
         position: "fixed",
         zIndex: "6",
@@ -194,7 +194,7 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
             }}
           >
             <input
-              id="first-name"
+              id="firstName"
               className={styles.input}
               placeholder="First name"
               onChange={handleFirstNameChange}
@@ -221,7 +221,7 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
             }}
           >
             <input
-              id="last-name"
+              id="lastName"
               className={styles.input}
               placeholder="Last name"
               onChange={handleLastNameChange}
@@ -269,6 +269,7 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
           </div>
         ) : null}
         <div
+          className="dropdown"
           style={{
             display: "flex",
             justifyContent: "center",
@@ -295,11 +296,11 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
             <option> MCSP-14 </option>
             <option> MCSP-15 </option>
             <option> MCSP-16 </option>
-            <option> MCSP-17 </option>
-            <option id="mscp"> MCSP-18 </option>
+            <option id="mcsp"> MCSP-17 </option>
+            <option> MCSP-18 </option>
           </select>
         </div>
-        <div
+        <div className="create"
           style={{
             marginBottom: 10,
             display: "flex",

@@ -90,6 +90,7 @@ export default function AdminLogin() {
               <div>
                 <div className="mb-3">
                   <input
+                    id="logEmail"
                     type="text"
                     placeholder="Email"
                     name="email"
@@ -103,6 +104,7 @@ export default function AdminLogin() {
 
                 <div className="mb-3">
                   <input
+                    id="logPassword"
                     type="password"
                     placeholder="Password"
                     name="password"

@@ -1,80 +1,105 @@
-// const puppeteer = require("puppeteer");
-// const pageUrl = "http://localhost:3000/login";
+
+
+// const puppeteer = require('puppeteer');
+// const pageUrl = 'http://localhost:3000/login';
 
 // (async () => {
-//   let browser, page;
-//   try {
-//     browser = await puppeteer.launch({ headless: false });
-//     page = await browser.newPage();
-//     await page.goto(pageUrl);
+//     let browser, page;
+//     try {
+//         browser = await puppeteer.launch({ headless: false });
+//         page = await browser.newPage();
+//         await page.goto(pageUrl);
 
-//     // Enter email and password
-//     console.log("Filling Email and Password...");
-//     await page.type("#formBasicEmail", "danny@TEMP.com");
-//     await page.type("#formBasicPassword", "TEMP");
+//         await page.type('#logEmail', 'danny@TEMP.com');
+//         await page.type('#logPassword', 'TEMP');
+//         page.click('.col-7 button');
+//         await page.waitForNavigation({ timeout: 60000 });
 
-//     // Click login button and wait for navigation
-//     console.log("Clicking login button...");
-//     await Promise.all([
-//       page.click(".col-7 button"),
-//       page.waitForNavigation({ timeout: 60000 }),
-//     ]);
+//         await page.waitForSelector('#addStudent', { timeout: 60000 });
+//         page.click('.col-6 button');
 
-//     // console.log("Clicking add student button..."),
-//     //   await Promise.all([
-//     //     page.click("#add-student div"),
-//     //     console.log("Filling student details..."),
-//     //     page.type("#first-name", "fernando"),
-//     //     page.type("#last-name", "TEMP"),
-//     //     page.type("#email", "Fcastro958@TEMP.com"),
-//     //     page.type("#formBasicPassword", "TEMP"),
-//     //     page.click("#mscp"),
-//     //   ]);
-//     // // console.log("submitting the form..."),
-//     // Wait for the element to be added to the DOM
-//     await page.waitForSelector("#add-student", { timeout: 60000 });
+//         await page.waitForSelector('#firstName', { timeout: 60000 });
+//         await page.type('#firstName', 'John');
+//         await page.type('#lastName', 'Doe');
+//         await page.type('#email', 'john.doe@example.com');
 
-//     // Once the element is present, interact with it
-//     const info = await page.$eval("#add-student", (el) => el.textContent);
-//     console.log(info);
-//   } catch (error) {
-//     console.log("Error: ", error);
-//   } finally {
-//     if (browser) {
-//       await browser.close();
+//         const select = await page.$('select');
+//         await select.select('MCSP-11');
+        
+//         await page.click('button[type="submit"]');
+//         await page.waitForNavigation({ timeout: 60000 });
+
+//         console.log('Student created successfully');
+//     } catch (error) {
+//         console.log('Error: ', error);
+//     } finally {
+//         if (browser) {
+//             await browser.close();
+//         }
 //     }
-//   }
 // })();
+const puppeteer = require('puppeteer');
+const pageUrl = 'http://localhost:3000/login';
 
-// const puppeteer = require("puppeteer");
-// const pageUrl = "http://localhost:3000/login";
+(async () => {
+    let browser, page;
+    try {
+        browser = await puppeteer.launch({ headless: false });
+        page = await browser.newPage();
+        await page.goto(pageUrl);
 
-// (async () => {
-//   let browser, page;
-//   try {
-//     browser = await puppeteer.launch({ headless: false });
-//     page = await browser.newPage();
-//     await page.goto(pageUrl);
+        await page.type('#logEmail', 'danny@TEMP.com');
+        await page.type('#logPassword', 'TEMP');
+        page.click('.col-7 button');
+        await page.waitForNavigation({ timeout: 60000 });
 
-//     // Enter email and password
-//     console.log("Filling Email and Password...");
-//     await page.type("#formBasicEmail", "danny@TEMP.com");
-//     await page.type("#formBasicPassword", "TEMP");
+        await page.waitForSelector('#addStudent', { timeout: 60000 });
+      
 
-//     // Click login button and wait for navigation
-//     console.log("Clicking login button...");
-//     await page.click(".col-7 button");
-//     await page.waitForSelector("#add-student div", { visible: true });
+        // Check if the element is present before trying to interact with it
+        const isPresent = await page.$('.col-6 button') !== null;
+        console.log(isPresent); // check if true
 
-//     // Click add student button
-//     console.log("Clicking add student button...");
-//     await page.click("#add-student div");
+        if (isPresent) {
+            await page.click('.col-6 button');
+            console.log('Clicked on add student button');
+            console.log('Filling info...');
+            await page.type('#firstName', 'jarrett');
+            await page.type('#lastName', 'theCatGuy');
+            await page.type('#email', 'MIT94@TEMP.com');
+            await page.click('.dropdown select');
+            await page.waitForSelector('#mcsp', { timeout: 60000 });
 
-//     //Filling student details
-//     console.log("Filling student details...");
-//     await page.type("#first-name", "fernando");
-//     await page.type("#last-name", "TEMP");
-//     await page.type("#email", "Fcastro958@TEMP.com");
-//     await page.type("#password", "TEMP");
 
-//submitting the form
+            const select = await page.$('select');
+            await select.select('MCSP-18');
+            await page.waitForSelector('.create', { timeout: 60000 });
+            await page.click('.create button');
+
+            console.log('just create a student!!');
+        
+        
+
+            // const info = await page.$eval('#mcsp', (el) => el.textContent);
+            // console.log(info);
+            // await page.select('#mcsp option');
+
+
+            // Once the element is present, interact with it
+            
+            // await page.type('#password', 'TEMP');
+
+            // Wait for the navigation to complete before continuing
+        } else {
+            console.log('Element not found on the page');
+        }
+    } catch (error) {
+        console.log('Error: ', error);
+    } finally {
+        if (browser) {
+            await browser.close();
+        }
+    }
+})(); 
+
+  
