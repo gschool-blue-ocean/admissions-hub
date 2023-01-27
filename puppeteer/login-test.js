@@ -23,7 +23,7 @@ const pageUrl = 'http://localhost:3000/login';
 
         // Once the element is present, interact with it
         const info = await page.$eval('#message', (el) => el.textContent);
-        console.log(info);
+        console.log(`Successfully logged in and was about to get ${info}`);
     } catch (error) {
         console.log(error);
     } finally {

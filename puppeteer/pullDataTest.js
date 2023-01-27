@@ -29,11 +29,14 @@ const fs = require('fs');
             (el) => el.textContent
         );
 
-        // fs.writeFileSync(
-        //     'interview_data.txt',
-        //     ` ${passingInterviews}\n ${totalInterviews}`
-        // );
-        console.log('Data written to file successfully go check it out!');
+        fs.writeFileSync(
+            'pulled_data.txt',
+            ` ${passingInterviews}\n ${totalInterviews}`
+        );
+        console.log(`
+        Data written to file successfully go check it out!
+        Name: pulled_data.txt
+        `);
     } catch (error) {
         console.log(error);
     } finally {
