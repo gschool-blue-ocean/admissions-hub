@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { useAppContext } from './GlobalContext';
+import { useAppContext } from '../GlobalContext';
 
 export default function RoomURL() {
   const [clicked, setClicked] = useState(false);
@@ -45,7 +45,7 @@ export default function RoomURL() {
           height: 35,
           width: 400,
           justifyContent: 'center',
-          cursor: 'pointer',
+          cursor: 'pointer'
         }}
       >
         {clicked ? (

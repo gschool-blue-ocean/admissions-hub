@@ -3,14 +3,14 @@ import * as BsIcons from 'react-icons/bs';
 import * as BiIcons from 'react-icons/bi';
 import * as AiIcons from 'react-icons/ai';
 import * as TiIcons from 'react-icons/ti';
-import Downloader from './email/Downloadcsv';
+import Downloader from '../email/Downloadcsv';
 
 import NewStudent from './NewStudent';
 import Link from 'next/link';
 import uuid from 'react-uuid';
-import Ratings from './Shared-Comps/Ratings';
+import Ratings from '../Shared/Ratings';
 import styles from './AllRatings.module.css';
-import { useAppContext } from './GlobalContext';
+import { useAppContext } from '../GlobalContext';
 import ViewProblems from './viewProblems';
 import axios from 'axios';
 

@@ -1,18 +1,16 @@
-import axios from "axios";
-import React from "react";
-import { useState } from "react";
-import * as AiIcons from "react-icons/ai";
-import styles from "./AllRatings.module.css";
-import { useAppContext } from "./GlobalContext";
+import axios from 'axios';
+import React from 'react';
+import { useState } from 'react';
+import * as AiIcons from 'react-icons/ai';
+import styles from './AllRatings.module.css';
+import { useAppContext } from '../GlobalContext';
 const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
-
-  
   var today = new Date();
-    var dd = String(today.getDate()).padStart(2, "0");
-    var mm = today.getMonth() + 1;
-    var yy = String(today.getFullYear());
-    today = yy + "-" + mm + "-" + dd;
-    
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = today.getMonth() + 1;
+  var yy = String(today.getFullYear());
+  today = yy + '-' + mm + '-' + dd;
+
   const { students, setStudents } = useAppContext();
 
   const addCandidate = (newStudent, interviewObj) => {
@@ -20,7 +18,7 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
       .post(`/api/candidate/Candidate`, newStudent)
       .then(function (response) {
         let tempId = response.data[0].id;
-        console.log("response ", response)
+        console.log('response ', response);
         interviewObj = {
           candidates_id: tempId,
           notes_1: null,
@@ -31,7 +29,7 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
           problem_3_rating: null,
           date: today,
           attempt: 0,
-          pass: "TBD",
+          pass: 'TBD'
         };
 
         axios
@@ -43,12 +41,9 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
               let temp = result.data;
 
               const arr = temp.reduce((result, obj) => {
-                let row = result.find(
-                  (x) => x.candidates_id === obj.candidates_id
-                );
+                let row = result.find((x) => x.candidates_id === obj.candidates_id);
                 if (!row) result.push({ ...obj });
-                else if (parseInt(row.attempt) < parseInt(obj.attempt))
-                  Object.assign(row, obj);
+                else if (parseInt(row.attempt) < parseInt(obj.attempt)) Object.assign(row, obj);
                 return result;
               }, []);
 
@@ -74,10 +69,10 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
   const [emailInput, setEmailInput] = useState(false);
   const [cohortInput, setCohortInput] = useState(false);
 
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [cohort, setCohort] = useState("");
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [cohort, setCohort] = useState('');
 
   const handleFirstNameChange = (event) => {
     setFirstName(event.target.value);
@@ -100,13 +95,13 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
   };
 
   const handleNewStudent = () => {
-    if (firstName === "") {
+    if (firstName === '') {
       setFirstNameInput(true);
-    } else if (lastName === "") {
+    } else if (lastName === '') {
       setLastNameInput(true);
-    } else if (email === "") {
+    } else if (email === '') {
       setEmailInput(true);
-    } else if (cohort === "") {
+    } else if (cohort === '') {
       setCohortInput(true);
     } else {
       addCandidate(newStudent, interviewObj);
@@ -119,11 +114,11 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
     last_name: lastName,
     email: email,
     cohort: cohort,
-    pass: "TBD",
+    pass: 'TBD'
   };
   let interviewObj = {
     interviewers_id: 1,
-    candidates_id: "",
+    candidates_id: '',
     notes_1: null,
     notes_2: null,
     notes_3: null,
@@ -132,57 +127,57 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
     problem_3_rating: null,
     date: today,
     attempt: 0,
-    pass: "TBD",
+    pass: 'TBD'
   };
 
   return (
     <div
       className={styles}
       style={{
-        position: "fixed",
-        zIndex: "6",
-        left: "0",
-        top: "0",
-        width: "100%",
-        height: "100%",
-        overflow: "auto",
-        backgroundColor: "rgba(0,0,0,0.4)",
+        position: 'fixed',
+        zIndex: '6',
+        left: '0',
+        top: '0',
+        width: '100%',
+        height: '100%',
+        overflow: 'auto',
+        backgroundColor: 'rgba(0,0,0,0.4)'
       }}
     >
       <div
         style={{
           fontSize: 14,
-          backgroundColor: "white",
+          backgroundColor: 'white',
           borderRadius: 10,
-          height: "auto",
+          height: 'auto',
           width: 250,
-          margin: "15% auto",
+          margin: '15% auto'
         }}
       >
         <div
           onClick={() => setShowAddStudent(!showAddStudent)}
-          style={{ paddingLeft: 15, paddingTop: 10, cursor: "pointer" }}
+          style={{ paddingLeft: 15, paddingTop: 10, cursor: 'pointer' }}
         >
           <AiIcons.AiOutlineClose />
         </div>
         <div
           style={{
             marginBottom: 10,
-            display: "flex",
-            justifyContent: "center",
+            display: 'flex',
+            justifyContent: 'center'
           }}
         >
           <div>
             <strong>Add New Student</strong>
           </div>
         </div>
-        <div style={{ display: "flex", flexDirection: "column" }}>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
           {firstNameInput ? (
             <div
               style={{
-                display: "flex",
-                justifyContent: "center",
-                color: "red",
+                display: 'flex',
+                justifyContent: 'center',
+                color: 'red'
               }}
             >
               <span>Please input first name!</span>
@@ -191,8 +186,8 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
           <div
             style={{
               marginBottom: 10,
-              display: "flex",
-              justifyContent: "center",
+              display: 'flex',
+              justifyContent: 'center'
             }}
           >
             <input
@@ -206,9 +201,9 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
           {lastNameInput ? (
             <div
               style={{
-                display: "flex",
-                justifyContent: "center",
-                color: "red",
+                display: 'flex',
+                justifyContent: 'center',
+                color: 'red'
               }}
             >
               <span>Please input last name!</span>
@@ -217,8 +212,8 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
           <div
             style={{
               marginBottom: 10,
-              display: "flex",
-              justifyContent: "center",
+              display: 'flex',
+              justifyContent: 'center'
             }}
           >
             <input
@@ -232,9 +227,9 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
           {emailInput ? (
             <div
               style={{
-                display: "flex",
-                justifyContent: "center",
-                color: "red",
+                display: 'flex',
+                justifyContent: 'center',
+                color: 'red'
               }}
             >
               <span>Please input email!</span>
@@ -243,8 +238,8 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
           <div
             style={{
               marginBottom: 10,
-              display: "flex",
-              justifyContent: "center",
+              display: 'flex',
+              justifyContent: 'center'
             }}
           >
             <input
@@ -259,9 +254,9 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
         {cohortInput ? (
           <div
             style={{
-              display: "flex",
-              justifyContent: "center",
-              color: "red",
+              display: 'flex',
+              justifyContent: 'center',
+              color: 'red'
             }}
           >
             <span>Please input cohort!</span>
@@ -269,20 +264,20 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
         ) : null}
         <div
           style={{
-            display: "flex",
-            justifyContent: "center",
-            paddingBottom: 10,
+            display: 'flex',
+            justifyContent: 'center',
+            paddingBottom: 10
           }}
         >
           <select
             style={{
               width: 190,
               height: 30,
-              backgroundColor: "#f0f0f0",
-              borderRadius: "0px",
-              color: "#979797",
-              appearance: "none",
-              paddingLeft: 3,
+              backgroundColor: '#f0f0f0',
+              borderRadius: '0px',
+              color: '#979797',
+              appearance: 'none',
+              paddingLeft: 3
             }}
             onChange={handleCohortChange}
           >
@@ -301,19 +296,19 @@ const NewStudent = ({ setShowAddStudent, showAddStudent }) => {
         <div
           style={{
             marginBottom: 10,
-            display: "flex",
-            justifyContent: "center",
-            paddingBottom: 10,
+            display: 'flex',
+            justifyContent: 'center',
+            paddingBottom: 10
           }}
         >
           <button
             className={styles.bob}
             style={{
-              color: "white",
-              fontFamily: "League Spartan",
-              backgroundColor: "#EF6E47",
-              border: "none",
-              width: 75,
+              color: 'white',
+              fontFamily: 'League Spartan',
+              backgroundColor: '#EF6E47',
+              border: 'none',
+              width: 75
             }}
             onClick={() => {
               handleNewStudent();

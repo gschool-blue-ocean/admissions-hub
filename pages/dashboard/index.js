@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import Header from '../../src/components/Shared-Comps/Header';
-import Footer from '../../src/components/Shared-Comps/Footer';
-import InterviewDash from '../../src/components/InterviewDash';
-import Loading from '../../src/components/Shared-Comps/loading/Loading';
+import Header from '../../src/Shared/Header';
+import Footer from '../../src/Shared/Footer';
+import DashboardContent from '../../src/Dashboard/DashboardContent';
+import Loading from '../../src/Shared/loading/Loading';
 import auth from '../../lib/auth';
 import Router from 'next/router';
 
@@ -20,7 +20,7 @@ export default function index() {
   return valid ? (
     <div style={{ backgroundColor: '#0d0f4ae3' }}>
       <Header />
-      <InterviewDash />
+      <DashboardContent />
       <Footer />
     </div>
   ) : (

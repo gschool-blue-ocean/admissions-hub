@@ -1,7 +1,7 @@
-import LoginCard from './LoginCard';
-import Header from '../../src/components/Shared-Comps/Header';
+import LoginCard from '../../src/Login/LoginCard';
+import Header from '../../src/Shared/Header';
 import styles from '../../styles/Login.module.css';
-import Footer from '../../src/components/Shared-Comps/Footer';
+import Footer from '../../src/Shared/Footer';
 
 export default function Login() {
   return (

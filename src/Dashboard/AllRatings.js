@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './AllRatings.module.css';
-import { useAppContext } from './GlobalContext';
+import { useAppContext } from '../GlobalContext';
 import Router from 'next/router';
 
 const AllRatings = () => {

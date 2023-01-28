@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Reference from './Reference';
-import Ratings from './Shared-Comps/Ratings';
+import Ratings from './Shared/Ratings';
 import Problems from './Problems';
 import styles from './AllRatings.module.css';
 import axios from 'axios';

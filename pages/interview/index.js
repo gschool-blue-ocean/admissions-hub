@@ -1,11 +1,11 @@
-import CodeEditor from '../../src/components/CodeEditor';
-import Dashboard from '../../src/components/Dashboard';
-import Header from '../../src/components/Shared-Comps/Header';
-import Footer from '../../src/components/Shared-Comps/Footer';
+import CodeEditor from '../../src/Interview/CodeEditor';
+import Dashboard from '../../src/Dashboard';
+import Header from '../../src/Shared/Header';
+import Footer from '../../src/Shared/Footer';
 import { useEffect, useState } from 'react';
-import RoomURL from '../../src/components/RoomURL';
-import { useAppContext } from '../../src/components/GlobalContext';
-import Loading from '../../src/components/Shared-Comps/loading/Loading';
+import RoomURL from '../../src/Interview/RoomURL';
+import { useAppContext } from '../../src/GlobalContext';
+import Loading from '../../src/Shared/loading/Loading';
 import axios from 'axios';
 import auth from '../../lib/auth';
 //import {importStudent} from "../../lib/importStudent";
