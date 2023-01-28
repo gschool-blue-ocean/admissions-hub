@@ -3,7 +3,7 @@ import * as BsIcons from 'react-icons/bs';
 import * as BiIcons from 'react-icons/bi';
 import * as AiIcons from 'react-icons/ai';
 import * as TiIcons from 'react-icons/ti';
-import Downloader from '../email/Downloadcsv';
+import Downloader from './email/Downloadcsv';
 
 import NewStudent from './NewStudent';
 import Link from 'next/link';
