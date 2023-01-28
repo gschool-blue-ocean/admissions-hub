@@ -1,14 +1,4 @@
-@font-face {
-  font-family: "League Spartan";
-  src: url(../../public/fonts/League_Spartan/LeagueSpartan-VariableFont_wght.ttf);
-}
-
-@font-face {
-  font-family: "Roboto";
-  src: url(../../public/fonts/Roboto/Roboto-Light.ttf);
-}
-
-.input[type="text"] {
+.input[type='text'] {
   background-color: #f0f0f0;
   color: #595959;
   width: 190px;
@@ -20,7 +10,7 @@
 }
 
 .bob {
-  background-color:#EF6E47;
+  background-color: #ef6e47;
   transition: 0.2s;
 }
 
@@ -42,7 +32,7 @@
 }
 
 .scroll::-webkit-scrollbar-thumb {
-  background: #EF6E47;
+  background: #ef6e47;
 }
 
 .empty {

@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import styles from './Header.module.css';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useRouter } from 'next/router';
-import BtnLogin from './BtnLogin';
-import { useAppContext } from './GlobalContext';
+import BtnLogin from '../BtnLogin';
+import { useAppContext } from '../GlobalContext';
 import Calendar from 'react-calendar';
 
 function Header() {

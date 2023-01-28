@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
-import styles from './Login.module.css';
+import styles from '../../styles/Login.module.css';
 
 export default function AdminLogin(props) {
   const router = useRouter();
@@ -10,6 +10,7 @@ export default function AdminLogin(props) {
   const [warning, setWarning] = useState('');
 
   function login() {
+    localStorage.clear();
     setWarning('');
     axios
       .post('/api/admin', { email: email, password: password })

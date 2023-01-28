@@ -1,13 +1,3 @@
-@font-face {
-  font-family: "League Spartan";
-  src: url(../../public/fonts/League_Spartan/LeagueSpartan-VariableFont_wght.ttf);
-}
-
-@font-face {
-  font-family: "Roboto";
-  src: url(../../public/fonts/Roboto/Roboto-Light.ttf);
-}
-
 .referenceGrid {
   display: grid;
   grid-template-columns: 225px 210px;
@@ -67,12 +57,12 @@
 
 /* When the checkbox is checked, add a blue background */
 .container input:checked ~ .checkmark {
-  background-color: #EF6E47;
+  background-color: #ef6e47;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
 .checkmark:after {
-  content: "";
+  content: '';
   position: absolute;
   display: none;
 }
@@ -95,7 +85,7 @@
   transform: rotate(45deg);
 }
 
-.input[type="text"] {
+.input[type='text'] {
   background-color: #f0f0f0;
   color: #979797;
   width: 190px;

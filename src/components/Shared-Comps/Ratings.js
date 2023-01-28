@@ -1,15 +1,10 @@
-import React, { useEffect, useState } from "react";
-import * as ImIcons from "react-icons/im";
-import styles from "./AllRatings.module.css";
-import { useRouter } from "next/router";
-import { useAppContext } from "./GlobalContext";
+import React, { useEffect, useState } from 'react';
+import * as ImIcons from 'react-icons/im';
+import styles from './AllRatings.module.css';
+import { useRouter } from 'next/router';
+import { useAppContext } from '../GlobalContext';
 
-const Ratings = ({
-  setValue,
-  setProblem1Rating,
-  setProblem2Rating,
-  setProblem3Rating,
-}) => {
+const Ratings = ({ setValue, setProblem1Rating, setProblem2Rating, setProblem3Rating }) => {
   const [problem1a, setProblem1a] = useState(false);
   const [problem1b, setProblem1b] = useState(false);
   const [problem1c, setProblem1c] = useState(false);
@@ -71,12 +66,11 @@ const Ratings = ({
 
   let totalRating;
 
-  if (asPath === asPath.match("/dashboard")?.input) {
+  if (asPath === asPath.match('/dashboard')?.input) {
     if (info.problem_1_rating === undefined) {
       totalRating = 0;
     } else {
-      totalRating =
-        info.problem_1_rating + info.problem_2_rating + info.problem_3_rating;
+      totalRating = info.problem_1_rating + info.problem_2_rating + info.problem_3_rating;
     }
   } else {
     totalRating = rating1 + rating2 + rating3;
@@ -89,7 +83,7 @@ const Ratings = ({
   let normalizedRadius = radius - stroke * 2;
   let circumference = normalizedRadius * 2 * Math.PI;
 
-  if (asPath !== asPath.match("/dashboard")?.input) {
+  if (asPath !== asPath.match('/dashboard')?.input) {
     useEffect(() => {
       setValue(totalRating);
       setProblem1Rating(rating1);
@@ -103,66 +97,67 @@ const Ratings = ({
 
   return (
     <>
-      {asPath === asPath.match("/dashboard")?.input ? (
-        <div className={styles} style={{ marginTop: "0px" }}>
+      {asPath === asPath.match('/dashboard')?.input ? (
+        <div
+          className={styles}
+          style={{ marginTop: '0px' }}
+        >
           <span
             style={{
               fontSize: 14,
-              fontFamily: "League Spartan",
+              fontFamily: 'League Spartan',
               paddingLeft: 7,
-              color: "#979797",
+              color: '#979797'
             }}
           >
             Rating
           </span>
           <div
             style={{
-              display: "flex",
-              justifyContent: "space-around",
-              fontSize: 16,
+              display: 'flex',
+              justifyContent: 'space-around',
+              fontSize: 16
             }}
           >
             <div
               style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center'
               }}
             >
               <div
                 style={{
-                  display: "flex",
-                  marginTop: "-15px",
+                  display: 'flex',
+                  marginTop: '-15px'
                 }}
               >
-                <div style={{ paddingRight: 30, color: "#979797" }}>
-                  Problem 1
-                </div>
-                <div style={{ display: "flex", marginTop: "-2px" }}>
+                <div style={{ paddingRight: 30, color: '#979797' }}>Problem 1</div>
+                <div style={{ display: 'flex', marginTop: '-2px' }}>
                   <div>
                     {info.problem_1_rating > 0 ? (
-                      <ImIcons.ImStarFull style={{ color: "#EF6E47" }} />
+                      <ImIcons.ImStarFull style={{ color: '#EF6E47' }} />
                     ) : (
                       <ImIcons.ImStarFull className={styles.empty} />
                     )}
                   </div>
                   <div>
                     {info.problem_1_rating > 1 ? (
-                      <ImIcons.ImStarFull style={{ color: "#EF6E47" }} />
+                      <ImIcons.ImStarFull style={{ color: '#EF6E47' }} />
                     ) : (
                       <ImIcons.ImStarFull className={styles.empty} />
                     )}
                   </div>
                   <div>
                     {info.problem_1_rating > 2 ? (
-                      <ImIcons.ImStarFull style={{ color: "#EF6E47" }} />
+                      <ImIcons.ImStarFull style={{ color: '#EF6E47' }} />
                     ) : (
                       <ImIcons.ImStarFull className={styles.empty} />
                     )}
                   </div>
                   <div>
                     {info.problem_1_rating > 3 ? (
-                      <ImIcons.ImStarFull style={{ color: "#EF6E47" }} />
+                      <ImIcons.ImStarFull style={{ color: '#EF6E47' }} />
                     ) : (
                       <ImIcons.ImStarFull className={styles.empty} />
                     )}
@@ -171,37 +166,35 @@ const Ratings = ({
               </div>
               <div
                 style={{
-                  display: "flex",
+                  display: 'flex'
                 }}
               >
-                <div style={{ paddingRight: 30, color: "#979797" }}>
-                  Problem 2
-                </div>
-                <div style={{ display: "flex", marginTop: "-2px" }}>
+                <div style={{ paddingRight: 30, color: '#979797' }}>Problem 2</div>
+                <div style={{ display: 'flex', marginTop: '-2px' }}>
                   <div>
                     {info.problem_2_rating > 0 ? (
-                      <ImIcons.ImStarFull style={{ color: "#EF6E47" }} />
+                      <ImIcons.ImStarFull style={{ color: '#EF6E47' }} />
                     ) : (
                       <ImIcons.ImStarFull className={styles.empty} />
                     )}
                   </div>
                   <div>
                     {info.problem_2_rating > 1 ? (
-                      <ImIcons.ImStarFull style={{ color: "#EF6E47" }} />
+                      <ImIcons.ImStarFull style={{ color: '#EF6E47' }} />
                     ) : (
                       <ImIcons.ImStarFull className={styles.empty} />
                     )}
                   </div>
                   <div>
                     {info.problem_2_rating > 2 ? (
-                      <ImIcons.ImStarFull style={{ color: "#EF6E47" }} />
+                      <ImIcons.ImStarFull style={{ color: '#EF6E47' }} />
                     ) : (
                       <ImIcons.ImStarFull className={styles.empty} />
                     )}
                   </div>
                   <div>
                     {info.problem_2_rating > 3 ? (
-                      <ImIcons.ImStarFull style={{ color: "#EF6E47" }} />
+                      <ImIcons.ImStarFull style={{ color: '#EF6E47' }} />
                     ) : (
                       <ImIcons.ImStarFull className={styles.empty} />
                     )}
@@ -210,37 +203,35 @@ const Ratings = ({
               </div>
               <div
                 style={{
-                  display: "flex",
+                  display: 'flex'
                 }}
               >
-                <div style={{ paddingRight: 30, color: "#979797" }}>
-                  Problem 3
-                </div>
-                <div style={{ display: "flex", marginTop: "-2px" }}>
+                <div style={{ paddingRight: 30, color: '#979797' }}>Problem 3</div>
+                <div style={{ display: 'flex', marginTop: '-2px' }}>
                   <div>
                     {info.problem_3_rating > 0 ? (
-                      <ImIcons.ImStarFull style={{ color: "#EF6E47" }} />
+                      <ImIcons.ImStarFull style={{ color: '#EF6E47' }} />
                     ) : (
                       <ImIcons.ImStarFull className={styles.empty} />
                     )}
                   </div>
                   <div>
                     {info.problem_3_rating > 1 ? (
-                      <ImIcons.ImStarFull style={{ color: "#EF6E47" }} />
+                      <ImIcons.ImStarFull style={{ color: '#EF6E47' }} />
                     ) : (
                       <ImIcons.ImStarFull className={styles.empty} />
                     )}
                   </div>
                   <div>
                     {info.problem_3_rating > 2 ? (
-                      <ImIcons.ImStarFull style={{ color: "#EF6E47" }} />
+                      <ImIcons.ImStarFull style={{ color: '#EF6E47' }} />
                     ) : (
                       <ImIcons.ImStarFull className={styles.empty} />
                     )}
                   </div>
                   <div>
                     {info.problem_3_rating > 3 ? (
-                      <ImIcons.ImStarFull style={{ color: "#EF6E47" }} />
+                      <ImIcons.ImStarFull style={{ color: '#EF6E47' }} />
                     ) : (
                       <ImIcons.ImStarFull className={styles.empty} />
                     )}
@@ -252,7 +243,7 @@ const Ratings = ({
               <svg
                 height={radius * 2}
                 width={radius * 2}
-                style={{ marginTop: "-15px" }}
+                style={{ marginTop: '-15px' }}
               >
                 <circle
                   stroke="#ffd8a7"
@@ -266,10 +257,10 @@ const Ratings = ({
                   stroke="#EF6E47"
                   fill="transparent"
                   strokeWidth={stroke}
-                  strokeDasharray={circumference + " " + circumference}
+                  strokeDasharray={circumference + ' ' + circumference}
                   style={{
                     strokeDashoffset,
-                    transition: "stroke-dashoffset 0.35s",
+                    transition: 'stroke-dashoffset 0.35s'
                   }}
                   r={normalizedRadius}
                   cx={radius}
@@ -290,41 +281,42 @@ const Ratings = ({
           </div>
         </div>
       ) : (
-        <div className={styles} style={{ marginTop: "0px" }}>
+        <div
+          className={styles}
+          style={{ marginTop: '0px' }}
+        >
           <span
             style={{
               fontSize: 14,
-              fontFamily: "League Spartan",
+              fontFamily: 'League Spartan',
               paddingLeft: 7,
-              color: "#979797",
+              color: '#979797'
             }}
           >
             Rating
           </span>
           <div
             style={{
-              display: "flex",
-              justifyContent: "space-around",
-              fontSize: 16,
+              display: 'flex',
+              justifyContent: 'space-around',
+              fontSize: 16
             }}
           >
             <div
               style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center'
               }}
             >
               <div
                 style={{
-                  display: "flex",
-                  marginTop: "-15px",
+                  display: 'flex',
+                  marginTop: '-15px'
                 }}
               >
-                <div style={{ paddingRight: 30, color: "#979797" }}>
-                  Problem 1
-                </div>
-                <div style={{ display: "flex", marginTop: "-2px" }}>
+                <div style={{ paddingRight: 30, color: '#979797' }}>Problem 1</div>
+                <div style={{ display: 'flex', marginTop: '-2px' }}>
                   <div
                     onClick={() => {
                       setProblem1a(!problem1a);
@@ -340,7 +332,7 @@ const Ratings = ({
                     }}
                   >
                     {problem1a ? (
-                      <ImIcons.ImStarFull style={{ color: "#EF6E47" }} />
+                      <ImIcons.ImStarFull style={{ color: '#EF6E47' }} />
                     ) : (
                       <ImIcons.ImStarFull className={styles.empty} />
                     )}
@@ -360,7 +352,7 @@ const Ratings = ({
                     }}
                   >
                     {problem1b ? (
-                      <ImIcons.ImStarFull style={{ color: "#EF6E47" }} />
+                      <ImIcons.ImStarFull style={{ color: '#EF6E47' }} />
                     ) : (
                       <ImIcons.ImStarFull className={styles.empty} />
                     )}
@@ -380,7 +372,7 @@ const Ratings = ({
                     }}
                   >
                     {problem1c ? (
-                      <ImIcons.ImStarFull style={{ color: "#EF6E47" }} />
+                      <ImIcons.ImStarFull style={{ color: '#EF6E47' }} />
                     ) : (
                       <ImIcons.ImStarFull className={styles.empty} />
                     )}
@@ -400,7 +392,7 @@ const Ratings = ({
                     }}
                   >
                     {problem1d ? (
-                      <ImIcons.ImStarFull style={{ color: "#EF6E47" }} />
+                      <ImIcons.ImStarFull style={{ color: '#EF6E47' }} />
                     ) : (
                       <ImIcons.ImStarFull className={styles.empty} />
                     )}
@@ -409,13 +401,11 @@ const Ratings = ({
               </div>
               <div
                 style={{
-                  display: "flex",
+                  display: 'flex'
                 }}
               >
-                <div style={{ paddingRight: 30, color: "#979797" }}>
-                  Problem 2
-                </div>
-                <div style={{ display: "flex", marginTop: "-2px" }}>
+                <div style={{ paddingRight: 30, color: '#979797' }}>Problem 2</div>
+                <div style={{ display: 'flex', marginTop: '-2px' }}>
                   <div
                     onClick={() => {
                       setProblem2a(!problem2a);
@@ -431,7 +421,7 @@ const Ratings = ({
                     }}
                   >
                     {problem2a ? (
-                      <ImIcons.ImStarFull style={{ color: "#EF6E47" }} />
+                      <ImIcons.ImStarFull style={{ color: '#EF6E47' }} />
                     ) : (
                       <ImIcons.ImStarFull className={styles.empty} />
                     )}
@@ -451,7 +441,7 @@ const Ratings = ({
                     }}
                   >
                     {problem2b ? (
-                      <ImIcons.ImStarFull style={{ color: "#EF6E47" }} />
+                      <ImIcons.ImStarFull style={{ color: '#EF6E47' }} />
                     ) : (
                       <ImIcons.ImStarFull className={styles.empty} />
                     )}
@@ -471,7 +461,7 @@ const Ratings = ({
                     }}
                   >
                     {problem2c ? (
-                      <ImIcons.ImStarFull style={{ color: "#EF6E47" }} />
+                      <ImIcons.ImStarFull style={{ color: '#EF6E47' }} />
                     ) : (
                       <ImIcons.ImStarFull className={styles.empty} />
                     )}
@@ -491,7 +481,7 @@ const Ratings = ({
                     }}
                   >
                     {problem2d ? (
-                      <ImIcons.ImStarFull style={{ color: "#EF6E47" }} />
+                      <ImIcons.ImStarFull style={{ color: '#EF6E47' }} />
                     ) : (
                       <ImIcons.ImStarFull className={styles.empty} />
                     )}
@@ -500,13 +490,11 @@ const Ratings = ({
               </div>
               <div
                 style={{
-                  display: "flex",
+                  display: 'flex'
                 }}
               >
-                <div style={{ paddingRight: 30, color: "#979797" }}>
-                  Problem 3
-                </div>
-                <div style={{ display: "flex", marginTop: "-2px" }}>
+                <div style={{ paddingRight: 30, color: '#979797' }}>Problem 3</div>
+                <div style={{ display: 'flex', marginTop: '-2px' }}>
                   <div
                     onClick={() => {
                       setProblem3a(!problem3a);
@@ -522,7 +510,7 @@ const Ratings = ({
                     }}
                   >
                     {problem3a ? (
-                      <ImIcons.ImStarFull style={{ color: "#EF6E47" }} />
+                      <ImIcons.ImStarFull style={{ color: '#EF6E47' }} />
                     ) : (
                       <ImIcons.ImStarFull className={styles.empty} />
                     )}
@@ -542,7 +530,7 @@ const Ratings = ({
                     }}
                   >
                     {problem3b ? (
-                      <ImIcons.ImStarFull style={{ color: "#EF6E47" }} />
+                      <ImIcons.ImStarFull style={{ color: '#EF6E47' }} />
                     ) : (
                       <ImIcons.ImStarFull className={styles.empty} />
                     )}
@@ -562,7 +550,7 @@ const Ratings = ({
                     }}
                   >
                     {problem3c ? (
-                      <ImIcons.ImStarFull style={{ color: "#EF6E47" }} />
+                      <ImIcons.ImStarFull style={{ color: '#EF6E47' }} />
                     ) : (
                       <ImIcons.ImStarFull className={styles.empty} />
                     )}
@@ -582,7 +570,7 @@ const Ratings = ({
                     }}
                   >
                     {problem3d ? (
-                      <ImIcons.ImStarFull style={{ color: "#EF6E47" }} />
+                      <ImIcons.ImStarFull style={{ color: '#EF6E47' }} />
                     ) : (
                       <ImIcons.ImStarFull className={styles.empty} />
                     )}
@@ -594,7 +582,7 @@ const Ratings = ({
               <svg
                 height={radius * 2}
                 width={radius * 2}
-                style={{ marginTop: "-15px" }}
+                style={{ marginTop: '-15px' }}
               >
                 <circle
                   stroke="#ffd8a7"
@@ -608,10 +596,10 @@ const Ratings = ({
                   stroke="#EF6E47"
                   fill="transparent"
                   strokeWidth={stroke}
-                  strokeDasharray={circumference + " " + circumference}
+                  strokeDasharray={circumference + ' ' + circumference}
                   style={{
                     strokeDashoffset,
-                    transition: "stroke-dashoffset 0.35s",
+                    transition: 'stroke-dashoffset 0.35s'
                   }}
                   r={normalizedRadius}
                   cx={radius}

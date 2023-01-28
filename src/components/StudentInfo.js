@@ -8,11 +8,11 @@ import Downloader from './email/Downloadcsv';
 import NewStudent from './NewStudent';
 import Link from 'next/link';
 import uuid from 'react-uuid';
-import Ratings from './Ratings';
+import Ratings from './Shared-Comps/Ratings';
 import styles from './AllRatings.module.css';
 import { useAppContext } from './GlobalContext';
 import ViewProblems from './viewProblems';
-import axioss from 'axios';
+import axios from 'axios';
 
 const StudentInfo = () => {
   const { info, setInfo, setUserRole, setStudents, students, user, interview, setInterview } = useAppContext();

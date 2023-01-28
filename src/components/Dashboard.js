@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Reference from './Reference';
-import Ratings from './Ratings';
+import Ratings from './Shared-Comps/Ratings';
 import Problems from './Problems';
 import styles from './AllRatings.module.css';
-import RoomURL from './RoomURL';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useAppContext } from './GlobalContext';
@@ -71,7 +70,7 @@ const Dashboard = () => {
   let numAttempt = Number(info.attempt);
 
   let newPatchRequest = {
-    pass: passOrFail,
+    pass: passOrFail
   };
 
   let interviewObj = {
@@ -87,7 +86,7 @@ const Dashboard = () => {
     date: today,
     attempt: numAttempt + 1,
     pass: passOrFail,
-    complete: true,
+    complete: true
   };
 
   const router = useRouter();
@@ -148,7 +147,7 @@ const Dashboard = () => {
         zIndex: '1',
         padding: '10px 10px 0px',
         position: 'sticky',
-        backgroundColor: 'white',
+        backgroundColor: 'white'
       }}
     >
       {/* <RoomURL /> */}
@@ -187,7 +186,7 @@ const Dashboard = () => {
           display: 'flex',
           justifyContent: 'center',
           paddingTop: 10,
-          paddingBottom: 2,
+          paddingBottom: 2
         }}
       >
         <button
@@ -226,7 +225,7 @@ const Dashboard = () => {
             backgroundColor: '#EF6E47',
             border: 'none',
             fontSize: 16,
-            fontFamily: 'League Spartan',
+            fontFamily: 'League Spartan'
           }}
         >
           Complete Interview

@@ -1,13 +1,12 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import AllRatings from "./AllRatings";
-import InterviewerReport from "./InterviewerReport";
-import StudentInfo from "./StudentInfo";
-import { useAppContext } from "./GlobalContext";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import AllRatings from './AllRatings';
+import InterviewerReport from './InterviewerReport';
+import StudentInfo from './StudentInfo';
 
 const InterviewDash = () => {
   // const [newTest, setNewTest] = useState();
-  const { students, setStudents } = useAppContext();
+  const [studentsList, setStudentsList] = useState([]);
   useEffect(() => {
     axios.get(`/api/candidate/Candidate`).then((result) => {
       let temp = result.data;
@@ -15,8 +14,7 @@ const InterviewDash = () => {
       const arr = temp.reduce((result, obj) => {
         let row = result.find((x) => x.candidates_id === obj.candidates_id);
         if (!row) result.push({ ...obj });
-        else if (parseInt(row.attempt) < parseInt(obj.attempt))
-          Object.assign(row, obj);
+        else if (parseInt(row.attempt) < parseInt(obj.attempt)) Object.assign(row, obj);
         return result;
       }, []);
 
@@ -30,7 +28,7 @@ const InterviewDash = () => {
   }, []);
 
   return (
-    <div style={{ width: 730, margin: "5% auto", textColor: 'black'}}>
+    <div style={{ width: 730, margin: '5% auto', textColor: 'black' }}>
       <AllRatings />
       <StudentInfo />
       <InterviewerReport />

@@ -1,30 +1,25 @@
-@font-face {
-    font-family: 'Roboto';
-    src: url(../../../public/fonts/Roboto/Roboto-Light.ttf);
-}
 .export {
-    padding-left:3em;
-    padding-right: 3em;
-    color:#EF6E47;
+  padding-left: 3em;
+  padding-right: 3em;
+  color: #ef6e47;
 }
-.export:hover{
-    color:rgba(13,15,74,.89)
+.export:hover {
+  color: rgba(13, 15, 74, 0.89);
 }
-.exportContainer{
-    display: flex;
-    font-size: 1.3em;
-    font-weight: bold;
-    justify-content: center;
-    
+.exportContainer {
+  display: flex;
+  font-size: 1.3em;
+  font-weight: bold;
+  justify-content: center;
 }
 
-.close{
-    background-color:#ffd8a7;
-    border:none;
-    transition: all .2s;
+.close {
+  background-color: #ffd8a7;
+  border: none;
+  transition: all 0.2s;
 }
 .close:hover {
-background-color: rgba(13,15,74,.89);
-color:white;
-transform: scale(1.2);
+  background-color: rgba(13, 15, 74, 0.89);
+  color: white;
+  transform: scale(1.2);
 }

@@ -6,9 +6,9 @@ export default function handler(req, res) {
   if (method === 'POST') {
     let { first_name, last_name, email, cohort, pass } = req.body;
 
-    return pool
+    pool
       .query(
-        'INSERT INTO candidates( first_name, last_name, email, cohort, pass) VALUES ($1, $2, $3, $4, $5) RETURNING *;', //,
+        'INSERT INTO candidates( first_name, last_name, email, cohort, pass) VALUES ($1, $2, $3, $4, $5) RETURNING *', //,
         [first_name, last_name, email, cohort, pass]
       )
       .then((data) => {
@@ -19,9 +19,9 @@ export default function handler(req, res) {
         res.send(error);
       });
   } else if (method === 'GET') {
-    return pool
+    pool
       .query(
-        'SELECT candidates.*, interviews.* FROM candidates LEFT JOIN interviews ON candidates.id = interviews.candidates_id ORDER BY date DESC;' //,
+        'SELECT candidates.*, interviews.* FROM candidates LEFT JOIN interviews ON candidates.id = interviews.candidates_id ORDER BY date DESC' //,
       )
       .then((data) => {
         res.send(data.rows);

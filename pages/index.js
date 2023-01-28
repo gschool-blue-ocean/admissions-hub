@@ -1,14 +1,16 @@
-import { useEffect } from 'react';
-import styles from './index.module.css';
+import Loading from '../src/components/Shared-Comps/loading/Loading';
 import auth from '../lib/auth';
+import Router from 'next/router';
+import { useEffect } from 'react';
 
 export default function Home() {
   useEffect(() => {
-    setTimeout(() => auth('/dashboard'), 1000);
+    setTimeout(() => {
+      auth(
+        () => Router.push('/dashboard'),
+        () => Router.push('/login')
+      );
+    }, 1000);
   }, []);
-  return (
-    <div className={styles.wrapper}>
-      <div className={styles.loading}></div>
-    </div>
-  );
+  return <Loading />;
 }
