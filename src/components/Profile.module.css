@@ -17,6 +17,7 @@
   
   .form_inputs label {
     padding: 5px;
+
   }
 
   .content_container {
@@ -40,6 +41,7 @@
   border: 1px solid gray;
   padding: 10px;
   text-align: center;
+
 }
 
 .password_input {

@@ -88,7 +88,7 @@ function Header() {
         {asPath !== "/login" ? (
           <button
             className={styles.logo}
-            // onClick={goLink}
+            onClick={goLink}
             name="dashboard"
           ></button>
         ) : (
