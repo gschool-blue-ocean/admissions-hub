@@ -1,0 +1,215 @@
+.dashboardPage {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-flow: column nowrap;
+  min-width: 840px;
+  min-height: 900px;
+  background-color: #0d0f4ae3;
+
+  color: #4e4e4e;
+}
+
+.dashContent {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashTop {
+  width: calc(100% - 200px);
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+
+  background-color: #f0f0f0;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.interviewStatCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.interviewStatText {
+  font-size: 1.5rem;
+}
+
+.dashMid {
+  width: calc(100% - 200px);
+  background-color: #f0f0f0;
+  border-top: 4px solid #0d0f4ae3;
+  border-bottom: 4px solid #0d0f4ae3;
+}
+
+.dashBottom {
+  width: calc(100% - 200px);
+  background-color: #f0f0f0;
+  border-radius: 0px 0px 10px 10px;
+}
+
+.optionsRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.searchBox {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 4px;
+  border: 2px solid white;
+
+  height: 40px;
+  width: 360px;
+  padding-inline: 6px;
+}
+
+.searchBox:focus-within {
+  border: 2px solid #0d0f4ae3;
+}
+
+.searchInput {
+  all: unset;
+  width: 100%;
+  height: 36px;
+  line-height: 36px;
+}
+
+.searchIcon {
+  background-image: url(../public/search-sprites.png);
+  background-position: 2px -280px;
+  width: 45px;
+  height: 40px;
+  opacity: 1;
+}
+
+.buttonsRow {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 4px;
+}
+
+.tipBox {
+  border: 2px solid #0d0f4ae3;
+  color: #0d0f4ae3;
+  height: 40px;
+  width: max-content;
+  padding-inline: 4px;
+  text-align: center;
+  line-height: 40px;
+  background-color: #ffd8a7;
+  border-radius: 4px;
+}
+
+.launchButton {
+  border: 2px solid #0d0f4ae3;
+  color: #0d0f4ae3;
+  height: 40px;
+  width: max-content;
+  padding-inline: 4px;
+  text-align: center;
+  line-height: 40px;
+  background-color: #ffd8a7;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.05s ease-in-out;
+}
+
+.launchButton:hover {
+  color: white;
+  background-color: #ef6e47;
+  transform: scale(1.03);
+}
+
+.tableTitles {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  gap: 8px;
+  font-size: 0.75rem;
+  padding-inline: 4px;
+}
+
+.candidates {
+  max-height: 500px;
+  min-height: 200px;
+  overflow-y: auto;
+  background-color: white;
+  padding-inline: 4px;
+}
+
+.candidateRow {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  gap: 8px;
+}
+
+.selectedRow {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  gap: 8px;
+  color: white;
+  background-color: #ef6e47;
+}
+
+.newStudentShadow {
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.4);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.newStudentCard {
+  background-color: white;
+  border-radius: 8px;
+  height: 300px;
+  width: 300px;
+  background-color: #f0f0f0;
+  padding: 12px;
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.newInput {
+  all: unset;
+  width: 100%;
+  height: 36px;
+  line-height: 36px;
+  background-color: white;
+  border-radius: 4px;
+  border: 2px solid white;
+  box-sizing: border-box;
+  padding-inline: 4px;
+}
+.newInput:focus {
+  border: 2px solid #0d0f4ae3;
+}
+
+.spacedButtons {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}

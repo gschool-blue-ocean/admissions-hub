@@ -3,7 +3,7 @@ import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import { useEffect } from 'react';
 import '../styles/globals.css';
 import Head from 'next/head';
-import { AppWrapper } from '../src/components/GlobalContext';
+import { AppWrapper } from '../src/GlobalContext';
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {

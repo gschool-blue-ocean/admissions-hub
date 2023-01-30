@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import Header from '../../src/Shared/Header';
 import Footer from '../../src/Shared/Footer';
-import DashboardContent from '../../src/Dashboard/DashboardContent';
+import DashContent from '../../src/Dashboard/DashContent';
 import Loading from '../../src/Shared/loading/Loading';
 import auth from '../../lib/auth';
 import Router from 'next/router';
+import styles from '../../styles/Dashboard.module.css';
 
 export default function index() {
   const [valid, setValid] = useState(false);
@@ -18,9 +19,9 @@ export default function index() {
   }, []);
 
   return valid ? (
-    <div style={{ backgroundColor: '#0d0f4ae3' }}>
+    <div className={styles.dashboardPage}>
       <Header />
-      <DashboardContent />
+      <DashContent />
       <Footer />
     </div>
   ) : (

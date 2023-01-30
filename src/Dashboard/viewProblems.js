@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import MarkdownIt from 'markdown-it';
-import Style from './Problems.module.css';
+import { useEffect, useState } from 'react';
+import Style from '../Interview/Problems.module.css';
 import Image from 'next/image';
 import styles from './AllRatings.module.css';
 import { useAppContext } from '../GlobalContext';

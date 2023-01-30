@@ -1,5 +1,6 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import styles from '../../styles/Dashboard.module.css';
 import { useAppContext } from '../GlobalContext';
 
 const InterviewerReport = () => {
@@ -44,11 +45,11 @@ const InterviewerReport = () => {
 
   return (
     <div
+      className={styles.dashBottom}
       style={{
         height: '144px',
         backgroundColor: '#f0f0f0',
         borderRadius: '0px 0px 10px 10px',
-        marginTop: 5,
         color: '#979797'
       }}
     >

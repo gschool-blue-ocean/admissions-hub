@@ -4,30 +4,31 @@ export default function handler(req, res) {
   const { method } = req;
 
   if (method === 'POST') {
-    let { first_name, last_name, email, cohort, pass } = req.body;
-
+    let { first_name, last_name, email, cohort } = req.body;
     pool
       .query(
-        'INSERT INTO candidates( first_name, last_name, email, cohort, pass) VALUES ($1, $2, $3, $4, $5) RETURNING *', //,
-        [first_name, last_name, email, cohort, pass]
+        'INSERT INTO candidates( first_name, last_name, email, cohort) VALUES ($1, $2, $3, $4) RETURNING *', //,
+        [first_name, last_name, email, cohort]
       )
-      .then((data) => {
-        res.send(data.rows);
+      .then((result) => {
+        res.send(result.rows);
       })
       .catch((error) => {
+        console.log(`Candidate INSERT query failed`);
         console.log(error);
-        res.send(error);
+        res.status(500).send(error);
       });
   } else if (method === 'GET') {
     pool
       .query(
-        'SELECT candidates.*, interviews.* FROM candidates LEFT JOIN interviews ON candidates.id = interviews.candidates_id ORDER BY date DESC' //,
+        'SELECT * FROM candidates ORDER BY last_name' //,
       )
       .then((data) => {
         res.send(data.rows);
         //console.log(data)
       })
       .catch((error) => {
+        console.log('== candidate GET failure ==');
         console.log(error);
         res.send(error);
       });

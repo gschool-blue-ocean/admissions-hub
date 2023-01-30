@@ -19,7 +19,7 @@ export default function handler(req, res) {
       attempt,
       date,
       code,
-      complete,
+      complete
     } = req.body;
 
     return pool
@@ -38,7 +38,7 @@ export default function handler(req, res) {
           attempt,
           date,
           code,
-          complete,
+          complete
         ] //,
         // (err, result) => {
         //   if (err) {
@@ -55,22 +55,18 @@ export default function handler(req, res) {
       })
       .catch(console.log);
   } else if (method === 'GET') {
-    return pool
+    pool
       .query(
-        'SELECT * FROM interviews' //,
-        // (err, result) => {
-        //   if (err) {
-        //     console.error(err);
-        //     return res.status(500).send("Error");
-        //   } else {
-        //     return res.status(200).send(result.rows);
-        //   }
-        // }
+        'SELECT * FROM interviews ORDER BY date DESC' //,
       )
       .then((data) => {
         res.send(data.rows);
       })
-      .catch();
+      .catch((error) => {
+        console.log('== interviews GET failure ==');
+        console.log(error);
+        res.end();
+      });
   } else if (method === 'PATCH') {
     let { complete, code, id, pass } = req.body;
     console.log('request body', req.body);

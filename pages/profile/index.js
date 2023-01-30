@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../../src/Shared/Header';
 import Footer from '../../src/Shared/Footer';
-import ProfilePage from '../../src/Profile';
+import ProfilePage from '../../src/Profile/Profile';
 
 function EditProfile() {
   return (
