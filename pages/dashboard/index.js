@@ -1,25 +1,30 @@
-import { useEffect } from 'react';
-import router from 'next/router';
-import Header from '../../src/components/Header';
-import Footer from '../../src/components/Footer';
-import InterviewDash from '../../src/components/InterviewDash';
+import { useEffect, useState } from 'react';
+import Header from '../../src/Shared/Header';
+import Footer from '../../src/Shared/Footer';
+import DashContent from '../../src/Dashboard/DashContent';
+import Loading from '../../src/Shared/loading/Loading';
+import auth from '../../lib/auth';
+import Router from 'next/router';
+import styles from '../../styles/Dashboard.module.css';
 
 export default function index() {
-  //if local storage does not have accessToken, redirect to login page
+  const [valid, setValid] = useState(false);
   useEffect(() => {
-    let accessToken = localStorage.getItem('accessToken');
-    if (!accessToken) {
-      router.push('/login');
-    } else {
-      router.push(`/dashboard`);
-    }
+    setTimeout(() => {
+      auth(
+        () => setValid(true),
+        () => Router.push('/login')
+      );
+    }, 1000);
   }, []);
 
-  return (
-    <div style={{ backgroundColor: '#0d0f4ae3' }}>
+  return valid ? (
+    <div className={styles.dashboardPage}>
       <Header />
-      <InterviewDash />
+      <DashContent />
       <Footer />
     </div>
+  ) : (
+    <Loading />
   );
 }

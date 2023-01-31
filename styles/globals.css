@@ -1,27 +1,10 @@
 @font-face {
-    font-family: "League Spartan";
-    src: url(../public/fonts/League_Spartan/LeagueSpartan-VariableFont_wght.ttf);
+  font-family: 'League Spartan';
+  src: url(../public/LeagueSpartan-VariableFont_wght.ttf);
 }
 
-@font-face {
-    font-family: "Roboto";
-    src: url(../public/fonts/Roboto/Roboto-Thin.ttf);
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'League Spartan';
 }
-
-.form-control:focus {
-    border-color: #EF6E47;
-    box-shadow: 0 0 0 0.1rem #EF6E47;
-}
-
-.nav-link {
-    color: black;
-}
-
-.nav-link:hover {
-    color: #EF6E47;
-}
-
-.nav-link:focus {
-    color: #EF6E47;
-}
-

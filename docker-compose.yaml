@@ -10,15 +10,15 @@ services:
       - POSTGRES_DB=database
       - POSTGRES_PASSWORD=docker
     volumes:
-      - ./database/migration.sql:/docker-entrypoint-initdb.d/migration.sql
+      - ./database/jarrett.sql:/docker-entrypoint-initdb.d/migration.sql
 
-  next:
-    build: ./
-    restart: always
-    ports:
-      - 3000:3000
-    environment:
-      - CONNECTION_STRING=postgresql://postgres:docker@database:5432/database
-      # - CONNECTION_STRING=postgresql://postgres:docker@localhost:5432/database
-    depends_on:
-      - database
+  # next:
+  #   build: ./
+  #   restart: always
+  #   ports:
+  #     - 3000:3000
+  #   environment:
+  #     - CONNECTION_STRING=postgresql://postgres:docker@database:5432/database
+  #     # - CONNECTION_STRING=postgresql://postgres:docker@localhost:5432/database
+  #   depends_on:
+  #     - database

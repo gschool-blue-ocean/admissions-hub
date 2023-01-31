@@ -1,0 +1,138 @@
+.interviewPage {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-flow: column nowrap;
+  min-width: 840px;
+  min-height: 900px;
+  background-color: #0d0f4ae3;
+
+  color: #4e4e4e;
+}
+
+.interviewContent {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-evenly;
+  /* gap: 5%; */
+}
+
+.adminColumn {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  background-color: white;
+  height: 90%;
+  width: 400px;
+  border-radius: 10px;
+  justify-content: center;
+}
+
+.roomInfo {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  font-size: 1.5rem;
+  width: 100%;
+}
+
+.copyRow {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  gap: 4px;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  border: 2px solid #f0f0f0;
+  width: 90%;
+  cursor: pointer;
+  transition: all 0.07s ease-in-out;
+}
+
+.copyRow:hover {
+  border: 2px solid #0d0f4ae3;
+  transform: scale(1.05);
+}
+
+.notePad {
+}
+
+.editorCardBorder {
+  /* my purpose is to suffer... */
+  padding: 8px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: calc(90% - 360px);
+  height: 90%;
+
+  background-color: #f0f0f0;
+  /* just kidding, I just add a nice looking border to the code editor, since it can't do it itself very well */
+}
+
+.editorCard {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  gap: 2px;
+}
+
+.editor {
+}
+
+.consoleGrid {
+  height: 250px;
+  display: grid;
+  grid-template-columns: [start] 1fr [split] 82px [end];
+  grid-template-rows: [top] 1fr [mid] 48px [bottom];
+}
+
+.console {
+  background-color: #1e1e1e;
+  height: 100%;
+
+  padding: 8px;
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  overflow-y: auto;
+  word-wrap: break-word;
+
+  grid-column: start / end;
+  grid-row: top / bottom;
+}
+
+.runButton {
+  border: 2px solid #ef6e47;
+  color: #ef6e47;
+  height: 40px;
+  width: 76px;
+  padding-inline: 4px;
+  text-align: center;
+  line-height: 40px;
+  background-color: #1e1e1e;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.05s ease-in-out;
+
+  grid-column: split / end;
+  grid-row: mid / bottom;
+}
+
+.runButton:hover {
+  color: white;
+  background-color: #ef6e47;
+  transform: scale(1.03);
+  border: 2px solid white;
+}
