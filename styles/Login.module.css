@@ -64,23 +64,23 @@
 }
 
 .button {
-  background-color: #ef6e47;
-  font-weight: bold;
-  font-size: 14px;
+  border: 2px solid #0d0f4ae3;
+  color: #0d0f4ae3;
   height: 40px;
-  width: 100px;
+  width: max-content;
+  padding-inline: 4px;
+  text-align: center;
+  line-height: 40px;
+  background-color: #ffd8a7;
   border-radius: 4px;
   cursor: pointer;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  transition: all 0.1s ease-in-out;
+  transition: all 0.05s ease-in-out;
 }
 
 .button:hover {
-  transform: scale(1.05);
+  color: white;
+  background-color: #ef6e47;
+  transform: scale(1.03);
 }
 
 .buttonText {

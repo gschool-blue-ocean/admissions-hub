@@ -31,7 +31,7 @@ return newArr;
   const problem3 = `function logger(func, str) {
 // create new empty string
 var newStr = '';
-//For loop to go through each letter of the string
+//Loop through each letter of the string
 for (var i = 0; i < str.length;i++) {
 //Put letters from function to the new string
 newStr +=  func(str[i]) }
@@ -72,182 +72,55 @@ return newStr;
             letter in the string.
           </div>
           <pre className={styles.codeExample}>{problem1}</pre>
-          <div
-            style={{
-              fontFamily: 'League Spartan',
-              marginTop: '-15px',
-              paddingLeft: 2,
-              color: '#979797',
-              fontSize: '14px'
-            }}
-          >
-            Notes:
+          <div className={styles.problemText}>
+            <span className={styles.questionNum}>Notes:</span>
           </div>
 
           <textarea
+            className={styles.notesArea}
             rows={20}
             value={problem1Notes}
             onChange={(e) => setProblem1Notes(e.target.value)}
-            style={{
-              width: '100%',
-              backgroundColor: '#ffe8d3',
-              outline: 'none',
-              border: 'none',
-              height: 175,
-              resize: 'none',
-              scrollbarColor: '#ffe8d3 #EF6E47'
-            }}
           ></textarea>
         </div>
       ) : null}
       {pNum == 1 ? (
         <div className={styles.problemCard}>
-          <div style={{ padding: '0px 5px 2px', color: 'black' }}>
-            <span style={{ fontFamily: 'League Spartan', color: '#979797' }}>Question 2:</span> Working with Arrays and
-            Functions Complete the createNewArray function that takes in an array and another function, then returns a
-            new array containing the results of calling the input function on each element in the array.
+          <div className={styles.problemText}>
+            <span className={styles.questionNum}>Question 2:</span> Working with Strings and Functions Complete the
+            logger function that takes in a function and a string and returns the result of calling the function on each
+            letter in the string.
           </div>
-          <pre
-            style={{
-              display: 'block',
-              fontFamily: 'monospace',
-              whiteSpace: 'pre'
-            }}
-          >
-            <code
-              style={{
-                color: '#EF6E47',
-                backgroundColor: '#FFFAF5',
-                display: 'block',
-                paddingLeft: '5px'
-              }}
-            >
-              {problem2}
-              <br></br>
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignContent: 'flex-end',
-                  alignItems: 'flex-end'
-                }}
-              >
-                <div style={{ paddingRight: 5, marginTop: '-15px' }}>
-                  <Image
-                    onClick={() => {
-                      navigator.clipboard.writeText(problem2);
-                      setCopied(!copied);
-                    }}
-                    src={'/images/copy.svg'}
-                    alt="/"
-                    objectFit="contain"
-                    objectPosition="bottom center"
-                    width={16}
-                    height={17}
-                  />
-                </div>
-              </div>
-            </code>
-          </pre>
-          <div
-            style={{
-              fontFamily: 'League Spartan',
-              marginTop: '-15px',
-              paddingLeft: 2,
-              color: '#979797'
-            }}
-          >
-            Notes:
+          <pre className={styles.codeExample}>{problem2}</pre>
+          <div className={styles.problemText}>
+            <span className={styles.questionNum}>Notes:</span>
           </div>
 
           <textarea
+            className={styles.notesArea}
             rows={20}
             value={problem2Notes}
             onChange={(e) => setProblem2Notes(e.target.value)}
-            style={{
-              width: '100%',
-              backgroundColor: '#ffe8d3',
-              outline: 'none',
-              border: 'none',
-              height: 175,
-              resize: 'none',
-              scrollbarColor: '#ffe8d3 #EF6E47'
-            }}
           ></textarea>
         </div>
       ) : null}
       {pNum == 2 ? (
         <div className={styles.problemCard}>
-          <div style={{ padding: '0px 5px 2px', color: 'black' }}>
-            <span style={{ fontFamily: 'League Spartan', color: '#979797' }}>Question 3:</span> Working with Objects
-            Given two objects as parameters "obj1" and "obj2", complete the addPropertiesToObject function that adds all
-            properties of the first object to the second object and returns the second object.
+          <div className={styles.problemText}>
+            <span className={styles.questionNum}>Question 3:</span> Working with Strings and Functions Complete the
+            logger function that takes in a function and a string and returns the result of calling the function on each
+            letter in the string.
           </div>
-          <pre
-            style={{
-              display: 'block',
-              fontFamily: 'monospace',
-              whiteSpace: 'pre'
-            }}
-          >
-            <code
-              style={{
-                color: '#EF6E47',
-                backgroundColor: '#FFFAF5',
-                display: 'block',
-                paddingLeft: '5px'
-              }}
-            >
-              {problem3}
-              <br></br>
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignContent: 'flex-end',
-                  alignItems: 'flex-end'
-                }}
-              >
-                <div style={{ paddingRight: 5, marginTop: '-15px' }}>
-                  <Image
-                    onClick={() => {
-                      navigator.clipboard.writeText(problem3);
-                      setCopied(!copied);
-                    }}
-                    src={'/images/copy.svg'}
-                    alt="/"
-                    objectFit="contain"
-                    objectPosition="bottom center"
-                    width={16}
-                    height={17}
-                  />
-                </div>
-              </div>
-            </code>
-          </pre>
-          <div
-            style={{
-              fontFamily: 'League Spartan',
-              marginTop: '-15px',
-              paddingLeft: 2,
-              color: '#979797'
-            }}
-          >
-            Notes:
+          <pre className={styles.codeExample}>{problem3}</pre>
+          <div className={styles.problemText}>
+            <span className={styles.questionNum}>Notes:</span>
           </div>
+
           <textarea
+            className={styles.notesArea}
             rows={20}
             value={problem3Notes}
             onChange={(e) => setProblem3Notes(e.target.value)}
-            style={{
-              width: '100%',
-              backgroundColor: '#ffe8d3',
-              outline: 'none',
-              border: 'none',
-              height: 175,
-              resize: 'none',
-              scrollbarColor: '#ffe8d3 #EF6E47'
-            }}
           ></textarea>
         </div>
       ) : null}

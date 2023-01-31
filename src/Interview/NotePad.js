@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Problems from './Problems';
 import axios from 'axios';
 import { useRouter } from 'next/router';

@@ -158,9 +158,6 @@
   padding: 10px;
 }
 
-.problems {
-}
-
 .problemTabsRow {
   display: flex;
 }
@@ -193,6 +190,7 @@
 }
 
 .problemText {
+  margin-top: 4px;
   padding: 4px;
   line-height: 1rem;
 }
@@ -202,4 +200,18 @@
   line-height: 1rem;
   padding: 4px;
   color: #ef6e47;
+  margin: 0px;
+  height: 175px;
+}
+
+.notesArea {
+  padding: 4px;
+  line-height: 1rem;
+  width: 100%;
+  background-color: #ffe8d3;
+  outline: none;
+  border: none;
+  height: 175px;
+  resize: none;
+  scrollbar-color: #ffe8d3 #ef6e47;
 }
