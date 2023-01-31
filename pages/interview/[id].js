@@ -1,5 +1,5 @@
 import CodeEditor from '../../src/Interview/CodeEditor';
-import Dashboard from '../../src/Interview/Dashboard';
+import NotePad from '../../src/Interview/NotePad';
 import Header from '../../src/Shared/Header';
 import Footer from '../../src/Shared/Footer';
 import { useEffect, useState } from 'react';
@@ -71,7 +71,10 @@ export default function Interview() {
               student={student}
               room={data.id}
             />
-            <Dashboard />
+            <NotePad
+              data={data}
+              setData={setData}
+            />
           </div>
         ) : null}
       </div>

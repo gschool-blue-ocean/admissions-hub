@@ -4,12 +4,11 @@ export default function handler(req, res) {
   const { method } = req;
 
   if (method === 'POST') {
-    let { interviewer_id, candidate_id, date } = req.body;
+    let { interviewer_id, candidate_id } = req.body;
     pool
-      .query('INSERT INTO interviews( interviewer_id, candidate_id, date ) VALUES ($1, $2, $3) RETURNING *;', [
+      .query('INSERT INTO interviews( interviewer_id, candidate_id, date ) VALUES ($1, $2) RETURNING *;', [
         interviewer_id,
-        candidate_id,
-        date
+        candidate_id
       ])
       .then((result) => {
         res.send(result.rows[0]);
