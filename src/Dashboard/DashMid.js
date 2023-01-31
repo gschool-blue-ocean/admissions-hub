@@ -80,6 +80,7 @@ export default function DashMid(props) {
       .then((result) => result.data)
       .then((data) => {
         setStudent(false);
+        setSelectIndex(-1);
         props.getCandidates();
       });
   }
@@ -176,6 +177,7 @@ export default function DashMid(props) {
                 overflow: 'hidden',
                 textOverflow: 'ellipsis'
               }}
+              id="studentName"
             >
               {item.last_name}, {item.first_name}
             </span>
@@ -209,6 +211,7 @@ export default function DashMid(props) {
             <div
               className={styles.launchButton}
               onClick={() => setShowNewStudentForm(true)}
+              id="addStudent"
             >
               Add Student
             </div>

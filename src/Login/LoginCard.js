@@ -51,6 +51,7 @@ export default function AdminLogin(props) {
         </div>
         <div className={styles.cardForm}>
           <input
+            id="logEmail"
             className={styles.input}
             type="text"
             placeholder="Email"
@@ -59,6 +60,7 @@ export default function AdminLogin(props) {
             onKeyDown={handleEnter}
           />
           <input
+            id="logPassword"
             className={styles.input}
             type="password"
             placeholder="Password"
@@ -70,6 +72,7 @@ export default function AdminLogin(props) {
             <div
               className={styles.button}
               onClick={handleSubmit}
+              id="loginButton"
             >
               <span className={styles.buttonText}>Login!</span>
             </div>
