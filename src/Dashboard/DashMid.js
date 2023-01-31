@@ -5,6 +5,7 @@ import NewStudent from './NewStudent';
 import styles from '../../styles/Dashboard.module.css';
 import ViewProblems from './viewProblems';
 import axios from 'axios';
+import { useRouter } from 'next/router';
 
 // ===== Notes =====
 // state: what do we need
@@ -14,6 +15,7 @@ import axios from 'axios';
 // 4? some more to handle csv gen, possibly?
 
 export default function DashMid(props) {
+  const router = useRouter();
   const [search, setSearch] = useState('');
   const [student, setStudent] = useState(false);
   const [selectIndex, setSelectIndex] = useState(-1);
@@ -81,7 +83,7 @@ export default function DashMid(props) {
     axios
       .post('/api/interviews/new', { interviewer_id, candidate_id, date })
       .then((result) => result.data)
-      .then((data) => console.log(data));
+      .then((data) => router.push('/interview/' + data.id));
   }
 
   return (
