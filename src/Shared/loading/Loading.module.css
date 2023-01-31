@@ -1,0 +1,36 @@
+.loading {
+  background-image: url('https://learn-2.galvanize.com/assets/galvanize/mobile-logo-149555222a440753ee9c29705f17c6cda1f9ababe51e56fb654d57726ba2d3e2.svg');
+}
+
+.wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+.loading {
+  height: 100px;
+  width: 100px;
+  background-image: url('https://learn-2.galvanize.com/assets/galvanize/mobile-logo-149555222a440753ee9c29705f17c6cda1f9ababe51e56fb654d57726ba2d3e2.svg');
+  background-size: contain;
+  border-radius: 50%;
+  animation: pulse 1.5s linear infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1.2) rotate(0deg);
+    /* box-shadow: 0 0 0 20px #ef6e47; */
+  }
+
+  50% {
+    transform: scale(1) rotate(180deg);
+    box-shadow: 0 0 0 40px #ef6e4750;
+  }
+
+  100% {
+    transform: scale(1.2) rotate(360deg);
+    /* box-shadow: 0 0 0 0 #ef6e47; */
+  }
+}

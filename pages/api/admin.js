@@ -1,32 +1,34 @@
 import jwt from 'jsonwebtoken';
-
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import pool from '../../lib/db';
 
 export default function handler(req, res) {
-  if (req.method === 'POST') {
-    // Process a POST request
-    const { email, password } = req.body;
-    const data = req.body;
-    const accessToken = jwt.sign(data, 'teamA+', { expiresIn: '30s' });
-    pool.query(
-      'SELECT * FROM interviewers WHERE email = $1 and password = crypt($2, password)',
-      [email, password],
-      (err, result) => {
-        if (err) {
-          console.error(err);
-          res.status(500).send('Error');
-        } else {
-          if (result.rows.length > 0) {
-            res.status(200).json({ connect: true, ...result.rows[0], accessToken });
-          } else {
-            res.status(200).send({ connect: false });
-          }
-        }
+  const { email, password } = req.body;
+  pool
+    .query(`SELECT (phash = crypt($2, phash)) AS valid, first_name, last_name, id FROM interviewers WHERE email = $1`, [
+      email,
+      password
+    ])
+    .then((result) => {
+      if (!result.rows) {
+        res.send({ valid: false });
+      } else if (result.rows[0].valid) {
+        let token = jwt.sign({ name: result.rows[0].first_name }, 'secret', { expiresIn: '1d' });
+        let packet = {
+          valid: true,
+          token: token,
+          id: result.rows[0].id,
+          first_name: result.rows[0].first_name,
+          last_name: result.rows[0].last_name
+        };
+        res.send(packet);
+      } else {
+        res.send({ valid: false });
       }
-    );
-  } else {
-    // Handle any other HTTP method
-    res.status(405).send('Method not allowed');
-  }
+    })
+    .catch((err) => {
+      res.status(404).send(err);
+    });
 }
+
+// verification: did I built it
+// validate: did I build the right thing
