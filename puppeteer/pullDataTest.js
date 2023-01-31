@@ -35,6 +35,7 @@ const fs = require('fs');
         );
         console.log(`
         Data written to file successfully go check it out!
+        pulled users passing and total interviews.
         Name: pulled_data.txt
         `);
     } catch (error) {
