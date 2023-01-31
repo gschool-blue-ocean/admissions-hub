@@ -7,7 +7,7 @@ import auth from '../../lib/auth';
 import Router from 'next/router';
 import styles from '../../styles/Dashboard.module.css';
 
-export default function index() {
+export default function Dashboard() {
   const [valid, setValid] = useState(false);
   useEffect(() => {
     setTimeout(() => {

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Downloader from './email/Downloadcsv';
 
 import NewStudent from './NewStudent';
+import UpdateStudent from './UpdateStudent';
 import styles from '../../styles/Dashboard.module.css';
 import ViewProblems from './viewProblems';
 import axios from 'axios';
@@ -21,8 +22,7 @@ export default function DashMid(props) {
   const [selectIndex, setSelectIndex] = useState(-1);
   const [showNotes, setShowNotes] = useState(false);
   const [showNewStudentForm, setShowNewStudentForm] = useState(false);
-
-  function updateStudent() {}
+  const [showUpdateStudentForm, setShowUpdateStudentForm] = useState(false);
 
   function handleSelect(index) {
     if (selectIndex == index) {
@@ -74,7 +74,15 @@ export default function DashMid(props) {
     setSearch(e.target.value);
   }
 
-  const deleteStudent = () => {};
+  function deleteStudent() {
+    axios
+      .delete('/api/candidate/' + student.id)
+      .then((result) => result.data)
+      .then((data) => {
+        setStudent(false);
+        props.getCandidates();
+      });
+  }
 
   function newInterview() {
     let interviewer_id = localStorage.getItem('id');
@@ -187,7 +195,7 @@ export default function DashMid(props) {
             <>
               <div
                 className={styles.launchButton}
-                onClick={updateStudent}
+                onClick={() => setShowUpdateStudentForm(true)}
               >
                 Update Student
               </div>
@@ -214,6 +222,13 @@ export default function DashMid(props) {
           <NewStudent
             setShowNewStudentForm={setShowNewStudentForm}
             getCandidates={props.getCandidates}
+          />
+        )}
+        {showUpdateStudentForm && (
+          <UpdateStudent
+            setShowUpdateStudentForm={setShowUpdateStudentForm}
+            getCandidates={props.getCandidates}
+            student={student}
           />
         )}
       </div>
