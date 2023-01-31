@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "docker": "docker run --rm --name pg-docker -e POSTGRES_PASSWORD=docker -d -p 5432:5432 -v $HOME/docker/volumes/postgres:/var/lib/postgresql/data postgres",
-    "cypress": "cypress run"
+    "cypress": "cypress open"
   },
   "dependencies": {
     "@emailjs/browser": "^3.10.0",
@@ -28,6 +28,7 @@
     "monaco-themes": "^0.4.2",
     "next": "12.3.1",
     "pg": "^8.8.0",
+    "puppeteer": "^19.5.2",
     "react": "18.2.0",
     "react-bootstrap": "^2.5.0",
     "react-bootstrap-validation": "^0.1.11",
@@ -43,8 +44,9 @@
   "devDependencies": {
     "@types/react": "18.0.21",
     "cypress": "^10.9.0",
-    "eslint": "8.24.0",
+    "eslint": "^8.24.0",
     "eslint-config-next": "12.3.1",
+    "eslint-plugin-react": "^7.32.1",
     "nodemon": "^2.0.20",
     "prisma": "^4.4.0"
   }

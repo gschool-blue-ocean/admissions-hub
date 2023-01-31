@@ -30,7 +30,10 @@ export default function DashBottom(props) {
 
   return (
     <div className={styles.dashBottom}>
-      <span className={styles.bottomTitle}>
+      <span
+        className={styles.bottomTitle}
+        id="message"
+      >
         Your Interview Stats
         {/* {localStorage.getItem('firstName')} {localStorage.getItem('lastName')}'s Interview Stats */}
       </span>

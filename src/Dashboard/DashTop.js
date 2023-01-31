@@ -94,7 +94,10 @@ export default function DashTop(props) {
             </text>
           </svg>
         </div>
-        <span style={{ fontSize: '1.5rem' }}>
+        <span
+          style={{ fontSize: '1.5rem' }}
+          id={type ? 'qtrInterviews' : 'yrInterviews'}
+        >
           Passing/Total: {value}/{total}
         </span>
       </div>

@@ -32,6 +32,7 @@ export default function NewStudent(props) {
       <div className={styles.newStudentCard}>
         <div style={{ fontSize: '1.5rem' }}>Add a New Candidate</div>
         <input
+          id="firstName"
           className={styles.newInput}
           placeholder="First Name"
           onChange={(e) => setFirstName(e.target.value)}
@@ -39,6 +40,7 @@ export default function NewStudent(props) {
           type="text"
         ></input>
         <input
+          id="lastName"
           className={styles.newInput}
           placeholder="Last Name"
           onChange={(e) => setLastName(e.target.value)}
@@ -46,6 +48,7 @@ export default function NewStudent(props) {
           type="text"
         ></input>
         <input
+          id="email"
           className={styles.newInput}
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
@@ -53,6 +56,7 @@ export default function NewStudent(props) {
           type="text"
         ></input>
         <select
+          id="dropdown"
           className={styles.newInput}
           onChange={(e) => {
             setCohort(e.target.value);
@@ -70,7 +74,12 @@ export default function NewStudent(props) {
             Select Cohort
           </option>
           {cohorts.map((num) => (
-            <option key={num}> MCSP-{num}</option>
+            <option
+              className="option"
+              key={num}
+            >
+              MCSP-{num}
+            </option>
           ))}
         </select>
         <div className={styles.spacedButtons}>
@@ -84,6 +93,7 @@ export default function NewStudent(props) {
             <div
               className={styles.launchButton}
               onClick={createCandidate}
+              id="create"
             >
               Create
             </div>
