@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as ImIcons from 'react-icons/im';
-import styles from '../Dashboard/AllRatings.module.css';
+import styles from '../../styles/Interview.module.css';
 import { useRouter } from 'next/router';
 import { useAppContext } from '../GlobalContext';
 

@@ -1,5 +1,3 @@
-const { Client } = require('pg');
-
 import pool from '../../../lib/db';
 
 export default function handler(req, res) {
@@ -39,16 +37,7 @@ export default function handler(req, res) {
           date,
           code,
           complete
-        ] //,
-        // (err, result) => {
-        //   if (err) {
-        //     console.error('This route works',err);
-
-        //     return res.status(500).send("Error");
-        //   } else {
-        //     return res.status(200).send(result.rows);
-        //   }
-        // }
+        ]
       )
       .then((data) => {
         res.send(data.rows);

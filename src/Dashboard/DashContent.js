@@ -59,7 +59,7 @@ const InterviewDash = () => {
         candidates={candidates}
         getCandidates={getCandidates}
       />
-      <DashBottom />
+      <DashBottom interviews={interviews} />
     </div>
   );
 };

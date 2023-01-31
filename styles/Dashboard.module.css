@@ -49,6 +49,7 @@
 .dashBottom {
   width: calc(100% - 200px);
   background-color: #f0f0f0;
+  padding: 8px;
   border-radius: 0px 0px 10px 10px;
 }
 
@@ -69,7 +70,7 @@
 
   height: 40px;
   width: 360px;
-  padding-inline: 6px;
+  padding: 6px;
 }
 
 .searchBox:focus-within {
@@ -79,8 +80,8 @@
 .searchInput {
   all: unset;
   width: 100%;
-  height: 36px;
-  line-height: 36px;
+  height: 40px;
+  line-height: 32px;
 }
 
 .searchIcon {
@@ -145,6 +146,8 @@
   overflow-y: auto;
   background-color: white;
   padding-inline: 4px;
+  margin-inline: 10px;
+  border-radius: 4px;
 }
 
 .candidateRow {
@@ -153,6 +156,7 @@
   flex-flow: row nowrap;
   justify-content: space-evenly;
   gap: 8px;
+  border-radius: 4px;
 }
 
 .selectedRow {
@@ -163,6 +167,8 @@
   gap: 8px;
   color: white;
   background-color: #ef6e47;
+
+  border-radius: 4px;
 }
 
 .newStudentShadow {
@@ -212,4 +218,36 @@
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
+}
+
+.bottomTitle {
+  font-size: 1.5rem;
+  padding-left: 8px;
+}
+
+.bottomStatsRow {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.bottomStatsDivider {
+  height: 4rem;
+  background-color: #7e7e7e;
+  width: 2px;
+}
+
+.bottomStatsGroup {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.bottomNumby {
+  font-size: 4rem;
+}
+
+.bottomLabel {
+  margin-top: -2rem;
 }

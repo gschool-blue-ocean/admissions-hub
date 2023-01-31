@@ -5,7 +5,7 @@ import styles from '../../styles/Dashboard.module.css';
 // Here is an array of cohort values to simplify the drop down menu code.
 const cohorts = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22];
 
-// The component is a pop-out form that lets you input and create new candidate data
+// This component is a pop-out form that lets you input and create new candidate data
 export default function NewStudent(props) {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');

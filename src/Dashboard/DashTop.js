@@ -88,7 +88,6 @@ export default function DashTop(props) {
               strokeWidth="1px"
               fontSize={36}
               fontFamily={'League Spartan'}
-              fontWeight={300}
               id="percentPassed"
             >
               {((value / total) * 100).toFixed(0)}%

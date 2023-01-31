@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import * as TiIcons from 'react-icons/ti';
+import { useEffect, useState } from 'react';
 import Downloader from './email/Downloadcsv';
 
 import NewStudent from './NewStudent';
-import Link from 'next/link';
-import Ratings from '../Shared/Ratings';
 import styles from '../../styles/Dashboard.module.css';
 import ViewProblems from './viewProblems';
 import axios from 'axios';
@@ -35,14 +32,6 @@ export default function DashMid(props) {
     }
   }
 
-  function genDateString(numby) {
-    if (numby == null) {
-      return 'N/A';
-    }
-    let date = new Date(numby);
-    return date.toLocaleDateString('en-us', { year: 'numeric', month: 'short', day: 'numeric' });
-  }
-
   function genCSV() {
     ////"Borrowed Code"/////
     let csv;
@@ -71,11 +60,29 @@ export default function DashMid(props) {
     setShowExports(true);
   }
 
+  function genDateString(numby) {
+    if (numby == null) {
+      return 'N/A';
+    }
+    let date = new Date(numby);
+    return date.toLocaleDateString('en-us', { year: 'numeric', month: 'short', day: 'numeric' });
+  }
+
   function searchChange(e) {
     setSearch(e.target.value);
   }
 
   const deleteStudent = () => {};
+
+  function newInterview() {
+    let interviewer_id = localStorage.getItem('id');
+    let candidate_id = student.id;
+    let date = new Date().toISOString().slice(0, 10);
+    axios
+      .post('/api/interviews/new', { interviewer_id, candidate_id, date })
+      .then((result) => result.data)
+      .then((data) => console.log(data));
+  }
 
   return (
     <div className={styles.dashMid}>
@@ -104,7 +111,12 @@ export default function DashMid(props) {
             student.state == 'incomplete' ? (
               <div className={styles.tipBox}>Resume Interview</div>
             ) : (
-              <div className={styles.tipBox}>Launch Interview</div>
+              <div
+                className={styles.tipBox}
+                onClick={newInterview}
+              >
+                Launch Interview
+              </div>
             )
           ) : (
             <div className={styles.launchButton}>Select a Candidate to Get Started</div>
@@ -133,6 +145,7 @@ export default function DashMid(props) {
           <div
             className={styles[selectIndex === index ? 'selectedRow' : 'candidateRow']}
             onClick={() => handleSelect(index)}
+            key={index}
           >
             <span
               style={{

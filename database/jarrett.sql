@@ -37,7 +37,7 @@ CREATE TABLE interviews (
   problem_3_rating INT,
   code TEXT,
   date TEXT,
-  state TEXT DEFAULT 'TBD'
+  state TEXT DEFAULT 'incomplete'
 );
 
 INSERT INTO
@@ -60,5 +60,5 @@ INSERT INTO
   interviews (interviewer_id, candidate_id, date, state)
 VALUES
   (1, 1, '2023-01-24', 'incomplete'),
-(1, 2, '2022-03', 'pass'),
-(1, 1, '2023-01-20', 'fail');
+  (1, 2, '2022-03-15', 'pass'),
+  (1, 1, '2023-01-20', 'fail');

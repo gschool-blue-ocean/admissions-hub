@@ -1,133 +1,55 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import styles from '../../styles/Dashboard.module.css';
-import { useAppContext } from '../GlobalContext';
 
-const InterviewerReport = () => {
-  const { user, interviewReport, setInterviewReport } = useAppContext();
-  let count = 0;
+export default function DashBottom(props) {
+  // LMAO numbies
+  const [numbies, setNumbies] = useState([0, 0, 0]);
 
-  const [userId, setUserId] = useState('');
-  useEffect(() => {
-    if (!user) return;
-    if (user.id) {
-      //console.log('user id interview report', user.id)
-      localStorage.setItem('userId', JSON.stringify(user.id));
-
-      setUserId(user.id);
-    } else {
-      if (typeof window !== 'undefined') {
-        if (localStorage.getItem('userId') === 'undefined' || !localStorage.getItem('userId')) {
-          //log out
-          localStorage.removeItem('accessToken');
-          return;
+  function calcNumbies() {
+    let countQTR = 0;
+    let countYR = 0;
+    let countALL = 0;
+    props.interviews.forEach((item) => {
+      if (item.interviewer_id == localStorage.getItem('id')) {
+        if (Date.now() - new Date(item.date) < 7889400000) {
+          countQTR++;
         }
-        let temp = JSON.parse(localStorage.getItem('userId'));
-        setUserId(temp);
+        if (Date.now() - new Date(item.date) < 31557600000) {
+          countYR++;
+        }
+        countALL++;
       }
-    }
-    axios
-      .get(`/api/interviews/Interviews`)
-      .then(function (response) {
-        //console.log('request data for interview report',response.data);
-        setInterviewReport(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }, []);
+    });
+    setNumbies([countQTR, countYR, countALL]);
+  }
 
-  interviewReport.forEach((el) => {
-    if (el.interviewers_id === userId) {
-      count++;
-    }
-  });
+  useEffect(() => {
+    calcNumbies();
+  }, [props.interviews]);
 
   return (
-    <div
-      className={styles.dashBottom}
-      style={{
-        height: '144px',
-        backgroundColor: '#f0f0f0',
-        borderRadius: '0px 0px 10px 10px',
-        color: '#979797'
-      }}
-    >
-      <span style={{ fontSize: 15, marginLeft: '10px' }}>{user ? user.first_name : 'Unknown User'}</span>
-      <div
-        style={{
-          display: 'flex',
-          alignitems: 'center',
-          alignContent: 'center',
-          justifyContent: 'space-between',
-          paddingBottom: 20
-        }}
-      >
-        <div
-          style={{
-            borderRight: '1px solid #979797',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            width: 233
-          }}
-        >
-          {' '}
-          <div
-            style={{
-              fontSize: 64,
-              fontFamily: 'League Spartan',
-              fontWeight: 200
-            }}
-          >
-            {count}
-          </div>
-          <span style={{ fontSize: 15, marginTop: -30 }}>Fiscal QTR</span>
+    <div className={styles.dashBottom}>
+      <span className={styles.bottomTitle}>
+        Your Interview Stats
+        {/* {localStorage.getItem('firstName')} {localStorage.getItem('lastName')}'s Interview Stats */}
+      </span>
+      <div className={styles.bottomStatsRow}>
+        <div className={styles.bottomStatsGroup}>
+          <div className={styles.bottomNumby}>{numbies[0]}</div>
+          <span className={styles.bottomLabel}>Last 3 Months</span>
         </div>
-        <div
-          style={{
-            borderRight: '1px solid #979797',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            width: 233
-          }}
-        >
-          {' '}
-          <div
-            style={{
-              fontSize: 64,
-              fontFamily: 'League Spartan',
-              fontWeight: 200
-            }}
-          >
-            {count}
-          </div>
-          <span style={{ fontSize: 15, marginTop: -30 }}>Fiscal Year</span>
+        <div className={styles.bottomStatsDivider}></div>
+        <div className={styles.bottomStatsGroup}>
+          <div className={styles.bottomNumby}>{numbies[1]}</div>
+          <span className={styles.bottomLabel}>Last Year</span>
         </div>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            width: 233
-          }}
-        >
-          {' '}
-          <div
-            style={{
-              fontSize: 64,
-              fontFamily: 'League Spartan',
-              fontWeight: 200
-            }}
-          >
-            {count}
-          </div>
-          <span style={{ fontSize: 15, marginTop: -30 }}>Lifetime</span>
+        <div className={styles.bottomStatsDivider}></div>
+        <div className={styles.bottomStatsGroup}>
+          <div className={styles.bottomNumby}>{numbies[2]}</div>
+          <span className={styles.bottomLabel}>Lifetime</span>
         </div>
       </div>
     </div>
   );
-};
-
-export default InterviewerReport;
+}

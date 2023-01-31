@@ -6,6 +6,8 @@
   width: 100vw;
   height: 60px;
   background: white;
+
+  padding-right: 8px;
 }
 
 .logo {
