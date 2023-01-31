@@ -27,8 +27,8 @@ CREATE TABLE candidates (
 -- CreateTable
 CREATE TABLE interviews (
   id SERIAL PRIMARY KEY,
-  interviewer_id INT REFERENCES interviewers(id),
-  candidate_id INT REFERENCES candidates(id),
+  interviewer_id INT NOT NULL,
+  candidate_id INT NOT NULL,
   notes_1 TEXT,
   notes_2 TEXT,
   notes_3 TEXT,
@@ -48,6 +48,12 @@ VALUES
     'Guyer',
     'guyer.jarrett@gmail.com',
     crypt('6535', gen_salt('md5'))
+  ),
+  (
+    'tempFirst',
+    'tempLast',
+    'temp',
+    crypt('temp', gen_salt('md5'))
   );
 
 INSERT INTO

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Downloader from './email/Downloadcsv';
 
 import NewStudent from './NewStudent';
+import UpdateStudent from './UpdateStudent';
 import styles from '../../styles/Dashboard.module.css';
 import ViewProblems from './viewProblems';
 import axios from 'axios';
@@ -21,8 +22,7 @@ export default function DashMid(props) {
   const [selectIndex, setSelectIndex] = useState(-1);
   const [showNotes, setShowNotes] = useState(false);
   const [showNewStudentForm, setShowNewStudentForm] = useState(false);
-
-  function updateStudent() {}
+  const [showUpdateStudentForm, setShowUpdateStudentForm] = useState(false);
 
   function handleSelect(index) {
     if (selectIndex == index) {
@@ -74,7 +74,15 @@ export default function DashMid(props) {
     setSearch(e.target.value);
   }
 
-  const deleteStudent = () => {};
+  function deleteStudent() {
+    axios
+      .delete('/api/candidate/' + student.id)
+      .then((result) => result.data)
+      .then((data) => {
+        setStudent(false);
+        props.getCandidates();
+      });
+  }
 
   function newInterview() {
     let interviewer_id = localStorage.getItem('id');
@@ -82,6 +90,15 @@ export default function DashMid(props) {
     let date = new Date().toISOString().slice(0, 10);
     axios
       .post('/api/interviews/new', { interviewer_id, candidate_id, date })
+      .then((result) => result.data)
+      .then((data) => router.push('/interview/' + data.id));
+  }
+
+  function resumeInterview() {
+    let interviewer_id = localStorage.getItem('id');
+    let candidate_id = student.id;
+    axios
+      .post('/api/interviews/resume', { interviewer_id, candidate_id })
       .then((result) => result.data)
       .then((data) => router.push('/interview/' + data.id));
   }
@@ -111,17 +128,22 @@ export default function DashMid(props) {
           ) : null}
           {student ? (
             student.state == 'incomplete' ? (
-              <div className={styles.tipBox}>Resume Interview</div>
+              <div
+                className={styles.launchButton}
+                onClick={resumeInterview}
+              >
+                Resume Interview
+              </div>
             ) : (
               <div
-                className={styles.tipBox}
+                className={styles.launchButton}
                 onClick={newInterview}
               >
                 Launch Interview
               </div>
             )
           ) : (
-            <div className={styles.launchButton}>Select a Candidate to Get Started</div>
+            <div className={styles.tipBox}>Select a Candidate to Get Started</div>
           )}
         </div>
       </div>
@@ -162,7 +184,7 @@ export default function DashMid(props) {
             <span style={{ width: '80px' }}>{item.cohort}</span>
             <span style={{ width: '100px' }}>{genDateString(item.date)}</span>
             <span style={{ width: '20px', textAlign: 'right' }}>{item.attempts}</span>
-            <span style={{ width: '80px', textAlign: 'right' }}>{item.state}</span>
+            <span style={{ width: '80px', textAlign: 'right' }}>{item.state ? item.state : 'not started'}</span>
           </div>
         ))}
       </div>
@@ -173,7 +195,7 @@ export default function DashMid(props) {
             <>
               <div
                 className={styles.launchButton}
-                onClick={updateStudent}
+                onClick={() => setShowUpdateStudentForm(true)}
               >
                 Update Student
               </div>
@@ -200,6 +222,13 @@ export default function DashMid(props) {
           <NewStudent
             setShowNewStudentForm={setShowNewStudentForm}
             getCandidates={props.getCandidates}
+          />
+        )}
+        {showUpdateStudentForm && (
+          <UpdateStudent
+            setShowUpdateStudentForm={setShowUpdateStudentForm}
+            getCandidates={props.getCandidates}
+            student={student}
           />
         )}
       </div>
