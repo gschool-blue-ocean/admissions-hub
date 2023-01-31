@@ -86,6 +86,15 @@ export default function DashMid(props) {
       .then((data) => router.push('/interview/' + data.id));
   }
 
+  function resumeInterview() {
+    let interviewer_id = localStorage.getItem('id');
+    let candidate_id = student.id;
+    axios
+      .post('/api/interviews/resume', { interviewer_id, candidate_id })
+      .then((result) => result.data)
+      .then((data) => router.push('/interview/' + data.id));
+  }
+
   return (
     <div className={styles.dashMid}>
       <div className={styles.optionsRow}>
@@ -111,17 +120,22 @@ export default function DashMid(props) {
           ) : null}
           {student ? (
             student.state == 'incomplete' ? (
-              <div className={styles.tipBox}>Resume Interview</div>
+              <div
+                className={styles.launchButton}
+                onClick={resumeInterview}
+              >
+                Resume Interview
+              </div>
             ) : (
               <div
-                className={styles.tipBox}
+                className={styles.launchButton}
                 onClick={newInterview}
               >
                 Launch Interview
               </div>
             )
           ) : (
-            <div className={styles.launchButton}>Select a Candidate to Get Started</div>
+            <div className={styles.tipBox}>Select a Candidate to Get Started</div>
           )}
         </div>
       </div>
@@ -162,7 +176,7 @@ export default function DashMid(props) {
             <span style={{ width: '80px' }}>{item.cohort}</span>
             <span style={{ width: '100px' }}>{genDateString(item.date)}</span>
             <span style={{ width: '20px', textAlign: 'right' }}>{item.attempts}</span>
-            <span style={{ width: '80px', textAlign: 'right' }}>{item.state}</span>
+            <span style={{ width: '80px', textAlign: 'right' }}>{item.state ? item.state : 'not started'}</span>
           </div>
         ))}
       </div>

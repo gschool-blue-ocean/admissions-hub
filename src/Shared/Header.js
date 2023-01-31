@@ -4,7 +4,6 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useRouter } from 'next/router';
 
 function Header() {
-  const [currentPage, setCurrentPage] = useState('');
   const [showDD, setShowDD] = useState(false);
   const { asPath } = useRouter();
   const router = useRouter();
@@ -22,25 +21,12 @@ function Header() {
     router.push('/dashboard');
   }
 
+  function ifToken() {
+    return localStorage.getItem('token');
+  }
+
   useEffect(() => {
-    switch (asPath) {
-      case '/interview':
-        setCurrentPage('');
-        setShowDD(true);
-        break;
-      case '/login':
-        setCurrentPage('');
-        setShowDD(false);
-        break;
-      case `/dashboard`:
-        setCurrentPage('');
-        setShowDD(true);
-        break;
-      case '/profile':
-        setCurrentPage('');
-        setShowDD(true);
-        break;
-    }
+    setShowDD(ifToken());
   }, []);
 
   const now = new Date();
