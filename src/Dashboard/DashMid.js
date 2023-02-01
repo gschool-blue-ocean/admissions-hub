@@ -88,9 +88,8 @@ export default function DashMid(props) {
   function newInterview() {
     let interviewer_id = localStorage.getItem('id');
     let candidate_id = student.id;
-    let date = new Date().toISOString().slice(0, 10);
     axios
-      .post('/api/interviews/new', { interviewer_id, candidate_id, date })
+      .post('/api/interviews/new', { interviewer_id, candidate_id })
       .then((result) => result.data)
       .then((data) => router.push('/interview/' + data.id));
   }

@@ -28,7 +28,8 @@
   height: 90%;
   width: 400px;
   border-radius: 10px;
-  justify-content: center;
+  gap: 8px;
+  padding: 8px;
 }
 
 .roomInfo {
@@ -129,4 +130,88 @@
   background-color: #ef6e47;
   transform: scale(1.03);
   border: 2px solid white;
+}
+
+.notepadButton {
+  border: 2px solid #0d0f4ae3;
+  color: #0d0f4ae3;
+  height: 40px;
+  width: 100px;
+  padding-inline: 4px;
+  text-align: center;
+  line-height: 40px;
+  background-color: #ffd8a7;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.05s ease-in-out;
+}
+
+.notepadButton:hover {
+  color: white;
+  background-color: #ef6e47;
+  transform: scale(1.03);
+}
+
+.optionsRow {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px;
+}
+
+.problemTabsRow {
+  display: flex;
+}
+
+.problemTab {
+  width: 50%;
+  background-color: #ffe8d3;
+  border: 1px solid #ef6e47;
+  border-bottom: 1px solid #ffe8d3;
+  border-radius: 10px 10px 0px 0px;
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+
+  height: 2rem;
+  font-size: 1.25rem;
+  line-height: 2rem;
+
+  text-align: center;
+}
+
+.problemCard {
+  background-color: #ffe8d3;
+  border: 1px solid #ef6e47;
+  border-top: 1px solid #ffe8d3;
+}
+
+.questionNum {
+  color: #0d0f4ae3;
+  font-weight: bold;
+}
+
+.problemText {
+  margin-top: 4px;
+  padding: 4px;
+  line-height: 1rem;
+}
+
+.codeExample {
+  background-color: #fffaf5;
+  line-height: 1rem;
+  padding: 4px;
+  color: #ef6e47;
+  margin: 0px;
+  height: 175px;
+}
+
+.notesArea {
+  padding: 4px;
+  line-height: 1rem;
+  width: 100%;
+  background-color: #ffe8d3;
+  outline: none;
+  border: none;
+  height: 175px;
+  resize: none;
+  scrollbar-color: #ffe8d3 #ef6e47;
 }
