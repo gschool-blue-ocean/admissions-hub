@@ -1,10 +1,10 @@
 import CodeEditor from '../../src/Interview/CodeEditor';
-import Dashboard from '../../src/Interview/Dashboard';
+import NotePad from '../../src/Interview/NotePad';
 import Header from '../../src/Shared/Header';
 import Footer from '../../src/Shared/Footer';
 import { useEffect, useState } from 'react';
 import RoomInfo from '../../src/Interview/RoomInfo';
-import Loading from '../../src/Shared/loading/Loading';
+import Loading from '../../src/Shared/Loading';
 import axios from 'axios';
 import auth from '../../lib/auth';
 import { useRouter } from 'next/router';
@@ -71,7 +71,10 @@ export default function Interview() {
               student={student}
               room={data.id}
             />
-            <Dashboard />
+            <NotePad
+              data={data}
+              setData={setData}
+            />
           </div>
         ) : null}
       </div>

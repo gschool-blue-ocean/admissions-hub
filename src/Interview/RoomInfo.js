@@ -9,7 +9,7 @@ export default function RoomInfo(props) {
 
   // This section gonna need a looksy
 
-  const baseURL = 'http://localhost:3000/interview';
+  const baseURL = process.env.BASE_URL;
 
   const handleCopy = () => {
     let url = baseURL + '/' + room;

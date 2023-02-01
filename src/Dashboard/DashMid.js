@@ -4,7 +4,7 @@ import Downloader from './email/Downloadcsv';
 import NewStudent from './NewStudent';
 import UpdateStudent from './UpdateStudent';
 import styles from '../../styles/Dashboard.module.css';
-import ViewProblems from './viewProblems';
+import Notes from './Notes';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 
@@ -19,6 +19,7 @@ export default function DashMid(props) {
   const router = useRouter();
   const [search, setSearch] = useState('');
   const [student, setStudent] = useState(false);
+  const [interview, setInterview] = useState({});
   const [selectIndex, setSelectIndex] = useState(-1);
   const [showNotes, setShowNotes] = useState(false);
   const [showNewStudentForm, setShowNewStudentForm] = useState(false);
@@ -62,16 +63,18 @@ export default function DashMid(props) {
     setShowExports(true);
   }
 
-  function genDateString(numby) {
-    if (numby == null) {
-      return 'N/A';
-    }
-    let date = new Date(numby);
-    return date.toLocaleDateString('en-us', { year: 'numeric', month: 'short', day: 'numeric' });
-  }
-
   function searchChange(e) {
     setSearch(e.target.value);
+  }
+
+  function filterBySearch(str) {
+    if (!str) {
+      return props.candidates;
+    }
+    let newList = props.candidates.filter(
+      (item) => item.first_name.includes(str) || item.last_name.includes(str) || item.email.includes(str)
+    );
+    return newList;
   }
 
   function deleteStudent() {
@@ -88,20 +91,26 @@ export default function DashMid(props) {
   function newInterview() {
     let interviewer_id = localStorage.getItem('id');
     let candidate_id = student.id;
-    let date = new Date().toISOString().slice(0, 10);
     axios
-      .post('/api/interviews/new', { interviewer_id, candidate_id, date })
+      .post('/api/interviews/new', { interviewer_id, candidate_id })
       .then((result) => result.data)
       .then((data) => router.push('/interview/' + data.id));
   }
 
   function resumeInterview() {
+    router.push('/interview/' + student.interview_id);
+  }
+
+  function getNotesData() {
     let interviewer_id = localStorage.getItem('id');
     let candidate_id = student.id;
     axios
       .post('/api/interviews/resume', { interviewer_id, candidate_id })
       .then((result) => result.data)
-      .then((data) => router.push('/interview/' + data.id));
+      .then((data) => {
+        setShowNotes(true);
+        setInterview(data);
+      });
   }
 
   return (
@@ -122,13 +131,13 @@ export default function DashMid(props) {
           {student && student.attempts > 0 ? (
             <div
               className={styles.launchButton}
-              onClick={() => setShowNotes(true)}
+              onClick={() => getNotesData()}
             >
               View Notes
             </div>
           ) : null}
           {student ? (
-            student.state == 'incomplete' ? (
+            student.state == 'Incomplete' ? (
               <div
                 className={styles.launchButton}
                 onClick={resumeInterview}
@@ -166,7 +175,7 @@ export default function DashMid(props) {
       </div>
 
       <div className={styles.candidates}>
-        {props.candidates.map((item, index) => (
+        {filterBySearch(search).map((item, index) => (
           <div
             className={styles[selectIndex === index ? 'selectedRow' : 'candidateRow']}
             onClick={() => handleSelect(index)}
@@ -184,16 +193,23 @@ export default function DashMid(props) {
             </span>
             <span style={{ width: '160px', overflow: 'hidden', textOverflow: 'ellipsis' }}>{item.email}</span>
             <span style={{ width: '80px' }}>{item.cohort}</span>
-            <span style={{ width: '100px' }}>{genDateString(item.date)}</span>
+            <span style={{ width: '100px' }}>{item.date}</span>
             <span style={{ width: '20px', textAlign: 'right' }}>{item.attempts}</span>
-            <span style={{ width: '80px', textAlign: 'right' }}>{item.state ? item.state : 'not started'}</span>
+            <span style={{ width: '80px', textAlign: 'right' }}>{item.state}</span>
           </div>
         ))}
       </div>
 
       <div className={styles.optionsRow}>
         <div className={styles.buttonsRow}>
-          {student ? (
+          <div
+            className={styles.launchButton}
+            onClick={() => setShowNewStudentForm(true)}
+            id="addStudent"
+          >
+            Add Student
+          </div>
+          {student && (
             <>
               <div
                 className={styles.launchButton}
@@ -208,14 +224,6 @@ export default function DashMid(props) {
                 Delete Student
               </div>{' '}
             </>
-          ) : (
-            <div
-              className={styles.launchButton}
-              onClick={() => setShowNewStudentForm(true)}
-              id="addStudent"
-            >
-              Add Student
-            </div>
           )}
         </div>
         <div>
@@ -232,6 +240,12 @@ export default function DashMid(props) {
             setShowUpdateStudentForm={setShowUpdateStudentForm}
             getCandidates={props.getCandidates}
             student={student}
+          />
+        )}
+        {showNotes && (
+          <Notes
+            setShowNotes={setShowNotes}
+            data={interview}
           />
         )}
       </div>

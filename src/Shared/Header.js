@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import styles from "./Header.module.css";
+import styles from "../../styles/Shared.module.css";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useRouter } from "next/router";
 

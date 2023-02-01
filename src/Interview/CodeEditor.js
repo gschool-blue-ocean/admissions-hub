@@ -66,13 +66,15 @@ export default function CodeEditor({ sessionId }) {
   return (
     <div className={styles.editorCardBorder}>
       <div className={styles.editorCard}>
-        <Editor
-          defaultLanguage="javascript"
-          theme="vs-dark"
-          onChange={onChangeHandler}
-          value={input}
-          className={styles.editor}
-        />
+        <div className={styles.topEditorWrapper}>
+          <Editor
+            defaultLanguage="javascript"
+            theme="vs-dark"
+            onChange={onChangeHandler}
+            value={input}
+            className={styles.editor}
+          />
+        </div>
 
         <div className={styles.consoleGrid}>
           <code className={styles.console}>

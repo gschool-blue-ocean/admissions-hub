@@ -6,7 +6,6 @@ DROP TABLE IF EXISTS candidates CASCADE;
 
 DROP TABLE IF EXISTS interviews CASCADE;
 
--- CreateTable
 CREATE TABLE interviewers (
   id SERIAL PRIMARY KEY,
   first_name TEXT NOT NULL,
@@ -15,172 +14,54 @@ CREATE TABLE interviewers (
   phash TEXT NOT NULL
 );
 
--- CreateTable
 CREATE TABLE candidates (
   id SERIAL PRIMARY KEY,
   first_name TEXT NOT NULL,
   last_name TEXT NOT NULL,
   email TEXT NOT NULL,
-  cohort TEXT NOT NULL,
-  state TEXT DEFAULT 'TBD'
+  cohort TEXT NOT NULL
 );
 
--- CreateTable
 CREATE TABLE interviews (
   id SERIAL PRIMARY KEY,
-  interviewer_id INT REFERENCES interviewers(id),
-  candidate_id INT REFERENCES candidates(id),
+  interviewer_id INT NOT NULL,
+  candidate_id INT NOT NULL,
   notes_1 TEXT,
   notes_2 TEXT,
   notes_3 TEXT,
-  problem_1_rating INT,
-  problem_2_rating INT,
-  problem_3_rating INT,
-  code TEXT date TEXT,
-  state TEXT DEFAULT 'TBD',
+  problem_1_rating INT DEFAULT 0,
+  problem_2_rating INT DEFAULT 0,
+  problem_3_rating INT DEFAULT 0,
+  date TEXT,
+  state TEXT DEFAULT 'Incomplete'
 );
 
 INSERT INTO
   interviewers (first_name, last_name, email, phash)
 VALUES
   (
-    'TempFirst',
-    'TempLast',
-    'danny@TEMP.com',
-    crypt('TEMP', gen_salt('md5'))
-  ),
-  (
-    'Gabe',
-    'GOAT',
-    'baaaa@gmail.com',
-    crypt('GOAT', gen_salt('md5'))
-  ),
-  (
     'Jarrett',
     'Guyer',
     'guyer.jarrett@gmail.com',
     crypt('6535', gen_salt('md5'))
+  ),
+  (
+    'tempFirst',
+    'tempLast',
+    'temp',
+    crypt('temp', gen_salt('md5'))
   );
 
 INSERT INTO
-  candidates (
-    first_name,
-    last_name,
-    email,
-    cohort
-  )
+  candidates (first_name, last_name, email, cohort)
 VALUES
-  (
-    'Kevin',
-    'Reaves',
-    'Reaveskev@gmail.com',
-    'MCSP-13'
-  ),
-  (
-    'Baremy',
-    'Linder',
-    'jeremylinder2@gmail.com',
-    'MCSP-13'
-  ),
-  (
-    'Kyle',
-    'Jones',
-    'jones.kyle2893@gmail.com',
-    'MCSP-13'
-  ),
-  (
-    'Thanh',
-    'Le',
-    'huybenpro@gmail.com',
-    'MCSP-13'
-  ),
-  (
-    'Matthew',
-    'Rust',
-    'matthewrust21@gmail.com',
-    'MCSP-13'
-  ),
-  (
-    'Hung',
-    'Nguyen',
-    'hungnguyen1693@gmail.com',
-    'MCSP-13'
-  ),
-  (
-    'Trevin',
-    'Reaves',
-    'Reaveskev12@gmail.com',
-    'MCSP-13'
-  ),
-  (
-    'Jeremy',
-    'Linder',
-    'jeremylinder12@gmail.com',
-    'MCSP-13'
-  ),
-  (
-    'Thighle',
-    'Jones',
-    'jones.kyle28932@gmail.com',
-    'MCSP-13'
-  ),
-  (
-    'Thanhohss',
-    'Le',
-    'huybenpro12@gmail.com',
-    'MCSP-13'
-  ),
-  (
-    'Shmathew',
-    'Rust',
-    'matthewrust221@gmail.com',
-    'MCSP-13'
-  ),
-  (
-    'Flung',
-    'Nguyen',
-    'hungnguyen16931@gmail.com',
-    'MCSP-13'
-  );
+  ('Lug', 'Nug', 'nug.lug@gugmug.edu', 'MCSP-01'),
+  ('Jon', 'Paul', 'JPNA@gmail.com', 'MCSP-15');
 
 INSERT INTO
-  interviews (
-    interviewer_id,
-    candidate_id,
-    notes_1,
-    notes_2,
-    notes_3,
-    problem_1_rating,
-    problem_2_rating,
-    problem_3_rating,
-    date,
-    code,
-    state
-  )
+  interviews (interviewer_id, candidate_id, date, state)
 VALUES
-  (
-    '3',
-    '1',
-    'Needs work with functions',
-    'Good job here',
-    'Nice work',
-    '5',
-    '5',
-    '4',
-    '2022-04-17',
-    '//Write your code here',
-    'pass'
-  ),
-  (
-    '3',
-    '1',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '2023-06-25',
-    '//Write your code here',
-    'incomplete'
-  );
+  (1, 1, '2023-01-24', 'Incomplete'),
+  (1, 2, '2022-03-15', 'Pass'),
+  (2, 2, '2020-03-15', 'Pass'),
+  (1, 1, '2023-01-20', 'Fail');
