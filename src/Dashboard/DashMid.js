@@ -200,7 +200,8 @@ export default function DashMid(props) {
               >
                 Update Student
               </div>
-              <div
+              <div 
+                id='deleteStudent'
                 className={styles.launchButton}
                 onClick={deleteStudent}
               >

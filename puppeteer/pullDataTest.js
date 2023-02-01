@@ -11,27 +11,25 @@ const fs = require('fs');
         console.log('loging in');
         await page.type('#logEmail', 'temp');
         await page.type('#logPassword', 'temp');
-        console.log('done logging in');
         await Promise.all([
             page.click('#loginButton'),
             page.waitForNavigation({ timeout: 60000 }),
         ]);
+        
+        console.log('done logging in');
+        await page.waitForSelector('#dataFile', { timeout: 60000 });
 
-        await page.waitForSelector('#qtrInterviews', { timeout: 60000 });
-        await page.waitForSelector('#yrInterviews', { timeout: 60000 });
+        console.log('got it all');
 
         const qtrInterviews = await page.$eval(
-            '#qtrInterviews',
+            '#dataFile',
             (el) => el.textContent
         );
-        const yrInterviews = await page.$eval(
-            'yrInterviews',
-            (el) => el.textContent
-        );
+        
 
         fs.writeFileSync(
             'pulled_data.txt',
-            ` ${qtrInterviews}\n ${yrInterviews}`
+            ` ${qtrInterviews}`
         );
         console.log(`
         Data written to file successfully go check it out!

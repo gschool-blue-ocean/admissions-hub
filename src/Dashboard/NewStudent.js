@@ -1,16 +1,16 @@
-import axios from 'axios';
-import { useState } from 'react';
-import styles from '../../styles/Dashboard.module.css';
+import axios from "axios";
+import { useState } from "react";
+import styles from "../../styles/Dashboard.module.css";
 
 // Here is an array of cohort values to simplify the drop down menu code.
 const cohorts = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22];
 
 // This component is a pop-out form that lets you input and create new candidate data
 export default function NewStudent(props) {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [cohort, setCohort] = useState('');
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [cohort, setCohort] = useState("");
 
   // Posts data to DB via API. See /api/candidate for more.
   function createCandidate() {
@@ -18,9 +18,9 @@ export default function NewStudent(props) {
       first_name: firstName,
       last_name: lastName,
       email: email,
-      cohort: cohort
+      cohort: cohort,
     };
-    axios.post('/api/candidate', data).then((response) => {
+    axios.post("/api/candidate", data).then((response) => {
       console.log(response);
       props.getCandidates();
       props.setShowNewStudentForm(false);
@@ -30,7 +30,7 @@ export default function NewStudent(props) {
   return (
     <div className={styles.newStudentShadow}>
       <div className={styles.newStudentCard}>
-        <div style={{ fontSize: '1.5rem' }}>Add a New Candidate</div>
+        <div style={{ fontSize: "1.5rem" }}>Add a New Candidate</div>
         <input
           id="firstName"
           className={styles.newInput}
@@ -70,14 +70,13 @@ export default function NewStudent(props) {
             hidden
             // This throws a nextjs error but it works so nextjs can suck it.
             // It lets placeholder text appear without setting the value of the select element.
+
+            id="mcsp"
           >
             Select Cohort
           </option>
           {cohorts.map((num) => (
-            <option
-              className="option"
-              key={num}
-            >
+            <option className="option" key={num}>
               MCSP-{num}
             </option>
           ))}
