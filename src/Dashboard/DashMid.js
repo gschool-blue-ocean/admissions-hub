@@ -67,6 +67,16 @@ export default function DashMid(props) {
     setSearch(e.target.value);
   }
 
+  function filterBySearch(str) {
+    if (!str) {
+      return props.candidates;
+    }
+    let newList = props.candidates.filter(
+      (item) => item.first_name.includes(str) || item.last_name.includes(str) || item.email.includes(str)
+    );
+    return newList;
+  }
+
   function deleteStudent() {
     axios
       .delete('/api/candidate/' + student.id)
@@ -165,7 +175,7 @@ export default function DashMid(props) {
       </div>
 
       <div className={styles.candidates}>
-        {props.candidates.map((item, index) => (
+        {filterBySearch(search).map((item, index) => (
           <div
             className={styles[selectIndex === index ? 'selectedRow' : 'candidateRow']}
             onClick={() => handleSelect(index)}
