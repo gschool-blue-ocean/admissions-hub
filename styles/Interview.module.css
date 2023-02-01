@@ -4,7 +4,7 @@
   display: flex;
   flex-flow: column nowrap;
   min-width: 840px;
-  min-height: 900px;
+  min-height: 980px;
   background-color: #0d0f4ae3;
 
   color: #4e4e4e;
@@ -17,7 +17,6 @@
   flex-flow: row nowrap;
   align-items: center;
   justify-content: space-evenly;
-  /* gap: 5%; */
 }
 
 .adminColumn {
@@ -31,6 +30,8 @@
   gap: 8px;
   padding: 8px;
 }
+
+/* // entire software dev lifecycle, testing and artifacts */
 
 .roomInfo {
   display: flex;
@@ -82,6 +83,11 @@
   height: 100%;
   justify-content: center;
   gap: 2px;
+}
+
+.topEditorWrapper {
+  min-height: 360px;
+  height: 100%;
 }
 
 .consoleGrid {
@@ -182,6 +188,8 @@
   background-color: #ffe8d3;
   border: 1px solid #ef6e47;
   border-top: 1px solid #ffe8d3;
+
+  border-radius: 0px 0px 10px 10px;
 }
 
 .questionNum {
@@ -214,4 +222,87 @@
   height: 175px;
   resize: none;
   scrollbar-color: #ffe8d3 #ef6e47;
+}
+
+.statusToggle {
+  border: 2px solid #ef6e47;
+  color: #ef6e47;
+  height: 40px;
+  width: 100px;
+  padding-inline: 4px;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.05s ease-in-out;
+}
+
+.statusToggle:hover {
+  transform: scale(1.03);
+
+  border: 2px solid #0d0f4ae3;
+  color: #0d0f4ae3;
+}
+
+.statusStatic {
+  border: 2px solid #ef6e47;
+  color: #ef6e47;
+  height: 40px;
+  width: 100px;
+  padding-inline: 4px;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 4px;
+}
+
+.ratingsTitle {
+  color: #0d0f4ae3;
+  font-weight: bold;
+}
+
+.ratingsContent {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 8px;
+  height: 100px;
+  justify-content: space-evenly;
+}
+
+.ratingsLeft {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 50%;
+  justify-content: center;
+}
+
+.ratings {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 50%;
+}
+
+.ratingsRow {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.notesShadow {
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.4);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.noteBorder {
+  width: 400px;
+  background-color: white;
+  padding: 8px;
+  border-radius: 10px;
 }
