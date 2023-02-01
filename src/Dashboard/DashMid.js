@@ -202,7 +202,14 @@ export default function DashMid(props) {
 
       <div className={styles.optionsRow}>
         <div className={styles.buttonsRow}>
-          {student ? (
+          <div
+            className={styles.launchButton}
+            onClick={() => setShowNewStudentForm(true)}
+            id="addStudent"
+          >
+            Add Student
+          </div>
+          {student && (
             <>
               <div
                 className={styles.launchButton}
@@ -217,14 +224,6 @@ export default function DashMid(props) {
                 Delete Student
               </div>{' '}
             </>
-          ) : (
-            <div
-              className={styles.launchButton}
-              onClick={() => setShowNewStudentForm(true)}
-              id="addStudent"
-            >
-              Add Student
-            </div>
           )}
         </div>
         <div>
