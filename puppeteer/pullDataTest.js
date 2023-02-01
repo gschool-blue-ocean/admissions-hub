@@ -7,6 +7,7 @@ const fs = require('fs');
     try {
         browser = await puppeteer.launch({ headless: false });
         page = await browser.newPage();
+        await page.setViewport({ width: 1200, height: 900});
         await page.goto(pageUrl);
         console.log('loging in');
         await page.type('#logEmail', 'temp');

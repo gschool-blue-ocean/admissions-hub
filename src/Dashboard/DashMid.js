@@ -195,6 +195,7 @@ export default function DashMid(props) {
           {student ? (
             <>
               <div
+                id='updateStudent'
                 className={styles.launchButton}
                 onClick={() => setShowUpdateStudentForm(true)}
               >

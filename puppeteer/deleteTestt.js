@@ -8,6 +8,7 @@ const delay = (milliseconds) =>
     try {
         browser = await puppeteer.launch({ headless: false });
         page = await browser.newPage();
+        await page.setViewport({ width: 1200, height: 900});
         await page.goto(pageUrl);
         await page.type('#logEmail', 'temp');
         await page.type('#logPassword', 'temp');
