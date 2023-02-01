@@ -1,0 +1,50 @@
+  .form_inputs {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    
+  }
+  .form_inputs input {
+    width: 300px;
+    border-radius: 5px;
+    
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .form_inputs label {
+    padding: 5px;
+
+  }
+
+  .content_container {
+    width: 450px;
+  }
+ 
+  .edit_account {
+    background-color: #f0f0f0;
+    height: 100px;
+    text-align: center;
+    padding-top: 24px;
+  }
+
+  .edit_account h1 {
+    font-weight: bold;
+  }
+
+  .password_card {
+  width: 100%;
+  margin-top: 20px;
+  border: 1px solid gray;
+  padding: 10px;
+  text-align: center;
+
+}
+
+.password_input {
+  width: 50%;
+  margin: 10px;
+}

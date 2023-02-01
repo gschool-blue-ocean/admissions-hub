@@ -1,0 +1,44 @@
+.input[type='text'] {
+  background-color: #f0f0f0;
+  color: #595959;
+  width: 190px;
+  border: none;
+}
+
+.input::placeholder {
+  color: #979797;
+}
+
+.bob {
+  background-color: #ef6e47;
+  transition: 0.2s;
+}
+
+.bob:hover {
+  transform: scale(1.05);
+}
+
+.cell:hover {
+  background-color: #ffe8d3;
+  cursor: pointer;
+}
+
+.cell {
+  transition: 0.2s;
+}
+
+.scroll::-webkit-scrollbar {
+  width: 2px;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  background: #ef6e47;
+}
+
+.empty {
+  color: #dcdcdc;
+}
+
+#complete {
+  margin-top: 40px;
+}
