@@ -2,17 +2,18 @@
     display: flex;
     flex-direction: column;
     padding: 10px;
-    
+margin-left: 550px;
   }
   .form_inputs input {
     width: 300px;
     border-radius: 5px;
-    
+
   }
   
   .form-actions {
     display: flex;
     justify-content: flex-end;
+
   }
   
   .form_inputs label {
@@ -29,6 +30,7 @@
     height: 100px;
     text-align: center;
     padding-top: 24px;
+
   }
 
   .edit_account h1 {
@@ -42,9 +44,15 @@
   padding: 10px;
   text-align: center;
 
+margin-left: 500px;
 }
 
 .password_input {
   width: 50%;
   margin: 10px;
+
+}
+
+.form_actions {
+padding-left: 200px;
 }
