@@ -15,7 +15,6 @@ export default function DashContent() {
       .then((result) => result.data)
       .then((data) => {
         setCandidates(filterCandidateList(data));
-        console.log(data);
       })
       .catch((err) => console.log(err));
   }
@@ -40,12 +39,9 @@ export default function DashContent() {
       .then((result) => result.data)
       .then((data) => {
         setInterveiws(data);
-        console.log(data);
       })
       .catch((err) => console.log(err));
   }
-
-  function getCombo() {}
 
   useEffect(() => {
     getCandidates();

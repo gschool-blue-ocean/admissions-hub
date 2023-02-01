@@ -32,12 +32,11 @@ CREATE TABLE interviews (
   notes_1 TEXT,
   notes_2 TEXT,
   notes_3 TEXT,
-  problem_1_rating INT,
-  problem_2_rating INT,
-  problem_3_rating INT,
-  code TEXT,
+  problem_1_rating INT DEFAULT 0,
+  problem_2_rating INT DEFAULT 0,
+  problem_3_rating INT DEFAULT 0,
   date TEXT,
-  state TEXT DEFAULT 'incomplete'
+  state TEXT DEFAULT 'Incomplete'
 );
 
 INSERT INTO
@@ -65,6 +64,7 @@ VALUES
 INSERT INTO
   interviews (interviewer_id, candidate_id, date, state)
 VALUES
-  (1, 1, '2023-01-24', 'incomplete'),
-  (1, 2, '2022-03-15', 'pass'),
-  (1, 1, '2023-01-20', 'fail');
+  (1, 1, '2023-01-24', 'Incomplete'),
+  (1, 2, '2022-03-15', 'Pass'),
+  (2, 2, '2020-03-15', 'Pass'),
+  (1, 1, '2023-01-20', 'Fail');

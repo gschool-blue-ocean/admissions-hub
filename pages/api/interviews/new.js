@@ -6,7 +6,7 @@ export default function handler(req, res) {
   if (method === 'POST') {
     let { interviewer_id, candidate_id } = req.body;
     pool
-      .query('INSERT INTO interviews( interviewer_id, candidate_id, date ) VALUES ($1, $2) RETURNING *;', [
+      .query('INSERT INTO interviews( interviewer_id, candidate_id ) VALUES ($1, $2) RETURNING *', [
         interviewer_id,
         candidate_id
       ])
