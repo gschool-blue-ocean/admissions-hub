@@ -6,7 +6,6 @@ DROP TABLE IF EXISTS candidates CASCADE;
 
 DROP TABLE IF EXISTS interviews CASCADE;
 
--- CreateTable
 CREATE TABLE interviewers (
   id SERIAL PRIMARY KEY,
   first_name TEXT NOT NULL,
@@ -15,7 +14,6 @@ CREATE TABLE interviewers (
   phash TEXT NOT NULL
 );
 
--- CreateTable
 CREATE TABLE candidates (
   id SERIAL PRIMARY KEY,
   first_name TEXT NOT NULL,
@@ -24,7 +22,6 @@ CREATE TABLE candidates (
   cohort TEXT NOT NULL
 );
 
--- CreateTable
 CREATE TABLE interviews (
   id SERIAL PRIMARY KEY,
   interviewer_id INT NOT NULL,
