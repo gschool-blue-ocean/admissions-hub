@@ -9,12 +9,12 @@ const pageUrl = 'http://localhost:3000/login';
         await page.goto(pageUrl);
 
         // Enter email and password
-        await page.type('#logEmail', 'danny@TEMP.com');
-        await page.type('#logPassword', 'TEMP');
+        await page.type('#logEmail', 'temp');
+        await page.type('#logPassword', 'temp');
 
         // Click login button and wait for navigation
         await Promise.all([
-            page.click('.col-7 button'),
+            page.click('#loginButton'),
             page.waitForNavigation({ timeout: 60000 }),
         ]);
 
@@ -23,7 +23,7 @@ const pageUrl = 'http://localhost:3000/login';
 
         // Once the element is present, interact with it
         const info = await page.$eval('#message', (el) => el.textContent);
-        console.log(`Successfully logged in and was about to get ${info}`);
+        console.log(`Successfully logged in and reading ${info}`);
     } catch (error) {
         console.log(error);
     } finally {
