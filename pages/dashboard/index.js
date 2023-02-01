@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Header from '../../src/Shared/Header';
 import Footer from '../../src/Shared/Footer';
 import DashContent from '../../src/Dashboard/DashContent';
-import Loading from '../../src/Shared/loading/Loading';
+import Loading from '../../src/Shared/Loading';
 import auth from '../../lib/auth';
 import Router from 'next/router';
 import styles from '../../styles/Dashboard.module.css';
