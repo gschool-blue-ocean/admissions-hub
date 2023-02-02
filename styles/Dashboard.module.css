@@ -198,6 +198,20 @@
   align-items: center;
 }
 
+.forgotCard {
+  background-color: white;
+  border-radius: 8px;
+  height: 200px;
+  width: 300px;
+  background-color: #f0f0f0;
+  padding: 12px;
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .newInput {
   all: unset;
   width: 100%;

@@ -43,6 +43,10 @@ export default function AdminLogin(props) {
     login();
   }
 
+  function handleForgot(){
+      router.push('./forgetpass');
+  }
+
   return (
     <div className={styles.logincard}>
       <div className={styles.cardLeft}>
@@ -76,7 +80,10 @@ export default function AdminLogin(props) {
             >
               <span className={styles.buttonText}>Login!</span>
             </div>
-            <div className={styles.button}>
+            <div 
+              className={styles.button}
+              onClick={handleForgot}
+            >
               <span className={styles.buttonText}>Forgot?</span>
             </div>
           </div>

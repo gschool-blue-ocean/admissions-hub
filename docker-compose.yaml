@@ -18,6 +18,7 @@ services:
   #   ports:
   #     - 3000:3000
   #   environment:
+  #     - BASE_URL=http://localhost:3000/interview
   #     - CONNECTION_STRING=postgresql://postgres:docker@database:5432/database
   #     # - CONNECTION_STRING=postgresql://postgres:docker@localhost:5432/database
   #   depends_on:
