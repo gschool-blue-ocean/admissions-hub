@@ -4,7 +4,7 @@ import Header from '../../src/Shared/Header';
 import Footer from '../../src/Shared/Footer';
 import { useEffect, useState } from 'react';
 import RoomInfo from '../../src/Interview/RoomInfo';
-import Loading from '../../src/Shared/loading/Loading';
+import Loading from '../../src/Shared/Loading';
 import axios from 'axios';
 import auth from '../../lib/auth';
 import { useRouter } from 'next/router';
