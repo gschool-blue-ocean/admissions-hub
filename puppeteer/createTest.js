@@ -21,9 +21,9 @@ const delay = (milliseconds) =>
         console.log(isPresent); // check if true
         if (isPresent) {
             await page.click('#addStudent');
-            await page.type('#firstName', 'mansour');
-            await page.type('#lastName', 'theGuy');
-            await page.type('#email', 'the.com');
+            await page.type('#firstName', 'Fernando');
+            await page.type('#lastName', 'Castro');
+            await page.type('#email', 'TheDog@yahoo.com');
             await page.click('#dropdown');
             await page.waitForSelector('#mcsp', { timeout: 60000 });
             const select = await page.$('select');
