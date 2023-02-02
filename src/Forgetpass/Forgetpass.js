@@ -17,6 +17,10 @@ export default function Forgetpass() {
   //post request to an Express server which is running nodemailer
   function handleSubmit() {
     axiosNodemailer(email);
+    alert("Email sent");
+    setTimeout(function(){
+      toLogin()
+    }, 1000);
     console.log(email);
   }
 
