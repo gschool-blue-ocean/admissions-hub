@@ -1,6 +1,9 @@
 import express from "express";
 import nodemailer from "nodemailer";
 import cors from "cors";
+// import { Forgetpass } from '../../src/Forgetpass/Forgetpass.js'
+//import constants from 'next/dist/shared/lib/constants.js';
+
 
 const app = express();
 app.use(cors());
@@ -21,7 +24,7 @@ app.get('/', (req, res) => {
 app.post("/send-email", (req, res) => {
   const { to, subject, text } = req.body;
 
-  async function sendEmail(email) {
+  async function sendEmail() {
     let transporter = nodemailer.createTransport({
       host: "localhost",
       port: 1025,
@@ -29,11 +32,13 @@ app.post("/send-email", (req, res) => {
     });
 
     let info = await transporter.sendMail({
-      from: "mcsp15admissions@gmail.com",
-      to: email,
-      subject: "Test Email",
-      text: "Hello, this is a test email sent from MailHog.",
-      html: "<b>Hello, this is a test email sent from MailHog.</b>",
+      
+        from: "mcsp15admissions@gmail.com",
+        to: 'danny@TEMP.com',
+        subject: "Test Email",
+        text: "Hello, this is a test email sent from MailHog.",
+        html: "<b>Hello, this is a test email sent from MailHog.</b>",
+      
     });
 
     console.log("Message sent: %s", info.messageId);

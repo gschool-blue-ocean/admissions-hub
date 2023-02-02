@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import styles from '../../styles/Dashboard.module.css';
-import Email from 
 
 export default function DashBottom(props) {
   // LMAO numbies
