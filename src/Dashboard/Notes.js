@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import Problems from '../Interview/Problems';
-import styles from '../../styles/Interview.module.css';
-import Ratings from '../Interview/Ratings';
+import { useState } from "react";
+import Problems from "../Interview/Problems";
+import styles from "../../styles/Interview.module.css";
+import Ratings from "../Interview/Ratings";
 
 export default function Notes({ data, setShowNotes }) {
   const [problem1Notes, setProblem1Notes] = useState(data.notes_1);
@@ -38,6 +38,7 @@ export default function Notes({ data, setShowNotes }) {
           <div className={styles.optionsRow}>
             <div className={styles.statusStatic}>{status}</div>
             <div
+              id="returnButton"
               className={styles.notepadButton}
               onClick={() => setShowNotes(false)}
             >

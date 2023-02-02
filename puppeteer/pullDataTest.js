@@ -7,32 +7,24 @@ const fs = require('fs');
     try {
         browser = await puppeteer.launch({ headless: false });
         page = await browser.newPage();
+        await page.setViewport({ width: 1200, height: 900 });
         await page.goto(pageUrl);
-
-        await page.type('#logEmail', 'danny@TEMP.com');
-        await page.type('#logPassword', 'TEMP');
-
+        console.log('loging in');
+        await page.type('#logEmail', 'temp');
+        await page.type('#logPassword', 'temp');
         await Promise.all([
-            page.click('.col-7 button'),
+            page.click('#loginButton'),
             page.waitForNavigation({ timeout: 60000 }),
         ]);
 
-        await page.waitForSelector('#passingInterviews', { timeout: 60000 });
-        await page.waitForSelector('#totalInterviews', { timeout: 60000 });
+        console.log('done logging in');
+        await page.waitForSelector('#dataFile', { timeout: 60000 });
 
-        const passingInterviews = await page.$eval(
-            '#passingInterviews',
-            (el) => el.textContent
-        );
-        const totalInterviews = await page.$eval(
-            '#totalInterviews',
-            (el) => el.textContent
-        );
+        console.log('got it all');
 
-        fs.writeFileSync(
-            'pulled_data.txt',
-            ` ${passingInterviews}\n ${totalInterviews}`
-        );
+        const qtrInterviews = await page.$eval('#dataFile', (el) => el.textContent);
+
+        fs.writeFileSync('pulled_data.txt', ` ${qtrInterviews}`);
         console.log(`
         Data written to file successfully go check it out!
         pulled users passing and total interviews.

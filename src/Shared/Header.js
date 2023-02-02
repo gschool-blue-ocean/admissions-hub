@@ -59,10 +59,8 @@ function Header() {
             title={`Welcome, ${localStorage.getItem("firstName")}`}
             menuVariant="light"
           >
-            <NavDropdown.Item onClick={toProfile}>
-              View Profile
-            </NavDropdown.Item>
-            <NavDropdown.Item onClick={toLogin}>Logout</NavDropdown.Item>
+            <NavDropdown.Item onClick={toProfile}>View Profile</NavDropdown.Item>
+            <NavDropdown.Item id='logOut' onClick={toLogin}>Logout</NavDropdown.Item>
           </NavDropdown>
         </div>
       ) : null}

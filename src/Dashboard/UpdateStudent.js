@@ -33,6 +33,7 @@ export default function UpdateStudent(props) {
         <div style={{ fontSize: '1.5rem' }}>Update Candidate Info</div>
         <input
           className={styles.newInput}
+          id="updateFirstName"
           placeholder="First Name"
           onChange={(e) => setFirstName(e.target.value)}
           value={firstName}
@@ -40,6 +41,7 @@ export default function UpdateStudent(props) {
         ></input>
         <input
           className={styles.newInput}
+          id="updateLastName"
           placeholder="Last Name"
           onChange={(e) => setLastName(e.target.value)}
           value={lastName}
@@ -47,6 +49,7 @@ export default function UpdateStudent(props) {
         ></input>
         <input
           className={styles.newInput}
+          id="updateEmail"
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
@@ -82,6 +85,7 @@ export default function UpdateStudent(props) {
           </div>
           {firstName && lastName && email && cohort ? (
             <div
+              id="update"
               className={styles.launchButton}
               onClick={updateCandidate}
             >
