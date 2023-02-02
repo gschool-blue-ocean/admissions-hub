@@ -7,6 +7,7 @@ import styles from '../../styles/Dashboard.module.css';
 import Notes from './Notes';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import ExportModal from './ExportModal';
 
 // ===== Notes =====
 // state: what do we need
@@ -24,7 +25,7 @@ export default function DashMid(props) {
   const [showNotes, setShowNotes] = useState(false);
   const [showNewStudentForm, setShowNewStudentForm] = useState(false);
   const [showUpdateStudentForm, setShowUpdateStudentForm] = useState(false);
-
+  const [showExportModal, setShowExportModal] = useState(false);
   function handleSelect(index) {
     if (selectIndex == index) {
       setStudent(false);
@@ -227,7 +228,8 @@ export default function DashMid(props) {
           )}
         </div>
         <div>
-          <button className={styles.launchButton}>Export Student Info</button>
+          <button className={styles.launchButton}
+          onClick={() => setShowExportModal(true)}>Export Student Info</button>
         </div>
         {showNewStudentForm && (
           <NewStudent
@@ -247,6 +249,9 @@ export default function DashMid(props) {
             setShowNotes={setShowNotes}
             data={interview}
           />
+        )}
+        {showExportModal && (
+          <ExportModal setShowExportModal={setShowExportModal} students={props.candidates}/>
         )}
       </div>
     </div>
