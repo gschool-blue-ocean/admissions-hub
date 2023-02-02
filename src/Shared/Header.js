@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import styles from '../../styles/Shared.module.css';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import { useRouter } from 'next/router';
+import { useState, useEffect } from "react";
+import styles from "../../styles/Shared.module.css";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import { useRouter } from "next/router";
 
 function Header() {
   const [showDD, setShowDD] = useState(false);
@@ -9,20 +9,20 @@ function Header() {
   const router = useRouter();
 
   function toProfile() {
-    router.push('/profile');
+    router.push("/profile");
   }
 
   function toLogin() {
     localStorage.clear();
-    router.push('/login');
+    router.push("/login");
   }
 
   function toDash() {
-    router.push('/dashboard');
+    router.push("/dashboard");
   }
 
   function ifToken() {
-    return localStorage.getItem('token');
+    return localStorage.getItem("token");
   }
 
   useEffect(() => {
@@ -30,7 +30,12 @@ function Header() {
   }, []);
 
   const now = new Date();
-  const today = now.toLocaleDateString('en-us', { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' });
+  const today = now.toLocaleDateString("en-us", {
+    weekday: "long",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
 
   return (
     <div className={styles.header}>
@@ -41,10 +46,7 @@ function Header() {
           name="dashboard"
         ></button>
       ) : (
-        <button
-          className={styles.logo}
-          name="dashboard"
-        ></button>
+        <button className={styles.logo} name="dashboard"></button>
       )}
       <div className={styles.spacer}></div>
       <div className={styles.date}>{today}</div>
@@ -52,11 +54,14 @@ function Header() {
       {showDD ? (
         <div className={styles.dropdownmenu}>
           <NavDropdown
+            style={{ color: "#131771" }}
             id="nav-dropdown-dark-example"
-            title={`Welcome, ${localStorage.getItem('firstName')}`}
+            title={`Welcome, ${localStorage.getItem("firstName")}`}
             menuVariant="light"
           >
-            <NavDropdown.Item onClick={toProfile}>View Profile</NavDropdown.Item>
+            <NavDropdown.Item onClick={toProfile}>
+              View Profile
+            </NavDropdown.Item>
             <NavDropdown.Item onClick={toLogin}>Logout</NavDropdown.Item>
           </NavDropdown>
         </div>
