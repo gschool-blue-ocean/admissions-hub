@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import Problems from "./Problems";
-import axios from "axios";
-import { useRouter } from "next/router";
-import styles from "../../styles/Interview.module.css";
-import Ratings from "./Ratings";
+import { useEffect, useState } from 'react';
+import Problems from './Problems';
+import axios from 'axios';
+import { useRouter } from 'next/router';
+import styles from '../../styles/Interview.module.css';
+import Ratings from './Ratings';
 
 export default function NotePad({ data }) {
   const router = useRouter();
@@ -15,20 +15,20 @@ export default function NotePad({ data }) {
   const [problem2Rating, setProblem2Rating] = useState(data.problem_2_rating);
   const [problem3Rating, setProblem3Rating] = useState(data.problem_3_rating);
 
-  const [status, setStatus] = useState("Incomplete");
+  const [status, setStatus] = useState('Incomplete');
 
   function toggleStatus() {
-    if (status === "Incomplete") {
-      setStatus("Pass");
-    } else if (status === "Pass") {
-      setStatus("Fail");
-    } else if (status === "Fail") {
-      setStatus("Incomplete");
+    if (status === 'Incomplete') {
+      setStatus('Pass');
+    } else if (status === 'Pass') {
+      setStatus('Fail');
+    } else if (status === 'Fail') {
+      setStatus('Incomplete');
     }
   }
 
   function submitInterview() {
-    let today = new Date().toISOString().slice(0, 10);
+    let today = new Date();
     let body = {
       notes_1: problem1Notes,
       notes_2: problem2Notes,
@@ -37,10 +37,10 @@ export default function NotePad({ data }) {
       problem_2_rating: problem2Rating,
       problem_3_rating: problem3Rating,
       date: today,
-      state: status,
+      state: status
     };
-    axios.patch("/api/interviews/" + data.id, body).then((result) => {
-      router.push("/dashboard");
+    axios.patch('/api/interviews/' + data.id, body).then((result) => {
+      router.push('/dashboard');
     });
   }
 
