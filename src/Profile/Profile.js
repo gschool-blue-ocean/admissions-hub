@@ -13,15 +13,25 @@ function ProfilePage() {
   //////////////////////////////// handle submit and axios put request to update database /////////////////////////////
   const handleSubmit = (event) => {
     event.preventDefault();
+    localStorage.clear();
     // create a user object with the form data
     const user = { firstName, lastName, email, password, currentPassword };
     // send a PUT request to your server to update the user's information/
     axios
       .put('/api/interviewers/put', user)
-      .then((response) => {
-        console.log(response);
-        setUpdateSuccess(true);
-        // handle the successful response here, e.g. show a message to the user
+      .then((result) => result.data)
+      .then((data) => {
+        console.log('data return', data);
+        if (data.valid) {
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('id', data.id);
+          localStorage.setItem('firstName', data.first_name);
+          localStorage.setItem('lastName', data.last_name);
+          setUpdateSuccess(true);
+        } else {
+          setUpdateSuccess(false);
+          console.log('Incorrect email or password.');
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -31,7 +41,6 @@ function ProfilePage() {
   return (
     <>
       <div className={classes.edit_account}>Edit Account</div>
-
       <div className={classes.content}>
         <form
           className={classes.form}
