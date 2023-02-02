@@ -1,9 +1,8 @@
-import axios from "axios";
+import axios from 'axios';
 
-const axiosNodemailer = async () => {
+const axiosNodemailer = (address) => {
   axios
-    .post("http://localhost:8888/send-email", {
-    })
+    .post('http://localhost:8888/send-email', { address: address })
     .then((response) => {
       console.log(response.data);
     })
