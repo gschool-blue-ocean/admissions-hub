@@ -77,6 +77,7 @@ return newStr;
           </div>
 
           <textarea
+            id='problem1Notes'
             className={styles.notesArea}
             rows={20}
             value={problem1Notes}
