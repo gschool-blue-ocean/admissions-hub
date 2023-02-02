@@ -7,6 +7,7 @@ import styles from '../../styles/Dashboard.module.css';
 import Notes from './Notes';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import ExportModal from './ExportModal';
 
 // ===== Notes =====
 // state: what do we need
@@ -24,7 +25,7 @@ export default function DashMid(props) {
   const [showNotes, setShowNotes] = useState(false);
   const [showNewStudentForm, setShowNewStudentForm] = useState(false);
   const [showUpdateStudentForm, setShowUpdateStudentForm] = useState(false);
-
+  const [showExportModal, setShowExportModal] = useState(false);
   function handleSelect(index) {
     if (selectIndex == index) {
       setStudent(false);
@@ -67,6 +68,16 @@ export default function DashMid(props) {
     setSearch(e.target.value);
   }
 
+  function filterBySearch(str) {
+    if (!str) {
+      return props.candidates;
+    }
+    let newList = props.candidates.filter(
+      (item) => item.first_name.includes(str) || item.last_name.includes(str) || item.email.includes(str)
+    );
+    return newList;
+  }
+
   function deleteStudent() {
     axios
       .delete('/api/candidate/' + student.id)
@@ -101,6 +112,16 @@ export default function DashMid(props) {
         setShowNotes(true);
         setInterview(data);
       });
+  }
+
+  function genDateString(data) {
+    const date = new Date(data);
+    const string = date.toLocaleDateString('en-us', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    });
+    return string;
   }
 
   return (
@@ -165,7 +186,7 @@ export default function DashMid(props) {
       </div>
 
       <div className={styles.candidates}>
-        {props.candidates.map((item, index) => (
+        {filterBySearch(search).map((item, index) => (
           <div
             className={styles[selectIndex === index ? 'selectedRow' : 'candidateRow']}
             onClick={() => handleSelect(index)}
@@ -183,7 +204,7 @@ export default function DashMid(props) {
             </span>
             <span style={{ width: '160px', overflow: 'hidden', textOverflow: 'ellipsis' }}>{item.email}</span>
             <span style={{ width: '80px' }}>{item.cohort}</span>
-            <span style={{ width: '100px' }}>{item.date}</span>
+            <span style={{ width: '100px' }}>{genDateString(item.date)}</span>
             <span style={{ width: '20px', textAlign: 'right' }}>{item.attempts}</span>
             <span style={{ width: '80px', textAlign: 'right' }}>{item.state}</span>
           </div>
@@ -192,7 +213,14 @@ export default function DashMid(props) {
 
       <div className={styles.optionsRow}>
         <div className={styles.buttonsRow}>
-          {student ? (
+          <div
+            className={styles.launchButton}
+            onClick={() => setShowNewStudentForm(true)}
+            id="addStudent"
+          >
+            Add Student
+          </div>
+          {student && (
             <>
               <div
                 className={styles.launchButton}
@@ -207,18 +235,15 @@ export default function DashMid(props) {
                 Delete Student
               </div>{' '}
             </>
-          ) : (
-            <div
-              className={styles.launchButton}
-              onClick={() => setShowNewStudentForm(true)}
-              id="addStudent"
-            >
-              Add Student
-            </div>
           )}
         </div>
         <div>
-          <button className={styles.launchButton}>Export Student Info</button>
+          <button
+            className={styles.launchButton}
+            onClick={() => setShowExportModal(true)}
+          >
+            Export Student Info
+          </button>
         </div>
         {showNewStudentForm && (
           <NewStudent
@@ -237,6 +262,12 @@ export default function DashMid(props) {
           <Notes
             setShowNotes={setShowNotes}
             data={interview}
+          />
+        )}
+        {showExportModal && (
+          <ExportModal
+            setShowExportModal={setShowExportModal}
+            students={props.candidates}
           />
         )}
       </div>
