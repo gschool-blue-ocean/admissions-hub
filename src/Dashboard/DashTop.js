@@ -14,18 +14,18 @@ export default function DashTop(props) {
     setTotalyr(0);
     props.interviews.forEach((el) => {
       if (Date.now() - new Date(el.date) < 7889400000) {
-        if (el.state === 'pass') {
+        if (el.state === 'Pass') {
           setPassingqtr((prev) => prev + 1);
           setTotalqtr((prev) => prev + 1);
-        } else if (el.state === 'fail') {
+        } else if (el.state === 'Fail') {
           setTotalqtr((prev) => prev + 1);
         }
       }
       if (Date.now() - new Date(el.date) < 31557600000) {
-        if (el.state === 'pass') {
+        if (el.state === 'Pass') {
           setPassingyr((prev) => prev + 1);
           setTotalyr((prev) => prev + 1);
-        } else if (el.state === 'fail') {
+        } else if (el.state === 'Fail') {
           setTotalyr((prev) => prev + 1);
         }
       }
@@ -94,7 +94,10 @@ export default function DashTop(props) {
             </text>
           </svg>
         </div>
-        <span style={{ fontSize: '1.5rem' }}>
+        <span
+          style={{ fontSize: '1.5rem' }}
+          id={type ? 'qtrInterviews' : 'yrInterviews'}
+        >
           Passing/Total: {value}/{total}
         </span>
       </div>

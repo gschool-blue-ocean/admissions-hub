@@ -6,33 +6,32 @@ import styles from '../../styles/Dashboard.module.css';
 const cohorts = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22];
 
 // This component is a pop-out form that lets you input and create new candidate data
-export default function NewStudent(props) {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [cohort, setCohort] = useState('');
+export default function UpdateStudent(props) {
+  const [firstName, setFirstName] = useState(props.student.first_name);
+  const [lastName, setLastName] = useState(props.student.last_name);
+  const [email, setEmail] = useState(props.student.email);
+  const [cohort, setCohort] = useState(props.student.cohort);
 
   // Posts data to DB via API. See /api/candidate for more.
-  function createCandidate() {
+  function updateCandidate() {
     let data = {
       first_name: firstName,
       last_name: lastName,
       email: email,
       cohort: cohort
     };
-    axios.post('/api/candidate', data).then((response) => {
+    axios.patch('/api/candidate/' + props.student.id, data).then((response) => {
       console.log(response);
       props.getCandidates();
-      props.setShowNewStudentForm(false);
+      props.setShowUpdateStudentForm(false);
     });
   }
 
   return (
     <div className={styles.newStudentShadow}>
       <div className={styles.newStudentCard}>
-        <div style={{ fontSize: '1.5rem' }}>Add a New Candidate</div>
+        <div style={{ fontSize: '1.5rem' }}>Update Candidate Info</div>
         <input
-          id="firstName"
           className={styles.newInput}
           placeholder="First Name"
           onChange={(e) => setFirstName(e.target.value)}
@@ -40,7 +39,6 @@ export default function NewStudent(props) {
           type="text"
         ></input>
         <input
-          id="lastName"
           className={styles.newInput}
           placeholder="Last Name"
           onChange={(e) => setLastName(e.target.value)}
@@ -48,7 +46,6 @@ export default function NewStudent(props) {
           type="text"
         ></input>
         <input
-          id="email"
           className={styles.newInput}
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
@@ -56,7 +53,6 @@ export default function NewStudent(props) {
           type="text"
         ></input>
         <select
-          id="dropdown"
           className={styles.newInput}
           onChange={(e) => {
             setCohort(e.target.value);
@@ -64,36 +60,30 @@ export default function NewStudent(props) {
           }}
         >
           <option
-            value=""
+            value={props.student.cohort}
             disabled
             selected
             hidden
             // This throws a nextjs error but it works so nextjs can suck it.
             // It lets placeholder text appear without setting the value of the select element.
           >
-            Select Cohort
+            {props.student.cohort}
           </option>
           {cohorts.map((num) => (
-            <option
-              className="option"
-              key={num}
-            >
-              MCSP-{num}
-            </option>
+            <option key={num}> MCSP-{num}</option>
           ))}
         </select>
         <div className={styles.spacedButtons}>
           <div
             className={styles.launchButton}
-            onClick={() => props.setShowNewStudentForm(false)}
+            onClick={() => props.setShowUpdateStudentForm(false)}
           >
             Cancel
           </div>
           {firstName && lastName && email && cohort ? (
             <div
               className={styles.launchButton}
-              onClick={createCandidate}
-              id="create"
+              onClick={updateCandidate}
             >
               Create
             </div>

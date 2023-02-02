@@ -3,7 +3,7 @@ import pool from '../../../lib/db';
 export default function handler(req, res) {
   pool
     .query(
-      'SELECT candidates.*, interviews.date, interviews.state, (SELECT COUNT(*) FROM interviews WHERE candidates.id = interviews.candidate_id) AS attempts FROM candidates LEFT JOIN interviews ON candidates.id = interviews.candidate_id ORDER BY date DESC'
+      'SELECT candidates.*, interviews.date, interviews.state, interviews.id AS interview_id, (SELECT COUNT(*) FROM interviews WHERE candidates.id = interviews.candidate_id) AS attempts FROM candidates LEFT JOIN interviews ON candidates.id = interviews.candidate_id ORDER BY date DESC'
     )
     .then((result) => {
       res.send(result.rows);

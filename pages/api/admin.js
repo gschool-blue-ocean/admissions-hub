@@ -1,10 +1,7 @@
 import jwt from 'jsonwebtoken';
-
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import pool from '../../lib/db';
 
 export default function handler(req, res) {
-  console.log(req.body);
   const { email, password } = req.body;
   pool
     .query(`SELECT (phash = crypt($2, phash)) AS valid, first_name, last_name, id FROM interviewers WHERE email = $1`, [

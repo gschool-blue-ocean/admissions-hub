@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import Downloader from './email/Downloadcsv';
 
 import NewStudent from './NewStudent';
+import UpdateStudent from './UpdateStudent';
 import styles from '../../styles/Dashboard.module.css';
-import ViewProblems from './viewProblems';
+import Notes from './Notes';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 
@@ -18,11 +19,11 @@ export default function DashMid(props) {
   const router = useRouter();
   const [search, setSearch] = useState('');
   const [student, setStudent] = useState(false);
+  const [interview, setInterview] = useState({});
   const [selectIndex, setSelectIndex] = useState(-1);
   const [showNotes, setShowNotes] = useState(false);
   const [showNewStudentForm, setShowNewStudentForm] = useState(false);
-
-  function updateStudent() {}
+  const [showUpdateStudentForm, setShowUpdateStudentForm] = useState(false);
 
   function handleSelect(index) {
     if (selectIndex == index) {
@@ -62,28 +63,44 @@ export default function DashMid(props) {
     setShowExports(true);
   }
 
-  function genDateString(numby) {
-    if (numby == null) {
-      return 'N/A';
-    }
-    let date = new Date(numby);
-    return date.toLocaleDateString('en-us', { year: 'numeric', month: 'short', day: 'numeric' });
-  }
-
   function searchChange(e) {
     setSearch(e.target.value);
   }
 
-  const deleteStudent = () => {};
+  function deleteStudent() {
+    axios
+      .delete('/api/candidate/' + student.id)
+      .then((result) => result.data)
+      .then((data) => {
+        setStudent(false);
+        setSelectIndex(-1);
+        props.getCandidates();
+      });
+  }
 
   function newInterview() {
     let interviewer_id = localStorage.getItem('id');
     let candidate_id = student.id;
-    let date = new Date().toISOString().slice(0, 10);
     axios
-      .post('/api/interviews/new', { interviewer_id, candidate_id, date })
+      .post('/api/interviews/new', { interviewer_id, candidate_id })
       .then((result) => result.data)
       .then((data) => router.push('/interview/' + data.id));
+  }
+
+  function resumeInterview() {
+    router.push('/interview/' + student.interview_id);
+  }
+
+  function getNotesData() {
+    let interviewer_id = localStorage.getItem('id');
+    let candidate_id = student.id;
+    axios
+      .post('/api/interviews/resume', { interviewer_id, candidate_id })
+      .then((result) => result.data)
+      .then((data) => {
+        setShowNotes(true);
+        setInterview(data);
+      });
   }
 
   return (
@@ -104,24 +121,29 @@ export default function DashMid(props) {
           {student && student.attempts > 0 ? (
             <div
               className={styles.launchButton}
-              onClick={() => setShowNotes(true)}
+              onClick={() => getNotesData()}
             >
               View Notes
             </div>
           ) : null}
           {student ? (
-            student.state == 'incomplete' ? (
-              <div className={styles.tipBox}>Resume Interview</div>
+            student.state == 'Incomplete' ? (
+              <div
+                className={styles.launchButton}
+                onClick={resumeInterview}
+              >
+                Resume Interview
+              </div>
             ) : (
               <div
-                className={styles.tipBox}
+                className={styles.launchButton}
                 onClick={newInterview}
               >
                 Launch Interview
               </div>
             )
           ) : (
-            <div className={styles.launchButton}>Select a Candidate to Get Started</div>
+            <div className={styles.tipBox}>Select a Candidate to Get Started</div>
           )}
         </div>
       </div>
@@ -155,12 +177,13 @@ export default function DashMid(props) {
                 overflow: 'hidden',
                 textOverflow: 'ellipsis'
               }}
+              id="studentName"
             >
               {item.last_name}, {item.first_name}
             </span>
             <span style={{ width: '160px', overflow: 'hidden', textOverflow: 'ellipsis' }}>{item.email}</span>
             <span style={{ width: '80px' }}>{item.cohort}</span>
-            <span style={{ width: '100px' }}>{genDateString(item.date)}</span>
+            <span style={{ width: '100px' }}>{item.date}</span>
             <span style={{ width: '20px', textAlign: 'right' }}>{item.attempts}</span>
             <span style={{ width: '80px', textAlign: 'right' }}>{item.state}</span>
           </div>
@@ -173,7 +196,7 @@ export default function DashMid(props) {
             <>
               <div
                 className={styles.launchButton}
-                onClick={updateStudent}
+                onClick={() => setShowUpdateStudentForm(true)}
               >
                 Update Student
               </div>
@@ -188,6 +211,7 @@ export default function DashMid(props) {
             <div
               className={styles.launchButton}
               onClick={() => setShowNewStudentForm(true)}
+              id="addStudent"
             >
               Add Student
             </div>
@@ -200,6 +224,19 @@ export default function DashMid(props) {
           <NewStudent
             setShowNewStudentForm={setShowNewStudentForm}
             getCandidates={props.getCandidates}
+          />
+        )}
+        {showUpdateStudentForm && (
+          <UpdateStudent
+            setShowUpdateStudentForm={setShowUpdateStudentForm}
+            getCandidates={props.getCandidates}
+            student={student}
+          />
+        )}
+        {showNotes && (
+          <Notes
+            setShowNotes={setShowNotes}
+            data={interview}
           />
         )}
       </div>

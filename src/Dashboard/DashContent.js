@@ -5,7 +5,7 @@ import DashBottom from './DashBottom';
 import DashMid from './DashMid';
 import styles from '../../styles/Dashboard.module.css';
 
-const InterviewDash = () => {
+export default function DashContent() {
   const [candidates, setCandidates] = useState([]);
   const [interviews, setInterveiws] = useState([]);
 
@@ -15,7 +15,6 @@ const InterviewDash = () => {
       .then((result) => result.data)
       .then((data) => {
         setCandidates(filterCandidateList(data));
-        console.log(data);
       })
       .catch((err) => console.log(err));
   }
@@ -40,12 +39,9 @@ const InterviewDash = () => {
       .then((result) => result.data)
       .then((data) => {
         setInterveiws(data);
-        console.log(data);
       })
       .catch((err) => console.log(err));
   }
-
-  function getCombo() {}
 
   useEffect(() => {
     getCandidates();
@@ -62,6 +58,4 @@ const InterviewDash = () => {
       <DashBottom interviews={interviews} />
     </div>
   );
-};
-
-export default InterviewDash;
+}

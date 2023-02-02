@@ -1,5 +1,5 @@
 import CodeEditor from '../../src/Interview/CodeEditor';
-import Dashboard from '../../src/Interview/Dashboard';
+import NotePad from '../../src/Interview/NotePad';
 import Header from '../../src/Shared/Header';
 import Footer from '../../src/Shared/Footer';
 import { useEffect, useState } from 'react';
@@ -71,7 +71,10 @@ export default function Interview() {
               student={student}
               room={data.id}
             />
-            <Dashboard />
+            <NotePad
+              data={data}
+              setData={setData}
+            />
           </div>
         ) : null}
       </div>
@@ -80,68 +83,4 @@ export default function Interview() {
   ) : (
     <Loading />
   );
-  // (
-  //   <>
-  //     <Header />
-  //     <div
-  //       style={{
-  //         display: 'flex',
-  //         flexDirection: 'row',
-  //         position: 'relative',
-  //         zIndex: '1'
-  //       }}
-  //     >
-  //       {userRole === 'ADMIN' ? (
-  //         <div style={{ width: 'calc(100% - 450px)' }}>
-  //           <CodeEditor
-  //             sessionId={id}
-  //             candidateInfo={info.id}
-  //           />
-  //         </div>
-  //       ) : (
-  //         <div
-  //           style={{
-  //             width: '900px',
-  //             position: 'relative',
-  //             left: '50%',
-  //             transform: 'translate(-50%, 0%)'
-  //           }}
-  //         >
-  //           <CodeEditor
-  //             sessionId={id}
-  //             candidateInfo={info.id}
-  //           />
-  //         </div>
-  //       )}
-  //       {userRole === 'ADMIN' ? (
-  //         <div
-  //           style={{
-  //             display: 'flex',
-  //             flexDirection: 'column',
-  //             right: 0
-  //           }}
-  //         >
-  //           <div
-  //             style={{
-  //               display: 'flex',
-  //               flexDirection: 'column',
-  //               alignItems: 'center',
-  //               backgroundColor: 'white',
-  //               zIndex: '1',
-  //               right: '0%',
-  //               height: '100%',
-  //               width: '450px',
-  //               marginTop: '15px',
-  //               color: '#979797'
-  //             }}
-  //           >
-  //             <RoomURL URL={id} />
-  //             <Dashboard />
-  //           </div>
-  //         </div>
-  //       ) : null}
-  //     </div>
-  //     <Footer />
-  //   </>
-  // );
 }
