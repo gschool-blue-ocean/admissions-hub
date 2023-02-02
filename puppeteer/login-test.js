@@ -8,7 +8,7 @@ const delay = (milliseconds) =>
     try {
         browser = await puppeteer.launch({ headless: false });
         page = await browser.newPage();
-        await page.setViewport({ width: 1200, height: 900});
+        await page.setViewport({ width: 1200, height: 900 });
         await page.goto(pageUrl);
         // Enter email and password
         await delay(4000);
@@ -19,8 +19,10 @@ const delay = (milliseconds) =>
             page.click('#loginButton'),
             page.waitForNavigation({ timeout: 60000 }),
         ]);
-        await delay(3000);
-        await page.waitForSelector('#nav-dropdown-dark-example', { timeout: 60000 });
+        await delay(2000);
+        await page.waitForSelector('#nav-dropdown-dark-example', {
+            timeout: 60000,
+        });
         await delay(1000);
         await page.click('#nav-dropdown-dark-example');
         await page.waitForSelector('#logOut', { timeout: 60000 });

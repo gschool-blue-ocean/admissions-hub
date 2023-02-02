@@ -1,6 +1,6 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import styles from '../../styles/Dashboard.module.css';
+import axios from "axios";
+import { useEffect, useState } from "react";
+import styles from "../../styles/Dashboard.module.css";
 
 export default function DashBottom(props) {
   // LMAO numbies
@@ -11,7 +11,7 @@ export default function DashBottom(props) {
     let countYR = 0;
     let countALL = 0;
     props.interviews.forEach((item) => {
-      if (item.interviewer_id == localStorage.getItem('id')) {
+      if (item.interviewer_id == localStorage.getItem("id")) {
         if (Date.now() - new Date(item.date) < 7889400000) {
           countQTR++;
         }
@@ -30,10 +30,7 @@ export default function DashBottom(props) {
 
   return (
     <div className={styles.dashBottom}>
-      <span
-        className={styles.bottomTitle}
-        id="message"
-      >
+      <span className={styles.bottomTitle} id="message">
         Your Interview Stats
         {/* {localStorage.getItem('firstName')} {localStorage.getItem('lastName')}'s Interview Stats */}
       </span>

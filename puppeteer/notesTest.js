@@ -10,18 +10,29 @@ const delay = (milliseconds) =>
         page = await browser.newPage();
         await page.setViewport({ width: 1200, height: 900});
         await page.goto(pageUrl);
-        await delay(3000);
         await page.type('#logEmail', 'temp');
         await page.type('#logPassword', 'temp');
         page.click('#loginButton');
         await page.waitForNavigation({ timeout: 60000 });
-        await delay(4000);
+        await delay(2000);
         await page.waitForSelector('#studentName', { timeout: 30000 });
         await page.click('#studentName');
-        await page.waitForSelector('#deleteStudent', { timeout: 30000 });
-        await page.click('#deleteStudent');
+        await delay(2000);
+        await page.waitForSelector('#notesButton', { timeout: 30000 });
+        await page.click('#notesButton');
+        await delay(2000);
+        await page.waitForSelector('#problem1Rating', { timeout: 30000 });
+        await page.click('#problem1Rating');
+        await delay(2000);
+        await page.waitForSelector('#problem2Rating', { timeout: 30000 });
+        await page.click('#problem2Rating');
+        await delay(2000);
+        await page.waitForSelector('#problem3Rating', { timeout: 30000 });
+        await page.click('#problem3Rating');
+        await delay(2000);
+        await page.waitForSelector('#returnButton', { timeout: 30000 });
+        await page.click('#returnButton');
         await delay(4000);
-        console.log('deleted student!!');
     } catch (error) {
         console.log('Error: ', error);
     } finally {

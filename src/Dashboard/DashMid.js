@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
-import Downloader from './email/Downloadcsv';
+import { useEffect, useState } from "react";
+import Downloader from "./email/Downloadcsv";
 
-import NewStudent from './NewStudent';
-import UpdateStudent from './UpdateStudent';
-import styles from '../../styles/Dashboard.module.css';
-import Notes from './Notes';
-import axios from 'axios';
-import { useRouter } from 'next/router';
+import NewStudent from "./NewStudent";
+import UpdateStudent from "./UpdateStudent";
+import styles from "../../styles/Dashboard.module.css";
+import Notes from "./Notes";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 // ===== Notes =====
 // state: what do we need
@@ -17,7 +17,7 @@ import { useRouter } from 'next/router';
 
 export default function DashMid(props) {
   const router = useRouter();
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const [student, setStudent] = useState(false);
   const [interview, setInterview] = useState({});
   const [selectIndex, setSelectIndex] = useState(-1);
@@ -48,12 +48,13 @@ export default function DashMid(props) {
         for (let key in students[row]) {
           // This is to not add a comma at the last cell
           // The '\r\n' adds a new line
-          csv += key + (keysCounter + 1 < keysAmount ? ',' : '\r\n');
+          csv += key + (keysCounter + 1 < keysAmount ? "," : "\r\n");
           keysCounter++;
         }
       } else {
         for (let key in students[row]) {
-          csv += students[row][key] + (keysCounter + 1 < keysAmount ? ',' : '\r\n');
+          csv +=
+            students[row][key] + (keysCounter + 1 < keysAmount ? "," : "\r\n");
           keysCounter++;
         }
       }
@@ -69,7 +70,7 @@ export default function DashMid(props) {
 
   function deleteStudent() {
     axios
-      .delete('/api/candidate/' + student.id)
+      .delete("/api/candidate/" + student.id)
       .then((result) => result.data)
       .then((data) => {
         setStudent(false);
@@ -79,23 +80,23 @@ export default function DashMid(props) {
   }
 
   function newInterview() {
-    let interviewer_id = localStorage.getItem('id');
+    let interviewer_id = localStorage.getItem("id");
     let candidate_id = student.id;
     axios
-      .post('/api/interviews/new', { interviewer_id, candidate_id })
+      .post("/api/interviews/new", { interviewer_id, candidate_id })
       .then((result) => result.data)
-      .then((data) => router.push('/interview/' + data.id));
+      .then((data) => router.push("/interview/" + data.id));
   }
 
   function resumeInterview() {
-    router.push('/interview/' + student.interview_id);
+    router.push("/interview/" + student.interview_id);
   }
 
   function getNotesData() {
-    let interviewer_id = localStorage.getItem('id');
+    let interviewer_id = localStorage.getItem("id");
     let candidate_id = student.id;
     axios
-      .post('/api/interviews/resume', { interviewer_id, candidate_id })
+      .post("/api/interviews/resume", { interviewer_id, candidate_id })
       .then((result) => result.data)
       .then((data) => {
         setShowNotes(true);
@@ -120,6 +121,7 @@ export default function DashMid(props) {
         <div className={styles.buttonsRow}>
           {student && student.attempts > 0 ? (
             <div
+              id="notesButton"
               className={styles.launchButton}
               onClick={() => getNotesData()}
             >
@@ -127,15 +129,13 @@ export default function DashMid(props) {
             </div>
           ) : null}
           {student ? (
-            student.state == 'Incomplete' ? (
-              <div
-                className={styles.launchButton}
-                onClick={resumeInterview}
-              >
+            student.state == "Incomplete" ? (
+              <div className={styles.launchButton} onClick={resumeInterview}>
                 Resume Interview
               </div>
             ) : (
               <div
+                id="launchButton"
                 className={styles.launchButton}
                 onClick={newInterview}
               >
@@ -143,49 +143,73 @@ export default function DashMid(props) {
               </div>
             )
           ) : (
-            <div className={styles.tipBox}>Select a Candidate to Get Started</div>
+            <div className={styles.tipBox}>
+              Select a Candidate to Get Started
+            </div>
           )}
         </div>
       </div>
       <div className={styles.tableTitles}>
         <span
           style={{
-            width: '160px',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis'
+            width: "160px",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
           }}
         >
           Last, First name
         </span>
-        <span style={{ width: '160px', overflow: 'hidden', textOverflow: 'ellipsis' }}>Email Address</span>
-        <span style={{ width: '80px' }}>Cohort</span>
-        <span style={{ width: '100px' }}>Last Interview</span>
-        <span style={{ width: '20px', textAlign: 'right' }}>Attempt</span>
-        <span style={{ width: '80px', textAlign: 'right' }}>Status</span>
+        <span
+          style={{
+            width: "160px",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+          }}
+        >
+          Email Address
+        </span>
+        <span style={{ width: "80px" }}>Cohort</span>
+        <span style={{ width: "100px" }}>Last Interview</span>
+        <span style={{ width: "20px", textAlign: "right" }}>Attempt</span>
+        <span style={{ width: "80px", textAlign: "right" }}>Status</span>
       </div>
 
       <div className={styles.candidates}>
         {props.candidates.map((item, index) => (
           <div
-            className={styles[selectIndex === index ? 'selectedRow' : 'candidateRow']}
+            className={
+              styles[selectIndex === index ? "selectedRow" : "candidateRow"]
+            }
             onClick={() => handleSelect(index)}
             key={index}
           >
             <span
               style={{
-                width: '160px',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis'
+                width: "160px",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
               }}
               id="studentName"
             >
               {item.last_name}, {item.first_name}
             </span>
-            <span style={{ width: '160px', overflow: 'hidden', textOverflow: 'ellipsis' }}>{item.email}</span>
-            <span style={{ width: '80px' }}>{item.cohort}</span>
-            <span style={{ width: '100px' }}>{item.date}</span>
-            <span style={{ width: '20px', textAlign: 'right' }}>{item.attempts}</span>
-            <span style={{ width: '80px', textAlign: 'right' }}>{item.state}</span>
+            <span
+              style={{
+                width: "160px",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+              }}
+            >
+              {item.email}
+            </span>
+            <span style={{ width: "80px" }}>{item.cohort}</span>
+            <span style={{ width: "100px" }}>{item.date}</span>
+            <span style={{ width: "20px", textAlign: "right" }}>
+              {item.attempts}
+            </span>
+            <span style={{ width: "80px", textAlign: "right" }}>
+              {item.state}
+            </span>
           </div>
         ))}
       </div>
@@ -195,19 +219,19 @@ export default function DashMid(props) {
           {student ? (
             <>
               <div
-                id='updateStudent'
+                id="updateStudent"
                 className={styles.launchButton}
                 onClick={() => setShowUpdateStudentForm(true)}
               >
                 Update Student
               </div>
-              <div 
-                id='deleteStudent'
+              <div
+                id="deleteStudent"
                 className={styles.launchButton}
                 onClick={deleteStudent}
               >
                 Delete Student
-              </div>{' '}
+              </div>{" "}
             </>
           ) : (
             <div
@@ -235,12 +259,7 @@ export default function DashMid(props) {
             student={student}
           />
         )}
-        {showNotes && (
-          <Notes
-            setShowNotes={setShowNotes}
-            data={interview}
-          />
-        )}
+        {showNotes && <Notes setShowNotes={setShowNotes} data={interview} />}
       </div>
     </div>
   );
