@@ -10,9 +10,21 @@ export default function CodeEditor({ sessionId }) {
   const [input, setInput] = useState('');
   const [room, setRoom] = useState(sessionId);
 
+  let timer;
   const onChangeHandler = (content) => {
-    // setInput(content);
-    socket.emit('input-change', content, room);
+    // add the content of the change to the input buffer
+    let inputBuffer = content;
+
+    // start the timer or reset it if it already exists
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(() => {
+      // send the input buffer to the server
+      socket.emit('input-change', inputBuffer, room);
+      // reset the input buffer
+      inputBuffer = '';
+    }, 100); // 100ms timer interval
   };
 
   useEffect(() => {

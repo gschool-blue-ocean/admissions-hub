@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "CONNECTION_STRING=postgresql://postgres:docker@localhost:5432/database BASE_URL=http://localhost:3000/interview next dev",
+    "dev": "CONNECTION_STRING=postgresql://postgres:docker@localhost:5432/database next dev",
     "build": "next build",
     "start": "next start",
     "express": "node express/Express.mjs",
