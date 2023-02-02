@@ -114,6 +114,16 @@ export default function DashMid(props) {
       });
   }
 
+  function genDateString(data) {
+    const date = new Date(data);
+    const string = date.toLocaleDateString('en-us', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    });
+    return string;
+  }
+
   return (
     <div className={styles.dashMid}>
       <div className={styles.optionsRow}>
@@ -194,7 +204,7 @@ export default function DashMid(props) {
             </span>
             <span style={{ width: '160px', overflow: 'hidden', textOverflow: 'ellipsis' }}>{item.email}</span>
             <span style={{ width: '80px' }}>{item.cohort}</span>
-            <span style={{ width: '100px' }}>{item.date}</span>
+            <span style={{ width: '100px' }}>{genDateString(item.date)}</span>
             <span style={{ width: '20px', textAlign: 'right' }}>{item.attempts}</span>
             <span style={{ width: '80px', textAlign: 'right' }}>{item.state}</span>
           </div>
@@ -228,8 +238,12 @@ export default function DashMid(props) {
           )}
         </div>
         <div>
-          <button className={styles.launchButton}
-          onClick={() => setShowExportModal(true)}>Export Student Info</button>
+          <button
+            className={styles.launchButton}
+            onClick={() => setShowExportModal(true)}
+          >
+            Export Student Info
+          </button>
         </div>
         {showNewStudentForm && (
           <NewStudent
@@ -251,7 +265,10 @@ export default function DashMid(props) {
           />
         )}
         {showExportModal && (
-          <ExportModal setShowExportModal={setShowExportModal} students={props.candidates}/>
+          <ExportModal
+            setShowExportModal={setShowExportModal}
+            students={props.candidates}
+          />
         )}
       </div>
     </div>
