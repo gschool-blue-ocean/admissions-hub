@@ -52,8 +52,10 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 #### Archived cohort video presentations:
 
 ##### MCSP-13
+
 https://drive.google.com/file/d/19QuyGSSvIyi1YNiG9edoqgczmRQngQzu/view?usp=share_link
 
-### todo 
-- For the puppeteer folder, completed six different tests, all working. 
-What needs to be completed are test that tests the other features that were implemented.
+## TODO
+
+- For the puppeteer folder, completed six different tests, all working.
+  What needs to be completed are test that tests the other features that were implemented.
