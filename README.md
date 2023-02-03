@@ -55,5 +55,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 https://drive.google.com/file/d/19QuyGSSvIyi1YNiG9edoqgczmRQngQzu/view?usp=share_link
 
 ### todo 
-- For the puppeteer folder, I completed six different tests, all working. 
+- For the puppeteer folder, completed six different tests, all working. 
 What needs to be completed are test that tests the other features that were implemented.
