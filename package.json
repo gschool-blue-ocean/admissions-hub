@@ -6,7 +6,6 @@
     "dev": "CONNECTION_STRING=postgresql://postgres:docker@localhost:5432/database next dev",
     "build": "next build",
     "start": "next start",
-    "express": "node express/Express.mjs",
     "docker": "docker run --rm --name pg-docker -e POSTGRES_PASSWORD=docker -d -p 5432:5432 -v $HOME/docker/volumes/postgres:/var/lib/postgresql/data postgres"
   },
   "dependencies": {
@@ -16,14 +15,11 @@
     "bootstrap": "^5.2.1",
     "cors": "^2.8.5",
     "emailjs": "^4.0.1",
-    "express": "^4.18.1",
-    "fs": "^0.0.1-security",
     "jsonwebtoken": "^9.0.0",
     "mdb-react-ui-kit": "^4.2.0",
     "monaco-editor": "^0.34.0",
     "monaco-themes": "^0.4.2",
     "next": "12.3.1",
-    "nodemailer": "^6.9.1",
     "pg": "^8.8.0",
     "react": "18.2.0",
     "react-bootstrap": "^2.5.0",
