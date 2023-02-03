@@ -6,7 +6,7 @@ function ExportModal({ setShowExportModal, students }) {
     const [csv, setCsv] = useState(false)
     useEffect(()=> genCSV(), [])
     function genCSV() {
-        let file;
+        let file = "";
         ////"Borrowed Code"/////
         // Loop the array of objects
         let keysAmount = Object.keys(students[0]).length;
@@ -20,6 +20,7 @@ function ExportModal({ setShowExportModal, students }) {
             file += key + (keysCounter + 1 < keysAmount ? ',' : '\r\n');
             keysCounter++;
           }
+          keysCounter = 0;
         for (let row = 0; row < students.length; row++) {
             for (let key in students[row]) {
               file += students[row][key] + (keysCounter + 1 < keysAmount ? ',' : '\r\n');
