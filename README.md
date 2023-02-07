@@ -55,6 +55,41 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 https://drive.google.com/file/d/19QuyGSSvIyi1YNiG9edoqgczmRQngQzu/view?usp=share_link
 
+#### MailHog 
+##### Overview
+MailHog is an email testing tool for developers:
+* Configure your application to use MailHog for SMTP delivery
+* View messages in the web UI, or retrieve them with the JSON API
+* Optionally release messages to real SMTP servers for delivery
+
+##### Installation
+MacOS
+
+    $   brew update && brew install mailhog
+
+Then, start MailHog by running 
+
+    $   mailhog 
+
+in the command line.
+
+##### Nodemailer
+- is a module for Node.js applications to allow easy  email sending.
+
+##### Getting Started 
+1. Install mailhog
+2. Run mailhog by typing $ mailhog in CLI
+3. Go to http://0.0.0.0:8025/ , you should see Web UI 
+![Mailhog](https://github.com/mailhog/MailHog/raw/master/docs/MailHog.png)
+4. Run express server by going to express directory and running node Express.mjs  in CLI
+5. Go to login page
+6. Click on Forgot button
+7. Write your email
+8. Press submit
+9. You should see an email on mailhog UI
+![Mailhog](https://media0.giphy.com/media/hOctYIGvFKaKDZxvLA/giphy.gif)
+
+
 
 ## Running Tests
 
