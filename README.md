@@ -26,10 +26,10 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-##navigating through the website to get a feel for how the website operates
+**Navigating the website**
 - at the login page enter one of the emails provided in the migration file which is located in the database folder
 - for this instance you can use temp@temp.com for the email and temp as the password
-example: [Imgur](https://i.imgur.com/hbLRyG8.gifv)
+example: ![Imgur](https://i.imgur.com/hbLRyG8.gif)
 
 ## Learn More
 
