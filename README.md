@@ -1,6 +1,6 @@
 # Galvanize Student Admissions Hub
 
-Full-Stack Application using the NextJS framework to unite Front and Back-End. Purpose of this application is to create a hub that interviewers can log into to add/delete/update student data and conduct live coding interviews with them using socket.io. Stats regarding interview pass rate and other items are collected and displayed to the current interviewer account that is logged in.
+Galvanize is a company that conducts coding immersive courses and must determine if potential students possess the aptitude required to make it through the curriculum by conducting a live coding interview. This is a Full-Stack Application using the NextJS framework to unite Front and Back-End codebases. Features of this application is to create a hub that interviewers can log into to add/delete/update student data and conduct live coding interviews with them using socket.io. Stats regarding interview pass rate and other items are collected and displayed to the current interviewer account that is logged in.
 
 ##Tech Stack
 
@@ -81,7 +81,7 @@ Copy the interview link and send to the prospective student so that you and the 
 
 ![Imgur](https://i.imgur.com/Np6TkHr.gif)
 
-## Learn More
+## Learn More - Next.js
 
 To learn more about Next.js, take a look at the following resources:
 
@@ -135,24 +135,18 @@ in the command line.
 1. Install mailhog
 2. Run mailhog by typing $ mailhog in CLI
 3. Go to http://0.0.0.0:8025/ , you should see Web UI 
+
 ![Mailhog](https://github.com/mailhog/MailHog/raw/master/docs/MailHog.png)
+
 4. Run express server by going to express directory and running node Express.mjs  in CLI
 5. Go to login page
 6. Click on Forgot button
 7. Write your email
 8. Press submit
 9. You should see an email on mailhog UI
+
 ![Mailhog](https://media0.giphy.com/media/hOctYIGvFKaKDZxvLA/giphy.gif)
 
-
-
-## Running Tests
-
-To run tests, run the following command
-
-```bash
-  node index.js
-```
 
 
 ## Puppeteer
@@ -166,227 +160,10 @@ It allows you to automate tasks that would otherwise be time-consuming and repet
 
 - Automating form submissions and UI testing
 
+We have incorporated several tests utilizing Puppeteer see the wiki for more information: https://github.com/gschool-blue-ocean/admissions-hub/wiki
 
 
-To install Puppeteer, run the following command in your terminal:
-
-## Installation
-
-Install Puppeteer with npm
-
-```bash
-npm install puppeteer
-
-```
-## Get Started
-To run tests, run the following command
-
-```bash
-  cd puppeteer
-```
-So far we have 7 test with puppeteer:
-
-- lscreenshot.js: Takes a scrrenshot of the login page.
-
-```javascript
-// Importing the puppeteer library and setting a URL for the page to be loaded
-const puppeteer = require('puppeteer');
-const pageUrl = 'http://localhost:3000/login';
-const delay = (milliseconds) =>
-    new Promise((resolve) => setTimeout(resolve, milliseconds));
-
-// Launching the browser and opening a new page
-(async () => {
-    const browser = await puppeteer.launch({ headless: false });
-    const page = await browser.newPage();
-    
-    // Setting the viewport of the page
-    await page.setViewport({ width: 1200, height: 900 });
-    
-    // Navigating to the specified URL
-    await page.goto(pageUrl);
-    
-    // Waiting for navigation to complete with a 30 second timeout
-    await page.waitForNavigation({ timeout: 30000 }), await delay(2000);
-    
-    // Taking a screenshot of the page and saving it as 'logInPage.png'
-    await page.screenshot({ path: 'logInPage.png' });
-    
-    // Closing the browser
-    await browser.close();
-})();
-
-```
-
-- login-test.js: Testing if a user can log in and log out successsfully 
-
-```javascript
-// Import the Puppeteer library
-const puppeteer = require('puppeteer');
-
-// Set the URL of the login page
-const pageUrl = 'http://localhost:3000/login';
-
-// Define a function to delay a specified number of milliseconds
-const delay = (milliseconds) =>
-    new Promise((resolve) => setTimeout(resolve, milliseconds));
-
-// The main code block to perform the automation
-(async () => {
-    // Variables to hold the browser and page objects
-    let browser, page;
-
-    try {
-        // Launch a non-headless instance of the browser
-        browser = await puppeteer.launch({ headless: false });
-
-        // Create a new page in the browser
-        page = await browser.newPage();
-
-        // Set the viewport size to 1200x900
-        await page.setViewport({ width: 1200, height: 900 });
-
-        // Go to the login page
-        await page.goto(pageUrl);
-
-        // Wait for 4 seconds
-        await delay(4000);
-
-        // Enter the email and password in the form fields
-        await page.type('#logEmail', 'temp');
-        await page.type('#logPassword', 'temp');
-
-        // Click the login button and wait for navigation
-        await Promise.all([
-            page.click('#loginButton'),
-            page.waitForNavigation({ timeout: 60000 }),
-        ]);
-
-        // Wait for 2 seconds
-        await delay(2000);
-
-        // Wait for the navigation dropdown to appear and click it
-        await page.waitForSelector('#nav-dropdown-dark-example', {
-            timeout: 60000,
-        });
-        await delay(1000);
-        await page.click('#nav-dropdown-dark-example');
-
-        // Wait for the logout button to appear and click it
-        await page.waitForSelector('#logOut', { timeout: 60000 });
-        await delay(1000);
-        await page.click('#logOut');
-
-        // Wait for 2 seconds
-        await delay(2000);
-
-        // Log a success message
-        console.log('Successfully logged out');
-    } catch (error) {
-        // Log the error message if something goes wrong
-        console.log(error);
-    } finally {
-        // Close the browser if it was launched
-        if (browser) {
-            await browser.close();
-        }
-    }
-})();
-```
-
-- createTest.js: Testing if a user can create a new student.
-
-```javascript
-// Import Puppeteer library and set URL to the login page
-const puppeteer = require('puppeteer');
-const pageUrl = 'http://localhost:3000/login';
-const delay = (milliseconds) =>
-    new Promise((resolve) => setTimeout(resolve, milliseconds));
-
-// Start a Puppeteer session
-(async () => {
-    let browser, page;
-    try {
-        // Launch a new instance of a web browser
-        browser = await puppeteer.launch({ headless: false });
-
-        // Open a new page in the browser
-        page = await browser.newPage();
-
-        // Set the viewport size of the page
-        await page.setViewport({ width: 1200, height: 900 });
-
-        // Navigate to the login page
-        await page.goto(pageUrl);
-
-        // Enter email and password
-        await page.type('#logEmail', 'temp');
-        await page.type('#logPassword', 'temp');
-
-        // Click the login button
-        page.click('#loginButton');
-
-        // Wait for navigation to the next page
-        await page.waitForNavigation({ timeout: 60000 });
-
-        // Wait for the add student button to become available
-        await delay(4000);
-        await page.waitForSelector('#addStudent', { timeout: 60000 });
-
-        // Check if the element is present before trying to interact with it
-        const isPresent = (await page.$('#addStudent')) !== null;
-
-        // Log the result of the check
-        console.log(isPresent);
-
-        // If the element is present, add a new student
-        if (isPresent) {
-            await page.click('#addStudent');
-            await page.type('#firstName', 'Fernando');
-            await page.type('#lastName', 'Castro');
-            await page.type('#email', 'TheDog@yahoo.com');
-            await page.click('#dropdown');
-            await page.waitForSelector('#mcsp', { timeout: 60000 });
-            const select = await page.$('select');
-            await select.select('MCSP-18');
-            await page.waitForSelector('#create', { timeout: 60000 });
-            await page.click('#create');
-            await delay(4000);
-            console.log('Successfully created a student');
-        } else {
-            console.log('Element not found on the page');
-        }
-    } catch (error) {
-        console.log('Error: ', error);
-    } finally {
-        // Close the browser instance
-        if (browser) {
-            await browser.close();
-        }
-    }
-})();
-
-```
-
-
-- updateTest.js: Testing if a user can update his first and last name successsfully
-
-- launchTestjs: Testing if the user can lanuch a interview and write in the notes section successsfully
-
-- notesTest.js: Testing if a user can update his first and last name successsfully
-
-- delete.js: Testing if a user can delete can delete a student successsfully
-
-
-## Running Tests
-
-To run a certain test make sure you're already in the puppeteer folder and then run:
-
-```bash
-  node <filename.js>
-```
-
-## where we left of
+## To-Do / Future Features
 - we wanted to finish the testing of every feature to make sure the application doesnt't contain any bugs. 
 - as well as incorporationg jest with puppeteer.
 
