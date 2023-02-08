@@ -48,7 +48,7 @@ VALUES
   (
     'tempFirst',
     'tempLast',
-    'temp',
+    'temp@temp.com',
     crypt('temp', gen_salt('md5'))
   );
 
