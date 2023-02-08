@@ -166,6 +166,13 @@ We have incorporated several tests utilizing Puppeteer see the wiki for more inf
 ## To-Do / Future Features
 - we wanted to finish the testing of every feature to make sure the application doesnt't contain any bugs. 
 - as well as incorporationg jest with puppeteer.
+- Add the email csv functionality to the csv file for exporting student info
+- Refactor the code for forgot password on the login page. Note* CURRENTLY IT WORKS BUT ONLY SENDS THE EMAIL TO MAILHOG. 
+- Link to third party services under account update
+
+ ## Advice for the future group
+
+When we took over this project we almost deconstructed the file format. Our knee jerk reaction was to reformat the file structure based on how wierd it looked. Note: This file structure in ADMISSIONS HUB is formatted to work specifically with NEXT.JS framework. Please do your research on how NEXT.JS works before considering any refactoring of the code base. 
 
 
 
