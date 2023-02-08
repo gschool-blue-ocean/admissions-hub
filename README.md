@@ -66,6 +66,11 @@ Click on the Export student info. Will pop up with a custom modal with two butto
 - If a student has not conducted a test when you click on there info you will see a button pop up that says launch interview click that to navigate to the testing suite.
 - If a student has already conducted a test then two buttons will pop up, (resume interview, view notes)
 ![Imgur](https://i.imgur.com/Bqxu5Am.gif)
+#
+**INTERVIEW PAGE**
+
+After clicking on the launch interview button it will bring you to the interview page. Here you can grade students based on there performance and how they interviewed. You can add notes as well as give them a star rating based on how well they completed the task. After inputing all of your notes and ratings for each question push the submit button and it will bring you back to the dashboard page. 
+![Imgur](https://i.imgur.com/HIqWagJ.gif)
 
 ## Learn More
 
