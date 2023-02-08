@@ -26,10 +26,46 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-**Navigating the website**
-- at the login page enter one of the emails provided in the migration file which is located in the database folder
-- for this instance you can use temp@temp.com for the email and temp as the password
-example: ![Imgur](https://i.imgur.com/hbLRyG8.gif)
+## Navigation
+**LOGIN PAGE**
+
+At the login page you will see a form to enter your email and password. Emails and passwords can be found in the migration file within the database folder.
+To get you started here is the email and password.
+ ![Imgur](https://i.imgur.com/KOugM0P.gif)
+ #
+ **EDIT PROFILE PAGE**
+
+ Once you login it will bring you to the main dashboard. In the top right corner you will see a drop down that says Welcome.... followed by whatever firstname is associated with your user information(can be found in localstorage in chrome dev tools or look in your migration file)
+Once you click on that a dropdown will appear click on view profile.
+![Imgur](https://i.imgur.com/dajiCiZ.gif)
+- Click on the galvanize button in the top left corner to bring you back to the dashboard page.
+- Click logout in the dropdown menu to log you out. 
+- Edit your fields if you want to change your profile information once you click update account a paragraph tag will pop up underneath the button letting you know that the update was successful. 
+#
+**DASHBOARD**
+
+***ADD STUDENT***
+
+click add student to add a student. once you click on add student a custom modal will appear with form data that needs to be filled out once youve done so submit and the new data will show up on the list of students in the dashboard. 
+![Imgur](https://i.imgur.com/nFPLxif.gif)
+#
+***EDIT OR DELETE STUDENT***
+
+Click on a student from the list and two more buttons will appear for editing and deleting
+
+![Imgur](https://i.imgur.com/mn9ujbJ.gif)
+
+***EXPORT STUDENT INFO*** 
+
+Click on the Export student info. Will pop up with a custom modal with two buttons one for download and another for email. 
+![Imgur](https://i.imgur.com/dm7YW0J.gif)
+- the email button does not work yet we did not have time to incorporate it. 
+#
+***SELECT A CANDIDATE TO GET STARTED***
+
+- If a student has not conducted a test when you click on there info you will see a button pop up that says launch interview click that to navigate to the testing suite.
+- If a student has already conducted a test then two buttons will pop up, (resume interview, view notes)
+![Imgur](https://i.imgur.com/Bqxu5Am.gif)
 
 ## Learn More
 
@@ -339,6 +375,8 @@ To run a certain test make sure you're already in the puppeteer folder and then 
 ## where we left of
 - we wanted to finish the testing of every feature to make sure the application doesnt't contain any bugs. 
 - as well as incorporationg jest with puppeteer.
+
+
 
 
 
