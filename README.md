@@ -69,8 +69,17 @@ Click on the Export student info. Will pop up with a custom modal with two butto
 #
 **INTERVIEW PAGE**
 
-After clicking on the launch interview button it will bring you to the interview page. Here you can grade students based on there performance and how they interviewed. You can add notes as well as give them a star rating based on how well they completed the task. After inputing all of your notes and ratings for each question push the submit button and it will bring you back to the dashboard page. 
+***GRADING STUDENTS***
+
+After clicking on the launch interview button it will bring you to the interview page. Here you can grade students based on there performance and how they interviewed. You can add notes as well as give them a star rating based on how well they completed the task. After inputing all of your notes and ratings for each question push the submit button and it will bring you back to the dashboard page.
+
 ![Imgur](https://i.imgur.com/HIqWagJ.gif)
+
+***SHARING INTERVIEW ROOM WITH STUDENT***
+
+Copy the interview link and send to the prospective student so that you and the student can share a code space. The student will not be able to see the notes or problems.
+
+![Imgur](https://i.imgur.com/Np6TkHr.gif)
 
 ## Learn More
 
