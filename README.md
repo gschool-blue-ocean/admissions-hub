@@ -2,7 +2,7 @@
 
 Galvanize is a company that conducts coding immersive courses and must determine if potential students possess the aptitude required to make it through the curriculum by conducting a live coding interview. This is a Full-Stack Application using the NextJS framework to unite Front and Back-End codebases. Features of this application is to create a hub that interviewers can log into to add/delete/update student data and conduct live coding interviews with them using socket.io. Stats regarding interview pass rate and other items are collected and displayed to the current interviewer account that is logged in.
 
-##Tech Stack
+## Tech Stack
 
 ![NextJS](https://img.shields.io/badge/Next.js-000000.svg?style=for-the-badge&logo=nextdotjs&logoColor=white!)![React](https://camo.githubusercontent.com/ab4c3c731a174a63df861f7b118d6c8a6c52040a021a552628db877bd518fe84/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f72656163742d2532333230323332612e7376673f7374796c653d666f722d7468652d6261646765266c6f676f3d7265616374266c6f676f436f6c6f723d253233363144414642)![Javascript](https://camo.githubusercontent.com/93c855ae825c1757f3426f05a05f4949d3b786c5b22d0edb53143a9e8f8499f6/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4a6176615363726970742d3332333333303f7374796c653d666f722d7468652d6261646765266c6f676f3d6a617661736372697074266c6f676f436f6c6f723d463744463145)![CSS](https://camo.githubusercontent.com/e6b67b27998fca3bccf4c0ee479fc8f9de09d91f389cccfbe6cb1e29c10cfbd7/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f637373332d2532333135373242362e7376673f7374796c653d666f722d7468652d6261646765266c6f676f3d63737333266c6f676f436f6c6f723d7768697465)![HTML5](https://camo.githubusercontent.com/49fbb99f92674cc6825349b154b65aaf4064aec465d61e8e1f9fb99da3d922a1/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f68746d6c352d2532334533344632362e7376673f7374796c653d666f722d7468652d6261646765266c6f676f3d68746d6c35266c6f676f436f6c6f723d7768697465)
 
@@ -31,13 +31,17 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 
 At the login page you will see a form to enter your email and password. Emails and passwords can be found in the migration file within the database folder.
 To get you started here is the email and password.
+
  ![Imgur](https://i.imgur.com/KOugM0P.gif)
+ 
  #
  **EDIT PROFILE PAGE**
 
  Once you login it will bring you to the main dashboard. In the top right corner you will see a drop down that says Welcome.... followed by whatever firstname is associated with your user information(can be found in localstorage in chrome dev tools or look in your migration file)
 Once you click on that a dropdown will appear click on view profile.
+
 ![Imgur](https://i.imgur.com/dajiCiZ.gif)
+
 - Click on the galvanize button in the top left corner to bring you back to the dashboard page.
 - Click logout in the dropdown menu to log you out. 
 - Edit your fields if you want to change your profile information once you click update account a paragraph tag will pop up underneath the button letting you know that the update was successful. 
@@ -47,7 +51,9 @@ Once you click on that a dropdown will appear click on view profile.
 ***ADD STUDENT***
 
 click add student to add a student. once you click on add student a custom modal will appear with form data that needs to be filled out once youve done so submit and the new data will show up on the list of students in the dashboard. 
+
 ![Imgur](https://i.imgur.com/nFPLxif.gif)
+
 #
 ***EDIT OR DELETE STUDENT***
 
@@ -58,14 +64,18 @@ Click on a student from the list and two more buttons will appear for editing an
 ***EXPORT STUDENT INFO*** 
 
 Click on the Export student info. Will pop up with a custom modal with two buttons one for download and another for email. 
+
 ![Imgur](https://i.imgur.com/dm7YW0J.gif)
+
 - the email button does not work yet we did not have time to incorporate it. 
 #
 ***SELECT A CANDIDATE TO GET STARTED***
 
 - If a student has not conducted a test when you click on there info you will see a button pop up that says launch interview click that to navigate to the testing suite.
 - If a student has already conducted a test then two buttons will pop up, (resume interview, view notes)
+
 ![Imgur](https://i.imgur.com/Bqxu5Am.gif)
+
 #
 **INTERVIEW PAGE**
 
@@ -87,6 +97,8 @@ To learn more about Next.js, take a look at the following resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Free Tutorial Project for Next.js](https://www.youtube.com/watch?v=MFuwkrseXVE) - basic project tutorial to get you familiar with Next.js
+- [The Ultimate NEXT.JS 13 Tutorial (Complete Walkthrough w/ Examples)](https://www.youtube.com/watch?v=6aP9nyTcd44&t=292s) - by Sonny Sangha
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
