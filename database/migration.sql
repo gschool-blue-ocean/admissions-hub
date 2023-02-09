@@ -40,10 +40,10 @@ INSERT INTO
   interviewers (first_name, last_name, email, phash)
 VALUES
   (
-    'Jarrett',
-    'Guyer',
-    'guyer.jarrett@gmail.com',
-    crypt('6535', gen_salt('md5'))
+    'Timmy',
+    'McGee',
+    'TimTamGee@gmail.com',
+    crypt('secretPass420', gen_salt('md5'))
   ),
   (
     'tempFirst',
