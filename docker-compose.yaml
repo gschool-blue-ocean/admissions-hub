@@ -9,7 +9,7 @@ services:
       POSTGRES_DB: blueocean
       POSTGRES_PASSWORD: docker
     ports:
-      - 5431:5432
+      - 5432:5432
     volumes:
       - pg-data:/var/lib/postgresql/data
       - ./database/migration.sql:/docker-entrypoint-initdb.d/migration.sql
