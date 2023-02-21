@@ -82,7 +82,8 @@ export default function DashMid(props) {
   }
 
   function deleteStudent() {
-    axios
+    if (confirm(`Are you sure you want to delete ${student.first_name} ${student.last_name}?`)){
+      axios
       .delete('/api/candidate/' + student.id)
       .then((result) => result.data)
       .then((data) => {
@@ -90,6 +91,7 @@ export default function DashMid(props) {
         setSelectIndex(-1);
         props.getCandidates();
       });
+    }
   }
 
   function newInterview() {
