@@ -124,6 +124,7 @@ export default function DashMid(props) {
       month: 'short',
       day: 'numeric'
     });
+    if (string == "Dec 31, 1969") return "No interviews"
     return string;
   }
 
