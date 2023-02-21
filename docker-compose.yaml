@@ -2,24 +2,31 @@ version: '3.8'
 
 services:
   database:
-    image: postgres:latest
-    ports:
-      - 5432:5432
+    image: postgres:15-alpine
+    restart: always
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_DB=database
-      - POSTGRES_PASSWORD=docker
+      POSTGRES_USER: postgres
+      POSTGRES_DB: blueocean
+      POSTGRES_PASSWORD: docker
+    ports:
+      - 5431:5432
     volumes:
+      - pg-data:/var/lib/postgresql/data
       - ./database/migration.sql:/docker-entrypoint-initdb.d/migration.sql
 
-  # next:
-  #   build: ./
-  #   restart: always
-  #   ports:
-  #     - 3000:3000
-  #   environment:
-  #     - BASE_URL=http://localhost:3000/interview
-  #     - CONNECTION_STRING=postgresql://postgres:docker@database:5432/database
-  #     # - CONNECTION_STRING=postgresql://postgres:docker@localhost:5432/database
-  #   depends_on:
-  #     - database
+  app:
+    image: admissions-hub-app
+    build: .
+    restart: always
+    environment:
+      CONNECTION_STRING: postgresql://postgres:docker@database/blueocean
+    depends_on:
+      - database
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+    command: npm run dev
+
+volumes:
+  pg-data:

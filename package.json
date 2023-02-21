@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "CONNECTION_STRING=postgresql://postgres:docker@localhost:5432/database next dev",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "docker": "docker run --rm --name pg-docker -e POSTGRES_PASSWORD=docker -d -p 5432:5432 -v $HOME/docker/volumes/postgres:/var/lib/postgresql/data postgres"
+    "docker": "docker compose up"
   },
   "dependencies": {
     "@emailjs/browser": "^3.10.0",

@@ -18,9 +18,11 @@ Galvanize is a company that conducts coding immersive courses and must determine
 
 ## Getting Started
 
-    $
-    $   docker-compose up
-    $
+```
+$ npm install
+$ docker-compose up
+$ npm run dev
+```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
