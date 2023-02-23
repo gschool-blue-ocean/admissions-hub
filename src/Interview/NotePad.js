@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
-import Problems from './Problems';
-import axios from 'axios';
-import { useRouter } from 'next/router';
-import styles from '../../styles/Interview.module.css';
-import Ratings from './Ratings';
+import { useEffect, useState } from "react";
+import Problems from "./Problems";
+import axios from "axios";
+import { useRouter } from "next/router";
+import styles from "../../styles/Interview.module.css";
+import Ratings from "./Ratings";
 
 export default function NotePad({ data }) {
   const router = useRouter();
@@ -15,17 +15,12 @@ export default function NotePad({ data }) {
   const [problem2Rating, setProblem2Rating] = useState(data.problem_2_rating);
   const [problem3Rating, setProblem3Rating] = useState(data.problem_3_rating);
 
-  const [status, setStatus] = useState('Incomplete');
+  const [status, setStatus] = useState("Incomplete");
 
-  function toggleStatus() {
-    if (status === 'Incomplete') {
-      setStatus('Pass');
-    } else if (status === 'Pass') {
-      setStatus('Fail');
-    } else if (status === 'Fail') {
-      setStatus('Incomplete');
-    }
-  }
+ function changeStatus() {
+   const form = document.getElementById("statusToggle");
+   setStatus(form.value);
+ }
 
   function submitInterview() {
     let today = new Date();
@@ -37,10 +32,10 @@ export default function NotePad({ data }) {
       problem_2_rating: problem2Rating,
       problem_3_rating: problem3Rating,
       date: today,
-      state: status
+      state: status,
     };
-    axios.patch('/api/interviews/' + data.id, body).then((result) => {
-      router.push('/dashboard');
+    axios.patch("/api/interviews/" + data.id, body).then((result) => {
+      router.push("/dashboard");
     });
   }
 
@@ -64,13 +59,13 @@ export default function NotePad({ data }) {
       />
       <div className={styles.questionNum}>Set Status and Submit</div>
       <div className={styles.optionsRow}>
-        <div
-          id="statusToggle"
-          className={styles.statusToggle}
-          onClick={toggleStatus}
-        >
-          {status}
-        </div>
+        <form className="statusForm" onChange={changeStatus}>
+          <select id="statusToggle" className={styles.statusToggle}>
+            <option value="Incomplete">Incomplete</option>
+            <option value="Pass">Pass</option>
+            <option value="Fail">Fail</option>
+          </select>
+        </form>
         <div
           id="submitButton"
           className={styles.notepadButton}
