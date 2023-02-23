@@ -72,7 +72,7 @@ export default function CodeEditor({ sessionId }) {
   };
 
   function logRoomStatus(str) {
-    //console.log(str);
+    console.log(str);
   }
 
   return (
