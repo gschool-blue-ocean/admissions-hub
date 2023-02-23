@@ -24,7 +24,7 @@ export default function CodeEditor({ sessionId }) {
       socket.emit('input-change', inputBuffer, room);
       // reset the input buffer
       inputBuffer = '';
-    }, 150); // 150ms timer interval, 100 would cause flickering
+    }, 150); // 100ms timer interval
   };
 
   useEffect(() => {
