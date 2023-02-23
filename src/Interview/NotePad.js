@@ -17,10 +17,10 @@ export default function NotePad({ data }) {
 
   const [status, setStatus] = useState("Incomplete");
 
-  function changeStatus() {
-    const form = document.getElementById("statusToggle");
-    setStatus(form.value);
-  }
+ function changeStatus() {
+   const form = document.getElementById("statusToggle");
+   setStatus(form.value);
+ }
 
   function submitInterview() {
     let today = new Date();
