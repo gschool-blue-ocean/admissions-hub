@@ -14,7 +14,9 @@ export default function CodeEditor({ sessionId }) {
   const onChangeHandler = (content) => {
     // add the content of the change to the input buffer
     let inputBuffer = content;
+    socket.emit('input-change', inputBuffer, room);
 
+    /* getting rid of this set-time out prevents it from freezing up; however, you'll notice more flickers
     // start the timer or reset it if it already exists
     if (timer) {
       clearTimeout(timer);
@@ -24,7 +26,7 @@ export default function CodeEditor({ sessionId }) {
       socket.emit('input-change', inputBuffer, room);
       // reset the input buffer
       inputBuffer = '';
-    }, 150); // 150ms timer interval, 100 would cause flickering
+    }, 250); // 250ms timer interval */
   };
 
   useEffect(() => {
