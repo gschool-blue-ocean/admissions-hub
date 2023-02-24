@@ -114,6 +114,7 @@ export default function DashMid(props) {
           setStudent(false);
           setSelectIndex(-1);
           props.getCandidates();
+          props.getDeletedCandidates();
         });
     }
   }
