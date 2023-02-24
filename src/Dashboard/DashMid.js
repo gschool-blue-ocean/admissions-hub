@@ -21,6 +21,7 @@ export default function DashMid(props) {
   const [search, setSearch] = useState("");
   const [historyToggle, setHistoryToggle] = useState(false);
   const [student, setStudent] = useState(false);
+  const [deletedStudent, setDeletedStudent] = useState(false);
   const [interview, setInterview] = useState({});
   const [selectIndex, setSelectIndex] = useState(-1);
   const [showNotes, setShowNotes] = useState(false);
@@ -30,7 +31,9 @@ export default function DashMid(props) {
 
   function toggleCurrentOrHistory() {
     setHistoryToggle((prevState) => (prevState = !prevState));
-    console.log(historyToggle);
+    setStudent(false);
+    setDeletedStudent(false);
+    setSelectIndex(-1);
   }
   function handleSelect(index) {
     if (selectIndex == index) {
@@ -39,6 +42,15 @@ export default function DashMid(props) {
     } else {
       setSelectIndex(index);
       setStudent(props.candidates[index]);
+    }
+  }
+  function handleSelectHistory(index) {
+    if (selectIndex == index) {
+      setDeletedStudent(false);
+      setSelectIndex(-1);
+    } else {
+      setSelectIndex(index);
+      setDeletedStudent(props.candidatesHistory[index]);
     }
   }
 
@@ -109,6 +121,24 @@ export default function DashMid(props) {
     ) {
       axios
         .delete("/api/candidate/" + student.id)
+        .then((result) => result.data)
+        .then((data) => {
+          setStudent(false);
+          setSelectIndex(-1);
+          props.getCandidates();
+          props.getDeletedCandidates();
+        });
+    }
+  }
+
+  function deleteStudentPermanently() {
+    if (
+      confirm(
+        `Are you sure you want to delete ${student.first_name} ${student.last_name} from historical records?`
+      )
+    ) {
+      axios
+        .delete("/api/candidate-history/" + student.id)
         .then((result) => result.data)
         .then((data) => {
           setStudent(false);
@@ -226,13 +256,14 @@ export default function DashMid(props) {
       </div>
 
       {historyToggle ? (
+        // history
         <div className={styles.candidates}>
           {filterBySearchHistory(search).map((item, index) => (
             <div
               className={
                 styles[selectIndex === index ? "selectedRow" : "candidateRow"]
               }
-              onClick={() => handleSelect(index)}
+              onClick={() => handleSelectHistory(index)}
               key={index}
             >
               <span
@@ -266,6 +297,7 @@ export default function DashMid(props) {
           ))}
         </div>
       ) : (
+        //current
         <div className={styles.candidates}>
           {filterBySearch(search).map((item, index) => (
             <div
@@ -322,7 +354,7 @@ export default function DashMid(props) {
           >
             Add Student
           </div>
-          {student && (
+          {student && !historyToggle ? (
             <>
               <div
                 id="updateStudent"
@@ -336,10 +368,19 @@ export default function DashMid(props) {
                 className={styles.launchButton}
                 onClick={deleteStudent}
               >
-                Delete Student
+                Archive Student
               </div>
             </>
-          )}
+          ) : null}
+          {deletedStudent && historyToggle ? (
+            <div
+              id="deleteStudent"
+              className={styles.launchButton}
+              onClick={deleteStudentPermanently}
+            >
+              Delete Student
+            </div>
+          ) : null}
         </div>
         {props.candidates.length != 0 ? (
           <div>
