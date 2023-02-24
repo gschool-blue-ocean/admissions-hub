@@ -101,11 +101,10 @@ function ProfilePage() {
         </form>
         <hr />
         <h3>Third Party Services</h3>
-        <ul>
-          <li>
-            <a href="#">Link GitHub</a>
-          </li>
-        </ul>
+        <div>
+        <img src={'../public/github.png'}/>
+        <a href="#">Link GitHub Today</a>
+        </div>
       </div>
     </>
   );
