@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { RxGithubLogo } from 'react-icons/rx';
 import axios from 'axios';
 import classes from '../../styles/Profile.module.css';
 
@@ -101,8 +102,8 @@ function ProfilePage() {
         </form>
         <hr />
         <h3>Third Party Services</h3>
-        <div>
-        <img src={'../public/github.png'}/>
+        <div className="github-logo">
+        <RxGithubLogo size={25}/>
         <a href="#">Link GitHub Today</a>
         </div>
       </div>
