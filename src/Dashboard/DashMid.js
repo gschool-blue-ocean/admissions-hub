@@ -116,7 +116,7 @@ export default function DashMid(props) {
   function deleteStudent() {
     if (
       confirm(
-        `Are you sure you want to delete ${student.first_name} ${student.last_name}?`
+        `Are you sure you want to archive ${student.first_name} ${student.last_name}?`
       )
     ) {
       axios
