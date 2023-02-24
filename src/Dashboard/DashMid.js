@@ -19,6 +19,7 @@ import ExportModal from "./ExportModal";
 export default function DashMid(props) {
   const router = useRouter();
   const [search, setSearch] = useState("");
+  const [historyToggle, setHistoryToggle] = useState(false);
   const [student, setStudent] = useState(false);
   const [interview, setInterview] = useState({});
   const [selectIndex, setSelectIndex] = useState(-1);
@@ -26,6 +27,11 @@ export default function DashMid(props) {
   const [showNewStudentForm, setShowNewStudentForm] = useState(false);
   const [showUpdateStudentForm, setShowUpdateStudentForm] = useState(false);
   const [showExportModal, setShowExportModal] = useState(false);
+
+  function toggleCurrentOrHistory() {
+    setHistoryToggle((prevState) => (prevState = !prevState));
+    console.log(historyToggle);
+  }
   function handleSelect(index) {
     if (selectIndex == index) {
       setStudent(false);
@@ -74,6 +80,19 @@ export default function DashMid(props) {
       return props.candidates;
     }
     let newList = props.candidates.filter(
+      (item) =>
+        item.first_name.toLowerCase().includes(str.toLowerCase()) ||
+        item.last_name.toLowerCase().includes(str.toLowerCase()) ||
+        item.email.toLowerCase().includes(str.toLowerCase())
+    );
+    return newList;
+  }
+
+  function filterBySearchHistory(str) {
+    if (!str) {
+      return props.candidatesHistory;
+    }
+    let newList = props.candidatesHistory.filter(
       (item) =>
         item.first_name.toLowerCase().includes(str.toLowerCase()) ||
         item.last_name.toLowerCase().includes(str.toLowerCase()) ||
@@ -205,48 +224,96 @@ export default function DashMid(props) {
         <span style={{ width: "80px", textAlign: "right" }}>Status</span>
       </div>
 
-      <div className={styles.candidates}>
-        {filterBySearch(search).map((item, index) => (
-          <div
-            className={
-              styles[selectIndex === index ? "selectedRow" : "candidateRow"]
-            }
-            onClick={() => handleSelect(index)}
-            key={index}
-          >
-            <span
-              style={{
-                width: "160px",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-              }}
-              id="studentName"
+      {historyToggle ? (
+        <div className={styles.candidates}>
+          {filterBySearchHistory(search).map((item, index) => (
+            <div
+              className={
+                styles[selectIndex === index ? "selectedRow" : "candidateRow"]
+              }
+              onClick={() => handleSelect(index)}
+              key={index}
             >
-              {item.last_name}, {item.first_name}
-            </span>
-            <span
-              style={{
-                width: "160px",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-              }}
+              <span
+                style={{
+                  width: "160px",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+                id="studentName"
+              >
+                {item.last_name}, {item.first_name}
+              </span>
+              <span
+                style={{
+                  width: "160px",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                {item.email}
+              </span>
+              <span style={{ width: "80px" }}>{item.cohort}</span>
+              <span style={{ width: "100px" }}>{genDateString(item.date)}</span>
+              <span style={{ width: "20px", textAlign: "right" }}>
+                {item.attempts}
+              </span>
+              <span style={{ width: "80px", textAlign: "right" }}>
+                {item.state}
+              </span>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className={styles.candidates}>
+          {filterBySearch(search).map((item, index) => (
+            <div
+              className={
+                styles[selectIndex === index ? "selectedRow" : "candidateRow"]
+              }
+              onClick={() => handleSelect(index)}
+              key={index}
             >
-              {item.email}
-            </span>
-            <span style={{ width: "80px" }}>{item.cohort}</span>
-            <span style={{ width: "100px" }}>{genDateString(item.date)}</span>
-            <span style={{ width: "20px", textAlign: "right" }}>
-              {item.attempts}
-            </span>
-            <span style={{ width: "80px", textAlign: "right" }}>
-              {item.state}
-            </span>
-          </div>
-        ))}
-      </div>
+              <span
+                style={{
+                  width: "160px",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+                id="studentName"
+              >
+                {item.last_name}, {item.first_name}
+              </span>
+              <span
+                style={{
+                  width: "160px",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                {item.email}
+              </span>
+              <span style={{ width: "80px" }}>{item.cohort}</span>
+              <span style={{ width: "100px" }}>{genDateString(item.date)}</span>
+              <span style={{ width: "20px", textAlign: "right" }}>
+                {item.attempts}
+              </span>
+              <span style={{ width: "80px", textAlign: "right" }}>
+                {item.state}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
 
       <div className={styles.optionsRow}>
         <div className={styles.buttonsRow}>
+          <button
+            className={styles.launchButton}
+            onClick={() => toggleCurrentOrHistory()}
+          >
+            {!historyToggle ? "View History" : "View Current"}
+          </button>
           <div
             className={styles.launchButton}
             onClick={() => setShowNewStudentForm(true)}
@@ -269,7 +336,7 @@ export default function DashMid(props) {
                 onClick={deleteStudent}
               >
                 Delete Student
-              </div>{" "}
+              </div>
             </>
           )}
         </div>
