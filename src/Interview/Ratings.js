@@ -1,4 +1,5 @@
 import { ImStarFull } from "react-icons/im";
+import { RxReset } from "react-icons/rx";
 import styles from "../../styles/Interview.module.css";
 
 export default function Ratings({
@@ -42,6 +43,9 @@ export default function Ratings({
           <div className={styles.ratingsRow}>
             <div className={styles.ratingsTitle}>Problem 1</div>
             <div className={styles.ratingsRow}>
+              <div onClick={() => setProblem1Rating(0)}>
+              <RxReset />
+              </div>
               <div onClick={() => setProblem1Rating(1)}>
                 {problem1Rating > 0 ? (
                   <ImStarFull style={{ color: "#EF6E47" }} />
@@ -82,6 +86,9 @@ export default function Ratings({
           <div className={styles.ratingsRow}>
             <div className={styles.ratingsTitle}>Problem 2</div>
             <div className={styles.ratingsRow}>
+            <div onClick={() => setProblem2Rating(0)}>
+              <RxReset />
+              </div>
               <div onClick={() => setProblem2Rating(1)}>
                 {problem2Rating > 0 ? (
                   <ImStarFull style={{ color: "#EF6E47" }} />
@@ -122,6 +129,9 @@ export default function Ratings({
           <div className={styles.ratingsRow}>
             <div className={styles.ratingsTitle}>Problem 3</div>
             <div className={styles.ratingsRow}>
+            <div onClick={() => setProblem3Rating(0)}>
+              <RxReset />
+              </div>
               <div onClick={() => setProblem3Rating(1)}>
                 {problem3Rating > 0 ? (
                   <ImStarFull style={{ color: "#EF6E47" }} />
