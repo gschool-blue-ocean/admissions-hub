@@ -23,6 +23,7 @@ export default function NewStudent(props) {
     axios.post("/api/candidate", data).then((response) => {
       console.log(response);
       props.getCandidates();
+      props.setSelectIndex(-1);
       props.setShowNewStudentForm(false);
     });
   }
