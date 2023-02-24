@@ -19,13 +19,22 @@ import ExportModal from "./ExportModal";
 export default function DashMid(props) {
   const router = useRouter();
   const [search, setSearch] = useState("");
+  const [historyToggle, setHistoryToggle] = useState(false);
   const [student, setStudent] = useState(false);
+  const [deletedStudent, setDeletedStudent] = useState(false);
   const [interview, setInterview] = useState({});
   const [selectIndex, setSelectIndex] = useState(-1);
   const [showNotes, setShowNotes] = useState(false);
   const [showNewStudentForm, setShowNewStudentForm] = useState(false);
   const [showUpdateStudentForm, setShowUpdateStudentForm] = useState(false);
   const [showExportModal, setShowExportModal] = useState(false);
+
+  function toggleCurrentOrHistory() {
+    setHistoryToggle((prevState) => (prevState = !prevState));
+    setStudent(false);
+    setDeletedStudent(false);
+    setSelectIndex(-1);
+  }
   function handleSelect(index) {
     if (selectIndex == index) {
       setStudent(false);
@@ -33,6 +42,15 @@ export default function DashMid(props) {
     } else {
       setSelectIndex(index);
       setStudent(props.candidates[index]);
+    }
+  }
+  function handleSelectHistory(index) {
+    if (selectIndex == index) {
+      setDeletedStudent(false);
+      setSelectIndex(-1);
+    } else {
+      setSelectIndex(index);
+      setDeletedStudent(props.candidatesHistory[index]);
     }
   }
 
@@ -82,10 +100,23 @@ export default function DashMid(props) {
     return newList;
   }
 
+  function filterBySearchHistory(str) {
+    if (!str) {
+      return props.candidatesHistory;
+    }
+    let newList = props.candidatesHistory.filter(
+      (item) =>
+        item.first_name.toLowerCase().includes(str.toLowerCase()) ||
+        item.last_name.toLowerCase().includes(str.toLowerCase()) ||
+        item.email.toLowerCase().includes(str.toLowerCase())
+    );
+    return newList;
+  }
+
   function deleteStudent() {
     if (
       confirm(
-        `Are you sure you want to delete ${student.first_name} ${student.last_name}?`
+        `Are you sure you want to archive ${student.first_name} ${student.last_name}?`
       )
     ) {
       axios
@@ -95,6 +126,25 @@ export default function DashMid(props) {
           setStudent(false);
           setSelectIndex(-1);
           props.getCandidates();
+          props.getDeletedCandidates();
+        });
+    }
+  }
+
+  function deleteStudentPermanently() {
+    if (
+      confirm(
+        `Are you sure you want to delete ${student.first_name} ${student.last_name} from historical records?`
+      )
+    ) {
+      axios
+        .delete("/api/candidate-history/" + student.id)
+        .then((result) => result.data)
+        .then((data) => {
+          setStudent(false);
+          setSelectIndex(-1);
+          props.getCandidates();
+          props.getDeletedCandidates();
         });
     }
   }
@@ -205,48 +255,98 @@ export default function DashMid(props) {
         <span style={{ width: "80px", textAlign: "right" }}>Status</span>
       </div>
 
-      <div className={styles.candidates}>
-        {filterBySearch(search).map((item, index) => (
-          <div
-            className={
-              styles[selectIndex === index ? "selectedRow" : "candidateRow"]
-            }
-            onClick={() => handleSelect(index)}
-            key={index}
-          >
-            <span
-              style={{
-                width: "160px",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-              }}
-              id="studentName"
+      {historyToggle ? (
+        // history
+        <div className={styles.candidates}>
+          {filterBySearchHistory(search).map((item, index) => (
+            <div
+              className={
+                styles[selectIndex === index ? "selectedRow" : "candidateRow"]
+              }
+              onClick={() => handleSelectHistory(index)}
+              key={index}
             >
-              {item.last_name}, {item.first_name}
-            </span>
-            <span
-              style={{
-                width: "160px",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-              }}
+              <span
+                style={{
+                  width: "160px",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+                id="studentName"
+              >
+                {item.last_name}, {item.first_name}
+              </span>
+              <span
+                style={{
+                  width: "160px",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                {item.email}
+              </span>
+              <span style={{ width: "80px" }}>{item.cohort}</span>
+              <span style={{ width: "100px" }}>{genDateString(item.date)}</span>
+              <span style={{ width: "20px", textAlign: "right" }}>
+                {item.attempts}
+              </span>
+              <span style={{ width: "80px", textAlign: "right" }}>
+                {item.state}
+              </span>
+            </div>
+          ))}
+        </div>
+      ) : (
+        //current
+        <div className={styles.candidates}>
+          {filterBySearch(search).map((item, index) => (
+            <div
+              className={
+                styles[selectIndex === index ? "selectedRow" : "candidateRow"]
+              }
+              onClick={() => handleSelect(index)}
+              key={index}
             >
-              {item.email}
-            </span>
-            <span style={{ width: "80px" }}>{item.cohort}</span>
-            <span style={{ width: "100px" }}>{genDateString(item.date)}</span>
-            <span style={{ width: "20px", textAlign: "right" }}>
-              {item.attempts}
-            </span>
-            <span style={{ width: "80px", textAlign: "right" }}>
-              {item.state}
-            </span>
-          </div>
-        ))}
-      </div>
+              <span
+                style={{
+                  width: "160px",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+                id="studentName"
+              >
+                {item.last_name}, {item.first_name}
+              </span>
+              <span
+                style={{
+                  width: "160px",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                {item.email}
+              </span>
+              <span style={{ width: "80px" }}>{item.cohort}</span>
+              <span style={{ width: "100px" }}>{genDateString(item.date)}</span>
+              <span style={{ width: "20px", textAlign: "right" }}>
+                {item.attempts}
+              </span>
+              <span style={{ width: "80px", textAlign: "right" }}>
+                {item.state}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
 
       <div className={styles.optionsRow}>
         <div className={styles.buttonsRow}>
+          <button
+            className={styles.launchButton}
+            onClick={() => toggleCurrentOrHistory()}
+          >
+            {!historyToggle ? "View History" : "View Current"}
+          </button>
           <div
             className={styles.launchButton}
             onClick={() => setShowNewStudentForm(true)}
@@ -254,7 +354,7 @@ export default function DashMid(props) {
           >
             Add Student
           </div>
-          {student && (
+          {student && !historyToggle ? (
             <>
               <div
                 id="updateStudent"
@@ -268,10 +368,19 @@ export default function DashMid(props) {
                 className={styles.launchButton}
                 onClick={deleteStudent}
               >
-                Delete Student
-              </div>{" "}
+                Archive Student
+              </div>
             </>
-          )}
+          ) : null}
+          {deletedStudent && historyToggle ? (
+            <div
+              id="deleteStudent"
+              className={styles.launchButton}
+              onClick={deleteStudentPermanently}
+            >
+              Delete Student
+            </div>
+          ) : null}
         </div>
         {props.candidates.length != 0 ? (
           <div>

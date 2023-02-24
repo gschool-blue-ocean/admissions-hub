@@ -32,6 +32,6 @@
     "vm2": "^3.9.11"
   },
   "devDependencies": {
-    "puppeteer": "^19.5.2"
+    "puppeteer": "^19.7.2"
   }
 }
