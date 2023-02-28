@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Editor from '@monaco-editor/react';
 import io from 'socket.io-client';
 import styles from '../../styles/Interview.module.css';
@@ -14,7 +14,9 @@ export default function CodeEditor({ sessionId }) {
   const onChangeHandler = (content) => {
     // add the content of the change to the input buffer
     let inputBuffer = content;
+    socket.emit('input-change', inputBuffer, room);
 
+    /* getting rid of this set-time out prevents it from freezing up; however, you'll notice more flickers
     // start the timer or reset it if it already exists
     if (timer) {
       clearTimeout(timer);
@@ -24,7 +26,7 @@ export default function CodeEditor({ sessionId }) {
       socket.emit('input-change', inputBuffer, room);
       // reset the input buffer
       inputBuffer = '';
-    }, 100); // 100ms timer interval
+    }, 250); // 250ms timer interval */
   };
 
   useEffect(() => {
@@ -72,7 +74,14 @@ export default function CodeEditor({ sessionId }) {
   };
 
   function logRoomStatus(str) {
-    //console.log(str);
+    console.log(str);
+  }
+
+  //monaco-editor has a weird way to edit font size; it doesn't work w/ the regular CSS way
+  const editorRef = useRef(null);
+  function setEditorFontSize(editor, monaco){
+    editorRef.current = editor;
+    (editorRef.current).updateOptions({"fontSize": 16});
   }
 
   return (
@@ -85,6 +94,7 @@ export default function CodeEditor({ sessionId }) {
             onChange={onChangeHandler}
             value={input}
             className={styles.editor}
+            onMount={setEditorFontSize}
           />
         </div>
 

@@ -42,7 +42,6 @@ export default function Interview() {
       .then((result) => result.data)
       .then((data) => {
         setData(data);
-        console.log(data);
         getCandidateData(data.candidate_id);
       })
       .catch((err) => console.log(err));
@@ -54,7 +53,6 @@ export default function Interview() {
       .then((result) => result.data)
       .then((data) => {
         setStudent(data);
-        console.log(data);
       })
       .catch((err) => console.log(err));
   }
