@@ -37,6 +37,21 @@ export default function NotePad({ data }) {
     axios.patch("/api/interviews/" + data.id, body).then((result) => {
       router.push("/dashboard");
     });
+
+    axios
+      .post("https://hooks.slack.com/services/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", JSON.stringify({ text: "test on button" }), {
+        timeout: 10000,
+        transformRequest(data, headers) {
+          delete headers.common["Content-Type"];
+          return data;
+        },
+      })
+      .then((res) => {
+        console.log(err);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   return (
