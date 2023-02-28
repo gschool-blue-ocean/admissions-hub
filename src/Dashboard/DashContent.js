@@ -44,7 +44,7 @@ export default function DashContent() {
     return output;
   }
 
-  function getInterveiws() {
+  function getInterviews() {
     axios
       .get(`/api/interviews`)
       .then((result) => result.data)
@@ -57,10 +57,8 @@ export default function DashContent() {
   useEffect(() => {
     getCandidates();
     getArchivedCandidates();
-    getInterveiws();
+    getInterviews();
   }, []);
-
-  console.log(candidates);
 
   return (
     <div className={styles.dashContent}>

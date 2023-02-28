@@ -11,6 +11,7 @@ export default function CodeEditor({ sessionId }) {
   const [room, setRoom] = useState(sessionId);
 
   let timer;
+  // console.log(input);
   const onChangeHandler = (content) => {
     // add the content of the change to the input buffer
     let inputBuffer = content;
