@@ -106,8 +106,7 @@ return newStr;
             <div
               className={styles.notesArea}
               rows={20}
-              value={problem1Notes}
-            ></div>
+            >{problem1Notes}</div>
           ) : (
             <textarea
               id="problem1Notes"
@@ -136,8 +135,7 @@ return newStr;
             <div
               className={styles.notesArea}
               rows={20}
-              value={problem2Notes}
-            ></div>
+            >{problem2Notes}</div>
           ) : (
             <textarea
               className={styles.notesArea}
@@ -165,8 +163,7 @@ return newStr;
             <div
               className={styles.notesArea}
               rows={20}
-              value={problem3Notes}
-            ></div>
+            >{problem3Notes}</div>
           ) : (
             <textarea
               className={styles.notesArea}

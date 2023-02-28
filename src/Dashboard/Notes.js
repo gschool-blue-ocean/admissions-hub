@@ -3,7 +3,7 @@ import Problems from '../Interview/Problems';
 import styles from '../../styles/Interview.module.css';
 import Ratings from '../Interview/Ratings';
 
-export default function Notes({ data, setShowNotes, toggleEditableNotes }) {
+export default function Notes({ data, setShowNotes }) {
   const [problem1Notes, setProblem1Notes] = useState(data.notes_1);
   const [problem2Notes, setProblem2Notes] = useState(data.notes_2);
   const [problem3Notes, setProblem3Notes] = useState(data.notes_3);
@@ -27,7 +27,7 @@ export default function Notes({ data, setShowNotes, toggleEditableNotes }) {
             setProblem1Notes={doesNothing}
             setProblem2Notes={doesNothing}
             setProblem3Notes={doesNothing}
-            toggleEditableNotes={toggleEditableNotes}
+            toggleEditableNotes={false}
           />
           <Ratings
             problem1Rating={problem1Rating}

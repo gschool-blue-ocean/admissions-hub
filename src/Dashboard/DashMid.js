@@ -25,7 +25,6 @@ export default function DashMid(props) {
   const [interview, setInterview] = useState({});
   const [selectIndex, setSelectIndex] = useState(-1);
   const [showNotes, setShowNotes] = useState(false);
-  const [toggleEditableNotes, setToggleEditableNotes] = useState(false);
   const [showNewStudentForm, setShowNewStudentForm] = useState(false);
   const [showUpdateStudentForm, setShowUpdateStudentForm] = useState(false);
   const [showExportModal, setShowExportModal] = useState(false);
@@ -426,7 +425,7 @@ export default function DashMid(props) {
             student={student}
           />
         )}
-        {showNotes && <Notes setShowNotes={setShowNotes} data={interview} toggleEditableNotes={toggleEditableNotes}/>}
+        {showNotes && <Notes setShowNotes={setShowNotes} data={interview} />}
         {showExportModal && (
           <ExportModal
             setShowExportModal={setShowExportModal}
