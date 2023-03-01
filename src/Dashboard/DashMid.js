@@ -226,7 +226,7 @@ export default function DashMid(props) {
               <div
                 id="launchButton"
                 className={styles.launchButton}
-                onClick={newInterview}
+                onClick={resumeInterview}
               >
                 View Interview
               </div>

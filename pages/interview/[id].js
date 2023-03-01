@@ -72,6 +72,7 @@ export default function Interview() {
             />
             <NotePad
               data={data}
+              student={student}
               setData={setData}
             />
           </div>
