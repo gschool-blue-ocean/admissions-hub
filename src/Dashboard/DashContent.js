@@ -20,7 +20,7 @@ export default function DashContent() {
       .catch((err) => console.log(err));
   }
 
-  function getDeletedCandidates(){
+  function getArchivedCandidates(){
     axios
       .get(`/api/combo-history`)
       .then((result) => result.data)
@@ -56,7 +56,7 @@ export default function DashContent() {
 
   useEffect(() => {
     getCandidates();
-    getDeletedCandidates();
+    getArchivedCandidates();
     getInterveiws();
   }, []);
 
@@ -69,7 +69,7 @@ export default function DashContent() {
         candidates={candidates}
         candidatesHistory={candidatesHistory}
         getCandidates={getCandidates}
-        getDeletedCandidates={getDeletedCandidates}
+        getArchivedCandidates={getArchivedCandidates}
       />
       <DashBottom interviews={interviews} />
     </div>
