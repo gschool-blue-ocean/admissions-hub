@@ -15,6 +15,7 @@ export default function Interview() {
   const [student, setStudent] = useState({});
   const [role, setRole] = useState(false);
   const [authed, setAuthed] = useState(false);
+  const [input, setInput] = useState('');
   const router = useRouter();
   const { id } = router.query;
 

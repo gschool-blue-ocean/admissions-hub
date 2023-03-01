@@ -7,7 +7,6 @@ let socket;
 
 export default function CodeEditor({ sessionId }) {
   const [codeReturn, setCodeReturn] = useState([]);
-  const [input, setInput] = useState('');
   const [room, setRoom] = useState(sessionId);
 
   let timer;
