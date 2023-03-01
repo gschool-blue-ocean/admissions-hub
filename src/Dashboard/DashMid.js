@@ -21,7 +21,7 @@ export default function DashMid(props) {
   const [search, setSearch] = useState("");
   const [historyToggle, setHistoryToggle] = useState(false);
   const [student, setStudent] = useState(false);
-  const [deletedStudent, setDeletedStudent] = useState(false);
+  const [archivedStudent, setArchivedStudent] = useState(false);
   const [interview, setInterview] = useState({});
   const [selectIndex, setSelectIndex] = useState(-1);
   const [showNotes, setShowNotes] = useState(false);
@@ -32,7 +32,7 @@ export default function DashMid(props) {
   function toggleCurrentOrHistory() {
     setHistoryToggle((prevState) => (prevState = !prevState));
     setStudent(false);
-    setDeletedStudent(false);
+    setArchivedStudent(false);
     setSelectIndex(-1);
   }
   function handleSelect(index) {
@@ -46,11 +46,11 @@ export default function DashMid(props) {
   }
   function handleSelectHistory(index) {
     if (selectIndex == index) {
-      setDeletedStudent(false);
+      setArchivedStudent(false);
       setSelectIndex(-1);
     } else {
       setSelectIndex(index);
-      setDeletedStudent(props.candidatesHistory[index]);
+      setArchivedStudent(props.candidatesHistory[index]);
     }
   }
 
@@ -113,7 +113,7 @@ export default function DashMid(props) {
     return newList;
   }
 
-  function deleteStudent() {
+  function archiveStudent() {
     if (
       confirm(
         `Are you sure you want to archive ${student.first_name} ${student.last_name}?`
@@ -126,7 +126,7 @@ export default function DashMid(props) {
           setStudent(false);
           setSelectIndex(-1);
           props.getCandidates();
-          props.getDeletedCandidates();
+          props.getArchivedCandidates();
         });
     }
   }
@@ -134,17 +134,17 @@ export default function DashMid(props) {
   function deleteStudentPermanently() {
     if (
       confirm(
-        `Are you sure you want to delete ${student.first_name} ${student.last_name} from historical records?`
+        `Are you sure you want to delete ${archivedStudent.first_name} ${archivedStudent.last_name} from the archive? This is permanent.`
       )
     ) {
       axios
-        .delete("/api/candidate-history/" + student.id)
+        .delete("/api/candidate-history/" + archivedStudent.id)
         .then((result) => result.data)
         .then((data) => {
           setStudent(false);
           setSelectIndex(-1);
           props.getCandidates();
-          props.getDeletedCandidates();
+          props.getArchivedCandidates();
         });
     }
   }
@@ -214,13 +214,21 @@ export default function DashMid(props) {
               <div className={styles.launchButton} onClick={resumeInterview}>
                 Resume Interview
               </div>
-            ) : (
+            ) : student.state == null ? (
               <div
                 id="launchButton"
                 className={styles.launchButton}
                 onClick={newInterview}
               >
                 Launch Interview
+              </div>
+            ) : (
+              <div
+                id="launchButton"
+                className={styles.launchButton}
+                onClick={resumeInterview}
+              >
+                View Interview
               </div>
             )
           ) : (
@@ -345,15 +353,17 @@ export default function DashMid(props) {
             className={styles.launchButton}
             onClick={() => toggleCurrentOrHistory()}
           >
-            {!historyToggle ? "View History" : "View Current"}
+            {!historyToggle ? "View Archive" : "View Current"}
           </button>
-          <div
-            className={styles.launchButton}
-            onClick={() => setShowNewStudentForm(true)}
-            id="addStudent"
-          >
-            Add Student
-          </div>
+          {!historyToggle ? (
+            <div
+              className={styles.launchButton}
+              onClick={() => setShowNewStudentForm(true)}
+              id="addStudent"
+            >
+              Add Student
+            </div>
+          ) : null}
           {student && !historyToggle ? (
             <>
               <div
@@ -364,15 +374,15 @@ export default function DashMid(props) {
                 Update Student
               </div>
               <div
-                id="deleteStudent"
+                id="archiveStudent"
                 className={styles.launchButton}
-                onClick={deleteStudent}
+                onClick={archiveStudent}
               >
                 Archive Student
               </div>
             </>
           ) : null}
-          {deletedStudent && historyToggle ? (
+          {archivedStudent && historyToggle ? (
             <div
               id="deleteStudent"
               className={styles.launchButton}
@@ -382,19 +392,29 @@ export default function DashMid(props) {
             </div>
           ) : null}
         </div>
-        {props.candidates.length != 0 ? (
+        {!historyToggle && props.candidates.length != 0 ? (
           <div>
             <button
               className={styles.launchButton}
               onClick={() => setShowExportModal(true)}
             >
-              Export Student Info
+              Export Current Info
             </button>
           </div>
-        ) : null}
+        ) : (
+          <div>
+            <button
+              className={styles.launchButton}
+              onClick={() => setShowExportModal(true)}
+            >
+              Export Archive
+            </button>
+          </div>
+        )}
         {showNewStudentForm && (
           <NewStudent
             setShowNewStudentForm={setShowNewStudentForm}
+            setSelectIndex={setSelectIndex}
             getCandidates={props.getCandidates}
           />
         )}
@@ -410,6 +430,8 @@ export default function DashMid(props) {
           <ExportModal
             setShowExportModal={setShowExportModal}
             students={props.candidates}
+            archivedStudents={props.candidatesHistory}
+            historyToggle={historyToggle}
           />
         )}
       </div>

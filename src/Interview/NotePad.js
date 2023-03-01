@@ -65,6 +65,7 @@ export default function NotePad({ data,student }) {
         setProblem1Notes={setProblem1Notes}
         setProblem2Notes={setProblem2Notes}
         setProblem3Notes={setProblem3Notes}
+        toggleEditableNotes={true}
       />
       <Ratings
         problem1Rating={problem1Rating}
