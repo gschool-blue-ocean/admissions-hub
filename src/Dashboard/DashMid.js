@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
-import Downloader from './email/Downloadcsv';
+import { useEffect, useState } from "react";
+import Downloader from "./email/Downloadcsv";
 
-import NewStudent from './NewStudent';
-import UpdateStudent from './UpdateStudent';
-import styles from '../../styles/Dashboard.module.css';
-import Notes from './Notes';
-import axios from 'axios';
-import { useRouter } from 'next/router';
-import ExportModal from './ExportModal';
+import NewStudent from "./NewStudent";
+import UpdateStudent from "./UpdateStudent";
+import styles from "../../styles/Dashboard.module.css";
+import Notes from "./Notes";
+import axios from "axios";
+import { useRouter } from "next/router";
+import ExportModal from "./ExportModal";
 
 // ===== Notes =====
 // state: what do we need
@@ -18,14 +18,23 @@ import ExportModal from './ExportModal';
 
 export default function DashMid(props) {
   const router = useRouter();
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
+  const [historyToggle, setHistoryToggle] = useState(false);
   const [student, setStudent] = useState(false);
+  const [deletedStudent, setDeletedStudent] = useState(false);
   const [interview, setInterview] = useState({});
   const [selectIndex, setSelectIndex] = useState(-1);
   const [showNotes, setShowNotes] = useState(false);
   const [showNewStudentForm, setShowNewStudentForm] = useState(false);
   const [showUpdateStudentForm, setShowUpdateStudentForm] = useState(false);
   const [showExportModal, setShowExportModal] = useState(false);
+
+  function toggleCurrentOrHistory() {
+    setHistoryToggle((prevState) => (prevState = !prevState));
+    setStudent(false);
+    setDeletedStudent(false);
+    setSelectIndex(-1);
+  }
   function handleSelect(index) {
     if (selectIndex == index) {
       setStudent(false);
@@ -33,6 +42,15 @@ export default function DashMid(props) {
     } else {
       setSelectIndex(index);
       setStudent(props.candidates[index]);
+    }
+  }
+  function handleSelectHistory(index) {
+    if (selectIndex == index) {
+      setDeletedStudent(false);
+      setSelectIndex(-1);
+    } else {
+      setSelectIndex(index);
+      setDeletedStudent(props.candidatesHistory[index]);
     }
   }
 
@@ -49,12 +67,13 @@ export default function DashMid(props) {
         for (let key in students[row]) {
           // This is to not add a comma at the last cell
           // The '\r\n' adds a new line
-          csv += key + (keysCounter + 1 < keysAmount ? ',' : '\r\n');
+          csv += key + (keysCounter + 1 < keysAmount ? "," : "\r\n");
           keysCounter++;
         }
       } else {
         for (let key in students[row]) {
-          csv += students[row][key] + (keysCounter + 1 < keysAmount ? ',' : '\r\n');
+          csv +=
+            students[row][key] + (keysCounter + 1 < keysAmount ? "," : "\r\n");
           keysCounter++;
         }
       }
@@ -81,35 +100,73 @@ export default function DashMid(props) {
     return newList;
   }
 
+  function filterBySearchHistory(str) {
+    if (!str) {
+      return props.candidatesHistory;
+    }
+    let newList = props.candidatesHistory.filter(
+      (item) =>
+        item.first_name.toLowerCase().includes(str.toLowerCase()) ||
+        item.last_name.toLowerCase().includes(str.toLowerCase()) ||
+        item.email.toLowerCase().includes(str.toLowerCase())
+    );
+    return newList;
+  }
+
   function deleteStudent() {
-    axios
-      .delete('/api/candidate/' + student.id)
-      .then((result) => result.data)
-      .then((data) => {
-        setStudent(false);
-        setSelectIndex(-1);
-        props.getCandidates();
-      });
+    if (
+      confirm(
+        `Are you sure you want to archive ${student.first_name} ${student.last_name}?`
+      )
+    ) {
+      axios
+        .delete("/api/candidate/" + student.id)
+        .then((result) => result.data)
+        .then((data) => {
+          setStudent(false);
+          setSelectIndex(-1);
+          props.getCandidates();
+          props.getDeletedCandidates();
+        });
+    }
+  }
+
+  function deleteStudentPermanently() {
+    if (
+      confirm(
+        `Are you sure you want to delete ${student.first_name} ${student.last_name} from historical records?`
+      )
+    ) {
+      axios
+        .delete("/api/candidate-history/" + student.id)
+        .then((result) => result.data)
+        .then((data) => {
+          setStudent(false);
+          setSelectIndex(-1);
+          props.getCandidates();
+          props.getDeletedCandidates();
+        });
+    }
   }
 
   function newInterview() {
-    let interviewer_id = localStorage.getItem('id');
+    let interviewer_id = localStorage.getItem("id");
     let candidate_id = student.id;
     axios
-      .post('/api/interviews/new', { interviewer_id, candidate_id })
+      .post("/api/interviews/new", { interviewer_id, candidate_id })
       .then((result) => result.data)
-      .then((data) => router.push('/interview/' + data.id));
+      .then((data) => router.push("/interview/" + data.id));
   }
 
   function resumeInterview() {
-    router.push('/interview/' + student.interview_id);
+    router.push("/interview/" + student.interview_id);
   }
 
   function getNotesData() {
-    let interviewer_id = localStorage.getItem('id');
+    let interviewer_id = localStorage.getItem("id");
     let candidate_id = student.id;
     axios
-      .post('/api/interviews/resume', { interviewer_id, candidate_id })
+      .post("/api/interviews/resume", { interviewer_id, candidate_id })
       .then((result) => result.data)
       .then((data) => {
         setShowNotes(true);
@@ -119,11 +176,12 @@ export default function DashMid(props) {
 
   function genDateString(data) {
     const date = new Date(data);
-    const string = date.toLocaleDateString('en-us', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
+    const string = date.toLocaleDateString("en-us", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
     });
+    if (string == "Dec 31, 1969") return "No interviews";
     return string;
   }
 
@@ -152,11 +210,8 @@ export default function DashMid(props) {
             </div>
           ) : null}
           {student ? (
-            student.state == 'Incomplete' ? (
-              <div
-                className={styles.launchButton}
-                onClick={resumeInterview}
-              >
+            student.state == "Incomplete" ? (
+              <div className={styles.launchButton} onClick={resumeInterview}>
                 Resume Interview
               </div>
             ) : (
@@ -169,63 +224,129 @@ export default function DashMid(props) {
               </div>
             )
           ) : (
-            <div className={styles.tipBox}>Select a Candidate to Get Started</div>
+            <div className={styles.tipBox}>
+              Select a Candidate to Get Started
+            </div>
           )}
         </div>
       </div>
       <div className={styles.tableTitles}>
         <span
           style={{
-            width: '160px',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis'
+            width: "160px",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
           }}
         >
           Last, First name
         </span>
         <span
           style={{
-            width: '160px',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis'
+            width: "160px",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
           }}
         >
           Email Address
         </span>
-        <span style={{ width: '80px' }}>Cohort</span>
-        <span style={{ width: '100px' }}>Last Interview</span>
-        <span style={{ width: '20px', textAlign: 'right' }}>Attempt</span>
-        <span style={{ width: '80px', textAlign: 'right' }}>Status</span>
+        <span style={{ width: "80px" }}>Cohort</span>
+        <span style={{ width: "100px" }}>Last Interview</span>
+        <span style={{ width: "20px", textAlign: "right" }}>Attempt</span>
+        <span style={{ width: "80px", textAlign: "right" }}>Status</span>
       </div>
 
-      <div className={styles.candidates}>
-        {filterBySearch(search).map((item, index) => (
-          <div
-            className={styles[selectIndex === index ? 'selectedRow' : 'candidateRow']}
-            onClick={() => handleSelect(index)}
-            key={index}
-          >
-            <span
-              style={{
-                width: '160px',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis'
-              }}
-              id="studentName"
+      {historyToggle ? (
+        // history
+        <div className={styles.candidates}>
+          {filterBySearchHistory(search).map((item, index) => (
+            <div
+              className={
+                styles[selectIndex === index ? "selectedRow" : "candidateRow"]
+              }
+              onClick={() => handleSelectHistory(index)}
+              key={index}
             >
-              {item.last_name}, {item.first_name}
-            </span>
-            <span style={{ width: '160px', overflow: 'hidden', textOverflow: 'ellipsis' }}>{item.email}</span>
-            <span style={{ width: '80px' }}>{item.cohort}</span>
-            <span style={{ width: '100px' }}>{genDateString(item.date)}</span>
-            <span style={{ width: '20px', textAlign: 'right' }}>{item.attempts}</span>
-            <span style={{ width: '80px', textAlign: 'right' }}>{item.state}</span>
-          </div>
-        ))}
-      </div>
+              <span
+                style={{
+                  width: "160px",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+                id="studentName"
+              >
+                {item.last_name}, {item.first_name}
+              </span>
+              <span
+                style={{
+                  width: "160px",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                {item.email}
+              </span>
+              <span style={{ width: "80px" }}>{item.cohort}</span>
+              <span style={{ width: "100px" }}>{genDateString(item.date)}</span>
+              <span style={{ width: "20px", textAlign: "right" }}>
+                {item.attempts}
+              </span>
+              <span style={{ width: "80px", textAlign: "right" }}>
+                {item.state}
+              </span>
+            </div>
+          ))}
+        </div>
+      ) : (
+        //current
+        <div className={styles.candidates}>
+          {filterBySearch(search).map((item, index) => (
+            <div
+              className={
+                styles[selectIndex === index ? "selectedRow" : "candidateRow"]
+              }
+              onClick={() => handleSelect(index)}
+              key={index}
+            >
+              <span
+                style={{
+                  width: "160px",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+                id="studentName"
+              >
+                {item.last_name}, {item.first_name}
+              </span>
+              <span
+                style={{
+                  width: "160px",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                {item.email}
+              </span>
+              <span style={{ width: "80px" }}>{item.cohort}</span>
+              <span style={{ width: "100px" }}>{genDateString(item.date)}</span>
+              <span style={{ width: "20px", textAlign: "right" }}>
+                {item.attempts}
+              </span>
+              <span style={{ width: "80px", textAlign: "right" }}>
+                {item.state}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
 
       <div className={styles.optionsRow}>
         <div className={styles.buttonsRow}>
+          <button
+            className={styles.launchButton}
+            onClick={() => toggleCurrentOrHistory()}
+          >
+            {!historyToggle ? "View History" : "View Current"}
+          </button>
           <div
             className={styles.launchButton}
             onClick={() => setShowNewStudentForm(true)}
@@ -233,7 +354,7 @@ export default function DashMid(props) {
           >
             Add Student
           </div>
-          {student && (
+          {student && !historyToggle ? (
             <>
               <div
                 id="updateStudent"
@@ -247,19 +368,30 @@ export default function DashMid(props) {
                 className={styles.launchButton}
                 onClick={deleteStudent}
               >
-                Delete Student
-              </div>{' '}
+                Archive Student
+              </div>
             </>
-          )}
+          ) : null}
+          {deletedStudent && historyToggle ? (
+            <div
+              id="deleteStudent"
+              className={styles.launchButton}
+              onClick={deleteStudentPermanently}
+            >
+              Delete Student
+            </div>
+          ) : null}
         </div>
-        <div>
-          <button
-            className={styles.launchButton}
-            onClick={() => setShowExportModal(true)}
-          >
-            Export Student Info
-          </button>
-        </div>
+        {props.candidates.length != 0 ? (
+          <div>
+            <button
+              className={styles.launchButton}
+              onClick={() => setShowExportModal(true)}
+            >
+              Export Student Info
+            </button>
+          </div>
+        ) : null}
         {showNewStudentForm && (
           <NewStudent
             setShowNewStudentForm={setShowNewStudentForm}
@@ -273,12 +405,7 @@ export default function DashMid(props) {
             student={student}
           />
         )}
-        {showNotes && (
-          <Notes
-            setShowNotes={setShowNotes}
-            data={interview}
-          />
-        )}
+        {showNotes && <Notes setShowNotes={setShowNotes} data={interview} />}
         {showExportModal && (
           <ExportModal
             setShowExportModal={setShowExportModal}

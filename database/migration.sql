@@ -22,6 +22,14 @@ CREATE TABLE candidates (
   cohort TEXT NOT NULL
 );
 
+CREATE TABLE candidatesHistory (
+  id INTEGER,
+  first_name TEXT NOT NULL,
+  last_name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  cohort TEXT NOT NULL
+);
+
 CREATE TABLE interviews (
   id SERIAL PRIMARY KEY,
   interviewer_id INT NOT NULL,

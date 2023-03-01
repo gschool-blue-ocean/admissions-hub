@@ -7,7 +7,8 @@ import styles from '../../styles/Dashboard.module.css';
 
 export default function DashContent() {
   const [candidates, setCandidates] = useState([]);
-  const [interviews, setInterveiws] = useState([]);
+  const [candidatesHistory, setCandidatesHistory] = useState([]);
+  const [interviews, setInterviews] = useState([]);
 
   function getCandidates() {
     axios
@@ -15,6 +16,16 @@ export default function DashContent() {
       .then((result) => result.data)
       .then((data) => {
         setCandidates(filterCandidateList(data));
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function getDeletedCandidates(){
+    axios
+      .get(`/api/combo-history`)
+      .then((result) => result.data)
+      .then((data) => {
+        setCandidatesHistory(filterCandidateList(data));
       })
       .catch((err) => console.log(err));
   }
@@ -38,22 +49,27 @@ export default function DashContent() {
       .get(`/api/interviews`)
       .then((result) => result.data)
       .then((data) => {
-        setInterveiws(data);
+        setInterviews(data);
       })
       .catch((err) => console.log(err));
   }
 
   useEffect(() => {
     getCandidates();
+    getDeletedCandidates();
     getInterveiws();
   }, []);
+
+  console.log(candidates);
 
   return (
     <div className={styles.dashContent}>
       <DashTop interviews={interviews} />
       <DashMid
         candidates={candidates}
+        candidatesHistory={candidatesHistory}
         getCandidates={getCandidates}
+        getDeletedCandidates={getDeletedCandidates}
       />
       <DashBottom interviews={interviews} />
     </div>
