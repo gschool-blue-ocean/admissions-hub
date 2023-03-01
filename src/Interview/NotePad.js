@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import styles from "../../styles/Interview.module.css";
 import Ratings from "./Ratings";
 
-export default function NotePad({ data }) {
+export default function NotePad({ data,student }) {
   const router = useRouter();
   const [problem1Notes, setProblem1Notes] = useState(data.notes_1);
   const [problem2Notes, setProblem2Notes] = useState(data.notes_2);
@@ -23,6 +23,7 @@ export default function NotePad({ data }) {
   }
 
   function submitInterview() {
+    
     let today = new Date();
     let body = {
       notes_1: problem1Notes,
@@ -37,6 +38,21 @@ export default function NotePad({ data }) {
     axios.patch("/api/interviews/" + data.id, body).then((result) => {
       router.push("/dashboard");
     });
+    
+    let text = JSON.stringify({
+      text: `${student.last_name}, ${student.first_name} has achieved a grade of : '${status}' on the Admissions Coding Challenge.`,
+    });
+    let slackWebHook =
+      "https://hooks.slack.com/services/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";
+
+    axios
+      .post(slackWebHook, text)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   return (
