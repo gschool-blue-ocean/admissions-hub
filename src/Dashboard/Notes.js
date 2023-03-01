@@ -4,6 +4,8 @@ import styles from '../../styles/Interview.module.css';
 import Ratings from '../Interview/Ratings';
 
 export default function Notes({ data, setShowNotes }) {
+  const [pNum, setPNum] = useState(0);
+
   const [problem1Notes, setProblem1Notes] = useState(data.notes_1);
   const [problem2Notes, setProblem2Notes] = useState(data.notes_2);
   const [problem3Notes, setProblem3Notes] = useState(data.notes_3);
@@ -24,9 +26,8 @@ export default function Notes({ data, setShowNotes }) {
             problem1Notes={problem1Notes}
             problem2Notes={problem2Notes}
             problem3Notes={problem3Notes}
-            setProblem1Notes={doesNothing}
-            setProblem2Notes={doesNothing}
-            setProblem3Notes={doesNothing}
+            pNum={pNum}
+            setPNum={setPNum}
             toggleEditableNotes={false}
           />
           <Ratings

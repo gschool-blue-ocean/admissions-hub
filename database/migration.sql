@@ -47,6 +47,7 @@ CREATE TABLE interviews (
   state TEXT DEFAULT 'Incomplete'
 );
 
+
 INSERT INTO
   interviewers (first_name, last_name, email, phash)
 VALUES

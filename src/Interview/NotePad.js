@@ -5,8 +5,18 @@ import { useRouter } from "next/router";
 import styles from "../../styles/Interview.module.css";
 import Ratings from "./Ratings";
 
-export default function NotePad({ data,student }) {
+export default function NotePad({
+  data,
+  student,
+  input1,
+  pNum,
+  setPNum,
+  problem1,
+  problem2,
+  problem3,
+}) {
   const router = useRouter();
+
   const [problem1Notes, setProblem1Notes] = useState(data.notes_1);
   const [problem2Notes, setProblem2Notes] = useState(data.notes_2);
   const [problem3Notes, setProblem3Notes] = useState(data.notes_3);
@@ -23,7 +33,6 @@ export default function NotePad({ data,student }) {
   }
 
   function submitInterview() {
-    
     let today = new Date();
     let body = {
       notes_1: problem1Notes,
@@ -38,7 +47,7 @@ export default function NotePad({ data,student }) {
     axios.patch("/api/interviews/" + data.id, body).then((result) => {
       router.push("/dashboard");
     });
-    
+
     let text = JSON.stringify({
       text: `${student.last_name}, ${student.first_name} has achieved a grade of : '${status}' on the Admissions Coding Challenge.`,
     });
@@ -53,17 +62,23 @@ export default function NotePad({ data,student }) {
       .catch((error) => {
         console.log(error);
       });
+    console.log(input1);
   }
 
   return (
     <div className={styles.notePad}>
       <Problems
+        problem1={problem1}
+        problem2={problem2}
+        problem3={problem3}
         problem1Notes={problem1Notes}
-        problem3Notes={problem3Notes}
         problem2Notes={problem2Notes}
+        problem3Notes={problem3Notes}
         setProblem1Notes={setProblem1Notes}
         setProblem2Notes={setProblem2Notes}
         setProblem3Notes={setProblem3Notes}
+        pNum={pNum}
+        setPNum={setPNum}
         toggleEditableNotes={true}
       />
       <Ratings

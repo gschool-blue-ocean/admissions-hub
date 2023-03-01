@@ -3,6 +3,9 @@ import styles from "../../styles/Interview.module.css";
 import Image from "next/image";
 
 export default function Problems({
+  problem1,
+  problem2,
+  problem3,
   problem1Notes,
   problem2Notes,
   problem3Notes,
@@ -10,36 +13,38 @@ export default function Problems({
   setProblem2Notes,
   setProblem3Notes,
   toggleEditableNotes,
+  pNum,
+  setPNum,
 }) {
-  const [pNum, setPNum] = useState(0);
 
-  const problem1 = `function addPropertiesToObject(obj1, obj2) {
-// Must combine all properties of obj1 to obj2
-// Use Object.assign to combine obj1 to obj2.
-Object.assign(obj2, obj1);
-// Must return obj2
-return obj2;
-} `;
+//   const problem1 = `function addPropertiesToObject(obj1, obj2) {
+// // Must combine all properties of obj1 to obj2
+// // Use Object.assign to combine obj1 to obj2.
+// Object.assign(obj2, obj1);
+// // Must return obj2
+// return obj2;
+// } `;
 
-  const problem2 = `function createNewArray(arr, func) {
-// create new array
-//Create a new array with array and function
-var newArr = Array.from(arr, func);
-//Return new array
-return newArr;
-}`;
+//   const problem2 = `function createNewArray(arr, func) {
+// // create new array
+// //Create a new array with array and function
+// var newArr = Array.from(arr, func);
+// //Return new array
+// return newArr;
+// }`;
 
-  const problem3 = `function logger(func, str) {
-// create new empty string
-var newStr = '';
-//Loop through each letter of the string
-for (var i = 0; i < str.length;i++) {
-//Put letters from function to the new string
-newStr +=  func(str[i]) }
-// return new string
-return newStr;
-}`;
+//   const problem3 = `function logger(func, str) {
+// // create new empty string
+// var newStr = '';
+// //Loop through each letter of the string
+// for (var i = 0; i < str.length;i++) {
+// //Put letters from function to the new string
+// newStr +=  func(str[i]) }
+// // return new string
+// return newStr;
+// }`;
 
+console.log(pNum);
   return (
     <div className={styles.problems}>
       <div className={styles.problemTabsRow}>
@@ -103,10 +108,9 @@ return newStr;
           </div>
 
           {!toggleEditableNotes ? (
-            <div
-              className={styles.notesArea}
-              rows={20}
-            >{problem1Notes}</div>
+            <div className={styles.notesArea} rows={20}>
+              {problem1Notes}
+            </div>
           ) : (
             <textarea
               id="problem1Notes"
@@ -132,10 +136,9 @@ return newStr;
           </div>
 
           {!toggleEditableNotes ? (
-            <div
-              className={styles.notesArea}
-              rows={20}
-            >{problem2Notes}</div>
+            <div className={styles.notesArea} rows={20}>
+              {problem2Notes}
+            </div>
           ) : (
             <textarea
               className={styles.notesArea}
@@ -160,10 +163,9 @@ return newStr;
           </div>
 
           {!toggleEditableNotes ? (
-            <div
-              className={styles.notesArea}
-              rows={20}
-            >{problem3Notes}</div>
+            <div className={styles.notesArea} rows={20}>
+              {problem3Notes}
+            </div>
           ) : (
             <textarea
               className={styles.notesArea}
