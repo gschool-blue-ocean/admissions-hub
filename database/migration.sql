@@ -40,9 +40,9 @@ CREATE TABLE interviews (
   problem_1_rating INT DEFAULT 0,
   problem_2_rating INT DEFAULT 0,
   problem_3_rating INT DEFAULT 0,
-  attempt_1 TEXT[],
-  attempt_2 TEXT[],
-  attempt_3 TEXT[],
+  attempts_1 TEXT[],
+  attempts_2 TEXT[],
+  attempts_3 TEXT[],
   date TEXT,
   state TEXT DEFAULT 'Incomplete'
 );
