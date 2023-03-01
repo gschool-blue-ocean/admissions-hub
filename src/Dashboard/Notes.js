@@ -22,11 +22,12 @@ export default function Notes({ data, setShowNotes }) {
         <div className={styles.notePad}>
           <Problems
             problem1Notes={problem1Notes}
-            problem3Notes={problem3Notes}
             problem2Notes={problem2Notes}
+            problem3Notes={problem3Notes}
             setProblem1Notes={doesNothing}
             setProblem2Notes={doesNothing}
             setProblem3Notes={doesNothing}
+            toggleEditableNotes={false}
           />
           <Ratings
             problem1Rating={problem1Rating}
