@@ -23,14 +23,7 @@ export default function NotePad({ data,student }) {
   }
 
   function submitInterview() {
-    let text = JSON.stringify({
-      text: `${student.last_name}, ${student.first_name} has achieved a grade of : '${status}' on the Admissions Coding Challenge.`,
-    });
-    console.log(data);
-    console.log(student);
-    let slackWebHook =
-      "https://hooks.slack.com/services/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";
-
+    
     let today = new Date();
     let body = {
       notes_1: problem1Notes,
@@ -45,6 +38,12 @@ export default function NotePad({ data,student }) {
     axios.patch("/api/interviews/" + data.id, body).then((result) => {
       router.push("/dashboard");
     });
+    
+    let text = JSON.stringify({
+      text: `${student.last_name}, ${student.first_name} has achieved a grade of : '${status}' on the Admissions Coding Challenge.`,
+    });
+    let slackWebHook =
+      "https://hooks.slack.com/services/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";
 
     axios
       .post(slackWebHook, text)
