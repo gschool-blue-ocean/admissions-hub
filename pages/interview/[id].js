@@ -48,7 +48,6 @@ export default function Interview() {
   const [input1, setInput1] = useState(problem1);
   const [input2, setInput2] = useState(problem2);
   const [input3, setInput3] = useState(problem3);
-  console.log(input2);
 
   useEffect(() => {
     // this little check ensures that the id is loaded from the router. It's slow. (relative to useEffect trigger)
@@ -89,6 +88,7 @@ export default function Interview() {
       .catch((err) => console.log(err));
   }
 
+  console.log(pNum);
   return authed ? (
     <div className={styles.interviewPage}>
       <Header />
