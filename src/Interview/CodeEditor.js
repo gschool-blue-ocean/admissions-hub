@@ -19,6 +19,8 @@ export default function CodeEditor({
 }) {
   const [codeReturn, setCodeReturn] = useState([]);
   const [room, setRoom] = useState(sessionId);
+  const [input, setInput] = useState("");
+
   console.log("in CE ", pNum);
   let timer;
 
@@ -47,7 +49,7 @@ export default function CodeEditor({
 
   useEffect(() => {
     socketInitializer();
-  }, [pNum]);
+  }, []);
 
   //evaluates input from code editor, sends to backend for processing, and sets return in codeReturn state
   function handleRun() {
@@ -75,6 +77,14 @@ export default function CodeEditor({
     return output + `\nreturn logs;`;
   }
 
+  console.log("CURRENT ", input);
+
+  // variable is accessible now from outside the socket
+  if(pNum === 0) {
+    setInput1(input);
+  }
+  console.log("INPUT 1", input1);
+
   //initialized socket session
   const socketInitializer = () => {
     socket = io();
@@ -83,23 +93,9 @@ export default function CodeEditor({
     socket.on("connect", () => {
       //console.log('connected to socket');
     });
-
-    if (pNum === 0) {
-      socket.on("update-input", (msg) => {
-        setInput1(msg);
-        console.log("input1");
-      });
-    } else if (pNum === 1) {
-      socket.on("update-input", (msg) => {
-        setInput2(msg);
-        console.log("input2");
-      });
-    } else if (pNum === 2) {
-      socket.on("update-input", (msg) => {
-        setInput3(msg);
-        console.log("input3");
-      });
-    }
+    socket.on("update-input", (msg) => {
+      setInput(msg);
+    });
     socket.emit("join", room, (str) => logRoomStatus(str));
   };
 

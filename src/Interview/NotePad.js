@@ -9,6 +9,8 @@ export default function NotePad({
   data,
   student,
   input1, //need this for later when the submission has to pop up
+  input2,
+  input3,
   pNum,
   setPNum,
   problem1,
@@ -41,6 +43,9 @@ export default function NotePad({
       problem_1_rating: problem1Rating,
       problem_2_rating: problem2Rating,
       problem_3_rating: problem3Rating,
+      attempts_1: `{"${input1}"}`,
+      attempts_2: `{"${input2}"}`,
+      attempts_3: `{"${input3}"}`,
       date: today,
       state: status,
     };
@@ -48,20 +53,20 @@ export default function NotePad({
       router.push("/dashboard");
     });
 
-    let text = JSON.stringify({
-      text: `${student.last_name}, ${student.first_name} has achieved a grade of : '${status}' on the Admissions Coding Challenge.`,
-    });
-    let slackWebHook =
-      "https://hooks.slack.com/services/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";
+    // let text = JSON.stringify({
+    //   text: `${student.last_name}, ${student.first_name} has achieved a grade of : '${status}' on the Admissions Coding Challenge.`,
+    // });
+    // let slackWebHook =
+    //   "https://hooks.slack.com/services/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";
 
-    axios
-      .post(slackWebHook, text)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // axios
+    //   .post(slackWebHook, text)
+    //   .then((response) => {
+    //     console.log(response);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   }
 
   return (
