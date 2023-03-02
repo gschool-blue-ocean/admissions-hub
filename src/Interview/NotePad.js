@@ -8,7 +8,7 @@ import Ratings from "./Ratings";
 export default function NotePad({
   data,
   student,
-  input1,
+  input1, //need this for later when the submission has to pop up
   pNum,
   setPNum,
   problem1,
@@ -62,7 +62,6 @@ export default function NotePad({
       .catch((error) => {
         console.log(error);
       });
-    console.log(input1);
   }
 
   return (

@@ -19,11 +19,17 @@ export default function CodeEditor({
 }) {
   const [codeReturn, setCodeReturn] = useState([]);
   const [room, setRoom] = useState(sessionId);
-
+  console.log("in CE ", pNum);
   let timer;
+
+  // useEffect(()=> {
+
+  // }, [pNum]);
+
   const onChangeHandler = (content) => {
     // add the content of the change to the input buffer
     let inputBuffer = content;
+
     socket.emit("input-change", inputBuffer, room);
 
     /* getting rid of this set-time out prevents it from freezing up; however, you'll notice more flickers
@@ -41,7 +47,7 @@ export default function CodeEditor({
 
   useEffect(() => {
     socketInitializer();
-  }, []);
+  }, [pNum]);
 
   //evaluates input from code editor, sends to backend for processing, and sets return in codeReturn state
   function handleRun() {
@@ -71,8 +77,10 @@ export default function CodeEditor({
 
   //initialized socket session
   const socketInitializer = async () => {
-    await fetch("/api/socket");
     socket = io();
+    await fetch("/api/socket");
+    socket.emit("end");
+    socket.emit("join", room, (str) => logRoomStatus(str));
 
     socket.on("connect", () => {
       //console.log('connected to socket');
@@ -80,18 +88,22 @@ export default function CodeEditor({
 
     if (pNum === 0) {
       socket.on("update-input", (msg) => {
+        setInput1(msg);
+        console.log("input1");
       });
     }
     if (pNum === 1) {
       socket.on("update-input", (msg) => {
+        setInput2(msg);
+        console.log("input2");
       });
     }
     if (pNum === 2) {
       socket.on("update-input", (msg) => {
+        setInput3(msg);
+        console.log("input3");
       });
     }
-
-    socket.emit("join", room, (str) => logRoomStatus(str));
   };
 
   function logRoomStatus(str) {

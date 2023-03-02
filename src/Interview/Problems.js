@@ -44,7 +44,6 @@ export default function Problems({
 // return newStr;
 // }`;
 
-console.log(pNum);
   return (
     <div className={styles.problems}>
       <div className={styles.problemTabsRow}>
