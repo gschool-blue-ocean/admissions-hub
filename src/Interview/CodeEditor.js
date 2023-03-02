@@ -76,12 +76,10 @@ export default function CodeEditor({
   }
 
   //initialized socket session
-  const socketInitializer = async () => {
+  const socketInitializer = () => {
     socket = io();
-    await fetch("/api/socket");
-    socket.emit("end");
-    socket.emit("join", room, (str) => logRoomStatus(str));
-
+    fetch("/api/socket");
+    console.log("inside socket initializer ", pNum);
     socket.on("connect", () => {
       //console.log('connected to socket');
     });
@@ -91,19 +89,18 @@ export default function CodeEditor({
         setInput1(msg);
         console.log("input1");
       });
-    }
-    if (pNum === 1) {
+    } else if (pNum === 1) {
       socket.on("update-input", (msg) => {
         setInput2(msg);
         console.log("input2");
       });
-    }
-    if (pNum === 2) {
+    } else if (pNum === 2) {
       socket.on("update-input", (msg) => {
         setInput3(msg);
         console.log("input3");
       });
     }
+    socket.emit("join", room, (str) => logRoomStatus(str));
   };
 
   function logRoomStatus(str) {
