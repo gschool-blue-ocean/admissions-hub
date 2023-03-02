@@ -26,7 +26,7 @@
     "react-bootstrap-validation": "^0.1.11",
     "react-calendar": "^4.0.0",
     "react-dom": "18.2.0",
-    "react-icons": "^4.4.0",
+    "react-icons": "^4.7.1",
     "socket.io": "^4.5.2",
     "socket.io-client": "^4.5.4",
     "vm2": "^3.9.11"
