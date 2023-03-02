@@ -211,3 +211,5 @@ export default function Ratings({
     </div>
   );
 }
+
+
