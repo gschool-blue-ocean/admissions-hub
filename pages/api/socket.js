@@ -19,6 +19,9 @@ const SocketHandler = (req, res) => {
         socket.join(room);
         cb(`joined room ${room}`);
       });
+      socket.on("ping", (callback) => {
+        callback();
+      });
     });
   }
   res.end();

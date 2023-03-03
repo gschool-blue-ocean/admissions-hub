@@ -44,7 +44,7 @@ export default function Interview() {
     // return new string
     return newStr;
     }`;
-  const [pNum, setPNum] = useState(0);
+  const [pNum, setPNum] = useState();
   const [input1, setInput1] = useState(problem1);
   const [input2, setInput2] = useState(problem2);
   const [input3, setInput3] = useState(problem3);
@@ -88,7 +88,7 @@ export default function Interview() {
       .catch((err) => console.log(err));
   }
 
-  console.log(pNum);
+  // console.log(pNum);
   return authed ? (
     <div className={styles.interviewPage}>
       <Header />

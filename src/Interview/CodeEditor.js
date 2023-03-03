@@ -21,7 +21,7 @@ export default function CodeEditor({
   const [room, setRoom] = useState(sessionId);
   const [input, setInput] = useState("");
 
-  console.log("in CE ", pNum);
+  // console.log("in CE ", pNum);
   let timer;
 
   // useEffect(()=> {
@@ -34,17 +34,17 @@ export default function CodeEditor({
 
     socket.emit("input-change", inputBuffer, room);
 
-    /* getting rid of this set-time out prevents it from freezing up; however, you'll notice more flickers
+    /* getting rid of this set-time out prevents it from freezing up; however, you'll notice more flickers*/
     // start the timer or reset it if it already exists
-    if (timer) {
-      clearTimeout(timer);
-    }
-    timer = setTimeout(() => {
-      // send the input buffer to the server
-      socket.emit('input-change', inputBuffer, room);
-      // reset the input buffer
-      inputBuffer = '';
-    }, 250); // 250ms timer interval */
+    // if (timer) {
+    //   clearTimeout(timer);
+    // }
+    // timer = setTimeout(() => {
+    //   // send the input buffer to the server
+    //   socket.emit('input-change', inputBuffer, room);
+    //   // reset the input buffer
+    //   inputBuffer = '';
+    // }, 250); // 250ms timer interval
   };
 
   useEffect(() => {
@@ -77,19 +77,26 @@ export default function CodeEditor({
     return output + `\nreturn logs;`;
   }
 
-  console.log("CURRENT ", input);
-
   // variable is accessible now from outside the socket
-  if(pNum === 0) {
-    setInput1(input);
-  }
-  console.log("INPUT 1", input1);
+  useEffect(() => {
+    if (pNum === 0) {
+      setInput1(input);
+    } else if (pNum === 1) {
+      setInput2(input);
+    } else if (pNum === 2) {
+      setInput3(input);
+    }
+  }, [input]);
+  // console.log("CURRENT ", input);
+  // console.log("INPUT 1 ", input1);
+  // console.log("INPUT 2 ", input2);
+  // console.log("INPUT 3 ", input3);
 
   //initialized socket session
-  const socketInitializer = () => {
+  const socketInitializer = async () => {
+    await fetch("/api/socket");
     socket = io();
-    fetch("/api/socket");
-    console.log("inside socket initializer ", pNum);
+    // console.log("inside socket initializer ", pNum);
     socket.on("connect", () => {
       //console.log('connected to socket');
     });
@@ -97,6 +104,14 @@ export default function CodeEditor({
       setInput(msg);
     });
     socket.emit("join", room, (str) => logRoomStatus(str));
+    setInterval(() => {
+      const start = Date.now();
+
+      socket.emit("ping", () => {
+        const duration = Date.now() - start;
+        console.log("ping ", duration);
+      });
+    }, 1000);
   };
 
   function logRoomStatus(str) {
