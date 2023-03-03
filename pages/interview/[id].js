@@ -18,36 +18,51 @@ export default function Interview() {
   const router = useRouter();
   const { id } = router.query;
 
-  const problem1 = `function addPropertiesToObject(obj1, obj2) {
+  const problem1 = {
+    question: "whatever",
+
+    code: `function addPropertiesToObject(obj1, obj2) {
     // Must combine all properties of obj1 to obj2
     // Use Object.assign to combine obj1 to obj2.
     Object.assign(obj2, obj1);
     // Must return obj2
     return obj2;
-    } `;
+    } `,
+  };
 
-  const problem2 = `function createNewArray(arr, func) {
-    // create new array
-    //Create a new array with array and function
-    var newArr = Array.from(arr, func);
-    //Return new array
-    return newArr;
-    }`;
+  const problem2 = {
+    question: "whatever",
 
-  const problem3 = `function logger(func, str) {
-    // create new empty string
-    var newStr = '';
-    //Loop through each letter of the string
-    for (var i = 0; i < str.length;i++) {
-    //Put letters from function to the new string
-    newStr +=  func(str[i]) }
-    // return new string
-    return newStr;
-    }`;
-  const [pNum, setPNum] = useState();
-  const [input1, setInput1] = useState(problem1);
-  const [input2, setInput2] = useState(problem2);
-  const [input3, setInput3] = useState(problem3);
+    code: `function createNewArray(arr, func) {
+      // create new array
+      //Create a new array with array and function
+      var newArr = Array.from(arr, func);
+      //Return new array
+      return newArr;
+      }`,
+  };
+
+  const problem3 = {
+    question: `Working with Strings and Functions Complete
+    the logger function that takes in a function and a string
+    and returns the result of calling the function on each
+    letter in the string.`,
+
+    code: `function logger(func, str) {
+      // create new empty string
+      var newStr = '';
+      //Loop through each letter of the string
+      for (var i = 0; i < str.length;i++) {
+      //Put letters from function to the new string
+      newStr +=  func(str[i]) }
+      // return new string
+      return newStr;
+      }`,
+  };
+  const [pNum, setPNum] = useState(0);
+  const [input1, setInput1] = useState(`/*${problem1.question}*/\n`+problem1.code);
+  const [input2, setInput2] = useState(`/*${problem2.question}*/\n`+problem2.code);
+  const [input3, setInput3] = useState(`/*${problem3.question}*/\n`+problem3.code);
 
   useEffect(() => {
     // this little check ensures that the id is loaded from the router. It's slow. (relative to useEffect trigger)
