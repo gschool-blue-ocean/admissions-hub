@@ -76,19 +76,22 @@ export default function CodeEditor({
     );
     return output + `\nreturn logs;`;
   }
+  console.log("INPUT 1 ", input1);
 
   // variable is accessible now from outside the socket
   useEffect(() => {
-    if (pNum === 0) {
-      setInput1(input);
-    } else if (pNum === 1) {
-      setInput2(input);
-    } else if (pNum === 2) {
-      setInput3(input);
+    if (input.length > 1) {
+      if (pNum === 0) {
+        setInput1(input);
+      } else if (pNum === 1) {
+        setInput2(input);
+      } else if (pNum === 2) {
+        setInput3(input);
+      }
     }
+
   }, [input]);
   // console.log("CURRENT ", input);
-  // console.log("INPUT 1 ", input1);
   // console.log("INPUT 2 ", input2);
   // console.log("INPUT 3 ", input3);
 

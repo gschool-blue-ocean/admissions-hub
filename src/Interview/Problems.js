@@ -96,12 +96,9 @@ export default function Problems({
       {pNum == 0 ? (
         <div className={styles.problemCard}>
           <div className={styles.problemText}>
-            <span className={styles.questionNum}>Question 1:</span> Working with
-            Strings and Functions Complete the logger function that takes in a
-            function and a string and returns the result of calling the function
-            on each letter in the string.
+            <span className={styles.questionNum}>Question 1:</span> {problem1.question}
           </div>
-          <pre className={styles.codeExample}>{problem1}</pre>
+          <pre className={styles.codeExample}>{problem1.code}</pre>
           <div className={styles.problemText}>
             <span className={styles.questionNum}>Notes:</span>
           </div>
@@ -129,7 +126,7 @@ export default function Problems({
             function and a string and returns the result of calling the function
             on each letter in the string.
           </div>
-          <pre className={styles.codeExample}>{problem2}</pre>
+          <pre className={styles.codeExample}>{problem2.code}</pre>
           <div className={styles.problemText}>
             <span className={styles.questionNum}>Notes:</span>
           </div>
@@ -156,7 +153,7 @@ export default function Problems({
             function and a string and returns the result of calling the function
             on each letter in the string.
           </div>
-          <pre className={styles.codeExample}>{problem3}</pre>
+          <pre className={styles.codeExample}>{problem3.code}</pre>
           <div className={styles.problemText}>
             <span className={styles.questionNum}>Notes:</span>
           </div>
