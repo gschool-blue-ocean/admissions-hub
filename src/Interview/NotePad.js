@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import Problems from "./Problems";
+import Problems from "./problems";
 import axios from "axios";
 import { useRouter } from "next/router";
 import styles from "../../styles/Interview.module.css";
-import Ratings from "./Ratings";
+import Ratings from "./ratings";
 
 export default function NotePad({
   data,

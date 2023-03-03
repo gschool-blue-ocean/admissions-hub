@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import DashTop from './DashTop';
-import DashBottom from './DashBottom';
+import DashBottom from './dashbottom';
 import DashMid from './DashMid';
 import styles from '../../styles/Dashboard.module.css';
 
