@@ -76,7 +76,7 @@ export default function CodeEditor({
     );
     return output + `\nreturn logs;`;
   }
-  console.log("INPUT 1 ", input1);
+  // console.log("INPUT 1 ", input1);
 
   // variable is accessible now from outside the socket
   useEffect(() => {
