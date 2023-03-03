@@ -8,7 +8,23 @@ export default function Ratings({
   setProblem1Rating,
   setProblem2Rating,
   setProblem3Rating,
+  // input1,
+  // input2,
+  // input3,
 }) {
+  // function clickHandler1(num) {
+  //   setProblem1Rating(num);
+  //   setAttempts1(input1);
+  // }
+  // function clickHandler2(num) {
+  //   setProblem1Rating(num);
+  //   setAttempts2(input2);
+  // }
+  // function clickHandler3(num) {
+  //   setProblem1Rating(num);
+  //   setAttempts3(input3);
+  // }
+
   let totalRating = problem1Rating + problem2Rating + problem3Rating;
   let radius = 54;
   let stroke = 8;
