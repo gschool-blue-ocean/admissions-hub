@@ -8,6 +8,8 @@ import Notes from "./Notes";
 import axios from "axios";
 import { useRouter } from "next/router";
 import ExportModal from "./ExportModal";
+import { Table } from '@nextui-org/react';
+
 
 // ===== Notes =====
 // state: what do we need
@@ -28,6 +30,7 @@ export default function DashMid(props) {
   const [showNewStudentForm, setShowNewStudentForm] = useState(false);
   const [showUpdateStudentForm, setShowUpdateStudentForm] = useState(false);
   const [showExportModal, setShowExportModal] = useState(false);
+  const [rows, setRows] = useState([])
 
   function toggleCurrentOrHistory() {
     setHistoryToggle((prevState) => (prevState = !prevState));
@@ -36,13 +39,15 @@ export default function DashMid(props) {
     setSelectIndex(-1);
   }
   function handleSelect(index) {
-    if (selectIndex == index) {
+    let key = Number(index.currentKey);
+    if (selectIndex == key) {
       setStudent(false);
       setSelectIndex(-1);
     } else {
-      setSelectIndex(index);
-      setStudent(props.candidates[index]);
+      setSelectIndex(key);
+      setStudent(props.candidates[key]);
     }
+    console.log(Number(index.currentKey), selectIndex)
   }
   function handleSelectHistory(index) {
     if (selectIndex == index) {
@@ -52,28 +57,29 @@ export default function DashMid(props) {
       setSelectIndex(index);
       setArchivedStudent(props.candidatesHistory[index]);
     }
+    console.log(index, selectIndex)
   }
 
   function genCSV() {
     ////"Borrowed Code"/////
     let csv;
     // Loop the array of objects
-    for (let row = 0; row < students.length; row++) {
-      let keysAmount = Object.keys(students[row]).length;
+    for (let row = 0; row < student.length; row++) {
+      let keysAmount = Object.keys(student[row]).length;
       let keysCounter = 0;
       // If this is the first row, generate the headings
       if (row === 0) {
         // Loop each property of the object
-        for (let key in students[row]) {
+        for (let key in student[row]) {
           // This is to not add a comma at the last cell
           // The '\r\n' adds a new line
           csv += key + (keysCounter + 1 < keysAmount ? "," : "\r\n");
           keysCounter++;
         }
       } else {
-        for (let key in students[row]) {
+        for (let key in student[row]) {
           csv +=
-            students[row][key] + (keysCounter + 1 < keysAmount ? "," : "\r\n");
+            student[row][key] + (keysCounter + 1 < keysAmount ? "," : "\r\n");
           keysCounter++;
         }
       }
@@ -89,7 +95,18 @@ export default function DashMid(props) {
 
   function filterBySearch(str) {
     if (!str) {
-      return props.candidates;
+      return props.candidates.map((stu) => {
+        return {
+          key: stu.id,
+          name: `${stu.last_name}, ${stu.first_name}`,
+          email: stu.email,
+          cohort: stu.cohort,
+          last_interview: genDateString(stu.date),
+          attempts: stu.attempts,
+          state: stu.state
+        };
+        
+      });
     }
     let newList = props.candidates.filter(
       (item) =>
@@ -97,12 +114,34 @@ export default function DashMid(props) {
         item.last_name.toLowerCase().includes(str.toLowerCase()) ||
         item.email.toLowerCase().includes(str.toLowerCase())
     );
-    return newList;
+    let arr = newList.map((stu) => {
+      return {
+        key: stu.id,
+        name: `${stu.last_name}, ${stu.first_name}`,
+        email: stu.email,
+        cohort: stu.cohort,
+        last_interview: genDateString(stu.date),
+        attempts: stu.attempts,
+        state: stu.state
+      };
+    });
+    return arr;
   }
 
   function filterBySearchHistory(str) {
     if (!str) {
-      return props.candidatesHistory;
+      return props.candidatesHistory.map((stu) => {
+        return {
+          key: stu.id,
+          name: `${stu.last_name}, ${stu.first_name}`,
+          email: stu.email,
+          cohort: stu.cohort,
+          last_interview: genDateString(stu.date),
+          attempts: stu.attempts,
+          state: stu.state
+        };
+        
+      });
     }
     let newList = props.candidatesHistory.filter(
       (item) =>
@@ -110,7 +149,18 @@ export default function DashMid(props) {
         item.last_name.toLowerCase().includes(str.toLowerCase()) ||
         item.email.toLowerCase().includes(str.toLowerCase())
     );
-    return newList;
+    let arr = newList.map((stu) => {
+      return {
+        key: stu.id,
+        name: `${stu.last_name}, ${stu.first_name}`,
+        email: stu.email,
+        cohort: stu.cohort,
+        last_interview: genDateString(stu.date),
+        attempts: stu.attempts,
+        state: stu.state
+      };
+    });
+    return arr;
   }
 
   function archiveStudent() {
@@ -184,6 +234,63 @@ export default function DashMid(props) {
     if (string == "Dec 31, 1969") return "No interviews";
     return string;
   }
+  const columns = [
+    {
+      key: "name",
+      label: "Last, First name",
+    },
+    {
+      key: "email",
+      label: "Email Address",
+    },
+    {
+      key: "cohort",
+      label: "Cohort",
+    },
+    {
+      key: "last_interview",
+      label: "Last Interview",
+    },
+    {
+      key: "attempts",
+      label: "Attempt",
+    },
+    {
+      key: "state",
+      label: "STATUS",
+    },
+  ];
+  const ghjrows = [
+    {
+      key: "1",
+      name: "Tony Reichert",
+      email: "CEO",
+      cohort: "MCSP-17",
+      last_interview: "",
+      attempts: 3,
+      status: "Active",
+    },
+    {
+      key: "2",
+      name: "Zoey Lang",
+      role: "Technical Lead",
+      status: "Paused",
+    },
+    {
+      key: "3",
+      name: "Jane Fisher",
+      role: "Senior Developer",
+      status: "Active",
+    },
+    {
+      key: "4",
+      name: "William Howard",
+      role: "Community Manager",
+      status: "Vacation",
+    },
+  ];
+
+  
 
   return (
     <div className={styles.dashMid}>
@@ -264,7 +371,7 @@ export default function DashMid(props) {
       </div>
 
       {historyToggle ? (
-        // history
+        // history================================================================
         <div className={styles.candidates}>
           {filterBySearchHistory(search).map((item, index) => (
             <div
@@ -306,46 +413,77 @@ export default function DashMid(props) {
         </div>
       ) : (
         //current
-        <div className={styles.candidates}>
-          {filterBySearch(search).map((item, index) => (
-            <div
-              className={
-                styles[selectIndex === index ? "selectedRow" : "candidateRow"]
-              }
-              onClick={() => handleSelect(index)}
-              key={index}
-            >
-              <span
-                style={{
-                  width: "160px",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                }}
-                id="studentName"
-              >
-                {item.last_name}, {item.first_name}
-              </span>
-              <span
-                style={{
-                  width: "160px",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                }}
-              >
-                {item.email}
-              </span>
-              <span style={{ width: "80px" }}>{item.cohort}</span>
-              <span style={{ width: "100px" }}>{genDateString(item.date)}</span>
-              <span style={{ width: "20px", textAlign: "right" }}>
-                {item.attempts}
-              </span>
-              <span style={{ width: "80px", textAlign: "right" }}>
-                {item.state}
-              </span>
-            </div>
-          ))}
-        </div>
+        // <div className={styles.candidates}>
+        //   {filterBySearch(search).map((item, index) => (
+        //     <div
+        //       className={
+        //         styles[selectIndex === index ? "selectedRow" : "candidateRow"]
+        //       }
+        //       onClick={() => handleSelect(index)}
+        //       key={index}
+        //     >
+        //       <span
+        //         style={{
+        //           width: "160px",
+        //           overflow: "hidden",
+        //           textOverflow: "ellipsis",
+        //         }}
+        //         id="studentName"
+        //       >
+        //         {item.last_name}, {item.first_name}
+        //       </span>
+        //       <span
+        //         style={{
+        //           width: "160px",
+        //           overflow: "hidden",
+        //           textOverflow: "ellipsis",
+        //         }}
+        //       >
+        //         {item.email}
+        //       </span>
+        //       <span style={{ width: "80px" }}>{item.cohort}</span>
+        //       <span style={{ width: "100px" }}>{genDateString(item.date)}</span>
+        //       <span style={{ width: "20px", textAlign: "right" }}>
+        //         {item.attempts}
+        //       </span>
+        //       <span style={{ width: "80px", textAlign: "right" }}>
+        //         {item.state}
+        //       </span>
+        //     </div>
+        //   ))}
+        // </div>
+        <>
+        <Table
+          aria-label="Example table with dynamic content"
+          striped
+          bordered
+          shadow={true}
+          lined
+          color="warning"
+          css={{
+            height: "auto",
+            minWidth: "100%",
+          }}
+          selectionMode="single"
+          onSelectionChange={(key) => handleSelect(key)}
+        >
+          <Table.Header columns={columns}>
+            {(column) => (
+              <Table.Column key={column.key}>{column.label}</Table.Column>
+            )}
+          </Table.Header>
+          <Table.Body items={filterBySearch(search)}>
+            {(item) => (
+              <Table.Row key={item.key}>
+                {(columnKey) => <Table.Cell>{item[columnKey]}</Table.Cell>}
+              </Table.Row>
+            )}
+          </Table.Body>
+        </Table>
+        </>
       )}
+
+      {       /* {kiiiiij                              hifghjkgfghjbknhgfchvbjnfcgv} */}
 
       <div className={styles.optionsRow}>
         <div className={styles.buttonsRow}>
