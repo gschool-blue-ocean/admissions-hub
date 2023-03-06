@@ -9,6 +9,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import ExportModal from "./ExportModal";
 import { Table } from '@nextui-org/react';
+// import DashTable from "./DashTable";
 
 
 // ===== Notes =====
@@ -40,24 +41,32 @@ export default function DashMid(props) {
   }
   function handleSelect(index) {
     let key = Number(index.currentKey);
-    if (selectIndex == key) {
-      setStudent(false);
-      setSelectIndex(-1);
-    } else {
-      setSelectIndex(key);
-      setStudent(props.candidates[key]);
+    for(let i = 0; i < props.candidates.length; i++) {
+      if (props.candidates[i].id === key) {
+        if (selectIndex == key) {
+          setStudent(false);
+          setSelectIndex(-1);
+        } else {
+          setSelectIndex(i);
+          setStudent(props.candidates[i]);
+        }
+      }
     }
-    console.log(Number(index.currentKey), selectIndex)
+    
   }
   function handleSelectHistory(index) {
-    if (selectIndex == index) {
+    let key = Number(index.currentKey);
+    for(let i = 0; i < props.candidatesHistory.length; i++) {
+      if (props.candidatesHistory[i].id === key) {
+    if (selectIndex == key) {
       setArchivedStudent(false);
       setSelectIndex(-1);
     } else {
-      setSelectIndex(index);
-      setArchivedStudent(props.candidatesHistory[index]);
+      setSelectIndex(i);
+      setArchivedStudent(props.candidatesHistory[i]);
     }
-    console.log(index, selectIndex)
+  }
+}
   }
 
   function genCSV() {
@@ -260,37 +269,6 @@ export default function DashMid(props) {
       label: "STATUS",
     },
   ];
-  const ghjrows = [
-    {
-      key: "1",
-      name: "Tony Reichert",
-      email: "CEO",
-      cohort: "MCSP-17",
-      last_interview: "",
-      attempts: 3,
-      status: "Active",
-    },
-    {
-      key: "2",
-      name: "Zoey Lang",
-      role: "Technical Lead",
-      status: "Paused",
-    },
-    {
-      key: "3",
-      name: "Jane Fisher",
-      role: "Senior Developer",
-      status: "Active",
-    },
-    {
-      key: "4",
-      name: "William Howard",
-      role: "Community Manager",
-      status: "Vacation",
-    },
-  ];
-
-  
 
   return (
     <div className={styles.dashMid}>
@@ -353,105 +331,42 @@ export default function DashMid(props) {
             textOverflow: "ellipsis",
           }}
         >
-          Last, First name
+          
         </span>
-        <span
-          style={{
-            width: "160px",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-          }}
-        >
-          Email Address
-        </span>
-        <span style={{ width: "80px" }}>Cohort</span>
-        <span style={{ width: "100px" }}>Last Interview</span>
-        <span style={{ width: "20px", textAlign: "right" }}>Attempt</span>
-        <span style={{ width: "80px", textAlign: "right" }}>Status</span>
       </div>
 
       {historyToggle ? (
-        // history================================================================
-        <div className={styles.candidates}>
-          {filterBySearchHistory(search).map((item, index) => (
-            <div
-              className={
-                styles[selectIndex === index ? "selectedRow" : "candidateRow"]
-              }
-              onClick={() => handleSelectHistory(index)}
-              key={index}
-            >
-              <span
-                style={{
-                  width: "160px",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                }}
-                id="studentName"
-              >
-                {item.last_name}, {item.first_name}
-              </span>
-              <span
-                style={{
-                  width: "160px",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                }}
-              >
-                {item.email}
-              </span>
-              <span style={{ width: "80px" }}>{item.cohort}</span>
-              <span style={{ width: "100px" }}>{genDateString(item.date)}</span>
-              <span style={{ width: "20px", textAlign: "right" }}>
-                {item.attempts}
-              </span>
-              <span style={{ width: "80px", textAlign: "right" }}>
-                {item.state}
-              </span>
-            </div>
-          ))}
-        </div>
+        <>
+        <Table
+          aria-label="Example table with dynamic content"
+          striped
+          bordered
+          shadow={true}
+          lined
+          color="warning" //"success"
+          css={{
+            height: "auto",
+            minWidth: "100%",
+          }}
+          selectionMode="single"
+          onSelectionChange={(key) => handleSelectHistory(key)}
+        >
+          <Table.Header columns={columns}>
+            {(column) => (
+              <Table.Column key={column.key}>{column.label}</Table.Column>
+            )}
+          </Table.Header>
+          <Table.Body items={filterBySearchHistory(search)}>
+            {(item) => (
+              <Table.Row key={item.key}>
+                {(columnKey) => <Table.Cell>{item[columnKey]}</Table.Cell>}
+              </Table.Row>
+            )}
+          </Table.Body>
+        </Table>
+        </>
       ) : (
-        //current
-        // <div className={styles.candidates}>
-        //   {filterBySearch(search).map((item, index) => (
-        //     <div
-        //       className={
-        //         styles[selectIndex === index ? "selectedRow" : "candidateRow"]
-        //       }
-        //       onClick={() => handleSelect(index)}
-        //       key={index}
-        //     >
-        //       <span
-        //         style={{
-        //           width: "160px",
-        //           overflow: "hidden",
-        //           textOverflow: "ellipsis",
-        //         }}
-        //         id="studentName"
-        //       >
-        //         {item.last_name}, {item.first_name}
-        //       </span>
-        //       <span
-        //         style={{
-        //           width: "160px",
-        //           overflow: "hidden",
-        //           textOverflow: "ellipsis",
-        //         }}
-        //       >
-        //         {item.email}
-        //       </span>
-        //       <span style={{ width: "80px" }}>{item.cohort}</span>
-        //       <span style={{ width: "100px" }}>{genDateString(item.date)}</span>
-        //       <span style={{ width: "20px", textAlign: "right" }}>
-        //         {item.attempts}
-        //       </span>
-        //       <span style={{ width: "80px", textAlign: "right" }}>
-        //         {item.state}
-        //       </span>
-        //     </div>
-        //   ))}
-        // </div>
+        // current===============================================
         <>
         <Table
           aria-label="Example table with dynamic content"
@@ -463,6 +378,7 @@ export default function DashMid(props) {
           css={{
             height: "auto",
             minWidth: "100%",
+            backgroundColor: "white"
           }}
           selectionMode="single"
           onSelectionChange={(key) => handleSelect(key)}
@@ -482,8 +398,6 @@ export default function DashMid(props) {
         </Table>
         </>
       )}
-
-      {       /* {kiiiiij                              hifghjkgfghjbknhgfchvbjnfcgv} */}
 
       <div className={styles.optionsRow}>
         <div className={styles.buttonsRow}>
