@@ -5,8 +5,20 @@ import { useRouter } from "next/router";
 import styles from "../../styles/Interview.module.css";
 import Ratings from "./Ratings";
 
-export default function NotePad({ data }) {
+export default function NotePad({
+  data,
+  student,
+  input1,
+  input2,
+  input3,
+  pNum,
+  setPNum,
+  problem1,
+  problem2,
+  problem3,
+}) {
   const router = useRouter();
+
   const [problem1Notes, setProblem1Notes] = useState(data.notes_1);
   const [problem2Notes, setProblem2Notes] = useState(data.notes_2);
   const [problem3Notes, setProblem3Notes] = useState(data.notes_3);
@@ -31,6 +43,9 @@ export default function NotePad({ data }) {
       problem_1_rating: problem1Rating,
       problem_2_rating: problem2Rating,
       problem_3_rating: problem3Rating,
+      submission_1: `{"${input1}"}`,
+      submission_2: `{"${input2}"}`,
+      submission_3: `{"${input3}"}`,
       date: today,
       state: status,
     };
@@ -38,31 +53,37 @@ export default function NotePad({ data }) {
       router.push("/dashboard");
     });
 
-    axios
-      .post("https://hooks.slack.com/services/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", JSON.stringify({ text: "test on button" }), {
-        timeout: 10000,
-        transformRequest(data, headers) {
-          delete headers.common["Content-Type"];
-          return data;
-        },
-      })
-      .then((res) => {
-        console.log(err);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // let text = JSON.stringify({
+    //   text: `${student.last_name}, ${student.first_name} has achieved a grade of : '${status}' on the Admissions Coding Challenge.`,
+    // });
+    // let slackWebHook =
+    //   "https://hooks.slack.com/services/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";
+
+    // axios
+    //   .post(slackWebHook, text)
+    //   .then((response) => {
+    //     console.log(response);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   }
 
   return (
     <div className={styles.notePad}>
       <Problems
+        problem1={problem1}
+        problem2={problem2}
+        problem3={problem3}
         problem1Notes={problem1Notes}
-        problem3Notes={problem3Notes}
         problem2Notes={problem2Notes}
+        problem3Notes={problem3Notes}
         setProblem1Notes={setProblem1Notes}
         setProblem2Notes={setProblem2Notes}
         setProblem3Notes={setProblem3Notes}
+        pNum={pNum}
+        setPNum={setPNum}
+        toggleEditableNotes={true}
       />
       <Ratings
         problem1Rating={problem1Rating}
@@ -71,6 +92,9 @@ export default function NotePad({ data }) {
         setProblem1Rating={setProblem1Rating}
         setProblem2Rating={setProblem2Rating}
         setProblem3Rating={setProblem3Rating}
+        input1={input1}
+        input2={input2}
+        input3={input3}
       />
       <div className={styles.questionNum}>Set Status and Submit</div>
       <div className={styles.optionsRow}>

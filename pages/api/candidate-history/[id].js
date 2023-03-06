@@ -14,35 +14,17 @@ export default function handler(req, res) {
       });
   } else if (req.method === "DELETE") {
     pool
-      .query("DELETE FROM candidates WHERE id = $1 RETURNING *", [req.query.id])
+      .query("DELETE FROM candidatesHistory WHERE id = $1 RETURNING *", [req.query.id])
       .then((result) => {
         const deleted = result.rows[0];
         res.send(deleted);
-        pool
-          .query(
-            "INSERT INTO candidatesHistory (id, first_name, last_name, email, cohort) VALUES ($1, $2, $3, $4, $5)",
-            [
-              deleted.id,
-              deleted.first_name,
-              deleted.last_name,
-              deleted.email,
-              deleted.cohort,
-            ]
-          )
-          .then((result) => {
-            res.send(result);
-          })
-          .catch((error) => {
-            console.log(`candidate INSERT INTO candidatesHistory by ID failed`);
-            res.status(500);
-            res.send(error);
-          });
       })
       .catch((error) => {
         console.log(`candidate DELETE by ID failed`);
         res.status(500);
         res.send(error);
       });
+
   } else if (req.method === "PATCH") {
     pool
       .query(

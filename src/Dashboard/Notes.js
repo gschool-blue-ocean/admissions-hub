@@ -4,6 +4,8 @@ import styles from '../../styles/Interview.module.css';
 import Ratings from '../Interview/Ratings';
 
 export default function Notes({ data, setShowNotes }) {
+  const [pNum, setPNum] = useState(0);
+
   const [problem1Notes, setProblem1Notes] = useState(data.notes_1);
   const [problem2Notes, setProblem2Notes] = useState(data.notes_2);
   const [problem3Notes, setProblem3Notes] = useState(data.notes_3);
@@ -14,6 +16,54 @@ export default function Notes({ data, setShowNotes }) {
 
   const [status, setStatus] = useState(data.state);
 
+  const problem1 = {
+    question: `Working with Strings and Functions Complete
+    the logger function that takes in a function and a string
+    and returns the result of calling the function on each letter
+    in the string.`,
+
+    code: `function addPropertiesToObject(obj1, obj2) {
+    // Must combine all properties of obj1 to obj2
+    // Use Object.assign to combine obj1 to obj2.
+    Object.assign(obj2, obj1);
+    // Must return obj2
+    return obj2;
+    } `,
+  };
+
+  const problem2 = {
+    question: `Working with Strings and Functions Complete
+    the logger function that takes in a function and a string
+    and returns the result of calling the function on each letter
+    in the string.`,
+
+    code: `function createNewArray(arr, func) {
+      // create new array
+      //Create a new array with array and function
+      var newArr = Array.from(arr, func);
+      //Return new array
+      return newArr;
+      }`,
+  };
+
+  const problem3 = {
+    question: `Working with Strings and Functions Complete
+    the logger function that takes in a function and a string
+    and returns the result of calling the function on each
+    letter in the string.`,
+
+    code: `function logger(func, str) {
+      // create new empty string
+      var newStr = '';
+      //Loop through each letter of the string
+      for (var i = 0; i < str.length;i++) {
+      //Put letters from function to the new string
+      newStr +=  func(str[i]) }
+      // return new string
+      return newStr;
+      }`,
+  };
+
   function doesNothing() {}
 
   return (
@@ -22,11 +72,14 @@ export default function Notes({ data, setShowNotes }) {
         <div className={styles.notePad}>
           <Problems
             problem1Notes={problem1Notes}
-            problem3Notes={problem3Notes}
             problem2Notes={problem2Notes}
-            setProblem1Notes={doesNothing}
-            setProblem2Notes={doesNothing}
-            setProblem3Notes={doesNothing}
+            problem3Notes={problem3Notes}
+            pNum={pNum}
+            setPNum={setPNum}
+            problem1={problem1}
+            problem2={problem2}
+            problem3={problem3}
+            toggleEditableNotes={false}
           />
           <Ratings
             problem1Rating={problem1Rating}

@@ -22,6 +22,14 @@ CREATE TABLE candidates (
   cohort TEXT NOT NULL
 );
 
+CREATE TABLE candidatesHistory (
+  id INTEGER,
+  first_name TEXT NOT NULL,
+  last_name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  cohort TEXT NOT NULL
+);
+
 CREATE TABLE interviews (
   id SERIAL PRIMARY KEY,
   interviewer_id INT NOT NULL,
@@ -32,9 +40,13 @@ CREATE TABLE interviews (
   problem_1_rating INT DEFAULT 0,
   problem_2_rating INT DEFAULT 0,
   problem_3_rating INT DEFAULT 0,
+  attempts_1 TEXT[],
+  attempts_2 TEXT[],
+  attempts_3 TEXT[],
   date TEXT,
   state TEXT DEFAULT 'Incomplete'
 );
+
 
 INSERT INTO
   interviewers (first_name, last_name, email, phash)
