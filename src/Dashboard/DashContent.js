@@ -60,6 +60,8 @@ export default function DashContent() {
     getInterviews();
   }, []);
 
+  // console.log(candidates);
+
   return (
     <div className={styles.dashContent}>
       <DashTop interviews={interviews} />
