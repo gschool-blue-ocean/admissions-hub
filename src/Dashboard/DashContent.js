@@ -62,7 +62,7 @@ export default function DashContent() {
   useEffect(() => {
     getCandidates();
     getArchivedCandidates();
-    getInterveiws();
+    getInterviews();
     removeThoughts();
   }, []);
 
