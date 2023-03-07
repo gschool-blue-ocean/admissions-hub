@@ -9,6 +9,7 @@ export default function DashContent() {
   const [candidates, setCandidates] = useState([]);
   const [candidatesHistory, setCandidatesHistory] = useState([]);
   const [interviews, setInterviews] = useState([]);
+  const [addThought, setAddThought] = useState(true);
 
   function getCandidates() {
     axios
@@ -54,22 +55,30 @@ export default function DashContent() {
       .catch((err) => console.log(err));
   }
 
+  function removeThoughts() {
+    document.addEventListener('mousedown', () => {setAddThought(false)})
+  }
+
   useEffect(() => {
     getCandidates();
     getArchivedCandidates();
     getInterveiws();
+    removeThoughts();
   }, []);
 
-  // console.log(candidates);
+
+  
 
   return (
     <div className={styles.dashContent}>
       <DashTop interviews={interviews} />
+      {addThought && <div className={styles.thought}>Select a Candidate to Get Started</div>}
       <DashMid
         candidates={candidates}
         candidatesHistory={candidatesHistory}
         getCandidates={getCandidates}
         getArchivedCandidates={getArchivedCandidates}
+        setAddThought={setAddThought}
       />
       <DashBottom interviews={interviews} />
     </div>

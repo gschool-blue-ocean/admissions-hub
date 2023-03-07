@@ -316,11 +316,7 @@ export default function DashMid(props) {
                 View Interview
               </div>
             )
-          ) : (
-            <div className={styles.tipBox}>
-              Select a Candidate to Get Started
-            </div>
-          )}
+          ) : null}
         </div>
       </div>
       <div className={styles.tableTitles}>
@@ -336,10 +332,11 @@ export default function DashMid(props) {
       </div>
 
       {historyToggle ? (
+        // history
         <>
         <Table
           aria-label="Example table with dynamic content"
-          striped
+          // striped
           bordered
           shadow={true}
           lined
@@ -347,6 +344,7 @@ export default function DashMid(props) {
           css={{
             height: "auto",
             minWidth: "100%",
+            backgroundColor: "white"
           }}
           selectionMode="single"
           onSelectionChange={(key) => handleSelectHistory(key)}
@@ -370,7 +368,7 @@ export default function DashMid(props) {
         <>
         <Table
           aria-label="Example table with dynamic content"
-          striped
+          // striped
           bordered
           shadow={true}
           lined
@@ -381,7 +379,14 @@ export default function DashMid(props) {
             backgroundColor: "white"
           }}
           selectionMode="single"
-          onSelectionChange={(key) => handleSelect(key)}
+          onSelectionChange={(key) => {
+            if(key.size === 0) {
+              setSelectIndex(-1)
+            } else {
+              handleSelect(key); 
+              props.setAddThought(false)
+            }
+          }}
         >
           <Table.Header columns={columns}>
             {(column) => (
@@ -416,7 +421,7 @@ export default function DashMid(props) {
               Add Student
             </div>
           ) : null}
-          {student && !historyToggle ? (
+          {student && historyToggle ? (
             <>
               <div
                 id="updateStudent"
@@ -434,7 +439,7 @@ export default function DashMid(props) {
               </div>
             </>
           ) : null}
-          {archivedStudent && historyToggle ? (
+          {archivedStudent && !historyToggle ? (
             <div
               id="deleteStudent"
               className={styles.launchButton}

@@ -294,6 +294,7 @@
   height: 100vh;
   position: absolute;
   background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
 
   display: flex;
   justify-content: center;
