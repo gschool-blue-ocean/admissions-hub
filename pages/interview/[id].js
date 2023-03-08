@@ -54,15 +54,8 @@ export default function Interview() {
     Object.assign(obj2, obj1);
     // Must return obj2
     return obj2;
-    } `,
-
-      code: `function createNewArray(arr, func) {
-      // create new array
-      //Create a new array with array and function
-      var newArr = Array.from(arr, func);
-      //Return new array
-      return newArr;
-      }`,
+    } `
+    
     };
   
 
