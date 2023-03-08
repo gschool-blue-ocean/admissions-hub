@@ -43,9 +43,9 @@ export default function NotePad({
       problem_1_rating: problem1Rating,
       problem_2_rating: problem2Rating,
       problem_3_rating: problem3Rating,
-      submission_1: `{"${input1}"}`,
-      submission_2: `{"${input2}"}`,
-      submission_3: `{"${input3}"}`,
+      submission_1: input1,
+      submission_2: input2,
+      submission_3: input3,
       date: today,
       state: status,
     };
