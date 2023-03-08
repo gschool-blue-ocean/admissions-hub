@@ -70,9 +70,9 @@ export default function Interview() {
       }`,
   };
   const [pNum, setPNum] = useState(0);
-  const [input1, setInput1] = useState(`/*${problem1.question}*/\n`+problem1.code);
-  const [input2, setInput2] = useState(`/*${problem2.question}*/\n`+problem2.code);
-  const [input3, setInput3] = useState(`/*${problem3.question}*/\n`+problem3.code);
+  const [input1, setInput1] = useState(`/*${problem1.question}*/\n` + problem1.code);
+  const [input2, setInput2] = useState(`/*${problem2.question}*/\n` + problem2.code);
+  const [input3, setInput3] = useState(`/*${problem3.question}*/\n` + problem3.code);
 
   useEffect(() => {
     // this little check ensures that the id is loaded from the router. It's slow. (relative to useEffect trigger)
@@ -98,6 +98,16 @@ export default function Interview() {
       .then((result) => result.data)
       .then((data) => {
         setData(data);
+        console.log(data);
+        if (data.submission_1 != null) {
+          setInput1(data.submission_1)
+        }
+        if (data.submission_2 != null) {
+          setInput2(data.submission_2)
+        }
+        if (data.submission_3 != null) {
+          setInput3(data.submission_3)
+        }
         getCandidateData(data.candidate_id);
       })
       .catch((err) => console.log(err));
