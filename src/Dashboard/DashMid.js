@@ -307,13 +307,21 @@ export default function DashMid(props) {
               >
                 Launch Interview
               </div>
-            ) : (
+            ) : student.state == "Pass" ? (
               <div
                 id="launchButton"
                 className={styles.launchButton}
                 onClick={resumeInterview}
               >
                 View Interview
+              </div>
+            ) : (
+              <div
+                id="launchButton"
+                className={styles.launchButton}
+                onClick={newInterview}
+              >
+                Launch New Interview
               </div>
             )
           ) : null}

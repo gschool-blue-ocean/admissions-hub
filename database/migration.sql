@@ -40,9 +40,13 @@ CREATE TABLE interviews (
   problem_1_rating INT DEFAULT 0,
   problem_2_rating INT DEFAULT 0,
   problem_3_rating INT DEFAULT 0,
+  submission_1 TEXT,
+  submission_2 TEXT,
+  submission_3 TEXT,
   date TEXT,
   state TEXT DEFAULT 'Incomplete'
 );
+
 
 INSERT INTO
   interviewers (first_name, last_name, email, phash)
