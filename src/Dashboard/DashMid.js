@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Downloader from "./email/downloadcsv";
+import Downloader from "./email/Downloadcsv";
 
 import NewStudent from "./NewStudent";
 import UpdateStudent from "./UpdateStudent";
