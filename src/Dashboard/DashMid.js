@@ -52,7 +52,7 @@ export default function DashMid(props) {
         }
       }
     }
-    
+
   }
   function handleSelectHistory(index) {
     let key = Number(index.currentKey);
@@ -114,7 +114,7 @@ export default function DashMid(props) {
           attempts: stu.attempts,
           state: stu.state
         };
-        
+
       });
     }
     let newList = props.candidates.filter(
@@ -149,7 +149,7 @@ export default function DashMid(props) {
           attempts: stu.attempts,
           state: stu.state
         };
-        
+
       });
     }
     let newList = props.candidatesHistory.filter(
@@ -335,7 +335,7 @@ export default function DashMid(props) {
             textOverflow: "ellipsis",
           }}
         >
-          
+
         </span>
       </div>
 
@@ -391,7 +391,7 @@ export default function DashMid(props) {
             if(key.size === 0) {
               setSelectIndex(-1)
             } else {
-              handleSelect(key); 
+              handleSelect(key);
               props.setAddThought(false)
             }
           }}
@@ -429,7 +429,7 @@ export default function DashMid(props) {
               Add Student
             </div>
           ) : null}
-          {student && historyToggle ? (
+          {student && !historyToggle ? (
             <>
               <div
                 id="updateStudent"
@@ -447,7 +447,7 @@ export default function DashMid(props) {
               </div>
             </>
           ) : null}
-          {archivedStudent && !historyToggle ? (
+          {archivedStudent && historyToggle ? (
             <div
               id="deleteStudent"
               className={styles.launchButton}

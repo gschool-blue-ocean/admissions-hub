@@ -19,14 +19,11 @@ export default function CodeEditor({
 }) {
   const [codeReturn, setCodeReturn] = useState([]);
   const [room, setRoom] = useState(sessionId);
+
+  // the current input in CodeEditor
   const [input, setInput] = useState("");
 
-  // console.log("in CE ", pNum);
-  let timer;
-
-  // useEffect(()=> {
-
-  // }, [pNum]);
+  // let timer;
 
   const onChangeHandler = (content) => {
     // add the content of the change to the input buffer
@@ -76,7 +73,6 @@ export default function CodeEditor({
     );
     return output + `\nreturn logs;`;
   }
-  // console.log("INPUT 1 ", input1);
 
   // variable is accessible now from outside the socket
   useEffect(() => {
@@ -91,9 +87,6 @@ export default function CodeEditor({
     }
 
   }, [input]);
-  // console.log("CURRENT ", input);
-  // console.log("INPUT 2 ", input2);
-  // console.log("INPUT 3 ", input3);
 
   //initialized socket session
   const socketInitializer = async () => {
@@ -107,14 +100,14 @@ export default function CodeEditor({
       setInput(msg);
     });
     socket.emit("join", room, (str) => logRoomStatus(str));
-    setInterval(() => {
-      const start = Date.now();
+    // setInterval(() => {
+    //   const start = Date.now();
 
-      socket.emit("ping", () => {
-        const duration = Date.now() - start;
-        console.log("ping ", duration);
-      });
-    }, 1000);
+    //   socket.emit("ping", () => {
+    //     const duration = Date.now() - start;
+    //     console.log("ping ", duration);
+    //   });
+    // }, 1000);
   };
 
   function logRoomStatus(str) {
