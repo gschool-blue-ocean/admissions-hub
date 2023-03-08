@@ -107,14 +107,14 @@ export default function CodeEditor({
       setInput(msg);
     });
     socket.emit("join", room, (str) => logRoomStatus(str));
-    setInterval(() => {
-      const start = Date.now();
+    // setInterval(() => {
+    //   const start = Date.now();
 
-      socket.emit("ping", () => {
-        const duration = Date.now() - start;
-        console.log("ping ", duration);
-      });
-    }, 1000);
+    //   socket.emit("ping", () => {
+    //     const duration = Date.now() - start;
+    //     console.log("ping ", duration);
+    //   });
+    // }, 1000);
   };
 
   function logRoomStatus(str) {

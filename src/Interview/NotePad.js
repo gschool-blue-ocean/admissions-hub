@@ -53,20 +53,20 @@ export default function NotePad({
       router.push("/dashboard");
     });
 
-    // let text = JSON.stringify({
-    //   text: `${student.last_name}, ${student.first_name} has achieved a grade of : '${status}' on the Admissions Coding Challenge.`,
-    // });
-    // let slackWebHook =
-    //   "https://hooks.slack.com/services/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";
+    let text = JSON.stringify({
+      text: `${student.last_name}, ${student.first_name} has achieved a grade of : '${status}' on the Admissions Coding Challenge.`,
+    });
+    
+    const slackWebHook = process.env.NEXT_PUBLIC_SLACK_WEBHOOK;
 
-    // axios
-    //   .post(slackWebHook, text)
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+    axios
+      .post(slackWebHook, text)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   return (
