@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Downloader from "./email/Downloadcsv";
-
 import NewStudent from "./NewStudent";
 import UpdateStudent from "./UpdateStudent";
 import styles from "../../styles/Dashboard.module.css";
@@ -41,7 +40,8 @@ export default function DashMid(props) {
   }
   function handleSelect(index) {
     let key = Number(index.currentKey);
-    for(let i = 0; i < props.candidates.length; i++) {
+    console.log(index);
+    for (let i = 0; i < props.candidates.length; i++) {
       if (props.candidates[i].id === key) {
         if (selectIndex == key) {
           setStudent(false);
@@ -56,19 +56,19 @@ export default function DashMid(props) {
   }
   function handleSelectHistory(index) {
     let key = Number(index.currentKey);
-    for(let i = 0; i < props.candidatesHistory.length; i++) {
+    for (let i = 0; i < props.candidatesHistory.length; i++) {
       if (props.candidatesHistory[i].id === key) {
-    if (selectIndex == key) {
-      setArchivedStudent(false);
-      setSelectIndex(-1);
-    } else {
-      setSelectIndex(i);
-      setArchivedStudent(props.candidatesHistory[i]);
+        if (selectIndex == key) {
+          setArchivedStudent(false);
+          setSelectIndex(-1);
+        } else {
+          setSelectIndex(i);
+          setArchivedStudent(props.candidatesHistory[i]);
+        }
+      }
     }
   }
-}
-  }
-
+  console.log(historyToggle);
   function genCSV() {
     ////"Borrowed Code"/////
     let csv;
@@ -266,7 +266,7 @@ export default function DashMid(props) {
     },
     {
       key: "state",
-      label: "STATUS",
+      label: "Status",
     },
   ];
 
@@ -342,73 +342,73 @@ export default function DashMid(props) {
       {historyToggle ? (
         // history
         <>
-        <Table
-          aria-label="Example table with dynamic content"
-          // striped
-          bordered
-          shadow={true}
-          lined
-          color="warning" //"success"
-          css={{
-            height: "auto",
-            minWidth: "100%",
-            backgroundColor: "white"
-          }}
-          selectionMode="single"
-          onSelectionChange={(key) => handleSelectHistory(key)}
-        >
-          <Table.Header columns={columns}>
-            {(column) => (
-              <Table.Column key={column.key}>{column.label}</Table.Column>
-            )}
-          </Table.Header>
-          <Table.Body items={filterBySearchHistory(search)}>
-            {(item) => (
-              <Table.Row key={item.key}>
-                {(columnKey) => <Table.Cell>{item[columnKey]}</Table.Cell>}
-              </Table.Row>
-            )}
-          </Table.Body>
-        </Table>
+          <Table
+            aria-label="Example table with dynamic content"
+            // striped
+            bordered
+            shadow={true}
+            lined
+            color="warning" //"success"
+            css={{
+              height: "auto",
+              minWidth: "100%",
+              backgroundColor: "white"
+            }}
+            selectionMode="single"
+            onSelectionChange={(key) => handleSelectHistory(key)}
+          >
+            <Table.Header columns={columns}>
+              {(column) => (
+                <Table.Column key={column.key}>{column.label}</Table.Column>
+              )}
+            </Table.Header>
+            <Table.Body items={filterBySearchHistory(search)}>
+              {(item) => (
+                <Table.Row key={item.key}>
+                  {(columnKey) => <Table.Cell>{item[columnKey]}</Table.Cell>}
+                </Table.Row>
+              )}
+            </Table.Body>
+          </Table>
         </>
       ) : (
         // current===============================================
         <>
-        <Table
-          aria-label="Example table with dynamic content"
-          // striped
-          bordered
-          shadow={true}
-          lined
-          color="warning"
-          css={{
-            height: "auto",
-            minWidth: "100%",
-            backgroundColor: "white"
-          }}
-          selectionMode="single"
-          onSelectionChange={(key) => {
-            if(key.size === 0) {
-              setSelectIndex(-1)
-            } else {
-              handleSelect(key);
-              props.setAddThought(false)
-            }
-          }}
-        >
-          <Table.Header columns={columns}>
-            {(column) => (
-              <Table.Column key={column.key}>{column.label}</Table.Column>
-            )}
-          </Table.Header>
-          <Table.Body items={filterBySearch(search)}>
-            {(item) => (
-              <Table.Row key={item.key}>
-                {(columnKey) => <Table.Cell>{item[columnKey]}</Table.Cell>}
-              </Table.Row>
-            )}
-          </Table.Body>
-        </Table>
+          <Table
+            aria-label="Example table with dynamic content"
+            // striped
+            bordered
+            shadow={true}
+            lined
+            color="warning"
+            css={{
+              height: "auto",
+              minWidth: "100%",
+              backgroundColor: "white"
+            }}
+            selectionMode="single"
+            onSelectionChange={(key) => {
+              if (key.size === 0) {
+                setSelectIndex(-1)
+              } else {
+                handleSelect(key);
+                props.setAddThought(false)
+              }
+            }}
+          >
+            <Table.Header columns={columns}>
+              {(column) => (
+                <Table.Column key={column.key}>{column.label}</Table.Column>
+              )}
+            </Table.Header>
+            <Table.Body items={filterBySearch(search)}>
+              {(item) => (
+                <Table.Row key={item.key}>
+                  {(columnKey) => <Table.Cell>{item[columnKey]}</Table.Cell>}
+                </Table.Row>
+              )}
+            </Table.Body>
+          </Table>
         </>
       )}
 
