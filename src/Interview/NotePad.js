@@ -8,7 +8,7 @@ import Ratings from "./ratings";
 export default function NotePad({
   data,
   student,
-  input1, //need this for later when the submission has to pop up
+  input1,
   input2,
   input3,
   pNum,
@@ -43,9 +43,9 @@ export default function NotePad({
       problem_1_rating: problem1Rating,
       problem_2_rating: problem2Rating,
       problem_3_rating: problem3Rating,
-      attempts_1: `{"${input1}"}`,
-      attempts_2: `{"${input2}"}`,
-      attempts_3: `{"${input3}"}`,
+      submission_1: `{"${input1}"}`,
+      submission_2: `{"${input2}"}`,
+      submission_3: `{"${input3}"}`,
       date: today,
       state: status,
     };
@@ -92,6 +92,9 @@ export default function NotePad({
         setProblem1Rating={setProblem1Rating}
         setProblem2Rating={setProblem2Rating}
         setProblem3Rating={setProblem3Rating}
+        input1={input1}
+        input2={input2}
+        input3={input3}
       />
       <div className={styles.questionNum}>Set Status and Submit</div>
       <div className={styles.optionsRow}>

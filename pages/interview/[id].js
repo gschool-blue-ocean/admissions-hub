@@ -18,8 +18,12 @@ export default function Interview() {
   const router = useRouter();
   const { id } = router.query;
 
+
   const problem1 = {
-    question: "whatever",
+    question: `Working with Strings and Functions Complete
+    the logger function that takes in a function and a string
+    and returns the result of calling the function on each letter
+    in the string.`,
 
     code: `function addPropertiesToObject(obj1, obj2) {
     // Must combine all properties of obj1 to obj2
@@ -27,11 +31,7 @@ export default function Interview() {
     Object.assign(obj2, obj1);
     // Must return obj2
     return obj2;
-    } `,
-  };
-
-  const problem2 = {
-    question: "whatever",
+    } `;
 
     code: `function createNewArray(arr, func) {
       // create new array

@@ -16,6 +16,54 @@ export default function Notes({ data, setShowNotes }) {
 
   const [status, setStatus] = useState(data.state);
 
+  const problem1 = {
+    question: `Working with Strings and Functions Complete
+    the logger function that takes in a function and a string
+    and returns the result of calling the function on each letter
+    in the string.`,
+
+    code: `function addPropertiesToObject(obj1, obj2) {
+    // Must combine all properties of obj1 to obj2
+    // Use Object.assign to combine obj1 to obj2.
+    Object.assign(obj2, obj1);
+    // Must return obj2
+    return obj2;
+    } `,
+  };
+
+  const problem2 = {
+    question: `Working with Strings and Functions Complete
+    the logger function that takes in a function and a string
+    and returns the result of calling the function on each letter
+    in the string.`,
+
+    code: `function createNewArray(arr, func) {
+      // create new array
+      //Create a new array with array and function
+      var newArr = Array.from(arr, func);
+      //Return new array
+      return newArr;
+      }`,
+  };
+
+  const problem3 = {
+    question: `Working with Strings and Functions Complete
+    the logger function that takes in a function and a string
+    and returns the result of calling the function on each
+    letter in the string.`,
+
+    code: `function logger(func, str) {
+      // create new empty string
+      var newStr = '';
+      //Loop through each letter of the string
+      for (var i = 0; i < str.length;i++) {
+      //Put letters from function to the new string
+      newStr +=  func(str[i]) }
+      // return new string
+      return newStr;
+      }`,
+  };
+
   function doesNothing() {}
 
   return (
@@ -28,6 +76,9 @@ export default function Notes({ data, setShowNotes }) {
             problem3Notes={problem3Notes}
             pNum={pNum}
             setPNum={setPNum}
+            problem1={problem1}
+            problem2={problem2}
+            problem3={problem3}
             toggleEditableNotes={false}
           />
           <Ratings

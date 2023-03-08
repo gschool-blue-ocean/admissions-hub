@@ -63,9 +63,10 @@ export default function DashContent() {
     getCandidates();
     getArchivedCandidates();
     getInterveiws();
+    removeThoughts();
   }, []);
 
-  console.log(candidates);
+  // console.log(candidates);
 
   return (
     <div className={styles.dashContent}>
