@@ -7,9 +7,8 @@ import Notes from "./Notes";
 import axios from "axios";
 import { useRouter } from "next/router";
 import ExportModal from "./ExportModal";
-import { Table } from '@nextui-org/react';
+import { Table } from "@nextui-org/react";
 // import DashTable from "./DashTable";
-
 
 // ===== Notes =====
 // state: what do we need
@@ -30,7 +29,7 @@ export default function DashMid(props) {
   const [showNewStudentForm, setShowNewStudentForm] = useState(false);
   const [showUpdateStudentForm, setShowUpdateStudentForm] = useState(false);
   const [showExportModal, setShowExportModal] = useState(false);
-  const [rows, setRows] = useState([])
+  const [rows, setRows] = useState([]);
 
   function toggleCurrentOrHistory() {
     setHistoryToggle((prevState) => (prevState = !prevState));
@@ -40,7 +39,6 @@ export default function DashMid(props) {
   }
   function handleSelect(index) {
     let key = Number(index.currentKey);
-    console.log(index);
     for (let i = 0; i < props.candidates.length; i++) {
       if (props.candidates[i].id === key) {
         if (selectIndex == key) {
@@ -52,7 +50,6 @@ export default function DashMid(props) {
         }
       }
     }
-
   }
   function handleSelectHistory(index) {
     let key = Number(index.currentKey);
@@ -68,7 +65,6 @@ export default function DashMid(props) {
       }
     }
   }
-  console.log(historyToggle);
   function genCSV() {
     ////"Borrowed Code"/////
     let csv;
@@ -112,9 +108,8 @@ export default function DashMid(props) {
           cohort: stu.cohort,
           last_interview: genDateString(stu.date),
           attempts: stu.attempts,
-          state: stu.state
+          state: stu.state,
         };
-
       });
     }
     let newList = props.candidates.filter(
@@ -131,7 +126,7 @@ export default function DashMid(props) {
         cohort: stu.cohort,
         last_interview: genDateString(stu.date),
         attempts: stu.attempts,
-        state: stu.state
+        state: stu.state,
       };
     });
     return arr;
@@ -147,9 +142,8 @@ export default function DashMid(props) {
           cohort: stu.cohort,
           last_interview: genDateString(stu.date),
           attempts: stu.attempts,
-          state: stu.state
+          state: stu.state,
         };
-
       });
     }
     let newList = props.candidatesHistory.filter(
@@ -166,7 +160,7 @@ export default function DashMid(props) {
         cohort: stu.cohort,
         last_interview: genDateString(stu.date),
         attempts: stu.attempts,
-        state: stu.state
+        state: stu.state,
       };
     });
     return arr;
@@ -218,7 +212,11 @@ export default function DashMid(props) {
   }
 
   function resumeInterview() {
-    router.push("/interview/" + student.interview_id);
+    if (student) {
+      router.push("/interview/" + student.interview_id);
+    } else if (archivedStudent) {
+      router.push("/interview/" + archivedStudent.interview_id);
+    }
   }
 
   function getNotesData() {
@@ -324,6 +322,10 @@ export default function DashMid(props) {
                 Launch New Interview
               </div>
             )
+          ) : archivedStudent ? (
+            <div className={styles.launchButton} onClick={resumeInterview}>
+              View Interview
+            </div>
           ) : null}
         </div>
       </div>
@@ -334,9 +336,7 @@ export default function DashMid(props) {
             overflow: "hidden",
             textOverflow: "ellipsis",
           }}
-        >
-
-        </span>
+        ></span>
       </div>
 
       {historyToggle ? (
@@ -352,7 +352,7 @@ export default function DashMid(props) {
             css={{
               height: "auto",
               minWidth: "100%",
-              backgroundColor: "white"
+              backgroundColor: "white",
             }}
             selectionMode="single"
             onSelectionChange={(key) => handleSelectHistory(key)}
@@ -384,15 +384,15 @@ export default function DashMid(props) {
             css={{
               height: "auto",
               minWidth: "100%",
-              backgroundColor: "white"
+              backgroundColor: "white",
             }}
             selectionMode="single"
             onSelectionChange={(key) => {
               if (key.size === 0) {
-                setSelectIndex(-1)
+                setSelectIndex(-1);
               } else {
                 handleSelect(key);
-                props.setAddThought(false)
+                props.setAddThought(false);
               }
             }}
           >
