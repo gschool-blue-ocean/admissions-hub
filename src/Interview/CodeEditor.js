@@ -88,11 +88,10 @@ export default function CodeEditor({
 
   }, [input]);
 
-  //initialized socket session
+  //initialize socket session
   const socketInitializer = async () => {
     await fetch("/api/socket");
     socket = io();
-    // console.log("inside socket initializer ", pNum);
     socket.on("connect", () => {
       //console.log('connected to socket');
     });

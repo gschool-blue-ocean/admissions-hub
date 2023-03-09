@@ -13,10 +13,56 @@ export default function NotePad({
   input3,
   pNum,
   setPNum,
-  problem1,
-  problem2,
-  problem3,
 }) {
+
+  // answers
+  const problem1 = {
+    question: `Working with Objects Given two objects as parameters
+    "obj1" and "obj2", complete the addPropertiesToObject function
+    that adds all properties of the first object to the second object
+    and returns the second object.`,
+
+    code: `function addPropertiesToObject(obj1, obj2) {
+    // Must combine all properties of obj1 to obj2
+    // Use Object.assign to combine obj1 to obj2.
+    Object.assign(obj2, obj1);
+    // Must return obj2
+    return obj2;
+    } `,
+  };
+
+  const problem2 = {
+    question: `Complete the createNewArray function that takes in an
+     array and another function, then returns a new array containing
+     the results of calling the input function on each element in
+     the array.`,
+
+    code: `function createNewArray(arr, func) {
+      // create new array
+      //Create a new array with array and function
+      var newArr = Array.from(arr, func);
+      //Return new array
+      return newArr;
+      }`,
+  };
+
+  const problem3 = {
+    question: `Working with Strings and Functions Complete
+    the logger function that takes in a function and a string
+    and returns the result of calling the function on each
+    letter in the string.`,
+
+    code: `function logger(func, str) {
+      // create new empty string
+      var newStr = '';
+      //Loop through each letter of the string
+      for (var i = 0; i < str.length;i++) {
+      //Put letters from function to the new string
+      newStr +=  func(str[i]) }
+      // return new string
+      return newStr;
+      }`,
+  };
   const router = useRouter();
 
   const [problem1Notes, setProblem1Notes] = useState(data.notes_1);
@@ -56,7 +102,7 @@ export default function NotePad({
     let text = JSON.stringify({
       text: `${student.last_name}, ${student.first_name} has achieved a grade of : '${status}' on the Admissions Coding Challenge.`,
     });
-    
+
     const slackWebHook = process.env.NEXT_PUBLIC_SLACK_WEBHOOK;
 
     axios
@@ -67,6 +113,10 @@ export default function NotePad({
       .catch((error) => {
         console.log(error);
       });
+  }
+
+  function exitInterview() {
+    router.push("/dashboard");
   }
 
   return (
@@ -96,23 +146,37 @@ export default function NotePad({
         input2={input2}
         input3={input3}
       />
-      <div className={styles.questionNum}>Set Status and Submit</div>
-      <div className={styles.optionsRow}>
-        <form className="statusForm" onChange={changeStatus}>
-          <select id="statusToggle" className={styles.statusToggle}>
-            <option value="Incomplete">Incomplete</option>
-            <option value="Pass">Pass</option>
-            <option value="Fail">Fail</option>
-          </select>
-        </form>
-        <div
-          id="submitButton"
-          className={styles.notepadButton}
-          onClick={submitInterview}
-        >
-          Submit
+      {student ? (
+        <>
+          <div className={styles.questionNum}>Set Status and Submit</div>
+          <div className={styles.optionsRow}>
+            <form className="statusForm" onChange={changeStatus}>
+              <select id="statusToggle" className={styles.statusToggle}>
+                <option value="Incomplete">Incomplete</option>
+                <option value="Pass">Pass</option>
+                <option value="Fail">Fail</option>
+              </select>
+            </form>
+            <div
+              id="submitButton"
+              className={styles.notepadButton}
+              onClick={submitInterview}
+            >
+              Submit
+            </div>
+          </div>
+        </>
+      ) : (
+        <div className={styles.optionsRow}>
+          <div
+            id="submitButton"
+            className={styles.notepadButton}
+            onClick={exitInterview}
+          >
+            Exit
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
