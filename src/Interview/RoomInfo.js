@@ -3,7 +3,6 @@ import styles from "../../styles/Interview.module.css";
 
 export default function RoomInfo({ student, archivedStudent, room }) {
   const [clicked, setClicked] = useState(false);
-  console.log(archivedStudent);
 
   // This section gonna need a looksy
 
