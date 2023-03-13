@@ -13,8 +13,8 @@ export default function NotePad({
   input3,
   pNum,
   setPNum,
+  changePNumHandler
 }) {
-
   // answers
   const problem1 = {
     question: `Working with Objects Given two objects as parameters
@@ -65,13 +65,13 @@ export default function NotePad({
   };
   const router = useRouter();
 
-  const [problem1Notes, setProblem1Notes] = useState(data.notes_1);
-  const [problem2Notes, setProblem2Notes] = useState(data.notes_2);
-  const [problem3Notes, setProblem3Notes] = useState(data.notes_3);
+  const [problem1Notes, setProblem1Notes] = useState(data.notes_1 || "");
+  const [problem2Notes, setProblem2Notes] = useState(data.notes_2 || "");
+  const [problem3Notes, setProblem3Notes] = useState(data.notes_3 || "");
 
-  const [problem1Rating, setProblem1Rating] = useState(data.problem_1_rating);
-  const [problem2Rating, setProblem2Rating] = useState(data.problem_2_rating);
-  const [problem3Rating, setProblem3Rating] = useState(data.problem_3_rating);
+  const [problem1Rating, setProblem1Rating] = useState(data.problem_1_rating || 0);
+  const [problem2Rating, setProblem2Rating] = useState(data.problem_2_rating || 0);
+  const [problem3Rating, setProblem3Rating] = useState(data.problem_3_rating || 0);
 
   const [status, setStatus] = useState("Incomplete");
 
@@ -132,8 +132,8 @@ export default function NotePad({
         setProblem2Notes={setProblem2Notes}
         setProblem3Notes={setProblem3Notes}
         pNum={pNum}
-        setPNum={setPNum}
         toggleEditableNotes={true}
+        changePNumHandler={changePNumHandler}
       />
       <Ratings
         problem1Rating={problem1Rating}

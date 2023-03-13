@@ -1,59 +1,34 @@
 import React, { useEffect, useState, useRef } from "react";
 import Editor from "@monaco-editor/react";
-import io from "socket.io-client";
 import styles from "../../styles/Interview.module.css";
-
-let socket;
 
 export default function CodeEditor({
   sessionId,
+  input,
   input1,
-  setInput1,
   input2,
-  setInput2,
   input3,
-  setInput3,
   pNum,
   setPNum,
   role,
+  changePNumHandler,
+  socket,
+  room,
 }) {
   const [codeReturn, setCodeReturn] = useState([]);
-  const [room, setRoom] = useState(sessionId);
 
-  // the current input in CodeEditor
-  const [input, setInput] = useState("");
-  //monaco-editor has a weird way to edit font size; it doesn't work w/ the regular CSS way
   const editorRef = useRef(null);
+  const onChangeHandler = (content) => {
+
+    socket.emit("input-change", content, room);
+  };
+
+
+  //monaco-editor has a weird way to edit font size; it doesn't work w/ the regular CSS way
   function setEditorFontSize(editor) {
     editorRef.current = editor;
     editorRef.current.updateOptions({ fontSize: 16 });
   }
-
-  const onChangeHandler = (content) => {
-    // add the content of the change to the input buffer
-    socket.emit("input-change", content, room);
-
-    /* getting rid of this set-time out prevents it from freezing up; however, you'll notice more flickers*/
-    // start the timer or reset it if it already exists
-    // if (timer) {
-    //   clearTimeout(timer);
-    // }
-    // timer = setTimeout(() => {
-    //   // send the input buffer to the server
-    //   socket.emit('input-change', inputBuffer, room);
-    //   // reset the input buffer
-    //   inputBuffer = '';
-    // }, 250); // 250ms timer interval
-  };
-
-  const changePNumHandler = (pNum) => {
-    setPNum(pNum);
-    socket.emit("pNum-change", pNum, room);
-  }
-
-  useEffect(() => {
-    socketInitializer();
-  }, []);
 
   //evaluates input from code editor, sends to backend for processing, and sets return in codeReturn state
   function handleRun() {
@@ -81,55 +56,6 @@ export default function CodeEditor({
     return output + `\nreturn logs;`;
   }
 
-  // variable is accessible now from outside the socket
-  useEffect(() => {
-    if (input.length > 1) {
-      if (pNum === 0) {
-        setInput1(input);
-      } else if (pNum === 1) {
-        setInput2(input);
-      } else if (pNum === 2) {
-        setInput3(input);
-      }
-    }
-
-  }, [input]);
-
-  //initialized socket session
-  const socketInitializer = async () => {
-
-
-    await fetch(`/api/socket`);
-
-
-    socket = io();
-    // console.log("inside socket initializer ", pNum);
-    socket.on("connect", () => {
-      //console.log('connected to socket');
-    });
-    socket.on("update-input", (msg) => {
-      setInput(msg);
-    });
-    socket.on("update-pNum", (num) => {
-      setPNum(num);
-    })
-    socket.emit("join", room, (str) => logRoomStatus(str));
-    // setInterval(() => {
-    //   const start = Date.now();
-
-    //   socket.emit("ping", () => {
-    //     const duration = Date.now() - start;
-    //     console.log("ping ", duration);
-    //   });
-    // }, 1000);
-    return () => {
-      socket.disconnect();
-    }
-  };
-
-  function logRoomStatus(str) {
-    console.log(str);
-  }
 
   return (
     <div className={styles.editorCardBorder}>
@@ -137,6 +63,7 @@ export default function CodeEditor({
         <div style={{ display: "flex" }}>
           <div
             className={styles.problemTab}
+            id={Math.random()}
             style={
               pNum !== 0
                 ? {
@@ -191,8 +118,8 @@ export default function CodeEditor({
                 defaultLanguage="javascript"
                 theme="vs-dark"
                 onChange={onChangeHandler}
-                value={input2}
                 className={styles.editor}
+                value={input2}
                 onMount={setEditorFontSize}
               />
             ) : (
@@ -201,8 +128,8 @@ export default function CodeEditor({
                 defaultLanguage="javascript"
                 theme="vs-dark"
                 onChange={onChangeHandler}
-                value={input3}
                 className={styles.editor}
+                value={input3}
                 onMount={setEditorFontSize}
               />
             )
@@ -212,8 +139,8 @@ export default function CodeEditor({
               defaultLanguage="javascript"
               theme="vs-dark"
               onChange={onChangeHandler}
-              value={input1}
               className={styles.editor}
+              value={input1}
               onMount={setEditorFontSize}
             />
           )}

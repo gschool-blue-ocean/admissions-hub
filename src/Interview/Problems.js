@@ -14,7 +14,7 @@ export default function Problems({
   setProblem3Notes,
   toggleEditableNotes,
   pNum,
-  setPNum,
+  changePNumHandler={changePNumHandler}
 }) {
 
   return (
@@ -31,7 +31,7 @@ export default function Problems({
                 }
               : null
           }
-          onClick={() => setPNum(0)}
+          onClick={() => changePNumHandler(0)}
         >
           Problem 1
         </div>
@@ -46,7 +46,7 @@ export default function Problems({
                 }
               : null
           }
-          onClick={() => setPNum(1)}
+          onClick={() => changePNumHandler(1)}
         >
           Problem 2
         </div>
@@ -61,7 +61,7 @@ export default function Problems({
                 }
               : null
           }
-          onClick={() => setPNum(2)}
+          onClick={() => changePNumHandler(2)}
         >
           Problem 3
         </div>
