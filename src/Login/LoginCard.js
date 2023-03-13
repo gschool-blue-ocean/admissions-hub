@@ -54,6 +54,7 @@ export default function AdminLogin(props) {
           <p>{warning}</p>
         </div>
         <div className={styles.cardForm}>
+        <h1>Email:</h1>
           <input
             id="logEmail"
             className={styles.input}
@@ -63,6 +64,7 @@ export default function AdminLogin(props) {
             onChange={(e) => setEmail(e.target.value)}
             onKeyDown={handleEnter}
           />
+          <h2>Password:</h2>
           <input
             id="logPassword"
             className={styles.input}
@@ -91,7 +93,7 @@ export default function AdminLogin(props) {
       </div>
       <div className={styles.cardDivider}></div>
       <div className={styles.cardRight}>
-        <img src="https://cdn.discordapp.com/attachments/1011712154480680960/1025120519961444472/unknown.png" />
+        <img  width="250px" height="250px" src="https://www.galvanize.com/wp-content/uploads/2022/11/iStock-1190408194_750x750-1-600x600.jpg" />
       </div>
     </div>
   );
