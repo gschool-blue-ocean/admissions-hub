@@ -23,6 +23,11 @@ $ npm install
 $ docker-compose up
 $ npm run dev
 ```
+Once these commands have been run you will need to create a file named 'env.local' in the directory where this project lives. The 2 required variables are:
+
+NEXT_PUBLIC_SLACK_WEBHOOK=*your slack api web hook goes here*;
+NEXT_PUBLIC_CONNECTION_STRING=*your database address goes here*;
+
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
@@ -106,9 +111,21 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Deploying this project will require a web application project on Vercel to be created. In order to do this you must have access to the GitHub repo and create an account on Vercel. Old deployment iterations from different accounts will
+not be affected. A PostgreSQL database is required for full functionality as well. Deploying the DB on Render is recommended. You will deploy the DB, then run the Migration.sql file against that DB. Once it has been migrated you will
+Set the DB on your Vercel project to your render database via the environment variable below.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+NEXT_PUBLIC_CONNECTION_STRING
+
+## Slack Integration
+
+admissions-hub/src/interview/NotePad.js
+
+Integration takes place via a post command to the Slack API in the NotePad.js file. This will send a status message of Pass/Fail/Incomplete to the slack channel configured in the environment variable below. This feature can be expanded
+upon in a few different ways.
+
+NEXT_PUBLIC_SLACK_WEBHOOK
+
 
 ## Features
 
