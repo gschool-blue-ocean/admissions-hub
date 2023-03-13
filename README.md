@@ -118,6 +118,11 @@ Set the DB on your Vercel project to your render database via the environment va
 
 NEXT_PUBLIC_CONNECTION_STRING
 
+NOTE: 
+
+- WebSockets are not available in Vercel deployments, this means that the code editor will not work in an interview.
+- WebSockets and deploying to Render works, but the free plan does not have enough memory or speed to function.
+
 ## Slack Integration
 
 admissions-hub/src/interview/NotePad.js
@@ -204,6 +209,9 @@ We have incorporated several tests utilizing Puppeteer see the wiki for more inf
 
  ## Advice for the future group
 
+
+- WebSockets are not available in Vercel deployments, this means that the code editor will not work in an interview.
+- WebSockets and deploying to Render works, but the free plan does not have enough memory or speed to run the app.
 
 
 
