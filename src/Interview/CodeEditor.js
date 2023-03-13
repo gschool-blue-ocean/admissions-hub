@@ -22,14 +22,16 @@ export default function CodeEditor({
 
   // the current input in CodeEditor
   const [input, setInput] = useState("");
-
-  // let timer;
+  //monaco-editor has a weird way to edit font size; it doesn't work w/ the regular CSS way
+  const editorRef = useRef(null);
+  function setEditorFontSize(editor) {
+    editorRef.current = editor;
+    editorRef.current.updateOptions({ fontSize: 16 });
+  }
 
   const onChangeHandler = (content) => {
     // add the content of the change to the input buffer
-    let inputBuffer = content;
-
-    socket.emit("input-change", inputBuffer, room);
+    socket.emit("input-change", content, room);
 
     /* getting rid of this set-time out prevents it from freezing up; however, you'll notice more flickers*/
     // start the timer or reset it if it already exists
@@ -43,6 +45,11 @@ export default function CodeEditor({
     //   inputBuffer = '';
     // }, 250); // 250ms timer interval
   };
+
+  const changePNumHandler = (pNum) => {
+    setPNum(pNum);
+    socket.emit("pNum-change", pNum, room);
+  }
 
   useEffect(() => {
     socketInitializer();
@@ -90,7 +97,11 @@ export default function CodeEditor({
 
   //initialized socket session
   const socketInitializer = async () => {
-    await fetch("/api/socket");
+
+
+    await fetch(`/api/socket`);
+
+
     socket = io();
     // console.log("inside socket initializer ", pNum);
     socket.on("connect", () => {
@@ -99,6 +110,9 @@ export default function CodeEditor({
     socket.on("update-input", (msg) => {
       setInput(msg);
     });
+    socket.on("update-pNum", (num) => {
+      setPNum(num);
+    })
     socket.emit("join", room, (str) => logRoomStatus(str));
     // setInterval(() => {
     //   const start = Date.now();
@@ -108,17 +122,13 @@ export default function CodeEditor({
     //     console.log("ping ", duration);
     //   });
     // }, 1000);
+    return () => {
+      socket.disconnect();
+    }
   };
 
   function logRoomStatus(str) {
     console.log(str);
-  }
-
-  //monaco-editor has a weird way to edit font size; it doesn't work w/ the regular CSS way
-  const editorRef = useRef(null);
-  function setEditorFontSize(editor, monaco) {
-    editorRef.current = editor;
-    editorRef.current.updateOptions({ fontSize: 16 });
   }
 
   return (
@@ -136,7 +146,7 @@ export default function CodeEditor({
                   }
                 : null
             }
-            onClick={() => setPNum(0)}
+            onClick={() => changePNumHandler(0)}
           >
             Problem 1
           </div>
@@ -151,7 +161,7 @@ export default function CodeEditor({
                   }
                 : null
             }
-            onClick={() => setPNum(1)}
+            onClick={() => changePNumHandler(1)}
           >
             Problem 2
           </div>
@@ -166,7 +176,7 @@ export default function CodeEditor({
                   }
                 : null
             }
-            onClick={() => setPNum(2)}
+            onClick={() => changePNumHandler(2)}
           >
             Problem 3
           </div>
