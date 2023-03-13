@@ -23,7 +23,8 @@ $ npm install
 $ docker-compose up
 $ npm run dev
 ```
-Once these commands have been run you will need to create a file named 'env.local' in the directory where this project lives. The 2 required variables are:
+Once these commands have been run you will need to create a file named 'env.local' in the directory where this project lives. 
+NextJS has built in env recognition. Adding "NEXT_PUBLIC_" prefix makes the variable available to the web page.The 2 required variables are:
 
 NEXT_PUBLIC_SLACK_WEBHOOK=*your slack api web hook goes here*;
 NEXT_PUBLIC_CONNECTION_STRING=*your database address goes here*;
@@ -133,7 +134,7 @@ NEXT_PUBLIC_SLACK_WEBHOOK
 - Created profile page with info about each user and ability to modify account settings
 - Major reorganization of code architecture and implemented industry standard practices for extensible, readible code reducing the overall techincal debt of the project
 - Fixed dozens of bugs that caused application to crash, expedited and streamlined data transfer between the database and back-end, cleaned up various CSS styling issues, and updated the ui elements related to statistical tracking to reflect current and any future events
-- Implemented Pupeteer test suite to automate testing of the application
+- Implemented Puppeteer test suite to automate testing of the application
 
 #### Archived cohort video presentations:
 
@@ -141,14 +142,14 @@ NEXT_PUBLIC_SLACK_WEBHOOK
 
 https://drive.google.com/file/d/19QuyGSSvIyi1YNiG9edoqgczmRQngQzu/view?usp=share_link
 
-#### MailHog 
+<!-- #### MailHog 
 ##### Overview
 MailHog is an email testing tool for developers:
 * Configure your application to use MailHog for SMTP delivery
 * View messages in the web UI, or retrieve them with the JSON API
-* Optionally release messages to real SMTP servers for delivery
+* Optionally release messages to real SMTP servers for delivery -->
 
-##### Installation
+<!-- ##### Installation
 MacOS
 
     $   brew update && brew install mailhog
@@ -157,12 +158,12 @@ Then, start MailHog by running 
 
     $   mailhog 
 
-in the command line.
+in the command line. -->
 
-##### Nodemailer
-- is a module for Node.js applications to allow easy  email sending.
+<!-- ##### Nodemailer
+- is a module for Node.js applications to allow easy  email sending. -->
 
-##### Getting Started 
+<!-- ##### Getting Started 
 1. Install mailhog
 2. Run mailhog by typing $ mailhog in CLI
 3. Go to http://0.0.0.0:8025/ , you should see Web UI 
@@ -176,7 +177,7 @@ in the command line.
 8. Press submit
 9. You should see an email on mailhog UI
 
-![Mailhog](https://media0.giphy.com/media/hOctYIGvFKaKDZxvLA/giphy.gif)
+![Mailhog](https://media0.giphy.com/media/hOctYIGvFKaKDZxvLA/giphy.gif) -->
 
 
 
@@ -203,7 +204,7 @@ We have incorporated several tests utilizing Puppeteer see the wiki for more inf
 
  ## Advice for the future group
 
-When we took over this project we almost deconstructed the file format. Our knee jerk reaction was to reformat the file structure based on how wierd it looked. Note: This file structure in ADMISSIONS HUB is formatted to work specifically with NEXT.JS framework. Please do your research on how NEXT.JS works before considering any refactoring of the code base. 
+
 
 
 
