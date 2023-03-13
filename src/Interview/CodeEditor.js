@@ -19,11 +19,10 @@ export default function CodeEditor({
 
   const editorRef = useRef(null);
   const onChangeHandler = (content) => {
-    // console.log(editorRef.current.id)
-    // console.log(editorRef.current.getValue());
+
     socket.emit("input-change", content, room);
   };
-  console.log("INPUT1\n", input1);
+
 
   //monaco-editor has a weird way to edit font size; it doesn't work w/ the regular CSS way
   function setEditorFontSize(editor) {
@@ -57,6 +56,7 @@ export default function CodeEditor({
     return output + `\nreturn logs;`;
   }
 
+
   return (
     <div className={styles.editorCardBorder}>
       {!role ? (
@@ -73,7 +73,7 @@ export default function CodeEditor({
                   }
                 : null
             }
-            onClick={() => setPNum(0)}
+            onClick={() => changePNumHandler(0)}
           >
             Problem 1
           </div>
@@ -88,7 +88,7 @@ export default function CodeEditor({
                   }
                 : null
             }
-            onClick={() => setPNum(1)}
+            onClick={() => changePNumHandler(1)}
           >
             Problem 2
           </div>
@@ -103,7 +103,7 @@ export default function CodeEditor({
                   }
                 : null
             }
-            onClick={() => setPNum(2)}
+            onClick={() => changePNumHandler(2)}
           >
             Problem 3
           </div>

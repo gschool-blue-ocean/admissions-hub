@@ -2,8 +2,8 @@ import { Server } from "socket.io";
 
 const SocketHandler = (req, res) => {
   //check to ensure only one instance of the socket is running
+  console.log("Socket is initializing");
   if (!res.socket.server.io) {
-    console.log("Socket is initializing");
     const io = new Server(res.socket.server);
     res.socket.server.io = io;
     let someStack = []; //janky fix
@@ -32,6 +32,10 @@ const SocketHandler = (req, res) => {
       socket.on("pNum-change", (num, room) => {
         socket.broadcast.to(room).emit("update-pNum", num);
         console.log(num);
+      });
+      socket.on("pNum-change", (num, room) => {
+        console.log(num);
+        socket.broadcast.to(room).emit("update-pNum", num);
       });
       socket.on("leave", (room, cb) => {
         socket.leave(room);

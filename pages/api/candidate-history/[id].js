@@ -3,8 +3,8 @@ import pool from "../../../lib/db";
 export default function handler(req, res) {
   if (req.method === "GET") {
     pool
-      .query("SELECT * FROM candidatesHistory WHERE id = $1", [req.query.id])
-      .then((result) => {
+    .query("SELECT * FROM candidatesHistory WHERE id = $1", [req.query.id]) 
+    .then((result) => {
         res.send(result.rows[0]);
       })
       .catch((error) => {
