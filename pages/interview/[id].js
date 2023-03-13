@@ -9,6 +9,9 @@ import axios from "axios";
 import auth from "../../lib/auth";
 import { useRouter } from "next/router";
 import styles from "../../styles/Interview.module.css";
+import io from "socket.io-client";
+
+let socket;
 
 export default function Interview() {
   const [data, setData] = useState({});
@@ -18,37 +21,30 @@ export default function Interview() {
   const [authed, setAuthed] = useState(false);
   const router = useRouter();
   const { id } = router.query;
+  let room = id;
 
   const problem1 = {
     question: `Working with Objects Given two objects as parameters
     "obj1" and "obj2", complete the addPropertiesToObject function
     that adds all properties of the first object to the second object
     and returns the second object.`,
-
     code: `function addPropertiesToObject(obj1, obj2) {
-
     } `,
   };
-
   const problem2 = {
     question: `Complete the createNewArray function that takes in an
      array and another function, then returns a new array containing
      the results of calling the input function on each element in
      the array.`,
-
     code: `function createNewArray(arr, func) {
-
     }`,
   };
-
   const problem3 = {
     question: `Working with Strings and Functions Complete
     the logger function that takes in a function and a string
     and returns the result of calling the function on each
     letter in the string.`,
-
     code: `function logger(func, str) {
-
     }`,
   };
 
@@ -62,6 +58,21 @@ export default function Interview() {
   const [input3, setInput3] = useState(
     `/*${problem3.question}*/\n` + problem3.code
   );
+  // the current input in CodeEditor
+  const [input, setInput] = useState("");
+
+  // variable is accessible now from outside the socket
+  useEffect(() => {
+    if (input.length > 1) {
+      if (pNum === 0) {
+        setInput1(input);
+      } else if (pNum === 1) {
+        setInput2(input);
+      } else if (pNum === 2) {
+        setInput3(input);
+      }
+    }
+  }, [input]);
 
   useEffect(() => {
     // this little check ensures that the id is loaded from the router. It's slow. (relative to useEffect trigger)
@@ -80,6 +91,31 @@ export default function Interview() {
     }, 1000);
     getInterviewData();
   }, [id]);
+  // console.log("CURR INPUT IN [ID]\n", input);
+
+  //initialize socket session
+  const socketInitializer = async () => {
+    await fetch(`/api/socket`);
+    socket = io();
+    socket.on("connect", () => {
+      //console.log('connected to socket');
+    });
+    socket.on("update-input", (msg) => {
+      setInput(msg);
+    });
+    socket.on("update-pNum", (num) => {
+      setPNum(num);
+    });
+    socket.emit("join", room, (str) => logRoomStatus(str));
+    return () => {
+      socket.disconnect();
+    };
+  };
+
+  const changePNumHandler = (pNum) => {
+    setPNum(pNum);
+    socket.emit("pNum-change", pNum, room);
+  };
 
   function getInterviewData() {
     axios
@@ -102,6 +138,10 @@ export default function Interview() {
       .catch((err) => console.log(err));
   }
 
+  function logRoomStatus(str) {
+    console.log(str);
+  }
+
   function getCandidateData(id) {
     axios
       .get(`/api/candidate/${id}`)
@@ -122,29 +162,39 @@ export default function Interview() {
       .catch((err) => console.log(err));
   }
 
+  useEffect(() => {
+    if (id != null) {
+      socketInitializer(id);
+    }
+  }, [id]);
+
   return authed ? (
     <div className={styles.interviewPage}>
       <Header />
       <div className={styles.interviewContent}>
         <CodeEditor
           sessionId={id}
+          input={input}
           input1={input1}
-          setInput1={setInput1}
           input2={input2}
-          setInput2={setInput2}
           input3={input3}
-          setInput3={setInput3}
           pNum={pNum}
-          setPNum={setPNum}
           role={role}
           problem1={problem1}
           problem2={problem2}
           problem3={problem3}
+          changePNumHandler={changePNumHandler}
+          socket={socket}
+          room={room}
         />
 
         {role ? (
           <div className={styles.adminColumn}>
-            <RoomInfo student={student} archivedStudent={archivedStudent} room={data.id} />
+            <RoomInfo
+              student={student}
+              archivedStudent={archivedStudent}
+              room={data.id}
+            />
             <NotePad
               data={data}
               student={student}
@@ -154,6 +204,7 @@ export default function Interview() {
               input3={input3}
               pNum={pNum}
               setPNum={setPNum}
+              changePNumHandler={changePNumHandler}
             />
           </div>
         ) : null}
