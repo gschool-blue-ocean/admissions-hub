@@ -1,4 +1,5 @@
 .profilePage {
+  background-image: linear-gradient(rgba(13, 15, 74, .75), rgba(239, 110, 71, .50));
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -6,7 +7,7 @@
   min-width: 840px;
   min-height: 700px;
 
-  color: #4e4e4e;
+  color: #100101;
 }
 
 .content {

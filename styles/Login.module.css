@@ -5,6 +5,7 @@
 }
 
 .Login {
+  background-image: linear-gradient(rgba(13, 15, 74, .75), rgba(239, 110, 71, .50));
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -14,10 +15,12 @@
 }
 
 .logincard {
-  height: 400px;
+  height: 500px;
   width: 800px;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(197, 199, 196, .65);
+  border: 2px solid white;
   border-radius: 12px;
+  opacity: 0.80;
 
   display: flex;
   flex-flow: row nowrap;
@@ -48,7 +51,7 @@
 .cardForm {
   display: flex;
   flex-flow: column nowrap;
-  gap: 24px;
+  gap: 5px;
 }
 
 .input {
@@ -92,3 +95,4 @@
   <img src="https://cdn.discordapp.com/attachments/1011712154480680960/1025120519961444472/unknown.png" />
 </div>
 </div> */ ;
+

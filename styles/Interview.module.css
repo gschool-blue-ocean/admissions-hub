@@ -11,6 +11,7 @@
 }
 
 .interviewContent {
+  background-image: linear-gradient(rgba(13, 15, 74, .75), rgba(239, 110, 71, .50));
   width: 100%;
   height: 100%;
   display: flex;
