@@ -17,10 +17,10 @@ export default function Notes({ data, setShowNotes }) {
   const [status, setStatus] = useState(data.state);
 
   const problem1 = {
-    question: `Working with Strings and Functions Complete
-    the logger function that takes in a function and a string
-    and returns the result of calling the function on each letter
-    in the string.`,
+    question: `Working with Objects Given two objects as parameters
+    "obj1" and "obj2", complete the addPropertiesToObject function
+    that adds all properties of the first object to the second object
+    and returns the second object.`,
 
     code: `function addPropertiesToObject(obj1, obj2) {
     // Must combine all properties of obj1 to obj2
@@ -32,10 +32,10 @@ export default function Notes({ data, setShowNotes }) {
   };
 
   const problem2 = {
-    question: `Working with Strings and Functions Complete
-    the logger function that takes in a function and a string
-    and returns the result of calling the function on each letter
-    in the string.`,
+    question: `Complete the createNewArray function that takes in an
+     array and another function, then returns a new array containing
+     the results of calling the input function on each element in
+     the array.`,
 
     code: `function createNewArray(arr, func) {
       // create new array
