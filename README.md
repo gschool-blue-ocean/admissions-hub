@@ -23,6 +23,12 @@ $ npm install
 $ docker-compose up
 $ npm run dev
 ```
+Once these commands have been run you will need to create a file named 'env.local' in the directory where this project lives. 
+NextJS has built in env recognition. Adding "NEXT_PUBLIC_" prefix makes the variable available to the web page.The 2 required variables are:
+
+NEXT_PUBLIC_SLACK_WEBHOOK=*your slack api web hook goes here*;
+NEXT_PUBLIC_CONNECTION_STRING=*your database address goes here*;
+
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
@@ -106,9 +112,26 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Deploying this project will require a web application project on Vercel to be created. In order to do this you must have access to the GitHub repo and create an account on Vercel. Old deployment iterations from different accounts will
+not be affected. A PostgreSQL database is required for full functionality as well. Deploying the DB on Render is recommended. You will deploy the DB, then run the Migration.sql file against that DB. Once it has been migrated you will
+Set the DB on your Vercel project to your render database via the environment variable below.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+NEXT_PUBLIC_CONNECTION_STRING
+
+NOTE: 
+
+- WebSockets are not available in Vercel deployments, this means that the code editor will not work in an interview.
+- WebSockets and deploying to Render works, but the free plan does not have enough memory or speed to function.
+
+## Slack Integration
+
+admissions-hub/src/interview/NotePad.js
+
+Integration takes place via a post command to the Slack API in the NotePad.js file. This will send a status message of Pass/Fail/Incomplete to the slack channel configured in the environment variable below. This feature can be expanded
+upon in a few different ways.
+
+NEXT_PUBLIC_SLACK_WEBHOOK
+
 
 ## Features
 
@@ -116,7 +139,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 - Created profile page with info about each user and ability to modify account settings
 - Major reorganization of code architecture and implemented industry standard practices for extensible, readible code reducing the overall techincal debt of the project
 - Fixed dozens of bugs that caused application to crash, expedited and streamlined data transfer between the database and back-end, cleaned up various CSS styling issues, and updated the ui elements related to statistical tracking to reflect current and any future events
-- Implemented Pupeteer test suite to automate testing of the application
+- Implemented Puppeteer test suite to automate testing of the application
 
 #### Archived cohort video presentations:
 
@@ -124,14 +147,14 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 https://drive.google.com/file/d/19QuyGSSvIyi1YNiG9edoqgczmRQngQzu/view?usp=share_link
 
-#### MailHog 
+<!-- #### MailHog 
 ##### Overview
 MailHog is an email testing tool for developers:
 * Configure your application to use MailHog for SMTP delivery
 * View messages in the web UI, or retrieve them with the JSON API
-* Optionally release messages to real SMTP servers for delivery
+* Optionally release messages to real SMTP servers for delivery -->
 
-##### Installation
+<!-- ##### Installation
 MacOS
 
     $   brew update && brew install mailhog
@@ -140,12 +163,12 @@ Then, start MailHog by running 
 
     $   mailhog 
 
-in the command line.
+in the command line. -->
 
-##### Nodemailer
-- is a module for Node.js applications to allow easy  email sending.
+<!-- ##### Nodemailer
+- is a module for Node.js applications to allow easy  email sending. -->
 
-##### Getting Started 
+<!-- ##### Getting Started 
 1. Install mailhog
 2. Run mailhog by typing $ mailhog in CLI
 3. Go to http://0.0.0.0:8025/ , you should see Web UI 
@@ -159,7 +182,7 @@ in the command line.
 8. Press submit
 9. You should see an email on mailhog UI
 
-![Mailhog](https://media0.giphy.com/media/hOctYIGvFKaKDZxvLA/giphy.gif)
+![Mailhog](https://media0.giphy.com/media/hOctYIGvFKaKDZxvLA/giphy.gif) -->
 
 
 
@@ -186,7 +209,10 @@ We have incorporated several tests utilizing Puppeteer see the wiki for more inf
 
  ## Advice for the future group
 
-When we took over this project we almost deconstructed the file format. Our knee jerk reaction was to reformat the file structure based on how wierd it looked. Note: This file structure in ADMISSIONS HUB is formatted to work specifically with NEXT.JS framework. Please do your research on how NEXT.JS works before considering any refactoring of the code base. 
+
+- WebSockets are not available in Vercel deployments, this means that the code editor will not work in an interview.
+- WebSockets and deploying to Render works, but the free plan does not have enough memory or speed to run the app.
+
 
 
 
