@@ -8,6 +8,7 @@ export default function CodeEditor({
   input1,
   input2,
   input3,
+  setInput,
   pNum,
   setPNum,
   role,
@@ -19,7 +20,7 @@ export default function CodeEditor({
 
   const editorRef = useRef(null);
   const onChangeHandler = (content) => {
-
+    setInput(content);
     socket.emit("input-change", content, room);
   };
 
