@@ -10,6 +10,7 @@ export default function DashContent() {
   const [candidatesHistory, setCandidatesHistory] = useState([]);
   const [interviews, setInterviews] = useState([]);
   const [addThought, setAddThought] = useState(true);
+  const [historyToggle, setHistoryToggle] = useState(false);
 
   function getCandidates() {
     axios
@@ -60,11 +61,14 @@ export default function DashContent() {
   }
 
   useEffect(() => {
-    getCandidates();
-    getArchivedCandidates();
     getInterviews();
     removeThoughts();
   }, []);
+
+  useEffect(() => {
+    getCandidates();
+    getArchivedCandidates();
+  }, [historyToggle]);
 
   // console.log(candidates);
 
@@ -76,6 +80,8 @@ export default function DashContent() {
         candidates={candidates}
         candidatesHistory={candidatesHistory}
         getCandidates={getCandidates}
+        historyToggle={historyToggle}
+        setHistoryToggle={setHistoryToggle}
         getArchivedCandidates={getArchivedCandidates}
         setAddThought={setAddThought}
       />
