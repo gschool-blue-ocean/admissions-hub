@@ -75,9 +75,13 @@ Click on the "Export Current Info" (previously "Export Student Info"). A custom 
 
 ***ARCHIVE STUDENT***
 
-Select a student and click "Archive Student" to move the student to the archived log. From there, you have the option of viewing their interview or deleting them permanently. When viewing an archived student's interview. The export feature works as well for the archived log.
+Select a student and click "Archive Student" to move the student to the archived log. The student then moved to the "Archive" dashboard. Click "View Archived". From there, you have the option of viewing their interview or deleting them permanently. When viewing an archived student's interview. The export feature works as well for the archived log.
 
-![Imgur](https://i.imgur.com/r6LCD1U.gif)
+![Archive](https://user-images.githubusercontent.com/108085347/225780066-124b373d-0935-48ba-8ae5-aabf8e806915.gif)
+
+Uploading Timeline 1.mov…
+
+
 
 ***SELECT A CANDIDATE TO GET STARTED***
 
