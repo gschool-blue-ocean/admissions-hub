@@ -19,6 +19,7 @@
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+  padding:10px 0;
 }
 
 .dashTop {
@@ -165,7 +166,7 @@ display: none;
 }
 
 .launchButton {
-  border: 2px solid #0d0f4ae3;
+  border: none;
   color: #0d0f4ae3;
   height: 40px;
   width: max-content;
@@ -176,6 +177,8 @@ display: none;
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.05s ease-in-out;
+  box-shadow:2px 2px 2px 2px grey;
+  letter-spacing:1px;
 }
 
 .launchButton:hover {

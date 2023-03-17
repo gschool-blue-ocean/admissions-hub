@@ -15,6 +15,7 @@
     "axios": "^0.27.2",
     "bootstrap": "^5.2.1",
     "cors": "^2.8.5",
+    "docker": "^1.0.0",
     "emailjs": "^4.0.1",
     "jsonwebtoken": "^9.0.0",
     "mdb-react-ui-kit": "^4.2.0",

@@ -68,17 +68,19 @@
 }
 
 .button {
-  border: 2px solid #0d0f4ae3;
+  border:none;
   color: #0d0f4ae3;
   height: 40px;
   width: max-content;
-  padding-inline: 4px;
+  padding-inline: 8px;
   text-align: center;
   line-height: 40px;
   background-color: #ffd8a7;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
   transition: all 0.05s ease-in-out;
+  box-shadow:1px 1px 10px 1px grey;
+  letter-spacing:1px;
 }
 
 .button:hover {

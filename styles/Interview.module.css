@@ -140,7 +140,7 @@
 }
 
 .notepadButton {
-  border: 2px solid #0d0f4ae3;
+  border: none;
   color: #0d0f4ae3;
   height: 40px;
   width: 100px;
@@ -151,6 +151,10 @@
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.05s ease-in-out;
+  text-transform:uppercase;
+  box-shadow:2px 2px 2px 2px grey;
+  letter-spacing:1px;
+  cursor:pointer;
 }
 
 .notepadButton:hover {
@@ -266,6 +270,7 @@
   gap: 8px;
   height: 100px;
   justify-content: space-evenly;
+  width:auto;
 }
 
 .ratingsLeft {

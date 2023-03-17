@@ -1,0 +1,10 @@
+{
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#0A342C",
+        "titleBar.activeBackground": "#0E493D",
+        "titleBar.activeForeground": "#F3FDFB"
+    },
+    "githubPullRequests.ignoredPullRequestBranches": [
+        "main"
+    ]
+}
