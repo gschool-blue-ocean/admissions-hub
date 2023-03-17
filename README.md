@@ -1,7 +1,5 @@
 # Galvanize Student Admissions Hub
 
-![Imgur](https://i.imgur.com/r6LCD1U.gif)
-
 Galvanize is a company that conducts coding immersive courses and must determine if potential students possess the aptitude required to make it through the curriculum by conducting a live coding interview. This is a Full-Stack Application using the NextJS framework to unite Front and Back-End codebases. Features of this application is to create a hub that interviewers can log into to add/delete/update student data and conduct live coding interviews with them using socket.io. Stats regarding interview pass rate and other items are collected and displayed to the current interviewer account that is logged in.
 
 ## Tech Stack
