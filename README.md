@@ -12,10 +12,6 @@ Galvanize is a company that conducts coding immersive courses and must determine
 
 ![Discord](https://camo.githubusercontent.com/f868f43f3c084669121e55e633ca5c3e11d382872ab7db663789f5c736c71a43/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f446973636f72642d3538363546323f7374796c653d666f722d7468652d6261646765266c6f676f3d646973636f7264266c6f676f436f6c6f723d7768697465)![Slack](https://camo.githubusercontent.com/870d2945e15dde83583f64ea1f3f4471702e45bf30fa884412da74cb7731ae42/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f536c61636b2d3441313534423f7374796c653d666f722d7468652d6261646765266c6f676f3d736c61636b266c6f676f436f6c6f723d7768697465)![Zoom](https://camo.githubusercontent.com/c6c90c4d74d5fad08da3e2c31c556ea8a8b45a6bd5756b6e49111d9825cde56f/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f5a6f6f6d2d3244384346463f7374796c653d666f722d7468652d6261646765266c6f676f3d7a6f6f6d266c6f676f436f6c6f723d7768697465)
 
-## MCSP-16 Presentation:
-
-[Insert Link Here]
-
 ## Getting Started
 
 ```
@@ -23,7 +19,7 @@ $ npm install
 $ docker-compose up
 $ npm run dev
 ```
-Once these commands have been run you will need to create a file named 'env.local' in the directory where this project lives. 
+Once these commands have been run you will need to create a file named 'env.local' in the directory where this project lives.
 NextJS has built in env recognition. Adding "NEXT_PUBLIC_" prefix makes the variable available to the web page.The 2 required variables are:
 
 NEXT_PUBLIC_SLACK_WEBHOOK=*your slack api web hook goes here*;
@@ -34,58 +30,68 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
+#
 ## Navigation
 **LOGIN PAGE**
 
-At the login page you will see a form to enter your email and password. Emails and passwords can be found in the migration file within the database folder.
-To get you started here is the email and password.
+At the login page, you will see a form to enter your email and password. Emails and passwords can be found in the migration file within the database folder.
+To get you started, here is the email and password.
 
  ![Imgur](https://i.imgur.com/KOugM0P.gif)
- 
- #
+
+
  **EDIT PROFILE PAGE**
 
- Once you login it will bring you to the main dashboard. In the top right corner you will see a drop down that says Welcome.... followed by whatever firstname is associated with your user information(can be found in localstorage in chrome dev tools or look in your migration file)
+ Once you login, it will bring you to the main dashboard. In the top right corner, you will see a drop down that says Welcome.... followed by whatever first name is associated with your user information (can be found in localstorage in chrome dev tools or look in your migration file)
 Once you click on that a dropdown will appear click on view profile.
 
 ![Imgur](https://i.imgur.com/dajiCiZ.gif)
 
 - Click on the galvanize button in the top left corner to bring you back to the dashboard page.
-- Click logout in the dropdown menu to log you out. 
-- Edit your fields if you want to change your profile information once you click update account a paragraph tag will pop up underneath the button letting you know that the update was successful. 
+- Click logout in the dropdown menu to log you out.
+- Edit your fields if you want to change your profile information once you click update account a paragraph tag will pop up underneath the button letting you know that the update was successful.
 #
-**DASHBOARD**
+## Dashboard
 
 ***ADD STUDENT***
 
-click add student to add a student. once you click on add student a custom modal will appear with form data that needs to be filled out once youve done so submit and the new data will show up on the list of students in the dashboard. 
+Click "Add Student" to add a student. Once you click on the button, a custom modal will appear with form data that needs to be filled out. Once you are done, submit and the new data will show up on the list of students in the dashboard.
 
 ![Imgur](https://i.imgur.com/nFPLxif.gif)
 
-#
 ***EDIT OR DELETE STUDENT***
 
-Click on a student from the list and two more buttons will appear for editing and deleting
+Once you click on a student from the list, two more buttons will appear for editing and deleting.
 
 ![Imgur](https://i.imgur.com/mn9ujbJ.gif)
 
-***EXPORT STUDENT INFO*** 
+***EXPORT STUDENT INFO***
 
-Click on the Export student info. Will pop up with a custom modal with two buttons one for download and another for email. 
+Click on the "Export Current Info" (previously "Export Student Info"). A custom modal will show with two buttons: one to download and another to email.
 
 ![Imgur](https://i.imgur.com/dm7YW0J.gif)
 
-- the email button does not work yet we did not have time to incorporate it. 
-#
+- the email button does not work yet we did not have time to incorporate it.
+
+***ARCHIVE STUDENT***
+
+Select a student and click "Archive Student" to move the student to the archived log. The student then moved to the "Archive" dashboard. Click "View Archived". From there, you have the option of viewing their interview or deleting them permanently. When viewing an archived student's interview. The export feature works as well for the archived log.
+
+![Archive](https://user-images.githubusercontent.com/108085347/225780066-124b373d-0935-48ba-8ae5-aabf8e806915.gif)
+
+Uploading Timeline 1.mov…
+
+
+
 ***SELECT A CANDIDATE TO GET STARTED***
 
-- If a student has not conducted a test when you click on there info you will see a button pop up that says launch interview click that to navigate to the testing suite.
-- If a student has already conducted a test then two buttons will pop up, (resume interview, view notes)
+- If a student has not conducted a test, when you click on their info, you will see a button pop up that says "Launch Interview". Click it to navigate to the testing suite.
+- If a student has already conducted a test, then two buttons will show: either "Resume Interview" or, if passed, "View Interview", or, if failed, "Launch New Interview" and "View Notes"
 
 ![Imgur](https://i.imgur.com/Bqxu5Am.gif)
 
 #
-**INTERVIEW PAGE**
+## Interview Page
 
 ***GRADING STUDENTS***
 
@@ -95,11 +101,22 @@ After clicking on the launch interview button it will bring you to the interview
 
 ***SHARING INTERVIEW ROOM WITH STUDENT***
 
-Copy the interview link and send to the prospective student so that you and the student can share a code space. The student will not be able to see the notes or problems.
+Copy the interview link and send to the prospective student so that you and the student can share a code space. The student will not be able to see your notes nor the example answer in the notepad. Although not it's not shown in the example below, students will be provided the question pre-written on the code editor and also will be available to switch between problems.
 
 ![Imgur](https://i.imgur.com/Np6TkHr.gif)
 
-## Learn More - Next.js
+
+***SLACK INTEGRATION***
+
+- admissions-hub/src/interview/NotePad.js
+
+Whenever you click "Submit" on the interview, a Slack bot will send a status message of Pass/Fail/Incomplete along with the student's name to a Slack channel (intended to be the Admissions Team's chat group) configured in the environment variable below. Integration takes place via a POST request to the Slack API in the NotePad.js file. This feature can be expanded upon in a few different ways.
+
+- NEXT_PUBLIC_SLACK_WEBHOOK
+
+#
+## Misc
+***LEARN MORE - NEXT.JS***
 
 To learn more about Next.js, take a look at the following resources:
 
@@ -110,42 +127,29 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+***DEPLOYING ON VERCEL***
 
-Deploying this project will require a web application project on Vercel to be created. In order to do this you must have access to the GitHub repo and create an account on Vercel. Old deployment iterations from different accounts will
-not be affected. A PostgreSQL database is required for full functionality as well. Deploying the DB on Render is recommended. You will deploy the DB, then run the Migration.sql file against that DB. Once it has been migrated you will
-Set the DB on your Vercel project to your render database via the environment variable below.
+Deploying this project will require a web application project on Vercel to be created. In order to do this, you must have access to the GitHub repo and create an account on Vercel. Old deployment iterations from different accounts will
+not be affected. A PostgreSQL database is required for full functionality as well. Deploying the DB on Render is recommended. You will deploy the DB, then run the migration.sql file against that DB. Once it has been migrated, you will
+set the DB on your Vercel project to your render database via the environment variable below.
 
-NEXT_PUBLIC_CONNECTION_STRING
+- NEXT_PUBLIC_CONNECTION_STRING
 
-NOTE: 
+NOTE:
 
-- WebSockets are not available in Vercel deployments, this means that the code editor will not work in an interview.
+- WebSockets are not available in Vercel deployments; this means that you will not be able to share a codespace while in an interview in the deployed website.
 - WebSockets and deploying to Render works, but the free plan does not have enough memory or speed to function.
+- We challenge you to find and implement a solution.
 
-## Slack Integration
-
-admissions-hub/src/interview/NotePad.js
-
-Integration takes place via a post command to the Slack API in the NotePad.js file. This will send a status message of Pass/Fail/Incomplete to the slack channel configured in the environment variable below. This feature can be expanded
-upon in a few different ways.
-
-NEXT_PUBLIC_SLACK_WEBHOOK
-
-
-## Features
+<!-- ## Features
 
 - Enabled secure authentication/authorization for user account login
-- Created profile page with info about each user and ability to modify account settings
+- Profile page with info about each user and ability to modify account settings
 - Major reorganization of code architecture and implemented industry standard practices for extensible, readible code reducing the overall techincal debt of the project
 - Fixed dozens of bugs that caused application to crash, expedited and streamlined data transfer between the database and back-end, cleaned up various CSS styling issues, and updated the ui elements related to statistical tracking to reflect current and any future events
-- Implemented Puppeteer test suite to automate testing of the application
+- Implemented Puppeteer test suite to automate testing of the application -->
 
-#### Archived cohort video presentations:
 
-##### MCSP-13
-
-https://drive.google.com/file/d/19QuyGSSvIyi1YNiG9edoqgczmRQngQzu/view?usp=share_link
 
 <!-- #### MailHog 
 ##### Overview
@@ -168,10 +172,10 @@ in the command line. -->
 <!-- ##### Nodemailer
 - is a module for Node.js applications to allow easy  email sending. -->
 
-<!-- ##### Getting Started 
+<!-- ##### Getting Started
 1. Install mailhog
 2. Run mailhog by typing $ mailhog in CLI
-3. Go to http://0.0.0.0:8025/ , you should see Web UI 
+3. Go to http://0.0.0.0:8025/ , you should see Web UI
 
 ![Mailhog](https://github.com/mailhog/MailHog/raw/master/docs/MailHog.png)
 
@@ -186,7 +190,8 @@ in the command line. -->
 
 
 
-## Puppeteer
+***PUPPETEER***
+
 Puppeteer is a Node.js library that provides a high-level API for controlling headless Chrome or Chromium over the DevTools Protocol.
 
 It allows you to automate tasks that would otherwise be time-consuming and repetitive, such as:
@@ -199,21 +204,32 @@ It allows you to automate tasks that would otherwise be time-consuming and repet
 
 We have incorporated several tests utilizing Puppeteer see the wiki for more information: https://github.com/gschool-blue-ocean/admissions-hub/wiki
 
+#
+## Additional Info
 
-## To-Do / Future Features
-- we wanted to finish the testing of every feature to make sure the application doesnt't contain any bugs. 
-- as well as incorporationg jest with puppeteer.
-- Add the email csv functionality to the csv file for exporting student info
-- Refactor the code for forgot password on the login page. Note* CURRENTLY IT WORKS BUT ONLY SENDS THE EMAIL TO MAILHOG. 
-- Link to third party services under account update
+***ARCHIVED VIDEO PRESENTATIONS***:
 
- ## Advice for the future group
+MCSP-13 Video Link
 
+https://drive.google.com/file/d/19QuyGSSvIyi1YNiG9edoqgczmRQngQzu/view?usp=share_link
 
-- WebSockets are not available in Vercel deployments, this means that the code editor will not work in an interview.
-- WebSockets and deploying to Render works, but the free plan does not have enough memory or speed to run the app.
+MCSP-16 Video Link
 
+[Insert Link Here]
 
+***ARCHIVED WORK BOARDS***
 
+MCSP-17: https://trello.com/b/OrAgjLiH/admission-hub
 
+MCSP-13: https://trello.com/b/xNiAGpH3/blue-ocean
 
+***TO-DO / FUTURE FEATURES***
+
+- Test suite for every feature to make sure the application doesnt't contain any bugs.
+- Incorporate Jest with Puppeteer.
+- Add the email .csv functionality to the .csv file for exporting student info
+- Refactor the code for forgot password on the login page. Note* CURRENTLY IT WORKS BUT ONLY SENDS THE EMAIL TO MAILHOG.
+- Link to third-party services under account update (Auth0)
+- Implement Auth0 to allow login with Google/GitHub/ whatever you want
+- Create a way for the instructor to open up an interview session so that students can go on it only if the instructor has it open.
+- Create an admin token and admin dashboard that have administrative privileges. Some admin powers they may can have can be that they can allow instructors to sign up only if they are given a special internal sign up link from the website administrator or delete an instructor.
