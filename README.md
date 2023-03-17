@@ -79,9 +79,6 @@ Select a student and click "Archive Student" to move the student to the archived
 
 ![Archive](https://user-images.githubusercontent.com/108085347/225780066-124b373d-0935-48ba-8ae5-aabf8e806915.gif)
 
-Uploading Timeline 1.mov…
-
-
 
 ***SELECT A CANDIDATE TO GET STARTED***
 
