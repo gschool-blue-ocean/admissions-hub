@@ -10,9 +10,11 @@
   color: #4e4e4e;
 }
 
-
 .interviewContent {
-  background-image: linear-gradient(rgba(13, 15, 74, .75), rgba(239, 110, 71, .50));
+  background-image: linear-gradient(
+    rgba(13, 15, 74, 0.75),
+    rgba(239, 110, 71, 0.5)
+  );
   width: 100%;
   height: 100%;
   display: flex;
@@ -139,6 +141,10 @@
   border: 2px solid white;
 }
 
+.notePad {
+  width: 100%;
+}
+
 .notepadButton {
   border: 2px solid #0d0f4ae3;
   color: #0d0f4ae3;
@@ -188,7 +194,7 @@
   background-color: #ffe8d3;
   border: 1px solid #ef6e47;
   border-top: 1px solid #ffe8d3;
-
+  width: 100%;
   border-radius: 0px 0px 10px 10px;
 }
 
@@ -210,6 +216,7 @@
   color: #ef6e47;
   margin: 0px;
   height: 175px;
+  font-size: 13px;
 }
 
 .notesArea {
