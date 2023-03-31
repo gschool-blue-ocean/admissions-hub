@@ -1,5 +1,7 @@
 import { useState } from "react";
 import styles from "../../styles/Interview.module.css";
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
 
 export default function RoomInfo({ student, archivedStudent, room }) {
   const [clicked, setClicked] = useState(false);
@@ -26,27 +28,39 @@ export default function RoomInfo({ student, archivedStudent, room }) {
           {archivedStudent.cohort}
         </span>
       )}
-
       {student ? (
-        <div className={styles.copyRow} onClick={handleCopy}>
-          <img
-            src={"/images/copy.svg"}
-            alt="/"
-            objectfit="contain"
-            objectposition="bottom center"
-            width={15}
-            height={15}
-          />
-          <div>{clicked ? "Copied!" : "Click here to copy student URL"}</div>
-          <img
-            src={"/images/copy.svg"}
-            alt="/"
-            objectfit="contain"
-            objectposition="bottom center"
-            width={15}
-            height={15}
-          />
-        </div>
+        <Tippy
+          content="Copied"
+          trigger="click"
+          delay={(25, 50)}
+          onShow={(e) =>
+            setTimeout(() => {
+              e.hide();
+            }, 1200)
+          }
+        >
+          <div className={styles.copyRow} onClick={handleCopy}>
+            <img
+              src={"/images/copy.svg"}
+              alt="/"
+              objectfit="contain"
+              objectposition="bottom center"
+              width={15}
+              height={15}
+            />
+
+            <div>{"Click here to copy student URL"}</div>
+
+            <img
+              src={"/images/copy.svg"}
+              alt="/"
+              objectfit="contain"
+              objectposition="bottom center"
+              width={15}
+              height={15}
+            />
+          </div>
+        </Tippy>
       ) : null}
     </div>
   );

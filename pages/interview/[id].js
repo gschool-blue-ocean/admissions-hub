@@ -178,6 +178,7 @@ export default function Interview() {
           input1={input1}
           input2={input2}
           input3={input3}
+          setInput={setInput}
           pNum={pNum}
           role={role}
           problem1={problem1}

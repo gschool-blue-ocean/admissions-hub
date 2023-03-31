@@ -18,9 +18,10 @@ import { Table } from "@nextui-org/react";
 // 4? some more to handle csv gen, possibly?
 
 export default function DashMid(props) {
+
+  console.log(props);
   const router = useRouter();
   const [search, setSearch] = useState("");
-  const [historyToggle, setHistoryToggle] = useState(false);
   const [student, setStudent] = useState(false);
   const [archivedStudent, setArchivedStudent] = useState(false);
   const [interview, setInterview] = useState({});
@@ -32,7 +33,7 @@ export default function DashMid(props) {
   const [rows, setRows] = useState([]);
 
   function toggleCurrentOrHistory() {
-    setHistoryToggle((prevState) => (prevState = !prevState));
+    props.setHistoryToggle((prevState) => (prevState = !prevState));
     setStudent(false);
     setArchivedStudent(false);
     setSelectIndex(-1);
@@ -339,7 +340,7 @@ export default function DashMid(props) {
         ></span>
       </div>
 
-      {historyToggle ? (
+      {props.historyToggle ? (
         // history
         <>
           <Table
@@ -418,9 +419,9 @@ export default function DashMid(props) {
             className={styles.launchButton}
             onClick={() => toggleCurrentOrHistory()}
           >
-            {!historyToggle ? "View Archive" : "View Current"}
+            {!props.historyToggle ? "View Archive" : "View Current"}
           </button>
-          {!historyToggle ? (
+          {!props.historyToggle ? (
             <div
               className={styles.launchButton}
               onClick={() => setShowNewStudentForm(true)}
@@ -429,7 +430,7 @@ export default function DashMid(props) {
               Add Student
             </div>
           ) : null}
-          {student && !historyToggle ? (
+          {student && !props.historyToggle ? (
             <>
               <div
                 id="updateStudent"
@@ -447,7 +448,7 @@ export default function DashMid(props) {
               </div>
             </>
           ) : null}
-          {archivedStudent && historyToggle ? (
+          {archivedStudent && props.historyToggle ? (
             <div
               id="deleteStudent"
               className={styles.launchButton}
@@ -457,7 +458,7 @@ export default function DashMid(props) {
             </div>
           ) : null}
         </div>
-        {!historyToggle && props.candidates.length != 0 ? (
+        {!props.historyToggle && props.candidates.length != 0 ? (
           <div>
             <button
               className={styles.launchButton}
@@ -496,7 +497,7 @@ export default function DashMid(props) {
             setShowExportModal={setShowExportModal}
             students={props.candidates}
             archivedStudents={props.candidatesHistory}
-            historyToggle={historyToggle}
+            historyToggle={props.historyToggle}
           />
         )}
       </div>
